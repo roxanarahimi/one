@@ -17,8 +17,8 @@
                 </li>
                 <li>
                     <router-link to = "/panel/orders" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/orders'}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-box2-heart-fill me-2" viewBox="0 0 16 16">
-                            <path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4h-8.5ZM8.5 4h6l.5.667V5H1v-.333L1.5 4h6V1h1v3ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                        <svg xmlns = "http://www.w3.org/2000/svg" width = "23" height = "23" fill = "currentColor" class = "bi bi-box2-heart-fill me-2" viewBox = "0 0 16 16">
+                            <path d = "M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4h-8.5ZM8.5 4h6l.5.667V5H1v-.333L1.5 4h6V1h1v3ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
                         </svg>
                         <span class = "sidebar_title">سفارش ها</span>
                     </router-link>
@@ -147,8 +147,6 @@
         },
         created() {
             window.addEventListener('resize', this.handleResize);
-            // this.showPanel = this.$route.fullPath != '/panel/login' && this.$route.fullPath !=
-            // '/panel/register' && this.$route.fullPath != '/panel/reset/password';
         },
         updated() {
             if (document.getElementById('sidebar')?.style.width !== '170px') {
@@ -163,31 +161,22 @@
 
         },
         mounted() {
-
-
-
             this.sideBarToggle();
             this.handleResize();
 
             if (!localStorage.getItem('admin_access_token')) {
                 this.$router.push({name: 'PanelLogin'});
             }
-            document.querySelectorAll('form').forEach((item)=>{
-                item.setAttribute('autocomplete','off');
+            document.querySelectorAll('form').forEach((item) => {
+                item.setAttribute('autocomplete', 'off');
             })
-            // this.checkToken();
-
         },
         methods: {
-
             handleResize() {
-
-
                 if (window.innerWidth <= 768) {
                     if (this.flag === 1) {
                         this.sideBarToggle();
                     }
-                    document.getElementById('sidebar_toggle_btn')?.classList.add('d-none');
                     setTimeout(() => {
                         document.querySelectorAll('.sidebar_title').forEach((item) => {
                             item.classList.add('d-none');
@@ -230,15 +219,15 @@
                         'Accept': 'application/json',
                         'Authorization': 'Bearer ' + localStorage.getItem('admin_access_token'),
                     }
-                }).get('/api/panel/user/logout/'+ JSON.parse(localStorage.getItem('admin'))?.id)
+                }).get('/api/panel/user/logout/' + JSON.parse(localStorage.getItem('admin'))?.id)
                     .then((response) => {
                         console.log(response);
-                        if (response.status === 200){
-                        localStorage.removeItem('admin_access_token');
-                        localStorage.removeItem('admin');
-                        localStorage.removeItem('admin_expire');
-                        // this.$router.push({name: 'PanelLogin'});
-                        window.location = '/panel/login'
+                        if (response.status === 200) {
+                            localStorage.removeItem('admin_access_token');
+                            localStorage.removeItem('admin');
+                            localStorage.removeItem('admin_expire');
+                            // this.$router.push({name: 'PanelLogin'});
+                            window.location = '/panel/login'
                         }
 
                     })
@@ -253,15 +242,14 @@
                         id: JSON.parse(localStorage.getItem('admin'))?.id,
                     })
                     .then((response) => {
-                        // console.log(response);
                         if (response.status === 200) {
-                            if (JSON.parse(localStorage.getItem('admin'))?.scope === 'user'){
+                            if (JSON.parse(localStorage.getItem('admin'))?.scope === 'user') {
                                 this.logout();
-                            }else if (JSON.parse(localStorage.getItem('admin'))?.scope === 'admin'){
+                            } else if (JSON.parse(localStorage.getItem('admin'))?.scope === 'admin') {
                                 this.admin = JSON.parse(localStorage.getItem('admin'))?.name;
                             }
 
-                                localStorage.setItem('admin_expire', response.data.expire)
+                            localStorage.setItem('admin_expire', response.data.expire)
                             console.log('token checked');
 
                         }
@@ -270,7 +258,6 @@
                         if (error.response.status === 401) {
                             window.location = '/panel/login'
                             this.logout();
-
                         }
                     });
             }

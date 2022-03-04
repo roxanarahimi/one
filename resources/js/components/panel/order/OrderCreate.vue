@@ -118,47 +118,12 @@
                                     </div>
                                     <div class = "col-md-12 mb-3">
                                         <button class = "btn btn-primary" @click.prevent = "createInfo" type = "submit">
-                                            <!--                                        <button class = "btn btn-primary" type = "submit">-->
                                             ثبت
                                         </button>
                                     </div>
                                 </div>
 
                             </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class = "progress_container d-none" dir = "ltr">
-                <div class = "progress" style = "height: 20px;">
-                    <div class = "progress-bar " role = "progressbar" :style = "'width:'+progress+'%'" :aria-valuenow = "progress" aria-valuemin = "0" aria-valuemax = "100"></div>
-                </div>
-            </div>
-            <button class = "d-none" id = "draftModalBtn" data-bs-toggle = "modal" data-bs-target = "#draftModal"></button>
-
-            <div class = "modal fade" id = "draftModal" data-bs-backdrop = "static" tabindex = "-1" aria-labelledby = "draftModalLabel">
-                <div class = "modal-dialog modal-xl">
-                    <div class = "modal-content">
-                        <div class = "modal-header border-0">
-                            <!--                    <h5 class="mupdaodal-title" id="draftModalLabel">Modal title</h5>-->
-                            <!--                    <button type = "button" class = "btn-close" data-bs-dismiss = "modal" @click = "closeModal" aria-label = "Close"></button>-->
-                        </div>
-                        <div class = "modal-body w-100">
-                            <h5 class = "px-3 pb-4">شما تغییرات ذخیره نشده دارید!</h5>
-                            <div class = "draft_container row">
-                                <div class = "col-md-12">
-                                    <div id = "draft_content"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class = "modal-footer border-0">
-                            <button @click = "refactorDraft" type = "button" class = "confirm_Image btn btn-dark" data-bs-dismiss = "modal">
-                                بازیابی تغییرات
-                            </button>
-                            <button @click = "ignoreDraft" type = "button" class = "btn btn-secondary" data-bs-dismiss = "modal">
-                                حذف تغییرات
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -171,11 +136,8 @@
 <script>
     import ImageCropper from '../ImageCropper';
     import App from '../App';
-    // import {toArray} from "../../../public/cropperjs/src/js/utilities";
-
     export default {
         components: {ImageCropper},
-        //props:['type'],
         data: function () {
             return {
                 id: '',
@@ -206,10 +168,7 @@
             },
 
             createInfo() {
-                // console.log('beforePost', document.getElementById('content_text_area'));
-                //  App.methods.checkToken();
-                //    Editor.methods.updatePreview();
-                //   console.log(document.getElementById('editor').innerHTML);
+
                 axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
                     .then((response) => {
                         console.log(response);
@@ -219,10 +178,6 @@
                         }
                     })
                     .then(() => {
-                        document.querySelector('.progress-bar').classList.remove('bg-danger');
-                        document.querySelector('.progress_container').classList.add('d-none');
-                        this.progress = 0;
-
                         this.errors = [];
                         let emptyFieldsCount = 0;
                         let req = document.querySelectorAll('[required]');
@@ -249,7 +204,6 @@
                                 features = '[' + features.toString() + ']';
                             }
 
-                            document.querySelector('.progress_container').classList.remove('d-none');
                             axios.post('/api/panel/product', {
                                     // image: document.getElementById('Image_index_code').value,
                                     title: document.getElementById('title').value,
@@ -261,27 +215,11 @@
                                     off: document.getElementById('off').value,
                                     price: document.getElementById('price').value,
 
-                                    // stock: document.getElementById('stock').value,
-                                    // image_codes: this.image_codes,
-                                    // image_names: this.image_names,
-                                }, {
-                                    onUploadProgress: e => {
-                                        if (e.lengthComputable) {
-                                            this.progress = (e.loaded / e.total) * 100;
-                                            console.log(e.loaded, e.total);
-                                            document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
-                                        }
-                                    }
-                                }
-                            )
+                                })
                                 .then((response) => {
                                     console.log(response.data)
                                     if (response.status === 201 || response.status === 200) {
-                                        // localStorage.removeItem('draft_new');
-                                        // localStorage.removeItem('draft_new_img_codes');
-                                        // localStorage.removeItem('draft_new_img_names');
-
-                                        document.querySelector('.progress-bar').classList.remove('bg-danger');
+                                       document.querySelector('.progress-bar').classList.remove('bg-danger');
                                         document.querySelector('.progress-bar').classList.add('bg-success');
                                         setTimeout(() => {
                                             this.$router.push({path: '/panel/products'});
@@ -291,21 +229,9 @@
                                     }
                                 })
                                 .catch((error) => {
-                                    // console.log(error);
-                                    // console.log(error.message);
-                                    // console.log(error.response.data);
-
                                     if (error.response.status === 422) {
-
-                                        document.querySelector('.progress-bar').classList.add('bg-danger');
-                                        // setTimeout(()=>{
-                                        //     document.querySelector('.progress_container').classList.add('d-none');
-                                        // },1000);
-
                                         let errorList = Array(error.response.data);
-                                        // console.log(error.response.data);
                                         for (var i = 0; i < errorList.length; i++) {
-                                            //  console.log('i',errorList[i]);
                                             this.errors = errorList[i];
                                         }
                                         console.log(this.errors.toString());
@@ -380,7 +306,6 @@
                 this.features.splice(index, 1)
             },
             updateFeatures() {
-                //    App.methods.checkToken();
                 axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
                     .then((response) => {
                         if (response.status === 200) {
@@ -416,16 +341,13 @@
                 this.sizes.splice(index, 1)
             },
             updateSizes() {
-                //    App.methods.checkToken();
                 axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
                     .then((response) => {
                         if (response.status === 200) {
                             localStorage.setItem('expire', response.data.expire);
-                            // console.log(localStorage);
                         }
                     })
                     .then(() => {
-                        // this.sizes = [];
                         let a = [];
                         for (let i = 0; i < document.getElementsByName('size').length; i++) {
                             a.push({

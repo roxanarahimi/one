@@ -41,27 +41,21 @@
                                     </div>
                                     <div class = "col-md-4 col-lg-2 mb-3">
                                         <label for = "price" class = "form-label">قیمت (ریال)</label>
-                                        <input type = "number" min="1000"  :class = "{hasError: errors.price}" class = "form-control text-start" id = "price"  :value = "data.price" required>
+                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" :value = "data.price" required>
                                         <div id = "priceHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
 
                                     </div>
                                     <div class = "col-md-4 col-lg-1 mb-3">
                                         <label for = "off" class = "form-label">%تخفیف</label>
-                                        <input type = "number" :class = "{hasError: errors.off}" class = "form-control text-start" id = "off"  :value = "data.off">
+                                        <input type = "number" :class = "{hasError: errors.off}" class = "form-control text-start" id = "off" :value = "data.off">
                                         <div id = "offHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.off">{{ e }}</p>
 
                                     </div>
-                                    <!--                                    <div class = "col-md-3 mb-3">-->
-                                    <!--                                        <label for = "indexImageName" class = "form-label">عبارت کلید</label>-->
-                                    <!--                                        <input type = "text" :class = "{hasError: errors.b_slug}" class = "form-control text-start en"  dir = "ltr" id = "indexImageName" required>-->
-                                    <!--                                        <div id = "indexImageNameHelp" class = "form-text error"></div>-->
-                                    <!--                                        <p class = "form-text error m-0" v-for = "e in errors.b_slug">{{ e }}</p>-->
-                                    <!--                                    </div>-->
                                     <div class = "col-md-12 mb-3">
                                         <label class = "form-label" for = "text">متن</label>
-                                        <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text" >{{ data.text}}</textarea>
+                                        <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text">{{ data.text}}</textarea>
                                         <div id = "textHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.text">{{ e }}</p>
 
@@ -124,7 +118,6 @@
 
                                     <div class = "col-md-12 mb-3">
                                         <button class = "btn btn-primary" @click.prevent = "updateInfo" type = "submit">
-                                            <!--                                        <button class = "btn btn-primary" type = "submit">-->
                                             ویرایش
                                         </button>
                                     </div>
@@ -146,14 +139,10 @@
                 <div class = "modal-dialog modal-xl">
                     <div class = "modal-content">
                         <div class = "modal-header border-0">
-                            <!--                    <h5 class="mupdaodal-title" id="draftModalLabel">Modal title</h5>-->
-                            <!--                    <button type = "button" class = "btn-close" data-bs-dismiss = "modal" @click = "closeModal" aria-label = "Close"></button>-->
                         </div>
                         <div class = "modal-body w-100">
                             <h5 class = "px-3 pb-2">شما تغییرات ذخیره نشده دارید!</h5>
                             <div class = "draft_container row">
-
-
                                 <div class = "col-md-6">
                                     <p class = "h6 my-3">نسخه اصلی</p>
                                     <div id = "main_content"></div>
@@ -163,14 +152,6 @@
                                     <div id = "draft_content"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class = "modal-footer border-0">
-                            <button @click = "refactorDraft" type = "button" class = "confirm_Image btn btn-dark" data-bs-dismiss = "modal">
-                                بازیابی تغییرات
-                            </button>
-                            <button @click = "ignoreDraft" type = "button" class = "btn btn-secondary" data-bs-dismiss = "modal">
-                                حذف تغییرات
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -185,7 +166,6 @@
 <script>
     import ImageCropper from '../ImageCropper';
     import App from '../App';
-    // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
     export default {
         components: {ImageCropper},
@@ -210,14 +190,8 @@
         },
 
         mounted() {
-
-
             this.loadCategories();
             this.loadProduct();
-            // setTimeout(()=>{
-            //     this.progress = 10;
-            // },2000)
-
         },
 
         methods: {
@@ -239,7 +213,7 @@
                                         this.features.push(JSON.parse(this.data.features)[i]);
                                     }
                                 }
-                                if (this.data.sizes && this.data.sizes.length){
+                                if (this.data.sizes && this.data.sizes.length) {
                                     this.sizes = this.data.sizes;
                                 }
                             })
@@ -257,8 +231,6 @@
                             App.methods.logout();
                         }
                     });
-
-
             },
             loadCategories() {
                 axios.get('/api/panel/category/product')
@@ -268,155 +240,131 @@
                     .catch();
             },
             updateInfo() {
-                //  console.log('beforePost', document.getElementById('content_text_area'));
-                //App.methods.checkToken();
-                axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                    .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            console.log(localStorage);
-                        }
-                    })
-                    .then(() => {
-                        // document.querySelector('.progress-bar').classList?.remove('bg-danger');
-                        // document.querySelector('.progress_container').classList.add('d-none');
-                        this.progress = 0;
+                this.errors = [];
+                let emptyFieldsCount = 0;
+                let req = document.querySelectorAll('[required]');
+                req.forEach((element) => {
+                    if (element.value === "") {
+                        element.classList.add('hasError');
+                        element.nextSibling.innerHTML = "فیلد اجباری";
+                        emptyFieldsCount++;
+                    } else {
+                        element.classList.remove('hasError');
+                        element.nextSibling.innerHTML = "";
+                    }
+                });
+                if (emptyFieldsCount === 0) {
+                    let features = [];
+                    for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
+                        features.push('{"label": "' + document.getElementsByName('featureLabel')[i].value + '", "value": "' + document.getElementsByName('featureValue')[i].value + '"}');
+                    }
+                    if (document.getElementsByName('featureLabel').length === 0) {
+                        features = '[]';
+                    } else {
+                        features = '[' + features.toString() + ']';
+                    }
+                    document.querySelector('.progress_container').classList.remove('d-none');
 
-                        this.errors = [];
-                        let emptyFieldsCount = 0;
-                        let req = document.querySelectorAll('[required]');
-                        req.forEach((element) => {
-                            if (element.value === "") {
-                                element.classList.add('hasError');
-                                element.nextSibling.innerHTML = "فیلد اجباری";
-                                emptyFieldsCount++;
+                    axios.post('/api/panel/product/' + this.$route.params.id,
+                        {
+                            // image: document.getElementById('Image_index_code').value,
+                            title: document.getElementById('title').value,
+                            subTitle: document.getElementById('subTitle').value,
+                            product_category_id: document.getElementById('category').value,
+                            text: document.getElementById('text').value,
+                            features: features,
+                            sizes: this.sizes,
+                            off: document.getElementById('off').value,
+                            price: document.getElementById('price').value,
+
+                            // stock: document.getElementById('stock').value,
+
+                            // image_codes: this.image_codes,
+                            // image_names: this.image_names,
+
+                        },
+                        {
+                            onUploadProgress: e => {
+
+                                if (e.lengthComputable) {
+                                    this.progress = (e.loaded / e.total) * 100;
+                                    console.log(e.loaded, e.total);
+                                    document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
+                                }
+                            }
+                        })
+                        .then((response) => {
+                            // console.log(response.data);
+                            if (response.status === 200) {
+                                // localStorage.removeItem('draft_' + this.blog.id);
+                                // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
+                                // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
+
+                                // document.querySelector('.progress-bar')?.classList?.remove('bg-danger');
+                                // document.querySelector('.progress-bar')?.classList.add('bg-success');
+                                setTimeout(() => {
+                                    this.$router.push({path: '/panel/product/' + this.id});
+                                }, 1000);
+                            }
+                        })
+                        .catch((error) => {
+                            document.querySelector('.progress-bar').classList.add('bg-danger');
+                            // setTimeout(() => {
+                            //     document.querySelector('.progress_container').classList.add('d-none');
+                            // }, 1000);
+
+                            // console.log(error);
+                            // console.log(error.message);
+                            // console.log(error.response);
+                            // console.log(error.response.data);
+                            // console.log(error.response.data.exception_code);
+                            if (error.response.status === 422) {
+                                let errorList = Array(error.response.data);
+                                for (var i = 0; i < errorList.length; i++) {
+                                    // console.log('i', errorList[i]);
+                                    this.errors = errorList[i];
+                                }
+                                setTimeout(() => {
+                                    document.querySelector('.progress_container').classList.add('d-none');
+                                }, 1000);
+
+                            } else if (error.response.status === 500) {
+                                if (error.response.data.message.includes("SQLSTATE")) {
+                                    console.error('خطای پایگاه داده');
+
+                                    async function showAlertSql() {
+                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
+                                        setTimeout(() => {
+                                            alert(error.response.data.message);
+                                        }, 200);
+                                    }
+
+                                    showAlertSql();
+                                } else {
+                                    async function showAlert500() {
+                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
+                                        setTimeout(() => {
+                                            alert(error.message + ' '
+                                                + error.response.data.message);
+                                        }, 200);
+                                    }
+
+                                    showAlert500();
+                                }
+
                             } else {
-                                element.classList.remove('hasError');
-                                element.nextSibling.innerHTML = "";
+                                async function showAlert() {
+                                    await document.querySelector('.progress-bar').classList.add('bg-danger');
+                                    setTimeout(() => {
+                                        alert(error.message);
+                                    }, 200);
+                                }
+
+                                showAlert();
+
                             }
                         });
-
-                        if (emptyFieldsCount === 0) {
-                            let features = [];
-                            for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
-                                features.push('{"label": "' + document.getElementsByName('featureLabel')[i].value + '", "value": "' + document.getElementsByName('featureValue')[i].value + '"}');
-                            }
-                            if (document.getElementsByName('featureLabel').length === 0) {
-                                features = '[]';
-                            } else {
-                                features = '[' + features.toString() + ']';
-                            }
-                            document.querySelector('.progress_container').classList.remove('d-none');
-
-                            axios.post('/api/panel/product/' + this.$route.params.id,
-                                {
-                                    // image: document.getElementById('Image_index_code').value,
-                                    title: document.getElementById('title').value,
-                                    subTitle: document.getElementById('subTitle').value,
-                                    product_category_id: document.getElementById('category').value,
-                                    text: document.getElementById('text').value,
-                                    features: features,
-                                    sizes: this.sizes,
-                                    off: document.getElementById('off').value,
-                                    price: document.getElementById('price').value,
-
-                                    // stock: document.getElementById('stock').value,
-
-                                    // image_codes: this.image_codes,
-                                    // image_names: this.image_names,
-
-                                },
-                                {
-                                    onUploadProgress: e => {
-
-                                        if (e.lengthComputable) {
-                                            this.progress = (e.loaded / e.total) * 100;
-                                            console.log(e.loaded, e.total);
-                                            document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
-                                        }
-                                    }
-                                })
-                                .then((response) => {
-                                    // console.log(response.data);
-                                    if (response.status === 200) {
-                                        // localStorage.removeItem('draft_' + this.blog.id);
-                                        // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-                                        // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
-
-                                        // document.querySelector('.progress-bar')?.classList?.remove('bg-danger');
-                                        // document.querySelector('.progress-bar')?.classList.add('bg-success');
-                                        setTimeout(() => {
-                                            this.$router.push({path: '/panel/product/' + this.id});
-                                        }, 1000);
-                                    }
-                                })
-                                .catch((error) => {
-                                    document.querySelector('.progress-bar').classList.add('bg-danger');
-                                    // setTimeout(() => {
-                                    //     document.querySelector('.progress_container').classList.add('d-none');
-                                    // }, 1000);
-
-                                    // console.log(error);
-                                    // console.log(error.message);
-                                    // console.log(error.response);
-                                    // console.log(error.response.data);
-                                    // console.log(error.response.data.exception_code);
-                                    if (error.response.status === 422) {
-                                        let errorList = Array(error.response.data);
-                                        for (var i = 0; i < errorList.length; i++) {
-                                            // console.log('i', errorList[i]);
-                                            this.errors = errorList[i];
-                                        }
-                                        setTimeout(() => {
-                                            document.querySelector('.progress_container').classList.add('d-none');
-                                        }, 1000);
-
-                                    } else if (error.response.status === 500) {
-                                        if (error.response.data.message.includes("SQLSTATE")) {
-                                            console.error('خطای پایگاه داده');
-
-                                            async function showAlertSql() {
-                                                await document.querySelector('.progress-bar').classList.add('bg-danger');
-                                                setTimeout(() => {
-                                                    alert(error.response.data.message);
-                                                }, 200);
-                                            }
-
-                                            showAlertSql();
-                                        } else {
-                                            async function showAlert500() {
-                                                await document.querySelector('.progress-bar').classList.add('bg-danger');
-                                                setTimeout(() => {
-                                                    alert(error.message + ' '
-                                                        + error.response.data.message);
-                                                }, 200);
-                                            }
-
-                                            showAlert500();
-                                        }
-
-                                    } else {
-                                        async function showAlert() {
-                                            await document.querySelector('.progress-bar').classList.add('bg-danger');
-                                            setTimeout(() => {
-                                                alert(error.message);
-                                            }, 200);
-                                        }
-
-                                        showAlert();
-
-                                    }
-                                });
-                        }
-                    })
-                    .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
-                        }
-                    });
-
-
+                }
             },
             watchTextAreas() {
                 let txt = document.querySelector("#text");
@@ -429,7 +377,6 @@
                 }
             },
             addFeature() {
-
                 this.features.push('{"label": "", "value": ""}');
             },
             removeFeature(index) {
@@ -437,7 +384,7 @@
                 this.features.splice(index, 1)
             },
             updateFeatures() {
-                //    App.methods.checkToken();
+
                 axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
                     .then((response) => {
                         if (response.status === 200) {
@@ -473,37 +420,19 @@
                 this.sizes.splice(index, 1)
             },
             updateSizes() {
-                //    App.methods.checkToken();
-                axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                    .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            // console.log(localStorage);
-                        }
-                    })
-                    .then(() => {
-                        // this.sizes = [];
-                        let a = [];
-                        for (let i = 0; i < document.getElementsByName('size').length; i++) {
-                            a.push({
-                                "size": document.getElementsByName('size')[i].value.toString(),
-                                "dimensions": document.getElementsByName('dimensions')[i].value.toString(),
-                                "color_name": document.getElementsByName('color_name')[i].value.toString(),
-                                "color_code": document.getElementsByName('color_code')[i].value.toString(),
-                                "stock": document.getElementsByName('stock')[i].value,
-                            });
-                        }
-                        this.sizes = a;
-                        console.log(this.sizes);
-
-                    })
-                    .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
-                        }
+                App.methods.checkToken();
+                let a = [];
+                for (let i = 0; i < document.getElementsByName('size').length; i++) {
+                    a.push({
+                        "size": document.getElementsByName('size')[i].value.toString(),
+                        "dimensions": document.getElementsByName('dimensions')[i].value.toString(),
+                        "color_name": document.getElementsByName('color_name')[i].value.toString(),
+                        "color_code": document.getElementsByName('color_code')[i].value.toString(),
+                        "stock": document.getElementsByName('stock')[i].value,
                     });
-
+                }
+                this.sizes = a;
+                console.log(this.sizes);
 
             },
 

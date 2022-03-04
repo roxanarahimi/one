@@ -44,8 +44,7 @@
                                     <label for = "new_password_repeat" class = "form-label">تکرار کلمه عبور جدید</label>
                                     <input type = "password" :class = "{hasError: errors.new_password_repeat}" class = "form-control" name = "new_password_repeat" id = "new_password_repeat" aria-describedby = "passwordHelp">
                                     <div class = "form-text error"></div>
-                                    <p class = "form-text error m-0" v-for = "e in errors.new_password_repeat">{{ e
-                                        }}</p>
+                                    <p class = "form-text error m-0" v-for = "e in errors.new_password_repeat">{{e}}</p>
                                 </div>
                             </div>
 
@@ -74,17 +73,9 @@
             }
         },
         mounted() {
-            // this.getCurrentUser();
         },
         methods: {
             async getCurrentUser() {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
                 await axios.create({
                     headers: {
@@ -105,29 +96,15 @@
                             App.methods.logout();
                         }
                     });
-                // })
-                // .catch((error) => {
-                //     if (error.status === 401) {
-                //         window.location = '/login'
-                //         App.methods.logout();
-                //     }
-                // });
+
             },
 
             async submit() {
-                //  App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
+                await App.methods.checkToken();
                 document.getElementById('updateMsg').classList.add('d-none');
                 let emptyFieldsCount = 0;
                 let req = document.querySelectorAll('[required]');
-                req.forEach((element) => {
+               await req.forEach((element) => {
                     if (element.value == "") {
                         element.classList.add('hasError');
                         element.nextSibling.innerHTML = "فیلد اجباری";
@@ -150,7 +127,6 @@
                         .then((response) => {
                             console.log(response)
                             if (response.status === 200) {
-                                // this.$router.push({name: 'Login'});
                                 localStorage.setItem('admin', JSON.stringify(response.data.user));
                                 document.querySelector('#current_password').value = '';
                                 document.querySelector('#new_password').value = '';
@@ -161,7 +137,7 @@
                         })
                         .catch((error) => {
                             console.log(error);
-                            // console.log(error.response);
+                            console.log(error.response);
                             if (error.status === 401) {
                                 window.location = '/panel/login'
                                 App.methods.logout();
@@ -179,14 +155,6 @@
                             console.log('errs:', this.errors);
                         })
                 }
-                //         }
-                // )
-                // .catch((error) => {
-                //     if (error.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
 
             }
         }

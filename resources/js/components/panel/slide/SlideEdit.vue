@@ -133,15 +133,6 @@
         methods: {
             async loadData() {
                 await App.methods.checkToken();
-
-                //   axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //      .then((response) => {
-                //          if (response.status === 200) {
-                //              localStorage.setItem('expire', response.data.expire);
-                //              console.log(localStorage);
-                //          }
-                //      })
-                //      .then(() => {
                 await axios.get('/api/panel/slide/' + this.id)
                     .then((response) => {
                         this.data = response.data;
@@ -155,33 +146,9 @@
                         this.isDefined = true;
                     })
                     .catch();
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
-
             },
             async updateInfo() {
                 await App.methods.checkToken();
-
-                //  console.log('beforePost', document.getElementById('content_text_area'));
-                //App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
-                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                document.querySelector('.progress_container').classList.add('d-none');
-                this.progress = 0;
-
                 this.errors = [];
                 let emptyFieldsCount = 0;
                 let req = document.querySelectorAll('[required]');
@@ -206,8 +173,6 @@
                     } else {
                         features = '[' + features.toString() + ']';
                     }
-                    document.querySelector('.progress_container').classList.remove('d-none');
-
                     await axios.post('/api/panel/slide/' + this.$route.params.id,
                         {
                             image: document.getElementById('Image__code').value,
@@ -215,43 +180,16 @@
                             subTitle: document.getElementById('subTitle').value,
                             link: document.getElementById('link').value,
 
-                        },
-                        {
-                            onUploadProgress: e => {
-
-                                if (e.lengthComputable) {
-                                    this.progress = (e.loaded / e.total) * 100;
-                                    console.log(e.loaded, e.total);
-                                    document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
-                                }
-                            }
                         })
                         .then((response) => {
-                            // console.log(response.data);
                             if (response.status === 200) {
-                                // localStorage.removeItem('draft_' + this.blog.id);
-                                // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-                                // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
-
-                                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                                document.querySelector('.progress-bar').classList.add('bg-success');
-                                setTimeout(() => {
+                                 setTimeout(() => {
                                     // this.$router.push({path: '/panel/slide/'+ this.id });
                                     this.$router.push({path: '/panel/slides'});
                                 }, 1000);
                             }
                         })
                         .catch((error) => {
-                            document.querySelector('.progress-bar').classList.add('bg-danger');
-                            // setTimeout(() => {
-                            //     document.querySelector('.progress_container').classList.add('d-none');
-                            // }, 1000);
-
-                            // console.log(error);
-                            // console.log(error.message);
-                            // console.log(error.response);
-                            // console.log(error.response.data);
-                            // console.log(error.response.data.exception_code);
                             if (error.response.status === 422) {
                                 let errorList = Array(error.response.data);
                                 for (var i = 0; i < errorList.length; i++) {
@@ -259,7 +197,6 @@
                                     this.errors = errorList[i];
                                 }
                                 setTimeout(() => {
-                                    document.querySelector('.progress_container').classList.add('d-none');
                                 }, 1000);
 
                             } else if (error.response.status === 500) {
@@ -267,7 +204,6 @@
                                     console.error('خطای پایگاه داده');
 
                                     async function showAlertSql() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.response.data.message);
                                         }, 200);
@@ -276,7 +212,6 @@
                                     showAlertSql();
                                 } else {
                                     async function showAlert500() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.message + ' '
                                                 + error.response.data.message);
@@ -288,7 +223,6 @@
 
                             } else {
                                 async function showAlert() {
-                                    await document.querySelector('.progress-bar').classList.add('bg-danger');
                                     setTimeout(() => {
                                         alert(error.message);
                                     }, 200);
@@ -299,14 +233,6 @@
                             }
                         });
                 }
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
             },
         }
     }

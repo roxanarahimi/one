@@ -214,18 +214,16 @@ class UserController extends Controller
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
 
-            Redis::set($mobile, $randomString);
+            Redis::set($mobile, $randomString, 60);
 
             try {
-                $receptor = "09128222725";
-                $token =  Redis::get($mobile);
-                $token2 = Redis::get($mobile);
-                $token3 = Redis::get($mobile);
-                $template = "verify";
-                //Send null for tokens not defined in the template
-                //Pass token10 and token20 as parameter 6th and 7th
-                $result = Kavenegar::VerifyLookup($receptor, $token, $token2, $token3, $template, $type = null);
-                return response(Redis::get($mobile),200);
+                $sender = "2000500666";        //This is the Sender number
+                $message = "به وبسایت وان آنلاین شاپ خوش آمدید. کد تایید شما: ". Redis::get($mobile);        //The body of SMS
+                $receptor = "09128222725";            //Receptors numbers
+                $result = Kavenegar::Send($sender, $receptor, $message);
+
+                $code= Redis::get($mobile);
+                return response([$result,$code],200);
             } catch (\Kavenegar\Exceptions\ApiException $e) {
                 // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
                 return $e->errorMessage();
@@ -242,21 +240,21 @@ class UserController extends Controller
     {
         try {
             $user = User::where('mobile',$request['mobile'])->first();
-//            if ($user){
-//                if(Redis::get($request['mobile'])) {
+            if ($user){
+                if(Redis::get($request['mobile'])) {
                     if ($request['code'] === "22222") { //(string)Redis::get($request['mobile'])
 
                         return response(new UserResource($user), 200);
                     }else{
                         return  response('کد وارد شده اشتباه است',400);
                     }
-//                }else{
-//                    return response('لطفا دوباره درخواست کد دهید',400);
-//                }
-//            }else{
-//                return response('کاربری با این شماره وجود ندارد',400);
-//
-//            }
+                }else{
+                    return response('لطفا دوباره درخواست کد دهید',400);
+                }
+            }else{
+                return response('کاربری با این شماره وجود ندارد',400);
+
+            }
 
         }catch(\Exception $exception){
             return response($exception);

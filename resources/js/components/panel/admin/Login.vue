@@ -19,13 +19,6 @@
                                 <p class = "form-text error m-0" v-for = "e in errors.password">{{ e }}</p>
                             </div>
                             <button type = "submit" @click.prevent = "submit" class = "btn btn-primary">ورود</button>
-<!--                            <small class = "px-2 text-center fw-bolder mt-2">-->
-<!--                                <router-link class="text-primary text-decoration-underline"  to="/reset/password/email">فراموشی رمز</router-link>-->
-<!--                            </small>-->
-<!--                            <small class = "px-2 text-center fw-bolder mt-2">-->
-<!--                            حساب کاربری ندارید؟-->
-<!--                            <router-link class="text-primary text-decoration-underline"  to="/register">ثبت نام کنید</router-link>-->
-<!--                        </small>-->
                         </form>
                     </div>
                 </div>
@@ -37,8 +30,6 @@
 </template>
 
 <script>
-    // import {toArray} from "../../../../public/cropperjs/src/js/utilities";
-
     export default {
         data() {
             return {
@@ -46,7 +37,6 @@
             }
         },
         mounted() {
-            // localStorage.clear();
             localStorage.removeItem('admin');
             localStorage.removeItem('admin_expire');
             localStorage.removeItem('admin_access_token');
@@ -73,19 +63,14 @@
                         password: document.querySelector('#password').value,
                     })
                         .then((response) => {
-                            console.log(response);
                             if (response.status === 200) {
                                 if (response.status === 200 && response.data.user.scope === 'admin') {
-
-                                    console.log('see', response.data.user)
                                     // localStorage.removeItem('admin')
                                     // localStorage.removeItem('admin access_token')
                                     localStorage.setItem('admin_access_token', response.data.access_token);
                                     localStorage.setItem('admin', JSON.stringify(response.data.user));
                                     localStorage.setItem('admin_expire', response.data.expire);
-                                    // localStorage.setItem('state', '200');
                                     setTimeout(() => {
-                                        // console.log(localStorage);
                                         window.location= '/panel';
                                     }, 200);
                                 }else if(response.data.user.scope === 'user'){
@@ -94,8 +79,7 @@
                             }
                         })
                         .catch((error) => {
-                            console.log(error);
-                            // console.log(error.response);
+                            console.error(error);
 
                             if (error.status === 422) {
                                 let errorList = Array(error.response.data);
@@ -108,7 +92,6 @@
                                 console.log(error);
                                 console.log(error.message);
                             }
-                            console.log('errs:', this.errors);
                         })
                 }
 

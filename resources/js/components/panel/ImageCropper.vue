@@ -193,23 +193,9 @@
 </script>
 
 <style>
-    /*.cropper-wrapper {*/
-    /*    width: 360px;*/
-    /*    height: 150px;*/
-    /*}*/
-
     .image-container {
         width: inherit;
         height: inherit;
     }
 
-
-    /*.image-preview {*/
-    /*    width: 276px;*/
-    /*    height: 150px;*/
-    /*}*/
-    /*.cropper-view-box,*/
-    /*.cropper-face{*/
-    /*    border-radius: 50%;*/
-    /*}*/
 </style>

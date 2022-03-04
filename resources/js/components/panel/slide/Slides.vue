@@ -49,7 +49,6 @@
                                 </div>
                             </template>
                         </draggable>
-                        <!--                        </div>-->
                     </div>
 
                     <div v-else><p class = "fw-bold">هیچ اسلایدی موجود نیست</p></div>
@@ -63,11 +62,10 @@
         <div class = "modal-dialog md">
             <div class = "modal-content">
                 <div class = "modal-header border-0">
-                    <!--                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
                     <button type = "button" class = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                 </div>
                 <div class = "modal-body">
-                    آیا محصول مورد نظر حذف شود؟
+                    آیا اسلاید مورد نظر حذف شود؟
 
                 </div>
                 <div class = "modal-footer border-0">
@@ -101,54 +99,16 @@
         },
         methods: {
             async loadAllData() {
-                // App.methods.checkToken();
-
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
                 await App.methods.checkToken();
-
                 await axios.get('/api/panel/slide').then((response) => {
                     this.allData = response.data;
                 }).catch();
-
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
             },
             showDeleteModal(id) {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //
-                //         }
-                //     })
-                //     .then(() => {
                 document.getElementById('deleteId').value = id;
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
+
             },
             async deleteInfo() {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
                 axios.post('/api/panel/delete/slide/', {
                     id: document.getElementById('deleteId').value,
@@ -159,27 +119,10 @@
                     .catch((error) => {
                         console.error(error);
                     });
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
                 await this.loadAllData();
             },
             async pActiveToggle(id) {
                 await App.methods.checkToken();
-
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await axios.get('/api/panel/active/slide/' + id)
                     .then((response) => {
                         console.log(response.data)
@@ -188,15 +131,6 @@
                         console.error(error);
                     });
                 await this.loadAllData();
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
-
             },
             async updateSlidesOrder() {
                 let children = document.querySelector('#slides_wrapper').children;

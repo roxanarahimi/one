@@ -19437,8 +19437,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    window.addEventListener('resize', this.handleResize); // this.showPanel = this.$route.fullPath != '/panel/login' && this.$route.fullPath !=
-    // '/panel/register' && this.$route.fullPath != '/panel/reset/password';
+    window.addEventListener('resize', this.handleResize);
   },
   updated: function updated() {
     var _document$getElementB;
@@ -19465,27 +19464,24 @@ __webpack_require__.r(__webpack_exports__);
 
     document.querySelectorAll('form').forEach(function (item) {
       item.setAttribute('autocomplete', 'off');
-    }); // this.checkToken();
+    });
   },
   methods: {
     handleResize: function handleResize() {
       if (window.innerWidth <= 768) {
-        var _document$getElementB2;
-
         if (this.flag === 1) {
           this.sideBarToggle();
         }
 
-        (_document$getElementB2 = document.getElementById('sidebar_toggle_btn')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.classList.add('d-none');
         setTimeout(function () {
           document.querySelectorAll('.sidebar_title').forEach(function (item) {
             item.classList.add('d-none');
           });
         }, 300);
       } else if (window.innerWidth > 768) {
-        var _document$getElementB3;
+        var _document$getElementB2;
 
-        (_document$getElementB3 = document.getElementById('sidebar_toggle_btn')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.classList.remove('d-none');
+        (_document$getElementB2 = document.getElementById('sidebar_toggle_btn')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.classList.remove('d-none');
       }
     },
     sideBarToggle: function sideBarToggle() {
@@ -19541,7 +19537,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/panel/check/admin/token', {
         id: (_JSON$parse2 = JSON.parse(localStorage.getItem('admin'))) === null || _JSON$parse2 === void 0 ? void 0 : _JSON$parse2.id
       }).then(function (response) {
-        // console.log(response);
         if (response.status === 200) {
           var _JSON$parse3, _JSON$parse4;
 
@@ -19900,7 +19895,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-// import {toArray} from "../../../../public/cropperjs/src/js/utilities";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -19908,7 +19902,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    // localStorage.clear();
     localStorage.removeItem('admin');
     localStorage.removeItem('admin_expire');
     localStorage.removeItem('admin_access_token');
@@ -19936,19 +19929,14 @@ __webpack_require__.r(__webpack_exports__);
           username: document.querySelector('#username').value,
           password: document.querySelector('#password').value
         }).then(function (response) {
-          console.log(response);
-
           if (response.status === 200) {
             if (response.status === 200 && response.data.user.scope === 'admin') {
-              console.log('see', response.data.user); // localStorage.removeItem('admin')
+              // localStorage.removeItem('admin')
               // localStorage.removeItem('admin access_token')
-
               localStorage.setItem('admin_access_token', response.data.access_token);
               localStorage.setItem('admin', JSON.stringify(response.data.user));
-              localStorage.setItem('admin_expire', response.data.expire); // localStorage.setItem('state', '200');
-
+              localStorage.setItem('admin_expire', response.data.expire);
               setTimeout(function () {
-                // console.log(localStorage);
                 window.location = '/panel';
               }, 200);
             } else if (response.data.user.scope === 'user') {
@@ -19956,7 +19944,7 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         })["catch"](function (error) {
-          console.log(error); // console.log(error.response);
+          console.error(error);
 
           if (error.status === 422) {
             var errorList = Array(error.response.data);
@@ -19970,8 +19958,6 @@ __webpack_require__.r(__webpack_exports__);
             console.log(error);
             console.log(error.message);
           }
-
-          console.log('errs:', _this.errors);
         });
       }
     }
@@ -20011,8 +19997,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       id: JSON.parse(localStorage.getItem('admin')).id
     };
   },
-  mounted: function mounted() {// this.getCurrentUser();
-  },
+  mounted: function mounted() {},
   methods: {
     getCurrentUser: function getCurrentUser() {
       var _this = this;
@@ -20061,19 +20046,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                //  App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
+                _context2.next = 2;
+                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
+
+              case 2:
                 document.getElementById('updateMsg').classList.add('d-none');
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
-                req.forEach(function (element) {
+                _context2.next = 7;
+                return req.forEach(function (element) {
                   if (element.value == "") {
                     element.classList.add('hasError');
                     element.nextSibling.innerHTML = "فیلد اجباری";
@@ -20084,13 +20065,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
+              case 7:
                 if (!(emptyFieldsCount == 0)) {
-                  _context2.next = 8;
+                  _context2.next = 11;
                   break;
                 }
 
                 _this2.errors = [];
-                _context2.next = 8;
+                _context2.next = 11;
                 return axios.post('/api/panel/update/user', {
                   id: _this2.id,
                   name: document.querySelector('#name').value,
@@ -20102,7 +20084,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(response);
 
                   if (response.status === 200) {
-                    // this.$router.push({name: 'Login'});
                     localStorage.setItem('admin', JSON.stringify(response.data.user));
                     document.querySelector('#current_password').value = '';
                     document.querySelector('#new_password').value = '';
@@ -20111,9 +20092,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     document.querySelector('#admin_label').innerHTML = response.data.user.name;
                   }
                 })["catch"](function (error) {
-                  console.log(error); // console.log(error.response);
+                  console.log(error);
+                  console.log(error.response);
 
-                  // console.log(error.response);
                   if (error.status === 401) {
                     window.location = '/panel/login';
                     _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.logout();
@@ -20132,7 +20113,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log('errs:', _this2.errors);
                 });
 
-              case 8:
+              case 11:
               case "end":
                 return _context2.stop();
             }
@@ -20281,21 +20262,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                //App.methods.checkToken();
-                // if (document.getElementById('title').value === '') {
-                //     document.getElementById('title').classList.add('hasError');
-                //     this.errors = ["لطفا عنوان را وارد کنید"]
-                // } else {
-                //     document.getElementById('title').classList.remove('hasError');
-                _this2.errors = []; // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
-
+                _this2.errors = [];
                 _context2.next = 3;
                 return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
 
@@ -20304,7 +20271,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post('/api/panel/category/article', {
                   title: document.getElementById('title').value
                 }).then(function (response) {
-                  // console.log(response.data);
                   _this2.loadCategories();
 
                   setTimeout(function () {
@@ -20365,9 +20331,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this3.loadCategories();
                 })["catch"](function (error) {
                   if (error.status === 422) {
-                    var errorList = Array(error.response.data); // document.getElementById('title_' + id).classList.add('hasError');
+                    var errorList = Array(error.response.data);
 
-                    // document.getElementById('title_' + id).classList.add('hasError');
                     for (var i = 0; i < errorList.length; i++) {
                       for (var j = 0; j < Array(errorList[i]).length; j++) {
                         var err = Object.values(Array(errorList[i])[j]);
@@ -20516,7 +20481,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   components: {
     ImageCropper: _ImageCropper__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  //props:['type'],
   data: function data() {
     return {
       id: '',
@@ -20536,7 +20500,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    this.loadCategories(); //   this.loadDraft();
+    this.loadCategories();
   },
   methods: {
     loadCategories: function loadCategories() {
@@ -20597,14 +20561,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 document.querySelector('.progress_container').classList.remove('d-none');
                 _context4.next = 16;
                 return axios.post('/api/panel/article', {
-                  // image: document.getElementById('Image_index_code').value,
                   title: document.getElementById('title').value,
                   article_category_id: document.getElementById('category').value,
                   text: document.getElementById('text').value,
-                  tags: tags // stock: document.getElementById('stock').value,
-                  // image_codes: this.image_codes,
-                  // image_names: this.image_names,
-
+                  tags: tags
                 }, {
                   onUploadProgress: function onUploadProgress(e) {
                     if (e.lengthComputable) {
@@ -20617,9 +20577,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(response.data);
 
                   if (response.status === 201 || response.status === 200) {
-                    // localStorage.removeItem('draft_new');
-                    // localStorage.removeItem('draft_new_img_codes');
-                    // localStorage.removeItem('draft_new_img_names');
                     document.querySelector('.progress-bar').classList.remove('bg-danger');
                     document.querySelector('.progress-bar').classList.add('bg-success');
                     setTimeout(function () {
@@ -20629,22 +20586,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }, 1000);
                   }
                 })["catch"](function (error) {
-                  // console.log(error);
-                  // console.log(error.message);
-                  // console.log(error.response.data);
                   if (error.status === 422) {
-                    document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(()=>{
-                    //     document.querySelector('.progress_container').classList.add('d-none');
-                    // },1000);
+                    var errorList = Array(error.response.data);
 
-                    // setTimeout(()=>{
-                    //     document.querySelector('.progress_container').classList.add('d-none');
-                    // },1000);
-                    var errorList = Array(error.response.data); // console.log(error.response.data);
-
-                    // console.log(error.response.data);
                     for (var i = 0; i < errorList.length; i++) {
-                      //  console.log('i',errorList[i]);
                       _this2.errors = errorList[i];
                     }
 
@@ -20837,7 +20782,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
- // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -20862,9 +20806,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.loadCategories();
-    this.loadArticle(); // setTimeout(()=>{
-    //     this.progress = 10;
-    // },2000)
+    this.loadArticle();
   },
   methods: {
     loadArticle: function loadArticle() {
@@ -20922,14 +20864,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
 
               case 2:
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 document.querySelector('.progress-bar').classList.remove('bg-danger');
                 document.querySelector('.progress_container').classList.add('d-none');
                 _this3.progress = 0;
@@ -20976,15 +20910,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     if (e.lengthComputable) {
                       _this3.progress = e.loaded / e.total * 100;
                       console.log(e.loaded, e.total);
-                      document.querySelector('.progress-bar').innerHTML = parseInt(_this3.progress) + '%';
                     }
                   }
                 }).then(function (response) {
-                  // console.log(response.data);
                   if (response.status === 200) {
-                    // localStorage.removeItem('draft_' + this.blog.id);
-                    // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-                    // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
                     document.querySelector('.progress-bar').classList.remove('bg-danger');
                     document.querySelector('.progress-bar').classList.add('bg-success');
                     setTimeout(function () {
@@ -20994,34 +20923,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }, 1000);
                   }
                 })["catch"](function (error) {
-                  document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(() => {
-                  //     document.querySelector('.progress_container').classList.add('d-none');
-                  // }, 1000);
-                  // console.log(error);
-                  // console.log(error.message);
-                  // console.log(error.response);
-                  // console.log(error.response.data);
-                  // console.log(error.response.data.exception_code);
-
-                  // setTimeout(() => {
-                  //     document.querySelector('.progress_container').classList.add('d-none');
-                  // }, 1000);
-                  // console.log(error);
-                  // console.log(error.message);
-                  // console.log(error.response);
-                  // console.log(error.response.data);
-                  // console.log(error.response.data.exception_code);
                   if (error.response && error.response.status === 422) {
                     var errorList = Array(error.response.data);
 
                     for (var i = 0; i < errorList.length; i++) {
-                      // console.log('i', errorList[i]);
                       _this3.errors = errorList[i];
                     }
-
-                    setTimeout(function () {
-                      document.querySelector('.progress_container').classList.add('d-none');
-                    }, 1000);
                   } else if (error.response.status === 500) {
                     if (error.response.data.message.includes("SQLSTATE")) {
                       var showAlertSql = /*#__PURE__*/function () {
@@ -21030,15 +20937,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context2.prev = _context2.next) {
                                 case 0:
-                                  _context2.next = 2;
-                                  return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                                case 2:
                                   setTimeout(function () {
                                     alert(error.response.data.message);
                                   }, 200);
 
-                                case 3:
+                                case 1:
                                 case "end":
                                   return _context2.stop();
                               }
@@ -21060,15 +20963,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context3.prev = _context3.next) {
                                 case 0:
-                                  _context3.next = 2;
-                                  return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                                case 2:
                                   setTimeout(function () {
                                     alert(error.message + ' ' + error.response.data.message);
                                   }, 200);
 
-                                case 3:
+                                case 1:
                                 case "end":
                                   return _context3.stop();
                               }
@@ -21090,15 +20989,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           while (1) {
                             switch (_context4.prev = _context4.next) {
                               case 0:
-                                _context4.next = 2;
-                                return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                              case 2:
                                 setTimeout(function () {
                                   alert(error.message);
                                 }, 200);
 
-                              case 3:
+                              case 1:
                               case "end":
                                 return _context4.stop();
                             }
@@ -21140,15 +21035,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.tags.splice(index, 1);
     },
     updateTags: function updateTags() {
-      //App.methods.checkToken();
-      // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-      //     .then((response) => {
-      //         if (response.status === 200) {
-      //             localStorage.setItem('expire', response.data.expire);
-      //             console.log(localStorage);
-      //         }
-      //     })
-      //     .then(() => {
       this.tags = [];
 
       for (var i = 0; i < document.getElementsByName('tagLabel').length; i++) {
@@ -21156,14 +21042,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           "label": document.getElementsByName('tagLabel')[i].value.toString(),
           "uri": document.getElementsByName('tagUri')[i].value.toString()
         });
-      } // })
-      // .catch((error) => {
-      //     if (error.response.status === 401) {
-      //         window.location = '/panel/login'
-      //         App.methods.logout();
-      //     }
-      // });
-
+      }
     }
   }
 });
@@ -21236,13 +21115,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
 
               case 2:
-                document.getElementById('deleteId').value = id; // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
+                document.getElementById('deleteId').value = id;
 
               case 3:
               case "end":
@@ -21274,13 +21147,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 4:
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
                 _this2.loadArticles();
 
               case 5:
@@ -21546,7 +21412,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 4;
                 return axios.get('/api/panel/order/' + _this.id).then(function (response) {
                   _this.data = response.data.data;
-                  _this.data2 = response.data.original; // console.log('ggggg',this.data);
+                  _this.data2 = response.data.original;
                 })["catch"]();
 
               case 4:
@@ -21566,21 +21432,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                // console.log('beforePost', document.getElementById('content_text_area'));
-                //  App.methods.checkToken();
-                //    Editor.methods.updatePreview();
-                //   console.log(document.getElementById('editor').innerHTML);
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         console.log(response);
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
-                // document.querySelector('.progress-bar').classList.remove('bg-danger');
-                // document.querySelector('.progress_container').classList.add('d-none');
                 _this2.progress = 0;
                 _this2.errors = [];
                 emptyFieldsCount = 0;
@@ -21610,18 +21461,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   onUploadProgress: function onUploadProgress(e) {
                     if (e.lengthComputable) {
                       _this2.progress = e.loaded / e.total * 100;
-                      console.log(e.loaded, e.total); // document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
+                      console.log(e.loaded, e.total);
                     }
                   }
                 }).then(function (response) {
                   console.log('order', response.data);
 
                   if (response.status === 200) {
-                    console.log(response); // document.querySelector('.progress-bar').classList.remove('bg-danger');
-                    // document.querySelector('.progress-bar').classList.add('bg-success');
+                    console.log(response);
 
-                    // document.querySelector('.progress-bar').classList.remove('bg-danger');
-                    // document.querySelector('.progress-bar').classList.add('bg-success');
                     _this2.loadData();
 
                     console.log(response);
@@ -21633,27 +21481,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }
                   }
                 })["catch"](function (error) {
-                  console.log('order', error); // console.log(error.message);
-                  // console.log(error.response.data);
+                  console.log('order', error);
 
-                  // console.log(error.message);
-                  // console.log(error.response.data);
                   if (error.status === 422) {
-                    // document.querySelector('.progress-bar').classList.add('bg-danger');
-                    // setTimeout(()=>{
-                    //     document.querySelector('.progress_container').classList.add('d-none');
-                    // },1000);
-                    var errorList = Array(error.data); // console.log(error.response.data);
+                    var errorList = Array(error.data);
 
-                    // console.log(error.response.data);
                     for (var i = 0; i < errorList.length; i++) {
-                      //  console.log('i',errorList[i]);
                       _this2.errors = errorList[i];
                     }
 
-                    console.log(_this2.errors.toString()); // setTimeout(() => {
-                    //     document.querySelector('.progress_container').classList.add('d-none');
-                    // }, 1000);
+                    console.log(_this2.errors.toString());
                   } else if (error.status === 500) {
                     if (error.response.data.message.includes("SQLSTATE")) {
                       var showAlertSql = /*#__PURE__*/function () {
@@ -21662,7 +21499,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context2.prev = _context2.next) {
                                 case 0:
-                                  // await document.querySelector('.progress-bar').classList.add('bg-danger');
                                   setTimeout(function () {
                                     alert(error.response.data.message);
                                   }, 200);
@@ -21689,7 +21525,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context3.prev = _context3.next) {
                                 case 0:
-                                  // await document.querySelector('.progress-bar').classList.add('bg-danger');
                                   setTimeout(function () {
                                     alert(error.message + ' ' + error.response.data.message);
                                   }, 200);
@@ -21716,7 +21551,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           while (1) {
                             switch (_context4.prev = _context4.next) {
                               case 0:
-                                // await document.querySelector('.progress-bar').classList.add('bg-danger');
                                 setTimeout(function () {
                                   alert(error.message);
                                 }, 200);
@@ -21773,13 +21607,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
- // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     ImageCropper: _ImageCropper__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  //props:['type'],
   data: function data() {
     return {
       id: '',
@@ -21820,10 +21652,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     createInfo: function createInfo() {
       var _this2 = this;
 
-      // console.log('beforePost', document.getElementById('content_text_area'));
-      //  App.methods.checkToken();
-      //    Editor.methods.updatePreview();
-      //   console.log(document.getElementById('editor').innerHTML);
       axios.post('/api/panel/check/user/token', {
         id: JSON.parse(localStorage.getItem('user')).id
       }).then(function (response) {
@@ -21834,9 +21662,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           console.log(localStorage);
         }
       }).then(function () {
-        document.querySelector('.progress-bar').classList.remove('bg-danger');
-        document.querySelector('.progress_container').classList.add('d-none');
-        _this2.progress = 0;
         _this2.errors = [];
         var emptyFieldsCount = 0;
         var req = document.querySelectorAll('[required]');
@@ -21864,7 +21689,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             features = '[' + features.toString() + ']';
           }
 
-          document.querySelector('.progress_container').classList.remove('d-none');
           axios.post('/api/panel/product', {
             // image: document.getElementById('Image_index_code').value,
             title: document.getElementById('title').value,
@@ -21874,25 +21698,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             features: features,
             sizes: _this2.sizes,
             off: document.getElementById('off').value,
-            price: document.getElementById('price').value // stock: document.getElementById('stock').value,
-            // image_codes: this.image_codes,
-            // image_names: this.image_names,
-
-          }, {
-            onUploadProgress: function onUploadProgress(e) {
-              if (e.lengthComputable) {
-                _this2.progress = e.loaded / e.total * 100;
-                console.log(e.loaded, e.total);
-                document.querySelector('.progress-bar').innerHTML = parseInt(_this2.progress) + '%';
-              }
-            }
+            price: document.getElementById('price').value
           }).then(function (response) {
             console.log(response.data);
 
             if (response.status === 201 || response.status === 200) {
-              // localStorage.removeItem('draft_new');
-              // localStorage.removeItem('draft_new_img_codes');
-              // localStorage.removeItem('draft_new_img_names');
               document.querySelector('.progress-bar').classList.remove('bg-danger');
               document.querySelector('.progress-bar').classList.add('bg-success');
               setTimeout(function () {
@@ -21903,18 +21713,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               console.log(response);
             }
           })["catch"](function (error) {
-            // console.log(error);
-            // console.log(error.message);
-            // console.log(error.response.data);
             if (error.response.status === 422) {
-              document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(()=>{
-              //     document.querySelector('.progress_container').classList.add('d-none');
-              // },1000);
-
-              var errorList = Array(error.response.data); // console.log(error.response.data);
+              var errorList = Array(error.response.data);
 
               for (var i = 0; i < errorList.length; i++) {
-                //  console.log('i',errorList[i]);
                 _this2.errors = errorList[i];
               }
 
@@ -22043,7 +21845,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updateFeatures: function updateFeatures() {
       var _this3 = this;
 
-      //    App.methods.checkToken();
       axios.post('/api/panel/check/user/token', {
         id: JSON.parse(localStorage.getItem('user')).id
       }).then(function (response) {
@@ -22076,15 +21877,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updateSizes: function updateSizes() {
       var _this4 = this;
 
-      //    App.methods.checkToken();
       axios.post('/api/panel/check/user/token', {
         id: JSON.parse(localStorage.getItem('user')).id
       }).then(function (response) {
         if (response.status === 200) {
-          localStorage.setItem('expire', response.data.expire); // console.log(localStorage);
+          localStorage.setItem('expire', response.data.expire);
         }
       }).then(function () {
-        // this.sizes = [];
         var a = [];
 
         for (var i = 0; i < document.getElementsByName('size').length; i++) {
@@ -22133,7 +21932,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
- // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -22165,9 +21963,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.loadCategories();
-    this.loadProduct(); // setTimeout(()=>{
-    //     this.progress = 10;
-    // },2000)
+    this.loadProduct();
   },
   methods: {
     loadProduct: function loadProduct() {
@@ -22216,202 +22012,183 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updateInfo: function updateInfo() {
       var _this3 = this;
 
-      //  console.log('beforePost', document.getElementById('content_text_area'));
-      //App.methods.checkToken();
-      axios.post('/api/panel/check/user/token', {
-        id: JSON.parse(localStorage.getItem('user')).id
-      }).then(function (response) {
-        if (response.status === 200) {
-          localStorage.setItem('expire', response.data.expire);
-          console.log(localStorage);
+      this.errors = [];
+      var emptyFieldsCount = 0;
+      var req = document.querySelectorAll('[required]');
+      req.forEach(function (element) {
+        if (element.value === "") {
+          element.classList.add('hasError');
+          element.nextSibling.innerHTML = "فیلد اجباری";
+          emptyFieldsCount++;
+        } else {
+          element.classList.remove('hasError');
+          element.nextSibling.innerHTML = "";
         }
-      }).then(function () {
-        // document.querySelector('.progress-bar').classList?.remove('bg-danger');
-        // document.querySelector('.progress_container').classList.add('d-none');
-        _this3.progress = 0;
-        _this3.errors = [];
-        var emptyFieldsCount = 0;
-        var req = document.querySelectorAll('[required]');
-        req.forEach(function (element) {
-          if (element.value === "") {
-            element.classList.add('hasError');
-            element.nextSibling.innerHTML = "فیلد اجباری";
-            emptyFieldsCount++;
-          } else {
-            element.classList.remove('hasError');
-            element.nextSibling.innerHTML = "";
-          }
-        });
+      });
 
-        if (emptyFieldsCount === 0) {
-          var features = [];
+      if (emptyFieldsCount === 0) {
+        var features = [];
 
-          for (var i = 0; i < document.getElementsByName('featureLabel').length; i++) {
-            features.push('{"label": "' + document.getElementsByName('featureLabel')[i].value + '", "value": "' + document.getElementsByName('featureValue')[i].value + '"}');
-          }
+        for (var i = 0; i < document.getElementsByName('featureLabel').length; i++) {
+          features.push('{"label": "' + document.getElementsByName('featureLabel')[i].value + '", "value": "' + document.getElementsByName('featureValue')[i].value + '"}');
+        }
 
-          if (document.getElementsByName('featureLabel').length === 0) {
-            features = '[]';
-          } else {
-            features = '[' + features.toString() + ']';
-          }
+        if (document.getElementsByName('featureLabel').length === 0) {
+          features = '[]';
+        } else {
+          features = '[' + features.toString() + ']';
+        }
 
-          document.querySelector('.progress_container').classList.remove('d-none');
-          axios.post('/api/panel/product/' + _this3.$route.params.id, {
-            // image: document.getElementById('Image_index_code').value,
-            title: document.getElementById('title').value,
-            subTitle: document.getElementById('subTitle').value,
-            product_category_id: document.getElementById('category').value,
-            text: document.getElementById('text').value,
-            features: features,
-            sizes: _this3.sizes,
-            off: document.getElementById('off').value,
-            price: document.getElementById('price').value // stock: document.getElementById('stock').value,
-            // image_codes: this.image_codes,
-            // image_names: this.image_names,
+        document.querySelector('.progress_container').classList.remove('d-none');
+        axios.post('/api/panel/product/' + this.$route.params.id, {
+          // image: document.getElementById('Image_index_code').value,
+          title: document.getElementById('title').value,
+          subTitle: document.getElementById('subTitle').value,
+          product_category_id: document.getElementById('category').value,
+          text: document.getElementById('text').value,
+          features: features,
+          sizes: this.sizes,
+          off: document.getElementById('off').value,
+          price: document.getElementById('price').value // stock: document.getElementById('stock').value,
+          // image_codes: this.image_codes,
+          // image_names: this.image_names,
 
-          }, {
-            onUploadProgress: function onUploadProgress(e) {
-              if (e.lengthComputable) {
-                _this3.progress = e.loaded / e.total * 100;
-                console.log(e.loaded, e.total);
-                document.querySelector('.progress-bar').innerHTML = parseInt(_this3.progress) + '%';
-              }
+        }, {
+          onUploadProgress: function onUploadProgress(e) {
+            if (e.lengthComputable) {
+              _this3.progress = e.loaded / e.total * 100;
+              console.log(e.loaded, e.total);
+              document.querySelector('.progress-bar').innerHTML = parseInt(_this3.progress) + '%';
             }
-          }).then(function (response) {
-            // console.log(response.data);
-            if (response.status === 200) {
-              // localStorage.removeItem('draft_' + this.blog.id);
-              // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-              // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
-              // document.querySelector('.progress-bar')?.classList?.remove('bg-danger');
-              // document.querySelector('.progress-bar')?.classList.add('bg-success');
-              setTimeout(function () {
-                _this3.$router.push({
-                  path: '/panel/product/' + _this3.id
-                });
-              }, 1000);
+          }
+        }).then(function (response) {
+          // console.log(response.data);
+          if (response.status === 200) {
+            // localStorage.removeItem('draft_' + this.blog.id);
+            // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
+            // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
+            // document.querySelector('.progress-bar')?.classList?.remove('bg-danger');
+            // document.querySelector('.progress-bar')?.classList.add('bg-success');
+            setTimeout(function () {
+              _this3.$router.push({
+                path: '/panel/product/' + _this3.id
+              });
+            }, 1000);
+          }
+        })["catch"](function (error) {
+          document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(() => {
+          //     document.querySelector('.progress_container').classList.add('d-none');
+          // }, 1000);
+          // console.log(error);
+          // console.log(error.message);
+          // console.log(error.response);
+          // console.log(error.response.data);
+          // console.log(error.response.data.exception_code);
+
+          if (error.response.status === 422) {
+            var errorList = Array(error.response.data);
+
+            for (var i = 0; i < errorList.length; i++) {
+              // console.log('i', errorList[i]);
+              _this3.errors = errorList[i];
             }
-          })["catch"](function (error) {
-            document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(() => {
-            //     document.querySelector('.progress_container').classList.add('d-none');
-            // }, 1000);
-            // console.log(error);
-            // console.log(error.message);
-            // console.log(error.response);
-            // console.log(error.response.data);
-            // console.log(error.response.data.exception_code);
 
-            if (error.response.status === 422) {
-              var errorList = Array(error.response.data);
-
-              for (var i = 0; i < errorList.length; i++) {
-                // console.log('i', errorList[i]);
-                _this3.errors = errorList[i];
-              }
-
-              setTimeout(function () {
-                document.querySelector('.progress_container').classList.add('d-none');
-              }, 1000);
-            } else if (error.response.status === 500) {
-              if (error.response.data.message.includes("SQLSTATE")) {
-                var showAlertSql = /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            _context.next = 2;
-                            return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                          case 2:
-                            setTimeout(function () {
-                              alert(error.response.data.message);
-                            }, 200);
-
-                          case 3:
-                          case "end":
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee);
-                  }));
-
-                  return function showAlertSql() {
-                    return _ref.apply(this, arguments);
-                  };
-                }();
-
-                console.error('خطای پایگاه داده');
-                showAlertSql();
-              } else {
-                var showAlert500 = /*#__PURE__*/function () {
-                  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-                      while (1) {
-                        switch (_context2.prev = _context2.next) {
-                          case 0:
-                            _context2.next = 2;
-                            return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                          case 2:
-                            setTimeout(function () {
-                              alert(error.message + ' ' + error.response.data.message);
-                            }, 200);
-
-                          case 3:
-                          case "end":
-                            return _context2.stop();
-                        }
-                      }
-                    }, _callee2);
-                  }));
-
-                  return function showAlert500() {
-                    return _ref2.apply(this, arguments);
-                  };
-                }();
-
-                showAlert500();
-              }
-            } else {
-              var showAlert = /*#__PURE__*/function () {
-                var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+            setTimeout(function () {
+              document.querySelector('.progress_container').classList.add('d-none');
+            }, 1000);
+          } else if (error.response.status === 500) {
+            if (error.response.data.message.includes("SQLSTATE")) {
+              var showAlertSql = /*#__PURE__*/function () {
+                var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
                     while (1) {
-                      switch (_context3.prev = _context3.next) {
+                      switch (_context.prev = _context.next) {
                         case 0:
-                          _context3.next = 2;
+                          _context.next = 2;
                           return document.querySelector('.progress-bar').classList.add('bg-danger');
 
                         case 2:
                           setTimeout(function () {
-                            alert(error.message);
+                            alert(error.response.data.message);
                           }, 200);
 
                         case 3:
                         case "end":
-                          return _context3.stop();
+                          return _context.stop();
                       }
                     }
-                  }, _callee3);
+                  }, _callee);
                 }));
 
-                return function showAlert() {
-                  return _ref3.apply(this, arguments);
+                return function showAlertSql() {
+                  return _ref.apply(this, arguments);
                 };
               }();
 
-              showAlert();
+              console.error('خطای پایگاه داده');
+              showAlertSql();
+            } else {
+              var showAlert500 = /*#__PURE__*/function () {
+                var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                    while (1) {
+                      switch (_context2.prev = _context2.next) {
+                        case 0:
+                          _context2.next = 2;
+                          return document.querySelector('.progress-bar').classList.add('bg-danger');
+
+                        case 2:
+                          setTimeout(function () {
+                            alert(error.message + ' ' + error.response.data.message);
+                          }, 200);
+
+                        case 3:
+                        case "end":
+                          return _context2.stop();
+                      }
+                    }
+                  }, _callee2);
+                }));
+
+                return function showAlert500() {
+                  return _ref2.apply(this, arguments);
+                };
+              }();
+
+              showAlert500();
             }
-          });
-        }
-      })["catch"](function (error) {
-        if (error.response.status === 401) {
-          window.location = '/panel/login';
-          _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.logout();
-        }
-      });
+          } else {
+            var showAlert = /*#__PURE__*/function () {
+              var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+                  while (1) {
+                    switch (_context3.prev = _context3.next) {
+                      case 0:
+                        _context3.next = 2;
+                        return document.querySelector('.progress-bar').classList.add('bg-danger');
+
+                      case 2:
+                        setTimeout(function () {
+                          alert(error.message);
+                        }, 200);
+
+                      case 3:
+                      case "end":
+                        return _context3.stop();
+                    }
+                  }
+                }, _callee3);
+              }));
+
+              return function showAlert() {
+                return _ref3.apply(this, arguments);
+              };
+            }();
+
+            showAlert();
+          }
+        });
+      }
     },
     watchTextAreas: function watchTextAreas() {
       var txt = document.querySelector("#text");
@@ -22432,7 +22209,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updateFeatures: function updateFeatures() {
       var _this4 = this;
 
-      //    App.methods.checkToken();
       axios.post('/api/panel/check/user/token', {
         id: JSON.parse(localStorage.getItem('user')).id
       }).then(function (response) {
@@ -22463,37 +22239,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.sizes.splice(index, 1);
     },
     updateSizes: function updateSizes() {
-      var _this5 = this;
+      _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
+      var a = [];
 
-      //    App.methods.checkToken();
-      axios.post('/api/panel/check/user/token', {
-        id: JSON.parse(localStorage.getItem('user')).id
-      }).then(function (response) {
-        if (response.status === 200) {
-          localStorage.setItem('expire', response.data.expire); // console.log(localStorage);
-        }
-      }).then(function () {
-        // this.sizes = [];
-        var a = [];
+      for (var i = 0; i < document.getElementsByName('size').length; i++) {
+        a.push({
+          "size": document.getElementsByName('size')[i].value.toString(),
+          "dimensions": document.getElementsByName('dimensions')[i].value.toString(),
+          "color_name": document.getElementsByName('color_name')[i].value.toString(),
+          "color_code": document.getElementsByName('color_code')[i].value.toString(),
+          "stock": document.getElementsByName('stock')[i].value
+        });
+      }
 
-        for (var i = 0; i < document.getElementsByName('size').length; i++) {
-          a.push({
-            "size": document.getElementsByName('size')[i].value.toString(),
-            "dimensions": document.getElementsByName('dimensions')[i].value.toString(),
-            "color_name": document.getElementsByName('color_name')[i].value.toString(),
-            "color_code": document.getElementsByName('color_code')[i].value.toString(),
-            "stock": document.getElementsByName('stock')[i].value
-          });
-        }
-
-        _this5.sizes = a;
-        console.log(_this5.sizes);
-      })["catch"](function (error) {
-        if (error.response.status === 401) {
-          window.location = '/panel/login';
-          _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.logout();
-        }
-      });
+      this.sizes = a;
+      console.log(this.sizes);
     }
   }
 });
@@ -22539,17 +22299,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
+                _context.next = 3;
                 return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
 
-              case 2:
-                _context.next = 4;
+              case 3:
+                _context.next = 5;
                 return axios.get('/api/panel/order').then(function (response) {
                   _this.allData = response.data;
                   console.log(_this.allData);
                 })["catch"]();
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -22567,13 +22328,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
 
               case 2:
-                document.getElementById('deleteId').value = id; // })
-                // .catch((error) => {
-                //     if (error.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
+                document.getElementById('deleteId').value = id;
 
               case 3:
               case "end":
@@ -22987,13 +22742,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
- // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     ImageCropper: _ImageCropper__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  //props:['type'],
   data: function data() {
     return {
       id: '',
@@ -23425,9 +23178,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.loadCategories();
-    this.loadProduct(); // setTimeout(()=>{
-    //     this.progress = 10;
-    // },2000)
+    this.loadProduct();
   },
   methods: {
     loadProduct: function loadProduct() {
@@ -23490,13 +23241,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
 
               case 2:
-                _context5.next = 4;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 4:
-                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                document.querySelector('.progress_container').classList.add('d-none');
-                _this3.progress = 0;
                 _this3.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -23512,7 +23256,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context5.next = 18;
+                  _context5.next = 12;
                   break;
                 }
 
@@ -23528,8 +23272,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   features = '[' + features.toString() + ']';
                 }
 
-                document.querySelector('.progress_container').classList.remove('d-none');
-                _context5.next = 18;
+                _context5.next = 12;
                 return axios.post('/api/panel/product/' + _this3.$route.params.id, {
                   // image: document.getElementById('Image_index_code').value,
                   title: document.getElementById('title').value,
@@ -23539,24 +23282,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   features: features,
                   sizes: _this3.sizes,
                   off: document.getElementById('off').value,
-                  price: document.getElementById('price').value // stock: document.getElementById('stock').value,
-                  // image_codes: this.image_codes,
-                  // image_names: this.image_names,
-
-                }, {
-                  onUploadProgress: function onUploadProgress(e) {
-                    if (e.lengthComputable) {
-                      _this3.progress = e.loaded / e.total * 100;
-                      console.log(e.loaded, e.total);
-                      document.querySelector('.progress-bar').innerHTML = parseInt(_this3.progress) + '%';
-                    }
-                  }
+                  price: document.getElementById('price').value
                 }).then(function (response) {
-                  // console.log(response.data);
                   if (response.status === 200) {
-                    // localStorage.removeItem('draft_' + this.blog.id);
-                    // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-                    // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
                     document.querySelector('.progress-bar').classList.remove('bg-danger');
                     document.querySelector('.progress-bar').classList.add('bg-success');
                     setTimeout(function () {
@@ -23566,28 +23294,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }, 1000);
                   }
                 })["catch"](function (error) {
-                  document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(() => {
-                  //     document.querySelector('.progress_container').classList.add('d-none');
-                  // }, 1000);
-                  // console.log(error);
-                  // console.log(error.message);
-                  // console.log(error.response);
-                  // console.log(error.response.data);
-                  // console.log(error.response.data.exception_code);
+                  document.querySelector('.progress-bar').classList.add('bg-danger');
 
-                  // setTimeout(() => {
-                  //     document.querySelector('.progress_container').classList.add('d-none');
-                  // }, 1000);
-                  // console.log(error);
-                  // console.log(error.message);
-                  // console.log(error.response);
-                  // console.log(error.response.data);
-                  // console.log(error.response.data.exception_code);
                   if (error.response.status === 422) {
                     var errorList = Array(error.response.data);
 
                     for (var i = 0; i < errorList.length; i++) {
-                      // console.log('i', errorList[i]);
                       _this3.errors = errorList[i];
                     }
 
@@ -23632,15 +23344,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context3.prev = _context3.next) {
                                 case 0:
-                                  _context3.next = 2;
-                                  return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                                case 2:
                                   setTimeout(function () {
                                     alert(error.message + ' ' + error.response.data.message);
                                   }, 200);
 
-                                case 3:
+                                case 1:
                                 case "end":
                                   return _context3.stop();
                               }
@@ -23662,15 +23370,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           while (1) {
                             switch (_context4.prev = _context4.next) {
                               case 0:
-                                _context4.next = 2;
-                                return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                              case 2:
                                 setTimeout(function () {
                                   alert(error.message);
                                 }, 200);
 
-                              case 3:
+                              case 1:
                               case "end":
                                 return _context4.stop();
                             }
@@ -23687,7 +23391,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 18:
+              case 12:
               case "end":
                 return _context5.stop();
             }
@@ -23715,6 +23419,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+        var i;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
@@ -23723,29 +23428,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
 
               case 2:
-                _context6.next = 4;
-                return axios.post('/api/panel/check/user/token', {
-                  id: JSON.parse(localStorage.getItem('user')).id
-                }).then(function (response) {
-                  if (response.status === 200) {
-                    localStorage.setItem('expire', response.data.expire);
-                    console.log(localStorage);
-                  }
-                }).then(function () {
-                  _this4.features = [];
+                _this4.features = [];
 
-                  for (var i = 0; i < document.getElementsByName('featureLabel').length; i++) {
-                    _this4.features.push({
-                      "label": document.getElementsByName('featureLabel')[i].value.toString(),
-                      "value": document.getElementsByName('featureValue')[i].value.toString()
-                    });
-                  }
-                })["catch"](function (error) {
-                  if (error.response.status === 401) {
-                    window.location = '/panel/login';
-                    _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.logout();
-                  }
-                });
+                for (i = 0; i < document.getElementsByName('featureLabel').length; i++) {
+                  _this4.features.push({
+                    "label": document.getElementsByName('featureLabel')[i].value.toString(),
+                    "value": document.getElementsByName('featureValue')[i].value.toString()
+                  });
+                }
 
               case 4:
               case "end":
@@ -23874,71 +23564,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     showDeleteModal: function showDeleteModal(id) {
-      axios.post('/api/panel/check/user/token', {
-        id: JSON.parse(localStorage.getItem('user')).id
-      }).then(function (response) {
-        if (response.status === 200) {
-          localStorage.setItem('expire', response.data.expire);
-          console.log(localStorage);
-        }
-      }).then(function () {
-        document.getElementById('deleteId').value = id;
-      })["catch"](function (error) {
-        if (error.response.status === 401) {
-          window.location = '/panel/login';
-          _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.logout();
-        }
-      });
+      _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
+      document.getElementById('deleteId').value = id;
     },
     deleteInfo: function deleteInfo() {
-      axios.post('/api/panel/check/user/token', {
-        id: JSON.parse(localStorage.getItem('user')).id
+      _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
+      var id = document.getElementById('deleteId').value;
+      axios.post('/api/panel/delete/product/', {
+        id: id
       }).then(function (response) {
-        if (response.status === 200) {
-          localStorage.setItem('expire', response.data.expire);
-          console.log(localStorage);
-        }
-      }).then(function () {
-        var id = document.getElementById('deleteId').value;
-        axios.post('/api/panel/delete/product/', {
-          id: id
-        }).then(function (response) {
-          console.log(response.data);
-        })["catch"](function (error) {
-          console.error(error);
-        });
+        console.log(response.data);
       })["catch"](function (error) {
-        if (error.response.status === 401) {
-          window.location = '/panel/login';
-          _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.logout();
-        }
+        console.error(error);
       });
       this.loadProducts();
     },
     pActiveToggle: function pActiveToggle(id) {
-      var _this2 = this;
-
-      axios.post('/api/panel/check/user/token', {
-        id: JSON.parse(localStorage.getItem('user')).id
-      }).then(function (response) {
-        if (response.status === 200) {
-          localStorage.setItem('expire', response.data.expire);
-          console.log(localStorage);
-        }
-      }).then(function () {
-        axios.get('/api/panel/active/product/' + id).then(function (response) {
-          console.log(response.data);
-        })["catch"](function (error) {
-          console.error(error);
-        });
-
-        _this2.loadProducts();
+      _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
+      axios.get('/api/panel/active/product/' + id).then(function (response) {
+        console.log(response.data);
       })["catch"](function (error) {
-        if (error.response.status === 401) {
-          window.location = '/panel/login';
-          _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.logout();
-        }
+        console.error(error);
       });
+      this.loadProducts();
     }
   }
 });
@@ -23967,13 +23615,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
- // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     ImageCropper: _ImageCropper__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  //props:['type'],
   data: function data() {
     return {
       id: '',
@@ -24002,9 +23648,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
 
               case 2:
-                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                document.querySelector('.progress_container').classList.add('d-none');
-                _this.progress = 0;
                 _this.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -24020,7 +23663,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context4.next = 16;
+                  _context4.next = 13;
                   break;
                 }
 
@@ -24037,7 +23680,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 document.querySelector('.progress_container').classList.remove('d-none');
-                _context4.next = 16;
+                _context4.next = 13;
                 return axios.post('/api/panel/slide', {
                   image: document.getElementById('Image__code').value,
                   title: document.getElementById('title').value,
@@ -24047,16 +23690,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   onUploadProgress: function onUploadProgress(e) {
                     if (e.lengthComputable) {
                       _this.progress = e.loaded / e.total * 100;
-                      console.log(e.loaded, e.total);
                       document.querySelector('.progress-bar').innerHTML = parseInt(_this.progress) + '%';
                     }
                   }
                 }).then(function (response) {
-                  console.log(response.data);
-
                   if (response.status === 201 || response.status === 200) {
-                    document.querySelector('.progress-bar').classList.remove('bg-danger');
-                    document.querySelector('.progress-bar').classList.add('bg-success');
                     setTimeout(function () {
                       _this.$router.push({
                         path: '/panel/slides'
@@ -24069,25 +23707,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error.data);
 
                   if (error.status === 422) {
-                    document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(()=>{
-                    //     document.querySelector('.progress_container').classList.add('d-none');
-                    // },1000);
+                    var errorList = Array(error.data);
 
-                    // setTimeout(()=>{
-                    //     document.querySelector('.progress_container').classList.add('d-none');
-                    // },1000);
-                    var errorList = Array(error.data); // console.log(error.response.data);
-
-                    // console.log(error.response.data);
                     for (var i = 0; i < errorList.length; i++) {
-                      //  console.log('i',errorList[i]);
                       _this.errors = errorList[i];
                     }
 
-                    console.log(_this.errors.toString());
-                    setTimeout(function () {
-                      document.querySelector('.progress_container').classList.add('d-none');
-                    }, 1000);
+                    setTimeout(function () {}, 1000);
                   } else if (error.status === 500) {
                     if (error.data.message.includes("SQLSTATE")) {
                       var showAlertSql = /*#__PURE__*/function () {
@@ -24096,15 +23722,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context.prev = _context.next) {
                                 case 0:
-                                  _context.next = 2;
-                                  return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                                case 2:
                                   setTimeout(function () {
                                     alert(error.response.data.message);
                                   }, 200);
 
-                                case 3:
+                                case 1:
                                 case "end":
                                   return _context.stop();
                               }
@@ -24126,15 +23748,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context2.prev = _context2.next) {
                                 case 0:
-                                  _context2.next = 2;
-                                  return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                                case 2:
                                   setTimeout(function () {
                                     alert(error.message + ' ' + error.response.data.message);
                                   }, 200);
 
-                                case 3:
+                                case 1:
                                 case "end":
                                   return _context2.stop();
                               }
@@ -24156,15 +23774,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           while (1) {
                             switch (_context3.prev = _context3.next) {
                               case 0:
-                                _context3.next = 2;
-                                return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                              case 2:
                                 setTimeout(function () {
                                   alert(error.message);
                                 }, 200);
 
-                              case 3:
+                              case 1:
                               case "end":
                                 return _context3.stop();
                             }
@@ -24181,7 +23795,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 16:
+              case 13:
               case "end":
                 return _context4.stop();
             }
@@ -24289,19 +23903,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
 
               case 2:
-                //  console.log('beforePost', document.getElementById('content_text_area'));
-                //App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
-                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                document.querySelector('.progress_container').classList.add('d-none');
-                _this2.progress = 0;
                 _this2.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -24317,7 +23918,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context5.next = 16;
+                  _context5.next = 12;
                   break;
                 }
 
@@ -24333,29 +23934,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   features = '[' + features.toString() + ']';
                 }
 
-                document.querySelector('.progress_container').classList.remove('d-none');
-                _context5.next = 16;
+                _context5.next = 12;
                 return axios.post('/api/panel/slide/' + _this2.$route.params.id, {
                   image: document.getElementById('Image__code').value,
                   title: document.getElementById('title').value,
                   subTitle: document.getElementById('subTitle').value,
                   link: document.getElementById('link').value
-                }, {
-                  onUploadProgress: function onUploadProgress(e) {
-                    if (e.lengthComputable) {
-                      _this2.progress = e.loaded / e.total * 100;
-                      console.log(e.loaded, e.total);
-                      document.querySelector('.progress-bar').innerHTML = parseInt(_this2.progress) + '%';
-                    }
-                  }
                 }).then(function (response) {
-                  // console.log(response.data);
                   if (response.status === 200) {
-                    // localStorage.removeItem('draft_' + this.blog.id);
-                    // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-                    // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
-                    document.querySelector('.progress-bar').classList.remove('bg-danger');
-                    document.querySelector('.progress-bar').classList.add('bg-success');
                     setTimeout(function () {
                       // this.$router.push({path: '/panel/slide/'+ this.id });
                       _this2.$router.push({
@@ -24364,23 +23950,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }, 1000);
                   }
                 })["catch"](function (error) {
-                  document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(() => {
-                  //     document.querySelector('.progress_container').classList.add('d-none');
-                  // }, 1000);
-                  // console.log(error);
-                  // console.log(error.message);
-                  // console.log(error.response);
-                  // console.log(error.response.data);
-                  // console.log(error.response.data.exception_code);
-
-                  // setTimeout(() => {
-                  //     document.querySelector('.progress_container').classList.add('d-none');
-                  // }, 1000);
-                  // console.log(error);
-                  // console.log(error.message);
-                  // console.log(error.response);
-                  // console.log(error.response.data);
-                  // console.log(error.response.data.exception_code);
                   if (error.response.status === 422) {
                     var errorList = Array(error.response.data);
 
@@ -24389,9 +23958,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       _this2.errors = errorList[i];
                     }
 
-                    setTimeout(function () {
-                      document.querySelector('.progress_container').classList.add('d-none');
-                    }, 1000);
+                    setTimeout(function () {}, 1000);
                   } else if (error.response.status === 500) {
                     if (error.response.data.message.includes("SQLSTATE")) {
                       var showAlertSql = /*#__PURE__*/function () {
@@ -24400,15 +23967,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context2.prev = _context2.next) {
                                 case 0:
-                                  _context2.next = 2;
-                                  return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                                case 2:
                                   setTimeout(function () {
                                     alert(error.response.data.message);
                                   }, 200);
 
-                                case 3:
+                                case 1:
                                 case "end":
                                   return _context2.stop();
                               }
@@ -24430,15 +23993,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context3.prev = _context3.next) {
                                 case 0:
-                                  _context3.next = 2;
-                                  return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                                case 2:
                                   setTimeout(function () {
                                     alert(error.message + ' ' + error.response.data.message);
                                   }, 200);
 
-                                case 3:
+                                case 1:
                                 case "end":
                                   return _context3.stop();
                               }
@@ -24460,15 +24019,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           while (1) {
                             switch (_context4.prev = _context4.next) {
                               case 0:
-                                _context4.next = 2;
-                                return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                              case 2:
                                 setTimeout(function () {
                                   alert(error.message);
                                 }, 200);
 
-                              case 3:
+                              case 1:
                               case "end":
                                 return _context4.stop();
                             }
@@ -24485,7 +24040,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 16:
+              case 12:
               case "end":
                 return _context5.stop();
             }
@@ -24561,22 +24116,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     showDeleteModal: function showDeleteModal(id) {
-      // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-      //     .then((response) => {
-      //         if (response.status === 200) {
-      //             localStorage.setItem('expire', response.data.expire);
-      //             console.log(localStorage);
-      //
-      //         }
-      //     })
-      //     .then(() => {
-      document.getElementById('deleteId').value = id; // })
-      // .catch((error) => {
-      //     if (error.response.status === 401) {
-      //         window.location = '/panel/login'
-      //         App.methods.logout();
-      //     }
-      // });
+      document.getElementById('deleteId').value = id;
     },
     deleteInfo: function deleteInfo() {
       var _this2 = this;
@@ -24596,14 +24136,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(response.data);
                 })["catch"](function (error) {
                   console.error(error);
-                }); // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
+                });
                 _context2.next = 5;
                 return _this2.loadAllData();
 
@@ -24774,7 +24307,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
- // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -24824,10 +24356,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(function () {
                   _this.isDefined = true;
-                }) // .then(() => {
-                //     this.watchTextAreas();
-                // })
-                ["catch"]();
+                })["catch"]();
 
               case 4:
               case "end":
@@ -24850,9 +24379,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
 
               case 2:
-                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                document.querySelector('.progress_container').classList.add('d-none');
-                _this2.progress = 0;
                 _this2.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -24868,7 +24394,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context5.next = 16;
+                  _context5.next = 12;
                   break;
                 }
 
@@ -24884,8 +24410,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   features = '[' + features.toString() + ']';
                 }
 
-                document.querySelector('.progress_container').classList.remove('d-none');
-                _context5.next = 16;
+                _context5.next = 12;
                 return axios.post('/api/panel/user/' + _this2.$route.params.id, {
                   // image: document.getElementById('Image_index_code').value,
                   name: document.getElementById('name').value,
@@ -24895,22 +24420,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   current_password: document.getElementById('current_password').value,
                   new_password: document.getElementById('new_password').value,
                   new_password_repeat: document.getElementById('new_password_repeat').value
-                }, {
-                  onUploadProgress: function onUploadProgress(e) {
-                    if (e.lengthComputable) {
-                      _this2.progress = e.loaded / e.total * 100;
-                      console.log(e.loaded, e.total);
-                      document.querySelector('.progress-bar').innerHTML = parseInt(_this2.progress) + '%';
-                    }
-                  }
                 }).then(function (response) {
-                  // console.log(response.data);
                   if (response.status === 200) {
-                    // localStorage.removeItem('draft_' + this.blog.id);
-                    // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-                    // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
-                    document.querySelector('.progress-bar').classList.remove('bg-danger');
-                    document.querySelector('.progress-bar').classList.add('bg-success');
                     setTimeout(function () {
                       _this2.$router.push({
                         path: '/panel/user/' + _this2.id
@@ -24919,18 +24430,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }, 1000);
                   }
                 })["catch"](function (error) {
-                  document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(() => {
-                  //     document.querySelector('.progress_container').classList.add('d-none');
-                  // }, 1000);
-                  // console.log(error);
-                  // console.log(error.message);
-                  // console.log(error.response);
-                  // console.log(error.response.data);
-                  // console.log(error.response.data.exception_code);
-
-                  // setTimeout(() => {
-                  //     document.querySelector('.progress_container').classList.add('d-none');
-                  // }, 1000);
                   // console.log(error);
                   // console.log(error.message);
                   // console.log(error.response);
@@ -24943,10 +24442,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       // console.log('i', errorList[i]);
                       _this2.errors = errorList[i];
                     }
-
-                    setTimeout(function () {
-                      document.querySelector('.progress_container').classList.add('d-none');
-                    }, 1000);
                   } else if (error.status === 500) {
                     if (error.data.message.includes("SQLSTATE")) {
                       var showAlertSql = /*#__PURE__*/function () {
@@ -24955,15 +24450,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context2.prev = _context2.next) {
                                 case 0:
-                                  _context2.next = 2;
-                                  return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                                case 2:
                                   setTimeout(function () {
                                     alert(error.response.data.message);
                                   }, 200);
 
-                                case 3:
+                                case 1:
                                 case "end":
                                   return _context2.stop();
                               }
@@ -24985,15 +24476,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             while (1) {
                               switch (_context3.prev = _context3.next) {
                                 case 0:
-                                  _context3.next = 2;
-                                  return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                                case 2:
                                   setTimeout(function () {
                                     alert(error.message + ' ' + error.response.data.message);
                                   }, 200);
 
-                                case 3:
+                                case 1:
                                 case "end":
                                   return _context3.stop();
                               }
@@ -25040,7 +24527,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 16:
+              case 12:
               case "end":
                 return _context5.stop();
             }
@@ -25129,14 +24616,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    // })
-    // .then(() => {
-    // })
-    // .catch((error) => {
-    //     if (error.response.status === 401) {
-    //         window.location = '/panel/login'
-    //         App.methods.logout();
-    //     }
     deleteInfo: function deleteInfo() {
       var _this2 = this;
 
@@ -28044,7 +27523,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "mb-5"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("مدیران "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <router-link to = \"/panel/new/client\" class = \"text-dark\">"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <span title = \"ثبت مدیر جدید\" class = \"px-3 d-inline-block align-middle\"><i class = \"bi bi-plus-circle-fill p-0 mt-2 m-0\" style = \"font-size: 15px\"></i></span>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                </router-link>")], -1
+}, "مدیران ", -1
 /* HOISTED */
 );
 
@@ -28095,7 +27574,7 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "aria-expanded": "false"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bi bi-three-dots-vertical"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <ul class = \"dropdown-menu\" aria-labelledby = \"navbarScrollingDropdown\">"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("&lt;!&ndash;                                            <li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("&lt;!&ndash;                                                &lt;!&ndash;                                                <router-link :to = \"'/panel/data/'+data.id\" class = \"dropdown-item\" style = \"text-align: right !important\">&ndash;&gt;&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("&lt;!&ndash;                                                &lt;!&ndash;                                                    مشاهده&ndash;&gt;&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("&lt;!&ndash;                                                &lt;!&ndash;                                                </router-link>&ndash;&gt;&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("&lt;!&ndash;                                                &lt;!&ndash;                                                <router-link :to = \"'/panel/edit/data/'+data.id\" class = \"dropdown-item\" style = \"text-align: right !important\">&ndash;&gt;&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("&lt;!&ndash;                                                &lt;!&ndash;                                                    ویرایش&ndash;&gt;&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("&lt;!&ndash;                                                &lt;!&ndash;                                                </router-link>&ndash;&gt;&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("&lt;!&ndash;&lt;!&ndash;                                                <a class = \"dropdown-item\" @click = \"showDeleteModal(data.id)\" style = \"text-align: right !important\" data-bs-toggle = \"modal\" data-bs-target = \"#exampleModal\">حذف</a>&ndash;&gt;&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("&lt;!&ndash;                                            </li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                <li><hr class=\"dropdown-divider\"></li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        </ul>")], -1
+})])], -1
 /* HOISTED */
 );
 
@@ -28110,58 +27589,8 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_15 = [_hoisted_14];
-var _hoisted_16 = {
-  "class": "modal fade",
-  id: "exampleModal",
-  tabindex: "-1",
-  "aria-labelledby": "exampleModalLabel",
-  "aria-hidden": "true"
-};
-var _hoisted_17 = {
-  "class": "modal-dialog modal-sm"
-};
-var _hoisted_18 = {
-  "class": "modal-content"
-};
-
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "modal-header border-0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <h5 class=\"modal-title\" id=\"exampleModalLabel\">Modal title</h5>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "button",
-  "class": "btn-close",
-  "data-bs-dismiss": "modal",
-  "aria-label": "Close"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "modal-body"
-}, " آیا مدیر مورد نظر حذف شود؟ ", -1
-/* HOISTED */
-);
-
-var _hoisted_21 = {
-  "class": "modal-footer border-0"
-};
-
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "hidden",
-  id: "deleteId"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "button",
-  "class": "btn btn-secondary",
-  "data-bs-dismiss": "modal"
-}, "نه !", -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
     name: "route",
     mode: "out-in",
     appear: ""
@@ -28193,16 +27622,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "button",
-    "class": "btn btn-dark",
-    "data-bs-dismiss": "modal",
-    onClick: _cache[0] || (_cache[0] = function () {
-      return _ctx.deleteInfo && _ctx.deleteInfo.apply(_ctx, arguments);
-    })
-  }, "بله "), _hoisted_23])])])])], 64
-  /* STABLE_FRAGMENT */
-  );
+  });
 }
 
 /***/ }),
@@ -28340,7 +27760,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.submit && $options.submit.apply($options, arguments);
     }, ["prevent"])),
     "class": "btn btn-primary"
-  }, "ورود"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            <small class = \"px-2 text-center fw-bolder mt-2\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                <router-link class=\"text-primary text-decoration-underline\"  to=\"/reset/password/email\">فراموشی رمز</router-link>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            </small>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            <small class = \"px-2 text-center fw-bolder mt-2\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            حساب کاربری ندارید؟"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            <router-link class=\"text-primary text-decoration-underline\"  to=\"/register\">ثبت نام کنید</router-link>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        </small>")])])])])])]);
+  }, "ورود")])])])])])]);
 }
 
 /***/ }),
@@ -28724,9 +28144,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_ctx.data ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <img class = \"w-50 mb-2\" :src = \"data.image_url\" alt = \"\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [_hoisted_5, _ctx.data.category ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("b", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.category.title), 1
       /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <div class=\"\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.title), 1
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.title), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
         to: '/panel/edit/article/' + _ctx.data.id,
         "class": "text-dark"
       }, {
@@ -29087,7 +28507,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "data-bs-target": "#exampleModal"
         }, "حذف", 8
         /* PROPS */
-        , _hoisted_44)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                <li><hr class=\"dropdown-divider\"></li>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>")])])], 8
+        , _hoisted_44)])])])], 8
         /* PROPS */
         , _hoisted_19);
       }), 128
@@ -29483,7 +28903,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "col-12 mb-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label"
-}, "تصویر شاخص"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <image-cropper name = \"index\" :src = \"blog.image_url\" caption = \"\" :hasCaption = \"hasCaption\" :isRequired = \"imgRequired\" :aspect = \"aspect\"/>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "تصویر شاخص"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   id: "imageHelp",
   "class": "form-text error"
 })])], -1
@@ -29638,20 +29058,17 @@ var _hoisted_38 = [_hoisted_37];
 var _hoisted_39 = {
   "class": "col-md-12 mb-3"
 };
-
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ویرایش ");
-
-var _hoisted_41 = {
+var _hoisted_40 = {
   "class": "progress_container d-none",
   dir: "ltr"
 };
-var _hoisted_42 = {
+var _hoisted_41 = {
   "class": "progress",
   style: {
     "height": "20px"
   }
 };
-var _hoisted_43 = ["aria-valuenow"];
+var _hoisted_42 = ["aria-valuenow"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
     name: "route",
@@ -29686,7 +29103,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , _hoisted_19);
       }), 128
       /* KEYED_FRAGMENT */
-      ))]), _hoisted_20]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    <div class = \"col-md-3 mb-3\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <label for = \"indexImageName\" class = \"form-label\">عبارت کلید</label>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <input type = \"text\" :class = \"{hasError: errors.b_slug}\" class = \"form-control text-start en\"  dir = \"ltr\" id = \"indexImageName\" required>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <div id = \"indexImageNameHelp\" class = \"form-text error\"></div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <p class = \"form-text error m-0\" v-for = \"e in errors.b_slug\">{{ e }}</p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      ))]), _hoisted_20]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
         onInput: _cache[0] || (_cache[0] = function () {
           return $options.watchTextAreas && $options.watchTextAreas.apply($options, arguments);
         }),
@@ -29752,7 +29169,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $options.updateInfo && $options.updateInfo.apply($options, arguments);
         }, ["prevent"])),
         type: "submit"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <button class = \"btn btn-primary\" type = \"submit\">"), _hoisted_40])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      }, " ویرایش ")])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "progress-bar",
         role: "progressbar",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('width:' + $data.progress + '%'),
@@ -29761,7 +29178,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-valuemax": "100"
       }, null, 12
       /* STYLE, PROPS */
-      , _hoisted_43)])])])];
+      , _hoisted_42)])])])];
     }),
     _: 1
     /* STABLE */
@@ -30155,7 +29572,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
   "class": "text-center fw-bold"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("صفحه پیدا نشد "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <span ><i class=\"bi bi-emoji-frown\" ></i></span>")], -1
+}, "صفحه پیدا نشد ", -1
 /* HOISTED */
 );
 
@@ -30260,7 +29677,7 @@ var _hoisted_10 = {
   "class": "d-none d-md-table-cell date_cell"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <span role = \"button\" data-bs-toggle = \"dropdown\" aria-expanded = \"false\"><i class = \"bi bi-three-dots-vertical\"></i></span>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <ul class = \"dropdown-menu\" aria-labelledby = \"navbarScrollingDropdown\">"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                            <li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                                <a class = \"dropdown-item\" style = \"text-align: right !important\" href = \"#\">مشاهده</a>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                            </li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                             <li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                                <a class = \"dropdown-item\" style = \"text-align: right !important\" href = \"#\">ویرایش</a>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                            </li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            <li>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                                <router-link :to = \"'/panel/order/'+data.id\" class = \"dropdown-item\" style = \"text-align: right !important\">"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                                    مشاهده"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                                </router-link>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                                &lt;!&ndash;                                                <router-link :to = \"'/panel/edit/order/'+data.id\" class = \"dropdown-item\" style = \"text-align: right !important\">&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                                &lt;!&ndash;                                                    ویرایش&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                                &lt;!&ndash;                                                </router-link>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                                &lt;!&ndash;                                                <a class = \"dropdown-item\" @click = \"showDeleteModal(data.id)\" style = \"text-align: right !important\" data-bs-toggle = \"modal\" data-bs-target = \"#exampleModal\">حذف</a>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            </li>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                <li><hr class=\"dropdown-divider\"></li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            &lt;!&ndash;                                <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>&ndash;&gt;"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        </ul>")], -1
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, null, -1
 /* HOISTED */
 );
 
@@ -31182,67 +30599,6 @@ var _hoisted_70 = [_hoisted_69];
 var _hoisted_71 = {
   "class": "col-md-12 mb-3"
 };
-
-var _hoisted_72 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ثبت ");
-
-var _hoisted_73 = {
-  "class": "progress_container d-none",
-  dir: "ltr"
-};
-var _hoisted_74 = {
-  "class": "progress",
-  style: {
-    "height": "20px"
-  }
-};
-var _hoisted_75 = ["aria-valuenow"];
-
-var _hoisted_76 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "d-none",
-  id: "draftModalBtn",
-  "data-bs-toggle": "modal",
-  "data-bs-target": "#draftModal"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_77 = {
-  "class": "modal fade",
-  id: "draftModal",
-  "data-bs-backdrop": "static",
-  tabindex: "-1",
-  "aria-labelledby": "draftModalLabel"
-};
-var _hoisted_78 = {
-  "class": "modal-dialog modal-xl"
-};
-var _hoisted_79 = {
-  "class": "modal-content"
-};
-
-var _hoisted_80 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "modal-header border-0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <h5 class=\"mupdaodal-title\" id=\"draftModalLabel\">Modal title</h5>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <button type = \"button\" class = \"btn-close\" data-bs-dismiss = \"modal\" @click = \"closeModal\" aria-label = \"Close\"></button>")], -1
-/* HOISTED */
-);
-
-var _hoisted_81 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "modal-body w-100"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "px-3 pb-4"
-}, "شما تغییرات ذخیره نشده دارید!"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "draft_container row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "draft_content"
-})])])], -1
-/* HOISTED */
-);
-
-var _hoisted_82 = {
-  "class": "modal-footer border-0"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_image_cropper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("image-cropper");
 
@@ -31477,30 +30833,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $options.createInfo && $options.createInfo.apply($options, arguments);
         }, ["prevent"])),
         type: "submit"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <button class = \"btn btn-primary\" type = \"submit\">"), _hoisted_72])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-        "class": "progress-bar",
-        role: "progressbar",
-        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('width:' + _ctx.progress + '%'),
-        "aria-valuenow": _ctx.progress,
-        "aria-valuemin": "0",
-        "aria-valuemax": "100"
-      }, null, 12
-      /* STYLE, PROPS */
-      , _hoisted_75)])]), _hoisted_76, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_77, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_78, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_79, [_hoisted_80, _hoisted_81, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[11] || (_cache[11] = function () {
-          return _ctx.refactorDraft && _ctx.refactorDraft.apply(_ctx, arguments);
-        }),
-        type: "button",
-        "class": "confirm_Image btn btn-dark",
-        "data-bs-dismiss": "modal"
-      }, " بازیابی تغییرات "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[12] || (_cache[12] = function () {
-          return _ctx.ignoreDraft && _ctx.ignoreDraft.apply(_ctx, arguments);
-        }),
-        type: "button",
-        "class": "btn btn-secondary",
-        "data-bs-dismiss": "modal"
-      }, " حذف تغییرات ")])])])])])];
+      }, " ثبت ")])])])])])])])])];
     }),
     _: 1
     /* STABLE */
@@ -31872,22 +31205,19 @@ var _hoisted_79 = [_hoisted_78];
 var _hoisted_80 = {
   "class": "col-md-12 mb-3"
 };
-
-var _hoisted_81 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ویرایش ");
-
-var _hoisted_82 = {
+var _hoisted_81 = {
   "class": "progress_container d-none",
   dir: "ltr"
 };
-var _hoisted_83 = {
+var _hoisted_82 = {
   "class": "progress",
   style: {
     "height": "20px"
   }
 };
-var _hoisted_84 = ["aria-valuenow"];
+var _hoisted_83 = ["aria-valuenow"];
 
-var _hoisted_85 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_84 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "d-none",
   id: "draftModalBtn",
   "data-bs-toggle": "modal",
@@ -31896,27 +31226,19 @@ var _hoisted_85 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_86 = {
+var _hoisted_85 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal fade",
   id: "draftModal",
   "data-bs-backdrop": "static",
   tabindex: "-1",
   "aria-labelledby": "draftModalLabel"
-};
-var _hoisted_87 = {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-dialog modal-xl"
-};
-var _hoisted_88 = {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-content"
-};
-
-var _hoisted_89 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-header border-0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <h5 class=\"mupdaodal-title\" id=\"draftModalLabel\">Modal title</h5>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <button type = \"button\" class = \"btn-close\" data-bs-dismiss = \"modal\" @click = \"closeModal\" aria-label = \"Close\"></button>")], -1
-/* HOISTED */
-);
-
-var _hoisted_90 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-body w-100"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
   "class": "px-3 pb-2"
@@ -31934,13 +31256,10 @@ var _hoisted_90 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "h6 my-3"
 }, "نسخه تغییر یافته"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   id: "draft_content"
-})])])], -1
+})])])])])])], -1
 /* HOISTED */
 );
 
-var _hoisted_91 = {
-  "class": "modal-footer border-0"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_image_cropper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("image-cropper");
 
@@ -32034,7 +31353,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         );
       }), 256
       /* UNKEYED_FRAGMENT */
-      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    <div class = \"col-md-3 mb-3\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <label for = \"indexImageName\" class = \"form-label\">عبارت کلید</label>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <input type = \"text\" :class = \"{hasError: errors.b_slug}\" class = \"form-control text-start en\"  dir = \"ltr\" id = \"indexImageName\" required>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <div id = \"indexImageNameHelp\" class = \"form-text error\"></div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <p class = \"form-text error m-0\" v-for = \"e in errors.b_slug\">{{ e }}</p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
         onInput: _cache[0] || (_cache[0] = function () {
           return $options.watchTextAreas && $options.watchTextAreas.apply($options, arguments);
         }),
@@ -32181,7 +31500,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $options.updateInfo && $options.updateInfo.apply($options, arguments);
         }, ["prevent"])),
         type: "submit"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <button class = \"btn btn-primary\" type = \"submit\">"), _hoisted_81])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_83, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      }, " ویرایش ")])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_81, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "progress-bar",
         role: "progressbar",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('width:' + $data.progress + '%'),
@@ -32190,21 +31509,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-valuemax": "100"
       }, null, 12
       /* STYLE, PROPS */
-      , _hoisted_84)])]), _hoisted_85, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_86, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_87, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_88, [_hoisted_89, _hoisted_90, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_91, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[11] || (_cache[11] = function () {
-          return _ctx.refactorDraft && _ctx.refactorDraft.apply(_ctx, arguments);
-        }),
-        type: "button",
-        "class": "confirm_Image btn btn-dark",
-        "data-bs-dismiss": "modal"
-      }, " بازیابی تغییرات "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[12] || (_cache[12] = function () {
-          return _ctx.ignoreDraft && _ctx.ignoreDraft.apply(_ctx, arguments);
-        }),
-        type: "button",
-        "class": "btn btn-secondary",
-        "data-bs-dismiss": "modal"
-      }, " حذف تغییرات ")])])])])])];
+      , _hoisted_83)])]), _hoisted_84, _hoisted_85])];
     }),
     _: 1
     /* STABLE */
@@ -33370,67 +32675,17 @@ var _hoisted_70 = [_hoisted_69];
 var _hoisted_71 = {
   "class": "col-md-12 mb-3"
 };
-
-var _hoisted_72 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ثبت ");
-
-var _hoisted_73 = {
+var _hoisted_72 = {
   "class": "progress_container d-none",
   dir: "ltr"
 };
-var _hoisted_74 = {
+var _hoisted_73 = {
   "class": "progress",
   style: {
     "height": "20px"
   }
 };
-var _hoisted_75 = ["aria-valuenow"];
-
-var _hoisted_76 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "d-none",
-  id: "draftModalBtn",
-  "data-bs-toggle": "modal",
-  "data-bs-target": "#draftModal"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_77 = {
-  "class": "modal fade",
-  id: "draftModal",
-  "data-bs-backdrop": "static",
-  tabindex: "-1",
-  "aria-labelledby": "draftModalLabel"
-};
-var _hoisted_78 = {
-  "class": "modal-dialog modal-xl"
-};
-var _hoisted_79 = {
-  "class": "modal-content"
-};
-
-var _hoisted_80 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "modal-header border-0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <h5 class=\"mupdaodal-title\" id=\"draftModalLabel\">Modal title</h5>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <button type = \"button\" class = \"btn-close\" data-bs-dismiss = \"modal\" @click = \"closeModal\" aria-label = \"Close\"></button>")], -1
-/* HOISTED */
-);
-
-var _hoisted_81 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "modal-body w-100"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "px-3 pb-4"
-}, "شما تغییرات ذخیره نشده دارید!"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "draft_container row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "draft_content"
-})])])], -1
-/* HOISTED */
-);
-
-var _hoisted_82 = {
-  "class": "modal-footer border-0"
-};
+var _hoisted_74 = ["aria-valuenow"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_image_cropper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("image-cropper");
 
@@ -33665,7 +32920,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $options.createInfo && $options.createInfo.apply($options, arguments);
         }, ["prevent"])),
         type: "submit"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <button class = \"btn btn-primary\" type = \"submit\">"), _hoisted_72])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      }, " ثبت ")])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_72, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "progress-bar",
         role: "progressbar",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('width:' + _ctx.progress + '%'),
@@ -33674,21 +32929,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-valuemax": "100"
       }, null, 12
       /* STYLE, PROPS */
-      , _hoisted_75)])]), _hoisted_76, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_77, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_78, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_79, [_hoisted_80, _hoisted_81, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[11] || (_cache[11] = function () {
-          return _ctx.refactorDraft && _ctx.refactorDraft.apply(_ctx, arguments);
-        }),
-        type: "button",
-        "class": "confirm_Image btn btn-dark",
-        "data-bs-dismiss": "modal"
-      }, " بازیابی تغییرات "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        onClick: _cache[12] || (_cache[12] = function () {
-          return _ctx.ignoreDraft && _ctx.ignoreDraft.apply(_ctx, arguments);
-        }),
-        type: "button",
-        "class": "btn btn-secondary",
-        "data-bs-dismiss": "modal"
-      }, " حذف تغییرات ")])])])])])];
+      , _hoisted_74)])])])];
     }),
     _: 1
     /* STABLE */
@@ -34223,7 +33464,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         );
       }), 256
       /* UNKEYED_FRAGMENT */
-      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    <div class = \"col-md-3 mb-3\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <label for = \"indexImageName\" class = \"form-label\">عبارت کلید</label>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <input type = \"text\" :class = \"{hasError: errors.b_slug}\" class = \"form-control text-start en\"  dir = \"ltr\" id = \"indexImageName\" required>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <div id = \"indexImageNameHelp\" class = \"form-text error\"></div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <p class = \"form-text error m-0\" v-for = \"e in errors.b_slug\">{{ e }}</p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
         onInput: _cache[0] || (_cache[0] = function () {
           return $options.watchTextAreas && $options.watchTextAreas.apply($options, arguments);
         }),
@@ -34560,7 +33801,7 @@ var _hoisted_30 = {
 
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "fw-bold"
-}, "هیچ محتوایی موجود نیست", -1
+}, "هیچ محصولی موجود نیست", -1
 /* HOISTED */
 );
 
@@ -34694,7 +33935,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "badge bg-danger text-light"
         }, _hoisted_24, 8
         /* PROPS */
-        , _hoisted_22))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            <li>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                                <a class = \"dropdown-item\" style = \"text-align: right !important\" href = \"#\">مشاهده</a>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            </li>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                             <li>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                                <a class = \"dropdown-item\" style = \"text-align: right !important\" href = \"#\">ویرایش</a>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            </li>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+        , _hoisted_22))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
           to: '/panel/product/' + data.id,
           "class": "dropdown-item",
           style: {
@@ -34736,7 +33977,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "data-bs-target": "#exampleModal"
         }, "حذف", 8
         /* PROPS */
-        , _hoisted_29)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                <li><hr class=\"dropdown-divider\"></li>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>")])])], 8
+        , _hoisted_29)])])])], 8
         /* PROPS */
         , _hoisted_10);
       }), 128
@@ -34888,20 +34129,17 @@ var _hoisted_24 = {
 var _hoisted_25 = {
   "class": "col-md-12 mb-3"
 };
-
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ثبت ");
-
-var _hoisted_27 = {
+var _hoisted_26 = {
   "class": "progress_container d-none",
   dir: "ltr"
 };
-var _hoisted_28 = {
+var _hoisted_27 = {
   "class": "progress",
   style: {
     "height": "20px"
   }
 };
-var _hoisted_29 = ["aria-valuenow"];
+var _hoisted_28 = ["aria-valuenow"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_image_cropper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("image-cropper");
 
@@ -34972,7 +34210,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $options.createInfo && $options.createInfo.apply($options, arguments);
         }, ["prevent"])),
         type: "submit"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <button class = \"btn btn-primary\" type = \"submit\">"), _hoisted_26])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      }, " ثبت ")])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "progress-bar",
         role: "progressbar",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)('width:' + _ctx.progress + '%'),
@@ -34981,7 +34219,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-valuemax": "100"
       }, null, 12
       /* STYLE, PROPS */
-      , _hoisted_29)])])])];
+      , _hoisted_28)])])])];
     }),
     _: 1
     /* STABLE */
@@ -35453,7 +34691,7 @@ var _hoisted_32 = {
 
 var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-header border-0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <h5 class=\"modal-title\" id=\"exampleModalLabel\">Modal title</h5>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "button",
   "class": "btn-close",
   "data-bs-dismiss": "modal",
@@ -35464,7 +34702,7 @@ var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-body"
-}, " آیا محصول مورد نظر حذف شود؟ ", -1
+}, " آیا اسلاید مورد نظر حذف شود؟ ", -1
 /* HOISTED */
 );
 
@@ -35597,7 +34835,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["modelValue", "onDrop"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        </div>")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, _hoisted_29))])])])];
+      , ["modelValue", "onDrop"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, _hoisted_29))])])])];
     }),
     _: 1
     /* STABLE */
@@ -36620,7 +35858,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }, "جنسیت"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "d-none d-md-table-cell",
   scope: "col"
-}, "تاریخ ثبت"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    <th scope = \"col\" class=\"active_cell\">وضعیت</th>"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+}, "تاریخ ثبت"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col"
 })])], -1
 /* HOISTED */
@@ -36711,7 +35949,7 @@ var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-body"
-}, " آیا محصول مورد نظر حذف شود؟ ", -1
+}, " آیا کاربر مورد نظر حذف شود؟ ", -1
 /* HOISTED */
 );
 
@@ -41105,7 +40343,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n    /*.cropper-wrapper {*/\n    /*    width: 360px;*/\n    /*    height: 150px;*/\n    /*}*/\n.image-container {\n        width: inherit;\n        height: inherit;\n}\n\n\n    /*.image-preview {*/\n    /*    width: 276px;*/\n    /*    height: 150px;*/\n    /*}*/\n    /*.cropper-view-box,*/\n    /*.cropper-face{*/\n    /*    border-radius: 50%;*/\n    /*}*/\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.image-container {\n        width: inherit;\n        height: inherit;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -41201,7 +40439,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#content p {\n        text-align: justify !important;\n        line-height: 30px !important;\n        padding-left: 10px;\n}\n#content figure {\n        text-align: center !important;\n        display: block !important;\n}\n#content figure figcaption {\n        text-align: center !important;\n}\n.index_image .label {\n        display: block;\n        font-size: 20px;\n        margin: -50px 20px 50px 20px;\n}\n#content figure img {\n        max-width: 100%;\n}\n\n    /*.index_image span{*/\n    /*    display: inline-block;*/\n    /*    right:20px;*/\n    /*    bottom: 20px;*/\n    /*}*/\n.edit-pen {\n        font-size: 12px;\n        margin: 0 6px !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#content p {\n        text-align: justify !important;\n        line-height: 30px !important;\n        padding-left: 10px;\n}\n#content figure {\n        text-align: center !important;\n        display: block !important;\n}\n#content figure figcaption {\n        text-align: center !important;\n}\n.index_image .label {\n        display: block;\n        font-size: 20px;\n        margin: -50px 20px 50px 20px;\n}\n#content figure img {\n        max-width: 100%;\n}\n.edit-pen {\n        font-size: 12px;\n        margin: 0 6px !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -41345,7 +40583,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n    /*td {*/\n    /*    min-width: 80px !important;*/\n    /*}*/\ntable[data-v-62b10de7] {\n        overflow-x: scroll !important;\n        min-width: 380px !important;\n}\n#content p[data-v-62b10de7] {\n        text-align: justify !important;\n        line-height: 30px !important;\n        padding-left: 10px;\n}\n.index_image .label[data-v-62b10de7] {\n        display: block;\n        font-size: 20px;\n        margin: -50px 20px 50px 20px;\n}\n#content figure img[data-v-62b10de7] {\n        max-width: 100%;\n}\n\n    /*.index_image span{*/\n    /*    display: inline-block;*/\n    /*    right:20px;*/\n    /*    bottom: 20px;*/\n    /*}*/\n.edit-pen[data-v-62b10de7] {\n        font-size: 12px;\n        margin: 0 6px !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-62b10de7] {\n        overflow-x: scroll !important;\n        min-width: 380px !important;\n}\n#content p[data-v-62b10de7] {\n        text-align: justify !important;\n        line-height: 30px !important;\n        padding-left: 10px;\n}\n.index_image .label[data-v-62b10de7] {\n        display: block;\n        font-size: 20px;\n        margin: -50px 20px 50px 20px;\n}\n#content figure img[data-v-62b10de7] {\n        max-width: 100%;\n}\n\n    /*.index_image span{*/\n    /*    display: inline-block;*/\n    /*    right:20px;*/\n    /*    bottom: 20px;*/\n    /*}*/\n.edit-pen[data-v-62b10de7] {\n        font-size: 12px;\n        margin: 0 6px !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -41657,7 +40895,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nspan i[data-v-1b73b6da] {\n        cursor: pointer;\n}\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nspan i[data-v-1b73b6da] {\n        cursor: pointer;\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

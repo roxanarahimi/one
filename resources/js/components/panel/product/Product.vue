@@ -32,10 +32,8 @@
                                         <li style = "list-style: none" v-for = "item in data.sizes" :key = "item.id">
                                             <b>{{ item.size}}: </b>{{ item.dimensions }} , {{ item.color_name }}
                                             <span class = "me-2 color-span border d-inline-block"
-                                                  :style = "'background-color:'+ item.color_code+';'"
-
-                                            ></span>
-                                            موجودی: {{ item.stock}} عدد
+                                                  :style = "'background-color:'+ item.color_code+';'"></span> موجودی: {{
+                                            item.stock}} عدد
                                         </li>
                                     </ul>
                                 </div>
@@ -87,17 +85,9 @@
             this.loadProduct();
         },
         methods: {
-          async loadProduct() {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
-              await App.methods.checkToken();
-              await axios.get('/api/panel/product/' + this.id)
+            async loadProduct() {
+                await App.methods.checkToken();
+                await axios.get('/api/panel/product/' + this.id)
                     .then((response) => {
                         this.data = response.data.product;
                         document.getElementById('text').innerText = this.data.text;
@@ -107,14 +97,6 @@
                             }
                         }
                     })
-                //         .catch();
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
             },
 
         }

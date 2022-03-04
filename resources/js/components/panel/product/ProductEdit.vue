@@ -41,27 +41,21 @@
                                     </div>
                                     <div class = "col-md-4 col-lg-2 mb-3">
                                         <label for = "price" class = "form-label">قیمت (ریال)</label>
-                                        <input type = "number" min="1000"  :class = "{hasError: errors.price}" class = "form-control text-start" id = "price"  :value = "data.price" required>
+                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" :value = "data.price" required>
                                         <div id = "priceHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
 
                                     </div>
                                     <div class = "col-md-4 col-lg-1 mb-3">
                                         <label for = "off" class = "form-label">%تخفیف</label>
-                                        <input type = "number" :class = "{hasError: errors.off}" class = "form-control text-start" id = "off"  :value = "data.off">
+                                        <input type = "number" :class = "{hasError: errors.off}" class = "form-control text-start" id = "off" :value = "data.off">
                                         <div id = "offHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.off">{{ e }}</p>
 
                                     </div>
-                                    <!--                                    <div class = "col-md-3 mb-3">-->
-                                    <!--                                        <label for = "indexImageName" class = "form-label">عبارت کلید</label>-->
-                                    <!--                                        <input type = "text" :class = "{hasError: errors.b_slug}" class = "form-control text-start en"  dir = "ltr" id = "indexImageName" required>-->
-                                    <!--                                        <div id = "indexImageNameHelp" class = "form-text error"></div>-->
-                                    <!--                                        <p class = "form-text error m-0" v-for = "e in errors.b_slug">{{ e }}</p>-->
-                                    <!--                                    </div>-->
                                     <div class = "col-md-12 mb-3">
                                         <label class = "form-label" for = "text">متن</label>
-                                        <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text" >{{ data.text}}</textarea>
+                                        <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text">{{ data.text}}</textarea>
                                         <div id = "textHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.text">{{ e }}</p>
 
@@ -94,7 +88,7 @@
                                         </div>
 
                                         <div v-for = "(item, index) in sizes" :key = "index" id = "sizeSection" class = "row sizeElement">
-                                            <input type = "hidden" name="id" :value="item.id || null">
+                                            <input type = "hidden" name = "id" :value = "item.id || null">
                                             <div class = "col-6 col-md-2 mb-3">
                                                 <input type = "text" name = "size" class = "form-control" @input = "updateSizes" :value = "item.size" placeholder = "سایز" required>
                                                 <div class = "form-text error"></div>
@@ -215,50 +209,33 @@
 
             this.loadCategories();
             this.loadProduct();
-            // setTimeout(()=>{
-            //     this.progress = 10;
-            // },2000)
+
 
         },
 
         methods: {
-           async loadProduct() {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
+            async loadProduct() {
                 await App.methods.checkToken();
-               await axios.get('/api/panel/product/' + this.id)
-                            .then((response) => {
-                                console.log(response.data);
-                                this.data = response.data.product;
-                                if (this.data.features) {
-                                    for (let i = 0; i < JSON.parse(this.data.features).length; i++) {
-                                        this.features.push(JSON.parse(this.data.features)[i]);
-                                    }
-                                }
-                                if (this.data.sizes && this.data.sizes.length){
-                                    this.sizes = this.data.sizes;
-                                }
-                            })
-                            .then(() => {
-                                this.isDefined = true;
-                            })
-                            .then(() => {
-                                this.watchTextAreas();
-                            })
-                            .catch();
-                    // })
-                    // .catch((error) => {
-                    //     if (error.response.status === 401) {
-                    //         window.location = '/panel/login'
-                    //         App.methods.logout();
-                    //     }
-                    // });
+                await axios.get('/api/panel/product/' + this.id)
+                    .then((response) => {
+                        console.log(response.data);
+                        this.data = response.data.product;
+                        if (this.data.features) {
+                            for (let i = 0; i < JSON.parse(this.data.features).length; i++) {
+                                this.features.push(JSON.parse(this.data.features)[i]);
+                            }
+                        }
+                        if (this.data.sizes && this.data.sizes.length) {
+                            this.sizes = this.data.sizes;
+                        }
+                    })
+                    .then(() => {
+                        this.isDefined = true;
+                    })
+                    .then(() => {
+                        this.watchTextAreas();
+                    })
+                    .catch();
 
 
             },
@@ -271,155 +248,97 @@
             },
             async updateInfo() {
                 await App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
-                await App.methods.checkToken();
+                this.errors = [];
+                let emptyFieldsCount = 0;
+                let req = document.querySelectorAll('[required]');
+                req.forEach((element) => {
+                    if (element.value === "") {
+                        element.classList.add('hasError');
+                        element.nextSibling.innerHTML = "فیلد اجباری";
+                        emptyFieldsCount++;
+                    } else {
+                        element.classList.remove('hasError');
+                        element.nextSibling.innerHTML = "";
+                    }
+                });
 
-                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                        document.querySelector('.progress_container').classList.add('d-none');
-                        this.progress = 0;
+                if (emptyFieldsCount === 0) {
+                    let features = [];
+                    for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
+                        features.push('{"label": "' + document.getElementsByName('featureLabel')[i].value + '", "value": "' + document.getElementsByName('featureValue')[i].value + '"}');
+                    }
+                    if (document.getElementsByName('featureLabel').length === 0) {
+                        features = '[]';
+                    } else {
+                        features = '[' + features.toString() + ']';
+                    }
+                    await axios.post('/api/panel/product/' + this.$route.params.id,
+                        {
+                            // image: document.getElementById('Image_index_code').value,
+                            title: document.getElementById('title').value,
+                            subTitle: document.getElementById('subTitle').value,
+                            product_category_id: document.getElementById('category').value,
+                            text: document.getElementById('text').value,
+                            features: features,
+                            sizes: this.sizes,
+                            off: document.getElementById('off').value,
+                            price: document.getElementById('price').value,
+                        })
+                        .then((response) => {
+                            if (response.status === 200) {
+                                document.querySelector('.progress-bar').classList.remove('bg-danger');
+                                document.querySelector('.progress-bar').classList.add('bg-success');
+                                setTimeout(() => {
+                                    this.$router.push({path: '/panel/product/' + this.id});
+                                }, 1000);
+                            }
+                        })
+                        .catch((error) => {
+                            document.querySelector('.progress-bar').classList.add('bg-danger');
+                            if (error.response.status === 422) {
+                                let errorList = Array(error.response.data);
+                                for (var i = 0; i < errorList.length; i++) {
+                                    this.errors = errorList[i];
+                                }
+                                setTimeout(() => {
+                                    document.querySelector('.progress_container').classList.add('d-none');
+                                }, 1000);
 
-                        this.errors = [];
-                        let emptyFieldsCount = 0;
-                        let req = document.querySelectorAll('[required]');
-                        req.forEach((element) => {
-                            if (element.value === "") {
-                                element.classList.add('hasError');
-                                element.nextSibling.innerHTML = "فیلد اجباری";
-                                emptyFieldsCount++;
+                            } else if (error.response.status === 500) {
+                                if (error.response.data.message.includes("SQLSTATE")) {
+                                    console.error('خطای پایگاه داده');
+
+                                    async function showAlertSql() {
+                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
+                                        setTimeout(() => {
+                                            alert(error.response.data.message);
+                                        }, 200);
+                                    }
+
+                                    showAlertSql();
+                                } else {
+                                    async function showAlert500() {
+                                        setTimeout(() => {
+                                            alert(error.message + ' '
+                                                + error.response.data.message);
+                                        }, 200);
+                                    }
+
+                                    showAlert500();
+                                }
+
                             } else {
-                                element.classList.remove('hasError');
-                                element.nextSibling.innerHTML = "";
+                                async function showAlert() {
+                                    setTimeout(() => {
+                                        alert(error.message);
+                                    }, 200);
+                                }
+
+                                showAlert();
+
                             }
                         });
-
-                        if (emptyFieldsCount === 0) {
-                            let features = [];
-                            for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
-                                features.push('{"label": "' + document.getElementsByName('featureLabel')[i].value + '", "value": "' + document.getElementsByName('featureValue')[i].value + '"}');
-                            }
-                            if (document.getElementsByName('featureLabel').length === 0) {
-                                features = '[]';
-                            } else {
-                                features = '[' + features.toString() + ']';
-                            }
-                            document.querySelector('.progress_container').classList.remove('d-none');
-
-                          await  axios.post('/api/panel/product/' + this.$route.params.id,
-                                {
-                                    // image: document.getElementById('Image_index_code').value,
-                                    title: document.getElementById('title').value,
-                                    subTitle: document.getElementById('subTitle').value,
-                                    product_category_id: document.getElementById('category').value,
-                                    text: document.getElementById('text').value,
-                                    features: features,
-                                    sizes: this.sizes,
-                                    off: document.getElementById('off').value,
-                                    price: document.getElementById('price').value,
-
-                                    // stock: document.getElementById('stock').value,
-
-                                    // image_codes: this.image_codes,
-                                    // image_names: this.image_names,
-
-                                },
-                                {
-                                    onUploadProgress: e => {
-
-                                        if (e.lengthComputable) {
-                                            this.progress = (e.loaded / e.total) * 100;
-                                            console.log(e.loaded, e.total);
-                                            document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
-                                        }
-                                    }
-                                })
-                                .then((response) => {
-                                    // console.log(response.data);
-                                    if (response.status === 200) {
-                                        // localStorage.removeItem('draft_' + this.blog.id);
-                                        // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-                                        // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
-
-                                        document.querySelector('.progress-bar').classList.remove('bg-danger');
-                                        document.querySelector('.progress-bar').classList.add('bg-success');
-                                        setTimeout(() => {
-                                            this.$router.push({path: '/panel/product/' + this.id});
-                                        }, 1000);
-                                    }
-                                })
-                                .catch((error) => {
-                                    document.querySelector('.progress-bar').classList.add('bg-danger');
-                                    // setTimeout(() => {
-                                    //     document.querySelector('.progress_container').classList.add('d-none');
-                                    // }, 1000);
-
-                                    // console.log(error);
-                                    // console.log(error.message);
-                                    // console.log(error.response);
-                                    // console.log(error.response.data);
-                                    // console.log(error.response.data.exception_code);
-                                    if (error.response.status === 422) {
-                                        let errorList = Array(error.response.data);
-                                        for (var i = 0; i < errorList.length; i++) {
-                                            // console.log('i', errorList[i]);
-                                            this.errors = errorList[i];
-                                        }
-                                        setTimeout(() => {
-                                            document.querySelector('.progress_container').classList.add('d-none');
-                                        }, 1000);
-
-                                    } else if (error.response.status === 500) {
-                                        if (error.response.data.message.includes("SQLSTATE")) {
-                                            console.error('خطای پایگاه داده');
-
-                                            async function showAlertSql() {
-                                                await document.querySelector('.progress-bar').classList.add('bg-danger');
-                                                setTimeout(() => {
-                                                    alert(error.response.data.message);
-                                                }, 200);
-                                            }
-
-                                            showAlertSql();
-                                        } else {
-                                            async function showAlert500() {
-                                                await document.querySelector('.progress-bar').classList.add('bg-danger');
-                                                setTimeout(() => {
-                                                    alert(error.message + ' '
-                                                        + error.response.data.message);
-                                                }, 200);
-                                            }
-
-                                            showAlert500();
-                                        }
-
-                                    } else {
-                                        async function showAlert() {
-                                            await document.querySelector('.progress-bar').classList.add('bg-danger');
-                                            setTimeout(() => {
-                                                alert(error.message);
-                                            }, 200);
-                                        }
-
-                                        showAlert();
-
-                                    }
-                                });
-                        }
-                    // })
-                    // .catch((error) => {
-                    //     if (error.response.status === 401) {
-                    //         window.location = '/panel/login'
-                    //         App.methods.logout();
-                    //     }
-                    // });
-
-
+                }
             },
             watchTextAreas() {
                 let txt = document.querySelector("#text");
@@ -439,31 +358,15 @@
 
                 this.features.splice(index, 1)
             },
-          async  updateFeatures() {
+            async updateFeatures() {
                 await App.methods.checkToken();
-               await axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                    .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            console.log(localStorage);
-                        }
-                    })
-                    .then(() => {
-                        this.features = [];
-                        for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
-                            this.features.push({
-                                "label": document.getElementsByName('featureLabel')[i].value.toString(),
-                                "value": document.getElementsByName('featureValue')[i].value.toString()
-                            });
-                        }
-                    })
-                    .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
-                        }
+                this.features = [];
+                for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
+                    this.features.push({
+                        "label": document.getElementsByName('featureLabel')[i].value.toString(),
+                        "value": document.getElementsByName('featureValue')[i].value.toString()
                     });
-
+                }
 
             },
 
@@ -475,9 +378,9 @@
 
                 this.sizes.splice(index, 1)
             },
-           async updateSizes() {
+            async updateSizes() {
                 await App.methods.checkToken();
-               await axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
+                await axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
                     .then((response) => {
                         if (response.status === 200) {
                             localStorage.setItem('expire', response.data.expire);

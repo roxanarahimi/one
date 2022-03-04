@@ -126,15 +126,7 @@
         },
         methods: {
             async loadBlogs() {
-                //     axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //         .then((response) => {
-                //             if (response.status === 200) {
-                //                 localStorage.setItem('expire', response.data.expire);
-                //                 console.log(localStorage);
-                //
-                //             }
-                //         }).then(() => {
-                await App.methods.checkToken();
+                 await App.methods.checkToken();
                 await axios.get('/api/panel/latest/product')
                     .then((response) => {
                         this.allData = response.data;
@@ -143,14 +135,6 @@
                         console.log(this.allData);
                     })
                     .catch();
-                //
-                // })
-                //     .catch((error) => {
-                //         if (error.response.status === 401) {
-                //             window.location = '/panel/login'
-                //             App.methods.logout();
-                //         }
-                //     });
             }
 
 

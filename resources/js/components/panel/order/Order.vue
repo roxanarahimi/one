@@ -200,48 +200,18 @@
         },
         methods: {
             async loadData() {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
-
                 await axios.get('/api/panel/order/' + this.id)
                     .then((response) => {
                         this.data = response.data.data;
                         this.data2 = response.data.original;
-                        // console.log('ggggg',this.data);
 
                     })
                     .catch();
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
+
             },
             async updateInfo() {
-                // console.log('beforePost', document.getElementById('content_text_area'));
-                //  App.methods.checkToken();
-                //    Editor.methods.updatePreview();
-                //   console.log(document.getElementById('editor').innerHTML);
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         console.log(response);
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
-                // document.querySelector('.progress-bar').classList.remove('bg-danger');
-                // document.querySelector('.progress_container').classList.add('d-none');
+
                 this.progress = 0;
 
                 this.errors = [];
@@ -260,8 +230,6 @@
 
 
                 if (emptyFieldsCount === 0) {
-
-                    // document.querySelector('.progress_container').classList.remove('d-none');
                     await axios.post('/api/panel/order/' + this.id, {
                             status: document.getElementById('status').value,
                             payment: document.getElementById('payment').value,
@@ -272,7 +240,6 @@
                                 if (e.lengthComputable) {
                                     this.progress = (e.loaded / e.total) * 100;
                                     console.log(e.loaded, e.total);
-                                    // document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
                                 }
                             }
                         })
@@ -280,9 +247,7 @@
                             console.log('order', response.data)
                             if (response.status === 200) {
                                 console.log(response);
-                                // document.querySelector('.progress-bar').classList.remove('bg-danger');
-                                // document.querySelector('.progress-bar').classList.add('bg-success');
-                                this.loadData();
+                               this.loadData();
                                 console.log(response);
                                 if (response.status === 200) {
                                     setTimeout(() => {
@@ -293,32 +258,18 @@
                         })
                         .catch((error) => {
                             console.log('order', error);
-                            // console.log(error.message);
-                            // console.log(error.response.data);
-
                             if (error.status === 422) {
 
-                                // document.querySelector('.progress-bar').classList.add('bg-danger');
-                                // setTimeout(()=>{
-                                //     document.querySelector('.progress_container').classList.add('d-none');
-                                // },1000);
-
                                 let errorList = Array(error.data);
-                                // console.log(error.response.data);
                                 for (var i = 0; i < errorList.length; i++) {
-                                    //  console.log('i',errorList[i]);
                                     this.errors = errorList[i];
                                 }
                                 console.log(this.errors.toString());
-                                // setTimeout(() => {
-                                //     document.querySelector('.progress_container').classList.add('d-none');
-                                // }, 1000);
                             } else if (error.status === 500) {
                                 if (error.response.data.message.includes("SQLSTATE")) {
                                     console.error('خطای پایگاه داده');
 
                                     async function showAlertSql() {
-                                        // await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.response.data.message);
                                         }, 200);
@@ -327,7 +278,6 @@
                                     showAlertSql();
                                 } else {
                                     async function showAlert500() {
-                                        // await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.message + ' '
                                                 + error.response.data.message);
@@ -339,7 +289,6 @@
                             } else {
 
                                 async function showAlert() {
-                                    // await document.querySelector('.progress-bar').classList.add('bg-danger');
                                     setTimeout(() => {
                                         alert(error.message);
                                     }, 200);
@@ -358,9 +307,6 @@
     }
 </script>
 <style scoped>
-    /*td {*/
-    /*    min-width: 80px !important;*/
-    /*}*/
 
     table {
         overflow-x: scroll !important;

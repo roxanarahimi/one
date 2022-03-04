@@ -92,7 +92,6 @@
 
     export default {
         components: {ImageCropper},
-        //props:['type'],
         data: function () {
             return {
                 id: '',
@@ -110,7 +109,6 @@
         },
         mounted() {
             this.loadCategories();
-            //   this.loadDraft();
         },
         methods: {
             loadCategories() {
@@ -121,21 +119,7 @@
             },
 
             async createInfo() {
-                // console.log('beforePost', document.getElementById('content_text_area'));
-                //  App.methods.checkToken();
-                //    Editor.methods.updatePreview();
-                //   console.log(document.getElementById('editor').innerHTML);
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         console.log(response);
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
-
                 document.querySelector('.progress-bar').classList.remove('bg-danger');
                 document.querySelector('.progress_container').classList.add('d-none');
                 this.progress = 0;
@@ -164,15 +148,10 @@
                     }
                     document.querySelector('.progress_container').classList.remove('d-none');
                     await axios.post('/api/panel/article', {
-                        // image: document.getElementById('Image_index_code').value,
                         title: document.getElementById('title').value,
                         article_category_id: document.getElementById('category').value,
                         text: document.getElementById('text').value,
                         tags: tags,
-                        // stock: document.getElementById('stock').value,
-
-                        // image_codes: this.image_codes,
-                        // image_names: this.image_names,
                     }, {
                         onUploadProgress: e => {
                             if (e.lengthComputable) {
@@ -185,10 +164,6 @@
                         .then((response) => {
                             console.log(response.data)
                             if (response.status === 201 || response.status === 200) {
-                                // localStorage.removeItem('draft_new');
-                                // localStorage.removeItem('draft_new_img_codes');
-                                // localStorage.removeItem('draft_new_img_names');
-
                                 document.querySelector('.progress-bar').classList.remove('bg-danger');
                                 document.querySelector('.progress-bar').classList.add('bg-success');
                                 setTimeout(() => {
@@ -198,21 +173,9 @@
                             }
                         })
                         .catch((error) => {
-                            // console.log(error);
-                            // console.log(error.message);
-                            // console.log(error.response.data);
-
                             if (error.status === 422) {
-
-                                document.querySelector('.progress-bar').classList.add('bg-danger');
-                                // setTimeout(()=>{
-                                //     document.querySelector('.progress_container').classList.add('d-none');
-                                // },1000);
-
                                 let errorList = Array(error.response.data);
-                                // console.log(error.response.data);
                                 for (var i = 0; i < errorList.length; i++) {
-                                    //  console.log('i',errorList[i]);
                                     this.errors = errorList[i];
                                 }
                                 console.log(this.errors.toString());
@@ -222,14 +185,12 @@
                             } else if (error.status === 500) {
                                 if (error.response.data.message.includes("SQLSTATE")) {
                                     console.error('خطای پایگاه داده');
-
                                     async function showAlertSql() {
                                         await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.data.message);
                                         }, 200);
                                     }
-
                                     showAlertSql();
                                 } else {
                                     async function showAlert500() {
@@ -256,17 +217,6 @@
 
                         })
                 }
-                // })
-                // .catch((error) => {
-                //     console.log(error);
-                //
-                //     if (error.response && error.response.status && error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
-
             },
             watchTextAreas() {
                 let txt = document.querySelector("#text");
@@ -287,15 +237,6 @@
                 this.tags.splice(index, 1)
             },
             async updateTags() {
-                //    App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
                 this.tags = [];
                 for (let i = 0; i < document.getElementsByName('tagLabel').length; i++) {
@@ -304,15 +245,6 @@
                         "uri": document.getElementsByName('tagUri')[i].value.toString()
                     });
                 }
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
-
             },
 
 

@@ -84,9 +84,7 @@
                                             <li>
                                                 <a class = "dropdown-item" style = "text-align: right !important" @click = "showDeleteModal(data.id)" data-bs-toggle = "modal" data-bs-target = "#exampleModal">حذف</a>
                                             </li>
-                                            <!--                                <li><hr class="dropdown-divider"></li>-->
-                                            <!--                                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-                                        </ul>
+                                         </ul>
                                     </td>
 
                                 </tr>
@@ -143,51 +141,19 @@
         },
         methods: {
             async loadCategories() {
-                //App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
                 await axios.get('/api/panel/category/article').then((response) => {
                     this.allData = response.data;
                 }).catch();
-
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
             },
             async createInfo() {
-                //App.methods.checkToken();
-                // if (document.getElementById('title').value === '') {
-                //     document.getElementById('title').classList.add('hasError');
-                //     this.errors = ["لطفا عنوان را وارد کنید"]
-                // } else {
-                //     document.getElementById('title').classList.remove('hasError');
-                this.errors = [];
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
+              this.errors = [];
                 await App.methods.checkToken();
                 await axios.post('/api/panel/category/article',
                     {
                         title: document.getElementById('title').value,
                     })
                     .then((response) => {
-                        // console.log(response.data);
                         this.loadCategories();
                         setTimeout(() => {
                             document.getElementById('title').value = "";
@@ -220,27 +186,8 @@
 
 
                     })
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-                // }
-
             },
             async updateInfo(id) {
-                // document.getElementById('title_' + id).classList.remove('hasError');
-                // App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
                 await axios.post('/api/panel/category/article/' + id,
                     {
@@ -254,7 +201,6 @@
                     .catch((error) => {
                         if (error.status === 422) {
                             let errorList = Array(error.response.data);
-                            // document.getElementById('title_' + id).classList.add('hasError');
                             for (var i = 0; i < errorList.length; i++) {
                                 for (var j = 0; j < Array(errorList[i]).length; j++) {
                                     let err = Object.values(Array(errorList[i])[j]);
@@ -277,14 +223,6 @@
                         }
                     });
                 await this.hideUpdateForm(id);
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
             },
             showUpdateForm(id) {
 
@@ -308,16 +246,6 @@
                 document.getElementById('deleteId').value = id;
             },
             async deleteInfo() {
-                //  App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
-                // this.hideUpdateForm(id);
                 await App.methods.checkToken();
                 await axios.post('/api/panel/delete/category/article', {
                     id: document.getElementById('deleteId').value,
@@ -329,24 +257,8 @@
                         console.log(error);
                     });
                 await this.loadCategories();
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
             },
             async ActiveToggle(id) {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
                 await axios.get('/api/panel/active/category/article/' + id)
                     .then((response) => {
@@ -356,14 +268,6 @@
                         console.error(error);
                     });
                 await this.loadCategories();
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
 
             }
         }

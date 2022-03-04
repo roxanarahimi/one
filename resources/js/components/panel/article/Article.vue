@@ -11,9 +11,7 @@
                 </div>
             </div>
 
-<!--            <div class="">-->
                 <h3 class = "mb-2 fw-bold d-inline-block ">{{data.title}}</h3>
-<!--            </div>-->
             <router-link :to = "'/panel/edit/article/'+data.id" class = "text-dark">
                 <span title = "ویرایش مطلب" class = "mx-3 p-2 d-inline-block align-middle bg-dark text-light rounded-circle">
                     <i class = "bi bi-pencil p-0 edit-pen"></i>
@@ -59,14 +57,6 @@
         },
         methods: {
            async loadArticle() {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                await App.methods.checkToken();
                await axios.get('/api/panel/article/' + this.id)
                             .then((response) => {
@@ -80,15 +70,6 @@
                                 }
                             })
                             .catch();
-                    // })
-                    // .catch((error) => {
-                    //     if (error.response.status === 401) {
-                    //         window.location = '/panel/login'
-                    //         App.methods.logout();
-                    //     }
-                    // });
-
-
             },
 
         }
@@ -120,12 +101,6 @@
     #content figure img {
         max-width: 100%;
     }
-
-    /*.index_image span{*/
-    /*    display: inline-block;*/
-    /*    right:20px;*/
-    /*    bottom: 20px;*/
-    /*}*/
     .edit-pen {
         font-size: 12px;
         margin: 0 6px !important;

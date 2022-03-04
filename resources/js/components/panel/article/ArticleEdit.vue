@@ -11,7 +11,6 @@
                                 <div class = "row">
                                     <div class = "col-12 mb-3">
                                         <label class = "form-label">تصویر شاخص</label><br/>
-                                        <!--                                        <image-cropper name = "index" :src = "blog.image_url" caption = "" :hasCaption = "hasCaption" :isRequired = "imgRequired" :aspect = "aspect"/>-->
                                         <div id = "imageHelp" class = "form-text error"></div>
                                     </div>
                                 </div>
@@ -34,12 +33,6 @@
                                         </select>
                                         <div id = "categoryHelp" class = "form-text error"></div>
                                     </div>
-                                    <!--                                    <div class = "col-md-3 mb-3">-->
-                                    <!--                                        <label for = "indexImageName" class = "form-label">عبارت کلید</label>-->
-                                    <!--                                        <input type = "text" :class = "{hasError: errors.b_slug}" class = "form-control text-start en"  dir = "ltr" id = "indexImageName" required>-->
-                                    <!--                                        <div id = "indexImageNameHelp" class = "form-text error"></div>-->
-                                    <!--                                        <p class = "form-text error m-0" v-for = "e in errors.b_slug">{{ e }}</p>-->
-                                    <!--                                    </div>-->
                                     <div class = "col-md-12 mb-3">
                                         <label class = "form-label" for = "text">متن</label>
                                         <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text">{{ data.text}}</textarea>
@@ -70,7 +63,6 @@
 
                                     <div class = "col-md-12 mb-3">
                                         <button class = "btn btn-primary" @click.prevent = "updateInfo" type = "submit">
-                                            <!--                                        <button class = "btn btn-primary" type = "submit">-->
                                             ویرایش
                                         </button>
                                     </div>
@@ -96,7 +88,6 @@
 <script>
     import ImageCropper from '../ImageCropper';
     import App from '../App';
-    // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
     export default {
         components: {ImageCropper},
@@ -123,22 +114,10 @@
 
             this.loadCategories();
             this.loadArticle();
-            // setTimeout(()=>{
-            //     this.progress = 10;
-            // },2000)
-
         },
 
         methods: {
             async loadArticle() {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
                 await axios.get('/api/panel/article/' + this.id)
                     .then((response) => {
@@ -159,15 +138,6 @@
                         this.watchTextAreas();
                     })
                     .catch();
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
-
             },
             loadCategories() {
                 axios.get('/api/panel/category/article')
@@ -178,14 +148,6 @@
             },
             async updateInfo() {
                 await App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 document.querySelector('.progress-bar').classList.remove('bg-danger');
                 document.querySelector('.progress_container').classList.add('d-none');
                 this.progress = 0;
@@ -229,17 +191,11 @@
                                 if (e.lengthComputable) {
                                     this.progress = (e.loaded / e.total) * 100;
                                     console.log(e.loaded, e.total);
-                                    document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
                                 }
                             }
                         })
                         .then((response) => {
-                            // console.log(response.data);
                             if (response.status === 200) {
-                                // localStorage.removeItem('draft_' + this.blog.id);
-                                // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-                                // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
-
                                 document.querySelector('.progress-bar').classList.remove('bg-danger');
                                 document.querySelector('.progress-bar').classList.add('bg-success');
                                 setTimeout(() => {
@@ -248,32 +204,16 @@
                             }
                         })
                         .catch((error) => {
-                            document.querySelector('.progress-bar').classList.add('bg-danger');
-                            // setTimeout(() => {
-                            //     document.querySelector('.progress_container').classList.add('d-none');
-                            // }, 1000);
-
-                            // console.log(error);
-                            // console.log(error.message);
-                            // console.log(error.response);
-                            // console.log(error.response.data);
-                            // console.log(error.response.data.exception_code);
                             if (error.response && error.response.status === 422) {
                                 let errorList = Array(error.response.data);
                                 for (var i = 0; i < errorList.length; i++) {
-                                    // console.log('i', errorList[i]);
                                     this.errors = errorList[i];
                                 }
-                                setTimeout(() => {
-                                    document.querySelector('.progress_container').classList.add('d-none');
-                                }, 1000);
-
                             } else if (error.response.status === 500) {
                                 if (error.response.data.message.includes("SQLSTATE")) {
                                     console.error('خطای پایگاه داده');
 
                                     async function showAlertSql() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.response.data.message);
                                         }, 200);
@@ -282,7 +222,6 @@
                                     showAlertSql();
                                 } else {
                                     async function showAlert500() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.message + ' '
                                                 + error.response.data.message);
@@ -294,7 +233,6 @@
 
                             } else {
                                 async function showAlert() {
-                                    await document.querySelector('.progress-bar').classList.add('bg-danger');
                                     setTimeout(() => {
                                         alert(error.message);
                                     }, 200);
@@ -305,15 +243,6 @@
                             }
                         });
                 }
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
-
             },
             watchTextAreas() {
                 let txt = document.querySelector("#text");
@@ -332,29 +261,14 @@
                 this.tags.splice(index, 1)
             },
             updateTags() {
-                //App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
-                        this.tags = [];
-                        for (let i = 0; i < document.getElementsByName('tagLabel').length; i++) {
-                            this.tags.push({
-                                "label": document.getElementsByName('tagLabel')[i].value.toString(),
-                                "uri": document.getElementsByName('tagUri')[i].value.toString()
-                            });
-                        }
-                    // })
-                    // .catch((error) => {
-                    //     if (error.response.status === 401) {
-                    //         window.location = '/panel/login'
-                    //         App.methods.logout();
-                    //     }
-                    // });
+                this.tags = [];
+                for (let i = 0; i < document.getElementsByName('tagLabel').length; i++) {
+                    this.tags.push({
+                        "label": document.getElementsByName('tagLabel')[i].value.toString(),
+                        "uri": document.getElementsByName('tagUri')[i].value.toString()
+                    });
+                }
+
             },
 
 

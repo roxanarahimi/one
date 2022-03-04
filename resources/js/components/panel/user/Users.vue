@@ -22,7 +22,6 @@
                                     <th scope = "col">موبایل</th>
                                     <th scope = "col">جنسیت</th>
                                     <th class = "d-none d-md-table-cell" scope = "col">تاریخ ثبت</th>
-                                    <!--                                    <th scope = "col" class="active_cell">وضعیت</th>-->
                                     <th scope = "col"></th>
                                 </tr>
                                 </thead>
@@ -87,7 +86,7 @@
                     <button type = "button" class = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                 </div>
                 <div class = "modal-body">
-                    آیا محصول مورد نظر حذف شود؟
+                    آیا کاربر مورد نظر حذف شود؟
 
                 </div>
                 <div class = "modal-footer border-0">
@@ -118,55 +117,19 @@
         },
         methods: {
             async loadProducts() {
-                // App.methods.checkToken();
-
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
                 await App.methods.checkToken();
 
                 await axios.get('/api/panel/users')
                     .then((response) => {
                         this.allData = response.data;
                     }).catch();
-
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
             },
             async showDeleteModal(id) {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
                 await App.methods.checkToken();
                 document.getElementById('deleteId').value = id;
             },
-            // })
-            // .then(() => {
-            // })
-            // .catch((error) => {
-            //     if (error.response.status === 401) {
-            //         window.location = '/panel/login'
-            //         App.methods.logout();
-            //     }
-
             async deleteInfo() {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
-
                 await axios.post('/api/panel/delete/user/', {
                     id: document.getElementById('deleteId').value,
                 })
@@ -176,26 +139,10 @@
                     .catch((error) => {
                         console.error(error);
                     });
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
                 await this.loadProducts();
             }
             ,
             async pActiveToggle(id) {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
                 await axios.get('/api/panel/active/user/' + id)
                     .then((response) => {
@@ -205,15 +152,6 @@
                         console.error(error);
                     });
                 await this.loadProducts();
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
-
             }
 
         }

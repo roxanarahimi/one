@@ -55,12 +55,6 @@
                                     <td>
                                         <span role = "button" data-bs-toggle = "dropdown" aria-expanded = "false"><i class = "bi bi-three-dots-vertical"></i></span>
                                         <ul class = "dropdown-menu" aria-labelledby = "navbarScrollingDropdown">
-                                            <!--                                            <li>-->
-                                            <!--                                                <a class = "dropdown-item" style = "text-align: right !important" href = "#">مشاهده</a>-->
-                                            <!--                                            </li>-->
-                                            <!--                                             <li>-->
-                                            <!--                                                <a class = "dropdown-item" style = "text-align: right !important" href = "#">ویرایش</a>-->
-                                            <!--                                            </li>-->
                                             <li>
                                                 <router-link :to = "'/panel/product/'+data.id" class = "dropdown-item" style = "text-align: right !important">
                                                     مشاهده
@@ -71,8 +65,6 @@
                                                 <a class = "dropdown-item" @click = "showDeleteModal(data.id)" style = "text-align: right !important"
                                                    data-bs-toggle = "modal" data-bs-target = "#exampleModal">حذف</a>
                                             </li>
-                                            <!--                                <li><hr class="dropdown-divider"></li>-->
-                                            <!--                                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                                         </ul>
                                     </td>
                                 </tr>
@@ -81,7 +73,7 @@
                             </table>
                         </div>
                     </div>
-                    <div v-else><p class = "fw-bold">هیچ محتوایی موجود نیست</p></div>
+                    <div v-else><p class = "fw-bold">هیچ محصولی موجود نیست</p></div>
                 </div>
             </div>
         </section>
@@ -126,101 +118,44 @@
         },
         methods: {
             async loadProducts() {
-                // App.methods.checkToken();
-
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-
                 await App.methods.checkToken();
                 await axios.get('/api/panel/product').then((response) => {
                     this.allData = response.data;
                 }).catch();
-                //     }
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
             },
             showDeleteModal(id) {
-                axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                    .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            console.log(localStorage);
+                App.methods.checkToken();
+                document.getElementById('deleteId').value = id;
 
-                        }
-                    })
-                    .then(() => {
-                        document.getElementById('deleteId').value = id;
-                    })
-                    .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
-                        }
-                    });
             },
             deleteInfo() {
-                axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
+                App.methods.checkToken();
+
+                let id = document.getElementById('deleteId').value;
+                axios.post('/api/panel/delete/product/', {
+                    id: id,
+                })
                     .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            console.log(localStorage);
-                        }
-                    })
-                    .then(() => {
-                        let id = document.getElementById('deleteId').value;
-                        axios.post('/api/panel/delete/product/', {
-                            id: id,
-                        })
-                            .then((response) => {
-                                console.log(response.data)
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                            });
+                        console.log(response.data)
                     })
                     .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
-                        }
+                        console.error(error);
                     });
+
 
                 this.loadProducts();
             },
             pActiveToggle(id) {
-                axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
+                App.methods.checkToken();
+
+                axios.get('/api/panel/active/product/' + id)
                     .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            console.log(localStorage);
-                        }
-                    })
-                    .then(() => {
-                        axios.get('/api/panel/active/product/' + id)
-                            .then((response) => {
-                                console.log(response.data)
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                            });
-                        this.loadProducts();
+                        console.log(response.data)
                     })
                     .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
-                        }
+                        console.error(error);
                     });
-
-
+                this.loadProducts();
             }
 
         }

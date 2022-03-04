@@ -42,26 +42,7 @@
                                     <td class = "d-none d-md-table-cell date_cell">{{ data.created_at }}</td>
 
                                     <td>
-<!--                                        <span role = "button" data-bs-toggle = "dropdown" aria-expanded = "false"><i class = "bi bi-three-dots-vertical"></i></span>-->
-<!--                                        <ul class = "dropdown-menu" aria-labelledby = "navbarScrollingDropdown">-->
-<!--                                            &lt;!&ndash;                                            <li>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                <a class = "dropdown-item" style = "text-align: right !important" href = "#">مشاهده</a>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                            </li>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                             <li>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                                <a class = "dropdown-item" style = "text-align: right !important" href = "#">ویرایش</a>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                            </li>&ndash;&gt;-->
-<!--                                            <li>-->
-<!--                                                <router-link :to = "'/panel/order/'+data.id" class = "dropdown-item" style = "text-align: right !important">-->
-<!--                                                    مشاهده-->
-<!--                                                </router-link>-->
-<!--                                                &lt;!&ndash;                                                <router-link :to = "'/panel/edit/order/'+data.id" class = "dropdown-item" style = "text-align: right !important">&ndash;&gt;-->
-<!--                                                &lt;!&ndash;                                                    ویرایش&ndash;&gt;-->
-<!--                                                &lt;!&ndash;                                                </router-link>&ndash;&gt;-->
-<!--                                                &lt;!&ndash;                                                <a class = "dropdown-item" @click = "showDeleteModal(data.id)" style = "text-align: right !important" data-bs-toggle = "modal" data-bs-target = "#exampleModal">حذف</a>&ndash;&gt;-->
-<!--                                            </li>-->
-<!--                                            &lt;!&ndash;                                <li><hr class="dropdown-divider"></li>&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                <li><a class="dropdown-item" href="#">Something else here</a></li>&ndash;&gt;-->
-<!--                                        </ul>-->
+
                                     </td>
                                 </tr>
 

@@ -122,56 +122,17 @@
         },
         methods: {
             async loadArticles() {
-                // App.methods.checkToken();
-                // axios.post('/api/panel/check/user/token',
-                //     {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
                 await App.methods.checkToken();
                 await axios.get('/api/panel/article')
                     .then((response) => {
                         this.allData = response.data;
                     }).catch();
-                // }
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
             },
             async showDeleteModal(id) {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-
-                // }
-                // })
-                // .then(() => {
                 await App.methods.checkToken();
                 document.getElementById('deleteId').value = id;
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
             },
             async deleteInfo() {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
                 await axios.post('/api/panel/delete/article/', {
                     id: document.getElementById('deleteId').value,
@@ -182,27 +143,10 @@
                     .catch((error) => {
                         console.error(error);
                     });
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
                 this.loadArticles();
             },
             async pActiveToggle(id) {
-                // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //     .then((response) => {
-                //         if (response.status === 200) {
-                //             localStorage.setItem('expire', response.data.expire);
-                //             console.log(localStorage);
-                //         }
-                //     })
-                //     .then(() => {
                 await App.methods.checkToken();
-
                 await axios.get('/api/panel/active/article/' + id)
                     .then((response) => {
                         console.log(response.data)
@@ -211,15 +155,6 @@
                         console.error(error);
                     });
                 await this.loadArticles();
-                // })
-                // .catch((error) => {
-                //     if (error.response.status === 401) {
-                //         window.location = '/panel/login'
-                //         App.methods.logout();
-                //     }
-                // });
-
-
             }
 
         }

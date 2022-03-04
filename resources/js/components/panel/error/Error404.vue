@@ -5,7 +5,6 @@
             <div class = "mt-5 py-3 px-5 text-center bg-dark text-light rounded  mx-auto">
                 <h1 class = "text-center display-1  fw-bold">404</h1>
                 <h5 class = "text-center fw-bold">صفحه پیدا نشد
-                    <!--                <span ><i class="bi bi-emoji-frown" ></i></span>-->
                 </h5>
                 <router-link class = "" to = "/panel"><h6 class = "btn btn-light py-1 px-5">خانه</h6></router-link>
             </div>

@@ -197,8 +197,9 @@ Route::post('/address/user/{clientAddress}', [UserAddressController::class, 'upd
 Route::post('/delete/address/user', [UserAddressController::class, 'destroy']);
 
 
-Route::get('/get/otp/{mobile}', [UserController::class, 'getOtp']);
+Route::get('/get/otp/{mobile}', [UserController::class, 'getOtpNoRedis']);//getOtp
 Route::post('/verify/otp', [UserController::class, 'verifyOtp']);
+Route::get('/login/otp/{user}', [UserController::class, 'loginOtp']);
 
 Route::get('/otp1', [UserController::class, 'otp1']);
 Route::get('/otp2', [UserController::class, 'otp2']);

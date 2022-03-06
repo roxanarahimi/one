@@ -25137,8 +25137,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ProductCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ProductCard.vue */ "./resources/js/components/site/components/ProductCard.vue");
 /* harmony import */ var _components_BaseParallax_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/BaseParallax.vue */ "./resources/js/components/site/components/BaseParallax.vue");
 /* harmony import */ var _components_Slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Slider */ "./resources/js/components/site/components/Slider.vue");
-/* harmony import */ var _Site__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Site */ "./resources/js/components/site/views/Site.vue");
-/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Loader */ "./resources/js/components/site/components/Loader.vue");
+/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Loader */ "./resources/js/components/site/components/Loader.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -25148,7 +25147,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // @ is an alias to /src
 
 
-
+ // import App from "./Site";
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -25185,7 +25184,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
 
     console.log(localStorage);
-    document.querySelector('title').innerHTML = 'سایت | one';
+    document.querySelector('title').innerHTML = 'فروشگاه آنلاین | one';
     fetch("/api/latest/product").then(function (res) {
       return res.json();
     }) // .then((data) => (this.products = data))
@@ -25229,7 +25228,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     ProductCard: _components_ProductCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     BaseParallax: _components_BaseParallax_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Slider: _components_Slider__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Loader: _components_Loader__WEBPACK_IMPORTED_MODULE_5__["default"]
+    Loader: _components_Loader__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 });
 
@@ -25963,11 +25962,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       showForm1: true,
       showForm2: false,
       code: "",
+      otp: "",
       codeError: "",
       mobileError: [],
       codeAccepted: false,
       mobileAccepted: false,
-      timeLeft: 59
+      timeLeft: 59,
+      user: {}
     };
   },
   mounted: function mounted() {
@@ -26026,10 +26027,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (this.mobileError.length === 0) {
         this.mobile = document.getElementById('mobile').value;
-        axios.get('api/get/otp/' + this.mobile).then(function (response) {
+        axios.get('/api/get/otp/' + this.mobile).then(function (response) {
           console.log(response);
 
           if (response.status === 200) {
+            _this.otp = response.data.otp;
+            _this.user = response.data.user;
             _this.mobileAccepted = true;
             setTimeout(function () {
               _this.showForm1 = false;
@@ -26058,12 +26061,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this.code = document.getElementById("code1").value + document.getElementById("code2").value + document.getElementById("code3").value + document.getElementById("code4").value + document.getElementById("code5").value;
 
-      if (this.code.length === 5) {
-        axios.post('/api/verify/otp', {
-          mobile: this.mobile,
-          code: this.code.toString()
-        }).then(function (response) {
-          var _response$data, _response$data$user;
+      if (this.code.length === 5 && this.code == this.otp) {
+        console.log('otp', this.otp);
+        axios.get('/api/login/otp/' + this.user.id).then(function (response) {
+          var _response$data$user;
 
           console.log(response); //     ? (setTimeout(() => {
           //         (this.codeError = ""),
@@ -26074,7 +26075,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           //         }, 3000))
           //     : (this.codeError = "Wrong Code");
 
-          if (response.status === 200 && ((_response$data = response.data) === null || _response$data === void 0 ? void 0 : _response$data.scope) === 'user') {
+          if (response.status === 200) {
             //enter
             var jobs = /*#__PURE__*/function () {
               var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -26083,41 +26084,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     switch (_context.prev = _context.next) {
                       case 0:
                         _context.next = 2;
-                        return localStorage.removeItem('admin');
+                        return localStorage.setItem('access_token', response.data.access_token);
 
                       case 2:
                         _context.next = 4;
-                        return localStorage.setItem('access_token', response.data.access_token);
+                        return localStorage.setItem('user', JSON.stringify(response.data.user));
 
                       case 4:
                         _context.next = 6;
-                        return localStorage.setItem('user', JSON.stringify(response.data.user));
+                        return localStorage.setItem('expire', response.data.expire);
 
                       case 6:
                         _context.next = 8;
-                        return localStorage.setItem('expire', response.data.expire);
+                        return document.getElementById('login').classList.add('d-none');
 
                       case 8:
                         _context.next = 10;
-                        return document.getElementById('login').classList.add('d-none');
+                        return document.getElementById('register').classList.add('d-none');
 
                       case 10:
                         _context.next = 12;
-                        return document.getElementById('register').classList.add('d-none');
+                        return document.getElementById('profile').classList.remove('d-none');
 
                       case 12:
                         _context.next = 14;
-                        return document.getElementById('profile').classList.remove('d-none');
+                        return document.getElementById('logout').classList.remove('d-none');
 
                       case 14:
                         _context.next = 16;
-                        return document.getElementById('logout').classList.remove('d-none');
-
-                      case 16:
-                        _context.next = 18;
                         return document.getElementById('cart').classList.remove('d-none');
 
-                      case 18:
+                      case 16:
                       case "end":
                         return _context.stop();
                     }
@@ -41111,7 +41108,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.p-wrapper {\n        /* width: 100%; */\n        margin: 0px auto !important;\n        display: flexbox;\n        justify-content: space-evenly !important;\n        background-color: whitesmoke;\n        border-radius: 5px;\n        padding: 20px 70px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n    /*.p-wrapper {*/\n    /*    !* width: 100%; *!*/\n    /*    margin: 0px auto !important;*/\n    /*    display: flexbox;*/\n    /*    justify-content: space-evenly !important;*/\n    /*    background-color: whitesmoke;*/\n    /*    border-radius: 5px;*/\n    /*    padding: 20px 70px;*/\n    /*}*/\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

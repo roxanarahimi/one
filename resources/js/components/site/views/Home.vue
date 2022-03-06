@@ -25,7 +25,7 @@
     import ProductCard from "../components/ProductCard.vue";
     import BaseParallax from "../components/BaseParallax.vue";
     import Slider from "../components/Slider";
-    import App from "./Site";
+    // import App from "./Site";
     import Loader from "../components/Loader";
 
     export default {
@@ -64,7 +64,7 @@
             console.log(localStorage)
 
 
-            document.querySelector('title').innerHTML = 'سایت | one';
+            document.querySelector('title').innerHTML = 'فروشگاه آنلاین | one';
 
             fetch("/api/latest/product")
                 .then((res) => res.json())
@@ -93,13 +93,13 @@
     };
 </script>
 <style>
-    .p-wrapper {
-        /* width: 100%; */
-        margin: 0px auto !important;
-        display: flexbox;
-        justify-content: space-evenly !important;
-        background-color: whitesmoke;
-        border-radius: 5px;
-        padding: 20px 70px;
-    }
+    /*.p-wrapper {*/
+    /*    !* width: 100%; *!*/
+    /*    margin: 0px auto !important;*/
+    /*    display: flexbox;*/
+    /*    justify-content: space-evenly !important;*/
+    /*    background-color: whitesmoke;*/
+    /*    border-radius: 5px;*/
+    /*    padding: 20px 70px;*/
+    /*}*/
 </style>

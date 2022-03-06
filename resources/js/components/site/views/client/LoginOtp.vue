@@ -145,11 +145,13 @@
                 showForm1: true,
                 showForm2: false,
                 code: "",
+                otp: "",
                 codeError: "",
                 mobileError: [],
                 codeAccepted: false,
                 mobileAccepted: false,
                 timeLeft: 59,
+                user: {},
             };
         },
         mounted() {
@@ -214,10 +216,14 @@
 
                 if (this.mobileError.length === 0) {
                     this.mobile = document.getElementById('mobile').value;
-                    axios.get('api/get/otp/' + this.mobile)
+                    axios.get('/api/get/otp/' + this.mobile)
                         .then((response) => {
                             console.log(response);
                             if (response.status === 200) {
+
+                                this.otp = response.data.otp;
+                                this.user = response.data.user;
+
                                 this.mobileAccepted = true;
                                 setTimeout(() => {
                                     this.showForm1 = false;
@@ -258,14 +264,10 @@
                     document.getElementById("code3").value +
                     document.getElementById("code4").value +
                     document.getElementById("code5").value;
-                if (this.code.length === 5) {
+                if (this.code.length === 5 && this.code == this.otp) {
 
-                    axios.post('/api/verify/otp', {
-
-                        mobile: this.mobile,
-                        code: this.code.toString()
-
-                    }).then((response) => {
+                    console.log('otp',this.otp);
+                    axios.get('/api/login/otp/'+this.user.id).then((response) => {
                         console.log(response);
                         //     ? (setTimeout(() => {
                         //         (this.codeError = ""),
@@ -275,10 +277,9 @@
                         //             document.getElementById("form2").submit();
                         //         }, 3000))
                         //     : (this.codeError = "Wrong Code");
-                        if (response.status === 200 && response.data?.scope === 'user') {
+                        if (response.status === 200) {
                             //enter
                             async function jobs() {
-                                await localStorage.removeItem('admin');
                                 await localStorage.setItem('access_token', response.data.access_token);
                                 await localStorage.setItem('user', JSON.stringify(response.data.user));
                                 await localStorage.setItem('expire', response.data.expire);
@@ -335,7 +336,6 @@
 
                 if (e.target.value.length == e.target.maxLength) {
                     e.target.nextElementSibling?.focus();
-
                 }
             }
             ,

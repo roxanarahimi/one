@@ -203,9 +203,15 @@ class UserController extends Controller
     }
 
 
-    public function getOtp($mobile)
+
+    public function getOtpNoRedis($mobile)
     {
-        $user = User::where('mobile', $mobile);
+        $user = User::where('mobile', $mobile)->first();
+        if ($user && $user['scope'] !== 'user')
+        {
+            return response('شما مجاز به ورود نیستید لطفا با موبایل / ایمیل دیگری ثبت نام کنید.', 400);
+        }
+
         if ($user) {
             $characters = '1234567890';
             $charactersLength = strlen($characters);
@@ -213,17 +219,54 @@ class UserController extends Controller
             for ($i = 0; $i < 5; $i++) {
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
-
-            Redis::set($mobile, $randomString, 60);
-
             try {
                 $sender = "2000500666";        //This is the Sender number
-                $message = "به وبسایت وان آنلاین شاپ خوش آمدید. کد تایید شما: ". Redis::get($mobile);        //The body of SMS
-                $receptor = "09128222725";            //Receptors numbers
-                $result = Kavenegar::Send($sender, $receptor, $message);
+                $message = "به وبسایت وان آنلاین شاپ خوش آمدید. کد تایید شما: " . $randomString; //Redis::get($mobile);
+                $receptor = "09128222725";    //Receptors numbers
 
-                $code= Redis::get($mobile);
-                return response([$result,$code],200);
+                return response(['otp' => $randomString, 'user'=> new UserResource($user)], 200);
+            } catch (\Kavenegar\Exceptions\ApiException $e) {
+                return $e->errorMessage();
+            } catch (\Kavenegar\Exceptions\HttpException $e) {
+                return $e->errorMessage();
+            }
+        } else {
+            return response('شما عضو نیستید لطفا ابتدا ثبت نام کنید سپس وارد شوید', 400);
+        }
+    }
+
+    public function loginOtp(User $user)
+    {
+        \auth()->user = $user;
+        $token = $user->createToken('user')->accessToken;
+        $date = new \DateTime();
+        $date->add(new \DateInterval('PT2H'));
+        $user->update(['last_activity'=> $date->format('Y-m-d H:i:s')]);
+
+        return response(['user' => new UserResource($user), 'access_token' => $token, 'expire' => date_format($date, 'Y-m-d H:i:s')], 200);
+    }
+
+
+    public function getOtp($mobile)
+    {
+        $user = User::where('mobile', $mobile)->first();
+        if ($user) {
+            $characters = '1234567890';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < 5; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            Redis::set($mobile, $randomString, 60);
+            try {
+                $sender = "2000500666";        //This is the Sender number
+                $message = "به وبسایت وان آنلاین شاپ خوش آمدید. کد تایید شما: " . Redis::get($mobile);        //The body of SMS
+                $receptor = "09128222725";            //Receptors numbers
+//              $result = Kavenegar::Send($sender, $receptor, $message);
+//                $code = Redis::get($mobile);
+
+
+                return response(['otp' => $randomString], 200);
             } catch (\Kavenegar\Exceptions\ApiException $e) {
                 // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
                 return $e->errorMessage();
@@ -231,32 +274,32 @@ class UserController extends Controller
                 // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
                 return $e->errorMessage();
             }
-        }else{
-            return response('شما عضو نیستید لطفا ابتدا ثبت نام کنید سپس وارد شوید',400);
+        } else {
+            return response('شما عضو نیستید لطفا ابتدا ثبت نام کنید سپس وارد شوید', 400);
         }
     }
 
     public function verifyOtp(Request $request)
     {
         try {
-            $user = User::where('mobile',$request['mobile'])->first();
-            if ($user){
-                if(Redis::get($request['mobile'])) {
+            $user = User::where('mobile', $request['mobile'])->first();
+            if ($user) {
+                if (Redis::get($request['mobile'])) {
                     if ($request['code'] === "22222") { //(string)Redis::get($request['mobile'])
 
                         return response(new UserResource($user), 200);
-                    }else{
-                        return  response('کد وارد شده اشتباه است',400);
+                    } else {
+                        return response('کد وارد شده اشتباه است', 400);
                     }
-                }else{
-                    return response('لطفا دوباره درخواست کد دهید',400);
+                } else {
+                    return response('لطفا دوباره درخواست کد دهید', 400);
                 }
-            }else{
-                return response('کاربری با این شماره وجود ندارد',400);
+            } else {
+                return response('کاربری با این شماره وجود ندارد', 400);
 
             }
 
-        }catch(\Exception $exception){
+        } catch (\Exception $exception) {
             return response($exception);
         }
     }

@@ -15,7 +15,7 @@
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.js"></script>
     <link rel = "stylesheet" href = "{{ asset('css/site.css') }}">
     <link rel = "stylesheet" href = "{{ asset('css/fonts.css') }}">
-    <link rel="icon" href="images/shop.png">
+    <link rel="icon" href="/images/shop.png">
     <style>
         body, html {
             font-family: 'IranSans'; /*direction: rtl !important;*/

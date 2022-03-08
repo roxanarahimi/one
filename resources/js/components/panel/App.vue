@@ -164,7 +164,7 @@
             this.sideBarToggle();
             this.handleResize();
 
-            if (!localStorage.getItem('admin_access_token')) {
+            if (!localpStorage.getItem('admin_access_token')) {
                 this.$router.push({name: 'PanelLogin'});
             }
             document.querySelectorAll('form').forEach((item) => {

@@ -73,24 +73,24 @@
                             <span class = "sidebar_title">مالی</span>
                         </router-link>
                     </li>
-                    <li>
-                        <router-link to = "/panel/reports" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/reports'}">
-                            <i class = "bi bi-bar-chart-line-fill me-2"></i>
-                            <span class = "sidebar_title">گزارش ها</span>
-                        </router-link>
-                    </li>
+<!--                    <li>-->
+<!--                        <router-link to = "/panel/reports" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/reports'}">-->
+<!--                            <i class = "bi bi-bar-chart-line-fill me-2"></i>-->
+<!--                            <span class = "sidebar_title">گزارش ها</span>-->
+<!--                        </router-link>-->
+<!--                    </li>-->
                     <li>
                         <router-link to = "/panel/admins" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/admins'}">
                             <i class = "bi bi-person-circle me-2"></i>
                             <span class = "sidebar_title">مدیران</span>
                         </router-link>
                     </li>
-                    <li>
-                        <router-link to = "/panel/settings" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/settings'}">
-                            <i class = "bi bi-gear-fill me-2"></i>
-                            <span class = "sidebar_title">تنضیمات</span>
-                        </router-link>
-                    </li>
+<!--                    <li>-->
+<!--                        <router-link to = "/panel/settings" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/settings'}">-->
+<!--                            <i class = "bi bi-gear-fill me-2"></i>-->
+<!--                            <span class = "sidebar_title">تنضیمات</span>-->
+<!--                        </router-link>-->
+<!--                    </li>-->
                 </ul>
             </div>
 

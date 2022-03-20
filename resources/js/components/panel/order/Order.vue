@@ -317,7 +317,6 @@
         text-align: justify !important;
         line-height: 30px !important;
         padding-left: 10px;
-
     }
 
 

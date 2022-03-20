@@ -12,6 +12,7 @@
 ::-webkit-scrollbar {
     width: 7px;
     cursor: pointer !important;
+    background-color: #212529;
 }
 
 /* Track */

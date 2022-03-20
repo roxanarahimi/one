@@ -6,6 +6,8 @@ use App\Http\Controllers\ClientAddressController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\UserAddressController;
 use Illuminate\Http\Request;
@@ -130,6 +132,15 @@ Route::prefix('panel')->group(function () {
     Route::get('/active/finance/{finance}', [FinanceController::class, 'activeToggle']);
 
 
+    Route::get('/project', [ProjectController::class, 'index']);
+    Route::get('/project/{project}', [ProjectController::class, 'show']);
+    Route::post('/project', [ProjectController::class, 'store']);
+    Route::post('/project/{project}', [ProjectController::class, 'update']);
+    Route::post('/delete/project', [ProjectController::class, 'destroy']);
+
+    Route::get('/resume', [ResumeController::class, 'index']);
+    Route::get('/resume/{resume}', [ResumeController::class, 'show']);
+    Route::get('/delete/resume/{resume}', [ResumeController::class, 'destroy']);
 });
 
 

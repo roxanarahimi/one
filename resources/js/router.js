@@ -40,7 +40,20 @@ import PanelUser from "./components/panel/user/User.vue";
 import PanelSlides from "./components/panel/slide/Slides.vue";
 import PanelSlideCreate from "./components/panel/slide/SlideCreate.vue";
 import PanelSlideEdit from "./components/panel/slide/SlideEdit.vue";
+
+import PanelResumes from "./components/panel/employ/Resumes.vue";
+import PanelResume from "./components/panel/employ/Resume.vue";
+
 // import PanelSlide from "./components/article/Slide.vue";
+
+// import PanelResumes from "./components/panel/employ/Resumes.vue";
+// import PanelResume from "./components/panel/employ/Resume.vue";
+
+import PanelProjects from "./components/panel/project/Projects.vue";
+import PanelProjectCreate from "./components/panel/project/ProjectCreate.vue";
+import PanelProjectEdit from "./components/panel/project/ProjectEdit.vue";
+import PanelProject from "./components/panel/project/Project.vue";
+
 import PanelOrders from "./components/panel/order/Orders.vue";
 import PanelOrderCreate from "./components/panel/order/OrderCreate.vue";
 import PanelOrderEdit from "./components/panel/order/OrderEdit.vue";
@@ -223,6 +236,28 @@ const routes = [
         component: PanelArticleCategories,
     },
     {
+        path: "/panel/projects",
+        name: "PanelProjects",
+        component: PanelProjects,
+    },
+    {
+        path: "/panel/new/project",
+        name: "PanelProjectCreate",
+        component: PanelProjectCreate,
+        params: true
+    },
+    {
+        path: "/panel/edit/project/:id",
+        name: "PanelProjectEdit",
+        component: PanelProjectEdit,
+        params: true
+    },
+    {
+        path: "/panel/project/:id",
+        name: "PanelProject",
+        component: PanelProject,
+    },
+    {
         path: "/panel/slides",
         name: "PanelSlides",
         component: PanelSlides,
@@ -301,7 +336,16 @@ const routes = [
         name: "PanelFinance",
         component: PanelFinance,
     },
-
+    {
+        path: "/panel/resumes",
+        name: "PanelResumes",
+        component: PanelResumes,
+    },
+    {
+        path: "/panel/resume/:id",
+        name: "PanelResume",
+        component: PanelResume,
+    },
     {
         path: "/:catchAll(.*)",
         name: "PanelError404",

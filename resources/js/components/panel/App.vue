@@ -56,7 +56,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to = "/panel/resumes" class = "nav-link text-white" :cllass = "{active: $route.fullPath ==='/panel/resumes'}">
+                        <router-link to = "/panel/resumes" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/resumes'}">
                             <i class = "bi bi-person-lines-fill me-2"></i>
                             <span class = "sidebar_title">رزومه ها</span>
                         </router-link>

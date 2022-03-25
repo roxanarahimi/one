@@ -135,13 +135,13 @@ Route::prefix('panel')->group(function () {
 //    Route::get('/active/finance/{finance}', [FinanceController::class, 'activeToggle']);
 
 //
-//    Route::get('/project', [ProjectController::class, 'index']);
-//    Route::get('/project/{project}', [ProjectController::class, 'show']);
-//    Route::post('/project', [ProjectController::class, 'store']);
-//    Route::post('/project/{project}', [ProjectController::class, 'update']);
-//    Route::post('/delete/project', [ProjectController::class, 'destroy']);
+    Route::get('/project', [ProjectController::class, 'index']);
+    Route::get('/project/{project}', [ProjectController::class, 'show']);
+    Route::post('/project', [ProjectController::class, 'store']);
+    Route::post('/project/{project}', [ProjectController::class, 'update']);
+    Route::post('/delete/project', [ProjectController::class, 'destroy']);
 
-    Route::resource('project', ProjectController::class);
+//    Route::resource('project', ProjectController::class);
 
     Route::get('/course', [CourseController::class, 'index']);
     Route::get('/course/{course}', [CourseController::class, 'show']);
@@ -151,6 +151,7 @@ Route::prefix('panel')->group(function () {
     Route::get('/active/course/{course}', [CourseController::class, 'activeToggle']);
     Route::get('/latest/course', [CourseController::class, 'latest']);
 
+//    Route::resource('course', CourseController::class);
 
 
     Route::get('/category/course', [CourseCategoryController::class, 'index']);

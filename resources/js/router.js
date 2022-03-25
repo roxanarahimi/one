@@ -64,6 +64,13 @@ import PanelAdmins from "./components/panel/admin/Admins.vue";
 import PanelFinance from "./components/panel/finance/Finance.vue";
 import PanelError404 from "./components/panel/error/Error404.vue";
 
+import PanelCourses from "./components/panel/course/Courses.vue";
+import PanelCourseCreate from "./components/panel/course/CourseCreate.vue";
+import PanelCourseEdit from "./components/panel/course/CourseEdit.vue";
+import PanelCourse from "./components/panel/course/Course.vue";
+import PanelCourseCategories from "./components/panel/course/CourseCategories.vue";
+import Test from "./components/panel/Testii";
+
 
 const routes = [
     //site
@@ -71,6 +78,11 @@ const routes = [
         path: "/",
         name: "home",
         component: Home,
+    },
+    {
+        path: "/panel/test",
+        name: "test",
+        component: Test,
     },
 
     {

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CourseCategory extends Model
+class Teacher extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
     public function courses()
     {
-        return $this->hasMany(Course::class,  'course_category_id', 'id')->orderByDesc('id');
+        return $this->hasMany(Course::class,  'course_teacher_id', 'id')->orderByDesc('id');
     }
+
 }

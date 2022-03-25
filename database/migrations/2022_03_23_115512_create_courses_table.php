@@ -15,6 +15,18 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
+            $table->string('course_category_id');
+            $table->string('course_teacher_id')->nullable();
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
+            $table->time('time')->nullable();
+            $table->float('price');
+            $table->integer('off')->default(0);
+            $table->integer('capacity')->nullable();
+            $table->longText('description')->nullable();
+            $table->boolean('active')->default(0);
+
             $table->timestamps();
         });
     }

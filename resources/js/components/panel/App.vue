@@ -1,4 +1,12 @@
 <template>
+    <suspense>
+        <template #default>
+            <h2>in app</h2>
+            <test />
+        </template>
+        <template #fallback> <loader /></template>
+    </suspense>
+
     <div v-if = "this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'" id = "page" class = "d-flex">
 
         <div id="sidebar-wrapper">
@@ -131,16 +139,6 @@
             <section class = "page_content container-fluid p-4 p-md-5">
                 <router-view/>
             </section>
-
-            <!--                <router-view  v-slot="{ Component }">-->
-            <!--                    <transition name="route" mode="out-in" appear>-->
-            <!--                        <section class = "container-fluid p-5">-->
-            <!--                           <component :is="Component"></component>-->
-            <!--                       </section>-->
-            <!--                    </transition>-->
-            <!--                </router-view>-->
-
-
         </main>
     </div>
     <div v-else>
@@ -151,7 +149,9 @@
 </template>
 
 <script>
+    import Loader from "../site/components/Loader";
     export default {
+        components: {Loader},
         data: function () {
             return {
                 flag: 0,

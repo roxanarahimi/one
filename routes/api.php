@@ -4,6 +4,8 @@ use App\Http\Controllers\ArticleCategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ClientAddressController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CourseCategoryController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProjectController;
@@ -104,18 +106,19 @@ Route::prefix('panel')->group(function () {
     Route::get('/active/article/{article}', [ArticleController::class, 'activeToggle']);
     Route::get('/latest/article', [ArticleController::class, 'latest']);
 
-    Route::get('/order', [OrderController::class, 'index']);
-    Route::get('/order/{order}', [OrderController::class, 'showPanel']);
-    Route::post('/order', [OrderController::class, 'store']);
-    Route::post('/order/{order}', [OrderController::class, 'update']);
-    Route::post('/delete/order', [OrderController::class, 'destroy']);
-
     Route::get('/category/article', [ArticleCategoryController::class, 'index']);
     Route::get('/category/article/{articleCategory}', [ArticleCategoryController::class, 'show']);
     Route::post('/category/article', [ArticleCategoryController::class, 'store']);
     Route::post('/category/article/{articleCategory}', [ArticleCategoryController::class, 'update']);
     Route::post('/delete/category/article', [ArticleCategoryController::class, 'destroy']);
     Route::get('/active/category/article/{articleCategory}', [ArticleCategoryController::class, 'activeToggle']);
+
+    Route::get('/order', [OrderController::class, 'index']);
+    Route::get('/order/{order}', [OrderController::class, 'showPanel']);
+    Route::post('/order', [OrderController::class, 'store']);
+    Route::post('/order/{order}', [OrderController::class, 'update']);
+    Route::post('/delete/order', [OrderController::class, 'destroy']);
+
 
     Route::get('/slide', [SlideController::class, 'index']);
     Route::get('/slide/{slide}', [SlideController::class, 'show']);
@@ -129,14 +132,34 @@ Route::prefix('panel')->group(function () {
     Route::post('/finance', [FinanceController::class, 'store']);
     Route::post('/finance/{finance}', [FinanceController::class, 'update']);
     Route::post('/delete/finance', [FinanceController::class, 'destroy']);
-    Route::get('/active/finance/{finance}', [FinanceController::class, 'activeToggle']);
+//    Route::get('/active/finance/{finance}', [FinanceController::class, 'activeToggle']);
+
+//
+//    Route::get('/project', [ProjectController::class, 'index']);
+//    Route::get('/project/{project}', [ProjectController::class, 'show']);
+//    Route::post('/project', [ProjectController::class, 'store']);
+//    Route::post('/project/{project}', [ProjectController::class, 'update']);
+//    Route::post('/delete/project', [ProjectController::class, 'destroy']);
+
+    Route::resource('project', ProjectController::class);
+
+    Route::get('/course', [CourseController::class, 'index']);
+    Route::get('/course/{course}', [CourseController::class, 'show']);
+    Route::post('/course', [CourseController::class, 'store']);
+    Route::post('/course/{course}', [CourseController::class, 'update']);
+    Route::post('/delete/course', [CourseController::class, 'destroy']);
+    Route::get('/active/course/{course}', [CourseController::class, 'activeToggle']);
+    Route::get('/latest/course', [CourseController::class, 'latest']);
 
 
-    Route::get('/project', [ProjectController::class, 'index']);
-    Route::get('/project/{project}', [ProjectController::class, 'show']);
-    Route::post('/project', [ProjectController::class, 'store']);
-    Route::post('/project/{project}', [ProjectController::class, 'update']);
-    Route::post('/delete/project', [ProjectController::class, 'destroy']);
+
+    Route::get('/category/course', [CourseCategoryController::class, 'index']);
+    Route::get('/category/course/{courseCategory}', [CourseCategoryController::class, 'show']);
+    Route::post('/category/course', [CourseCategoryController::class, 'store']);
+    Route::post('/category/course/{courseCategory}', [CourseCategoryController::class, 'update']);
+    Route::post('/delete/category/course', [CourseCategoryController::class, 'destroy']);
+    Route::get('/active/category/course/{courseCategory}', [CourseCategoryController::class, 'activeToggle']);
+
 
     Route::get('/resume', [ResumeController::class, 'index']);
     Route::get('/resume/{resume}', [ResumeController::class, 'show']);

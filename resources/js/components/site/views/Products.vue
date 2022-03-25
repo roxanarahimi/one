@@ -43,7 +43,6 @@
                         </div>
                     </div>
                     <div class = "col-lg-9 d-flex-wrap d-lg-flex justify-content-between justify-content-lg-end  px-1 ">
-
                         <button class = "sort btn btn-sm btn-primary ms-1 mb-2 mb-lg-0" id = "new" @click = "sortBy('new')">
                             جدید ترین</button>
                         <button class = "sort btn btn-sm btn-outline-primary ms-1 mb-2 mb-lg-0" id = "sale" @click = "sortBy('sale')">

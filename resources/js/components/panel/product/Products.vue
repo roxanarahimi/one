@@ -1,9 +1,9 @@
 <template>
     <transition name = "route" mode = "out-in" appear>
         <section>
-            <h3 class = "mb-5">محصولات
+            <h3 class = "mb-5">دوره ها
                 <router-link to = "/panel/new/product" class = "text-dark">
-                    <span title = "ثبت محصول جدید" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
+                    <span title = "ثبت دوره جدید" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
                 </router-link>
             </h3>
 
@@ -16,12 +16,14 @@
                                 <tr>
                                     <th scope = "col"></th>
                                     <th class = "d-none d-md-table-cell" style = "width: 100px" scope = "col">تصویر</th>
-                                    <th scope = "col">عنوان</th>
+<!--                                    <th scope = "col">عنوان</th>-->
                                     <th scope = "col">دسته</th>
                                     <th scope = "col">قیمت</th>
                                     <th scope = "col">%تخفیف</th>
-                                    <th class = "d-none d-xl-table-cell" scope = "col">موجودی</th>
+                                    <th class = "d-none d-xl-table-cell" scope = "col">ظرفیت</th>
                                     <th class = "d-none d-xl-table-cell" scope = "col">متن</th>
+                                    <th class = "d-none d-md-table-cell" scope = "col">تاریخ شروع</th>
+                                    <th class = "d-none d-md-table-cell" scope = "col">تاریخ پایان</th>
                                     <th class = "d-none d-md-table-cell" scope = "col">تاریخ ثبت</th>
                                     <th scope = "col" class = "active_cell">وضعیت</th>
                                     <th scope = "col"></th>

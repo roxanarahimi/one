@@ -14,6 +14,12 @@ class CourseCategoryResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return[
+            "id" => (string)$this->id,
+            "title" => $this->title,
+            "active" => (boolean)$this->active,
+            "courses" => CourseResource::collection($this->courses),
+            "created_at" => date('Y-m-d', strtotime($this->created_at)),
+            "updated_at" => date('Y-m-d', strtotime($this->updated_at))];
     }
 }

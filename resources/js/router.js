@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 
 //site
 import Home from "./components/site/views/Home.vue";
@@ -69,7 +69,8 @@ import PanelCourseCreate from "./components/panel/course/CourseCreate.vue";
 import PanelCourseEdit from "./components/panel/course/CourseEdit.vue";
 import PanelCourse from "./components/panel/course/Course.vue";
 import PanelCourseCategories from "./components/panel/course/CourseCategories.vue";
-import Test from "./components/panel/Testii";
+
+// import test from "./components/panel/test";
 
 
 const routes = [
@@ -78,11 +79,6 @@ const routes = [
         path: "/",
         name: "home",
         component: Home,
-    },
-    {
-        path: "/panel/test",
-        name: "test",
-        component: Test,
     },
 
     {
@@ -170,6 +166,7 @@ const routes = [
         name: "PanelHome",
         component: PanelHome,
     },
+
     {
         path: "/panel/products",
         name: "PanelProducts",
@@ -179,13 +176,13 @@ const routes = [
         path: "/panel/new/product",
         name: "PanelProductCreate",
         component: PanelProductCreate,
-        params:true
+        params: true
     },
     {
         path: "/panel/edit/product/:id",
         name: "PanelProductEdit",
         component: PanelProductEdit,
-        params:true
+        params: true
     },
     {
         path: "/panel/product/:id",
@@ -197,6 +194,7 @@ const routes = [
         name: "PanelProductCategories",
         component: PanelProductCategories,
     },
+
     {
         path: "/panel/orders",
         name: "PanelOrders",
@@ -206,13 +204,13 @@ const routes = [
         path: "/panel/new/order",
         name: "PanelOrderCreate",
         component: PanelOrderCreate,
-        params:true
+        params: true
     },
     {
         path: "/panel/edit/order/:id",
         name: "PanelOrderEdit",
         component: PanelOrderEdit,
-        params:true
+        params: true
     },
     {
         path: "/panel/order/:id",
@@ -229,13 +227,13 @@ const routes = [
         path: "/panel/new/article",
         name: "PanelArticleCreate",
         component: PanelArticleCreate,
-        params:true
+        params: true
     },
     {
         path: "/panel/edit/article/:id",
         name: "PanelArticleEdit",
         component: PanelArticleEdit,
-        params:true
+        params: true
     },
     {
         path: "/panel/article/:id",
@@ -247,6 +245,7 @@ const routes = [
         name: "PanelArticleCategories",
         component: PanelArticleCategories,
     },
+
     {
         path: "/panel/projects",
         name: "PanelProjects",
@@ -269,6 +268,35 @@ const routes = [
         name: "PanelProject",
         component: PanelProject,
     },
+
+    {
+        path: "/panel/courses",
+        name: "PanelCourses",
+        component: PanelCourses,
+    },
+    {
+        path: "/panel/new/course",
+        name: "PanelCourseCreate",
+        component: PanelCourseCreate,
+        params: true
+    },
+    {
+        path: "/panel/edit/course/:id",
+        name: "PanelCourseEdit",
+        component: PanelCourseEdit,
+        params: true
+    },
+    {
+        path: "/panel/course/:id",
+        name: "PanelCourse",
+        component: PanelCourse,
+    },
+    {
+        path: "/panel/categories/course",
+        name: "PanelCourseCategories",
+        component: PanelCourseCategories,
+    },
+
     {
         path: "/panel/slides",
         name: "PanelSlides",
@@ -278,13 +306,13 @@ const routes = [
         path: "/panel/new/slide",
         name: "PanelSlideCreate",
         component: PanelSlideCreate,
-        params:true
+        params: true
     },
     {
         path: "/panel/edit/slide/:id",
         name: "PanelSlideEdit",
         component: PanelSlideEdit,
-        params:true
+        params: true
     },
 
     {
@@ -301,7 +329,7 @@ const routes = [
         path: "/panel/edit/user/:id",
         name: "PanelUserEdit",
         component: PanelUserEdit,
-        params:true
+        params: true
     },
     {
         path: "/panel/login",
@@ -318,36 +346,39 @@ const routes = [
         name: "PanelUsers",
         component: PanelUsers,
     },
+
     {
         path: "/panel/admins",
         name: "PanelAdmins",
         component: PanelAdmins,
     },
-     {
+    {
         path: "/panel/admins",
         name: "PanelAdmins",
         component: PanelAdmins,
     },
-     {
+    {
         path: "/panel/admins",
         name: "PanelAdmins",
         component: PanelAdmins,
     },
-     {
+    {
         path: "/panel/admins",
         name: "PanelAdmins",
         component: PanelAdmins,
     },
-     {
+    {
         path: "/panel/admins",
         name: "PanelAdmins",
         component: PanelAdmins,
     },
-     {
+
+    {
         path: "/panel/finance",
         name: "PanelFinance",
         component: PanelFinance,
     },
+
     {
         path: "/panel/resumes",
         name: "PanelResumes",
@@ -358,6 +389,7 @@ const routes = [
         name: "PanelResume",
         component: PanelResume,
     },
+
     {
         path: "/:catchAll(.*)",
         name: "PanelError404",

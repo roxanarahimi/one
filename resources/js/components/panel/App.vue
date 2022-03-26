@@ -64,6 +64,18 @@
                         </router-link>
                     </li>
                     <li>
+                        <router-link to = "/panel/courses" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/courses'}">
+                            <i class="bi bi-easel-fill me-2"></i>
+                            <span class = "sidebar_title">دوره ها</span>
+                        </router-link>
+                    </li>
+                    <li>
+                    <router-link to = "/panel/categories/course" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/categories/course'}">
+                        <i class = "bi bi-tags-fill me-2"></i>
+                        <span class = "sidebar_title">دسته دوره ها</span>
+                    </router-link>
+                </li>
+                    <li>
                         <router-link to = "/panel/resumes" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/resumes'}">
                             <i class = "bi bi-person-lines-fill me-2"></i>
                             <span class = "sidebar_title">رزومه ها</span>

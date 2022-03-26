@@ -2,7 +2,7 @@
     <transition name = "route" mode = "out-in" appear>
         <section>
             <h3 class = "mb-5">دوره ها
-                <router-link to = "/panel/new/product" class = "text-dark">
+                <router-link to = "/panel/new/course" class = "text-dark">
                     <span title = "ثبت دوره جدید" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
                 </router-link>
             </h3>
@@ -116,12 +116,12 @@
         },
 
         mounted() {
-            this.loadProducts();
+            this.loadAllData();
         },
         methods: {
-            async loadProducts() {
+            async loadAllData() {
                 await App.methods.checkToken();
-                await axios.get('/api/panel/product').then((response) => {
+                await axios.get('/api/panel/course').then((response) => {
                     this.allData = response.data;
                 }).catch();
             },
@@ -134,7 +134,7 @@
                 App.methods.checkToken();
 
                 let id = document.getElementById('deleteId').value;
-                axios.post('/api/panel/delete/product/', {
+                axios.post('/api/panel/delete/course/', {
                     id: id,
                 })
                     .then((response) => {
@@ -145,19 +145,19 @@
                     });
 
 
-                this.loadProducts();
+                this.loadAllData();
             },
             pActiveToggle(id) {
                 App.methods.checkToken();
 
-                axios.get('/api/panel/active/product/' + id)
+                axios.get('/api/panel/active/course/' + id)
                     .then((response) => {
                         console.log(response.data)
                     })
                     .catch((error) => {
                         console.error(error);
                     });
-                this.loadProducts();
+                this.loadAllData();
             }
 
         }

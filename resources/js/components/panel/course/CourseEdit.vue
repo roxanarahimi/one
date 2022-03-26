@@ -208,23 +208,18 @@
 
 
             this.loadCategories();
-            this.loadProduct();
+            this.loadData();
 
 
         },
 
         methods: {
-            async loadProduct() {
+            async loadData() {
                 await App.methods.checkToken();
-                await axios.get('/api/panel/product/' + this.id)
+                await axios.get('/api/panel/course/' + this.id)
                     .then((response) => {
                         console.log(response.data);
                         this.data = response.data.product;
-                        if (this.data.features) {
-                            for (let i = 0; i < JSON.parse(this.data.features).length; i++) {
-                                this.features.push(JSON.parse(this.data.features)[i]);
-                            }
-                        }
                         if (this.data.sizes && this.data.sizes.length) {
                             this.sizes = this.data.sizes;
                         }
@@ -240,7 +235,7 @@
 
             },
             loadCategories() {
-                axios.get('/api/panel/category/product')
+                axios.get('/api/panel/category/course')
                     .then((response) => {
                         this.categories = response.data;
                     })
@@ -274,22 +269,21 @@
                     }
                     await axios.post('/api/panel/product/' + this.$route.params.id,
                         {
-                            // image: document.getElementById('Image_index_code').value,
                             title: document.getElementById('title').value,
-                            subTitle: document.getElementById('subTitle').value,
-                            product_category_id: document.getElementById('category').value,
-                            text: document.getElementById('text').value,
-                            features: features,
-                            sizes: this.sizes,
-                            off: document.getElementById('off').value,
+                            course_category_id: document.getElementById('category').value,
+                            course_teacher_id: document.getElementById('teacher').value,
+                            start: document.getElementById('start').value,
+                            end: document.getElementById('end').value,
+                            time: document.getElementById('time').value,
                             price: document.getElementById('price').value,
+                            off: document.getElementById('off').value,
+                            capacity: document.getElementById('capacity').value,
+                            description: document.getElementById('description').value,
                         })
                         .then((response) => {
                             if (response.status === 200) {
-                                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                                document.querySelector('.progress-bar').classList.add('bg-success');
                                 setTimeout(() => {
-                                    this.$router.push({path: '/panel/product/' + this.id});
+                                    this.$router.push({path: '/panel/course/' + this.id});
                                 }, 1000);
                             }
                         })

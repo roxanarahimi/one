@@ -1,7 +1,7 @@
 <template>
     <transition name = "route" mode = "out-in" appear>
         <section>
-            <h3 class = "mb-5">ثبت محصول جدید</h3>
+            <h3 class = "mb-5">ثبت دوره جدید</h3>
 
             <div class = "row mt-3">
                 <div class = "col-12 mb-3">
@@ -23,13 +23,6 @@
                                         <p class = "form-text error m-0" v-for = "e in errors.title">{{ e }}</p>
 
                                     </div>
-                                    <div class = "col-md-8 col-lg-4 mb-3">
-                                        <label for = "subTitle" class = "form-label">زیرنویس</label>
-                                        <input type = "text" :class = "{hasError: errors.subTitle}" class = "form-control text-start" id = "subTitle" required>
-                                        <div id = "subTitleHelp" class = "form-text error"></div>
-                                        <p class = "form-text error m-0" v-for = "e in errors.subTitle">{{ e }}</p>
-
-                                    </div>
                                     <div class = "col-md-4 col-lg-2 mb-3">
                                         <label for = "category" class = "form-label">دسته</label>
                                         <select class = "form-select" id = "category" aria-describedby = "categoryHelp" aria-label = "category" required>
@@ -41,6 +34,17 @@
                                         <div id = "categoryHelp" class = "form-text error"></div>
 
                                     </div>
+                                    <div class = "col-md-4 col-lg-2 mb-3">
+                                        <label for = "teacher" class = "form-label">استاد</label>
+                                        <select class = "form-select" id = "teacher" aria-describedby = "teacherHelp" aria-label = "teacher" required>
+                                            <option value = ""></option>
+                                            <option v-for = "teacher in teachers" :key = "teacher.id" :value = "teacher.id">
+                                                {{ teacher.name }}
+                                            </option>
+                                        </select>
+                                        <div id = "teacherHelp" class = "form-text error"></div>
+                                    </div>
+
                                     <div class = "col-md-4 col-lg-2 mb-3">
                                         <label for = "price" class = "form-label">قیمت (ریال)</label>
                                         <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
@@ -56,8 +60,34 @@
 
                                     </div>
 
+                                    <div class = "col-md-4 col-lg-2 mb-3">
+                                        <label for = "price" class = "form-label">زمان</label>
+                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
+                                        <div id = "priceHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
+
+                                    </div>
+                                    <div class = "col-md-4 col-lg-2 mb-3">
+                                        <label for = "price" class = "form-label">ظرفیت</label>
+                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
+                                        <div id = "priceHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
+                                    </div>
+
+                                    <div class = "col-md-4 col-lg-2 mb-3">
+                                        <label for = "price" class = "form-label">تاریخ شروع</label>
+                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
+                                        <div id = "priceHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
+                                    </div>
+                                    <div class = "col-md-4 col-lg-2 mb-3">
+                                        <label for = "price" class = "form-label">تاریخ پایان</label>
+                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
+                                        <div id = "priceHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
+                                    </div>
                                     <div class = "col-md-12 mb-3">
-                                        <label class = "form-label" for = "text">متن</label>
+                                        <label class = "form-label" for = "text">توضیحات</label>
                                         <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text"></textarea>
                                         <div id = "textHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.text">{{ e }}</p>
@@ -168,7 +198,7 @@
         methods: {
             async loadCategories() {
                 await App.methods.checkToken();
-                await axios.get('/api/panel/category/product').then((response) => {
+                await axios.get('/api/panel/category/course').then((response) => {
                     this.categories = response.data;
                 }).catch();
             },
@@ -188,10 +218,10 @@
                 //     })
                 //     .then(() => {
                 await App.methods.checkToken();
-
-                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                document.querySelector('.progress_container').classList.add('d-none');
-                this.progress = 0;
+                //
+                // document.querySelector('.progress-bar').classList.remove('bg-danger');
+                // document.querySelector('.progress_container').classList.add('d-none');
+                // this.progress = 0;
 
                 this.errors = [];
                 let emptyFieldsCount = 0;
@@ -220,20 +250,18 @@
                     }
 
                     document.querySelector('.progress_container').classList.remove('d-none');
-                    await axios.post('/api/panel/product', {
-                            // image: document.getElementById('Image_index_code').value,
+                    await axios.post('/api/panel/course', {
                             title: document.getElementById('title').value,
-                            subTitle: document.getElementById('subTitle').value,
-                            product_category_id: document.getElementById('category').value,
-                            text: document.getElementById('text').value,
-                            features: features,
-                            sizes: this.sizes,
-                            off: document.getElementById('off').value,
+                            course_category_id: document.getElementById('category').value,
+                            course_teacher_id: document.getElementById('teacher').value,
+                            start: document.getElementById('start').value,
+                            end: document.getElementById('end').value,
+                            time: document.getElementById('time').value,
                             price: document.getElementById('price').value,
+                            off: document.getElementById('off').value,
+                            capacity: document.getElementById('capacity').value,
+                            description: document.getElementById('description').value,
 
-                            // stock: document.getElementById('stock').value,
-                            // image_codes: this.image_codes,
-                            // image_names: this.image_names,
                         }, {
                             onUploadProgress: e => {
                                 if (e.lengthComputable) {
@@ -254,7 +282,7 @@
                                 document.querySelector('.progress-bar').classList.remove('bg-danger');
                                 document.querySelector('.progress-bar').classList.add('bg-success');
                                 setTimeout(() => {
-                                    this.$router.push({path: '/panel/products'});
+                                    this.$router.push({path: '/panel/courses'});
                                 }, 1000);
 
                                 console.log(response)

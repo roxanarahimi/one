@@ -34,7 +34,7 @@
                                 <tr>
                                     <th scope = "col"></th>
                                     <th scope = "col">عنوان</th>
-                                    <th scope = "col">محصولات</th>
+                                    <th scope = "col">مطالب</th>
                                     <th scope = "col">تاریخ ثبت</th>
                                     <th scope = "col" class = "active_cell">وضعیت</th>
                                     <th scope = "col"></th>
@@ -50,8 +50,7 @@
                                         <span @click = "ActiveToggle(data.id)" v-if = "data.active" class = "badge bg-success text-light"><i class = "bi bi-eye-fill"></i></span>
                                         <span @click = "ActiveToggle(data.id)" v-else class = "badge bg-danger text-light"><i class = "bi bi-eye-slash-fill"></i></span>
                                     </td>
-
-                                    <td :id = "'form_'+data.id" class = "d-none px-3 py-3 edit" colspan = "6">
+                                    <td :id = "'form_'+data.id" class = "d-none px-3 py-3 edit" colspan = "5">
                                         <form action = "" class = "">
                                             <div class = "row">
                                                 <div class = "col-xl-1 py-2">
@@ -85,8 +84,6 @@
                                             <li>
                                                 <a class = "dropdown-item" style = "text-align: right !important" @click = "showDeleteModal(data.id)" data-bs-toggle = "modal" data-bs-target = "#exampleModal">حذف</a>
                                             </li>
-                                            <!--                                <li><hr class="dropdown-divider"></li>-->
-                                            <!--                                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                                         </ul>
                                     </td>
 
@@ -150,39 +147,21 @@
                 }).catch();
             },
             async createInfo() {
-                //   //App.methods.checkToken();
-                // if (document.getElementById('title').value === '') {
-                //       document.getElementById('title').classList.add('hasError');
-                //       this.errors = ["لطفا عنوان را وارد کنید"]
-                //   } else {
-                //       document.getElementById('title').classList.remove('hasError');
-                //       this.errors = [];
-                //       axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                //           .then((response) => {
-                //               if (response.status === 200) {
-                //                   localStorage.setItem('expire', response.data.expire);
-                //                   console.log(localStorage);
-                //               }
-                //           })
-                //           .then(() => {
+                this.errors = [];
                 await App.methods.checkToken();
                 await axios.post('/api/panel/category/product',
                     {
                         title: document.getElementById('title').value,
                     })
                     .then((response) => {
-                        // console.log(response.data);
-                        if (response.status === 200) {
-                            this.loadCategories();
-                            setTimeout(() => {
-                                document.getElementById('title').value = "";
-                            }, 200);
-                        }
-
+                        this.loadCategories();
+                        setTimeout(() => {
+                            document.getElementById('title').value = "";
+                        }, 200);
 
                     })
                     .catch((error) => {
-                        if (error.response.status === 422) {
+                        if (error.status === 422) {
                             let errorList = Array(error.response.data);
                             document.getElementById('title').classList.add('hasError');
                             for (var i = 0; i < errorList.length; i++) {
@@ -195,7 +174,7 @@
                                     });
                                 }
                             }
-                        } else if (error.response.status === 500) {
+                        } else if (error.status === 500) {
                             if (error.response.data.message.includes("SQLSTATE")) {
                                 console.error('خطای پایگاه داده');
                             }
@@ -207,70 +186,43 @@
 
 
                     })
-                //         })
-                //         .catch((error) => {
-                //             if (error.response.status === 401) {
-                //                 window.location = '/panel/login'
-                //                 App.methods.logout();
-                //             }
-                //         });
-                // }
-
             },
-            updateInfo(id) {
-                // document.getElementById('title_' + id).classList.remove('hasError');
-                // App.methods.checkToken();
-                axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                    .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            console.log(localStorage);
-                        }
+            async updateInfo(id) {
+                await App.methods.checkToken();
+                await axios.post('/api/panel/category/product/' + id,
+                    {
+                        title: document.getElementById('title_' + id).value,
                     })
-                    .then(() => {
-                        axios.post('/api/panel/category/product/' + id,
-                            {
-                                title: document.getElementById('title_' + id).value,
-                            })
-                            .then((response) => {
-                                console.log(response.data);
-                                this.loadCategories();
+                    .then((response) => {
+                        console.log(response.data);
+                        this.loadCategories();
 
-                            })
-                            .catch((error) => {
-                                if (error.response.status === 422) {
-                                    let errorList = Array(error.response.data);
-                                    // document.getElementById('title_' + id).classList.add('hasError');
-                                    for (var i = 0; i < errorList.length; i++) {
-                                        for (var j = 0; j < Array(errorList[i]).length; j++) {
-                                            let err = Object.values(Array(errorList[i])[j]);
-                                            err.forEach((element) => {
-                                                element.forEach((m) => {
-                                                    //  this.errors.push(m)
-                                                    alert(m)
-                                                })
-                                            });
-                                        }
-                                    }
-                                } else if (error.response.status === 500) {
-                                    if (error.response.data.message.includes("SQLSTATE")) {
-                                        console.error('خطای پایگاه داده');
-                                    }
-                                    alert('در ذخیره اطلاعات مشکلی بوجود امده.');
-
-                                } else {
-                                    console.error(error);
-                                }
-                            });
-                        this.hideUpdateForm(id);
                     })
                     .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
+                        if (error.status === 422) {
+                            let errorList = Array(error.response.data);
+                            for (var i = 0; i < errorList.length; i++) {
+                                for (var j = 0; j < Array(errorList[i]).length; j++) {
+                                    let err = Object.values(Array(errorList[i])[j]);
+                                    err.forEach((element) => {
+                                        element.forEach((m) => {
+                                            //  this.errors.push(m)
+                                            alert(m)
+                                        })
+                                    });
+                                }
+                            }
+                        } else if (error.status === 500) {
+                            if (error.response.data.message.includes("SQLSTATE")) {
+                                console.error('خطای پایگاه داده');
+                            }
+                            alert('در ذخیره اطلاعات مشکلی بوجود امده.');
+
+                        } else {
+                            console.error(error);
                         }
                     });
-
+                await this.hideUpdateForm(id);
             },
             showUpdateForm(id) {
 
@@ -293,66 +245,31 @@
             showDeleteModal(id) {
                 document.getElementById('deleteId').value = id;
             },
-            deleteInfo() {
-                //  App.methods.checkToken();
-                axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
+            async deleteInfo() {
+                await App.methods.checkToken();
+                await axios.post('/api/panel/delete/category/product', {
+                    id: document.getElementById('deleteId').value,
+                })
                     .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            console.log(localStorage);
-                        }
-                    })
-                    .then(() => {
-                        let id = document.getElementById('deleteId').value;
-                        // this.hideUpdateForm(id);
-                        axios.post('/api/panel/delete/category/product', {
-                            id: id,
-                        })
-                            .then((response) => {
-                                console.log(response.data)
-                            })
-                            .catch((error) => {
-
-                                console.log(error);
-                            });
-                        this.loadCategories();
+                        console.log(response.data)
                     })
                     .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
-                        }
+                        console.log(error);
                     });
-
+                await this.loadCategories();
             },
-            ActiveToggle(id) {
-                axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
+            async ActiveToggle(id) {
+                await App.methods.checkToken();
+                await axios.get('/api/panel/active/category/product/' + id)
                     .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            console.log(localStorage);
-                        }
-                    })
-                    .then(() => {
-                        axios.get('/api/panel/active/category/product/' + id)
-                            .then((response) => {
-                                console.log(response.data)
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                            });
-                        this.loadCategories();
+                        console.log(response.data)
                     })
                     .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
-                        }
+                        console.error(error);
                     });
-
+                await this.loadCategories();
 
             }
-
         }
 
     }
@@ -363,3 +280,4 @@
         background: #d7d7d7 !important;
     }
 </style>
+a

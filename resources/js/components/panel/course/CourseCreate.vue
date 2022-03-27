@@ -18,12 +18,12 @@
                                 <div class = "row">
                                     <div class = "col-md-4 col-lg-3 mb-3">
                                         <label for = "title" class = "form-label">عنوان</label>
-                                        <input type = "text" :class = "{hasError: errors.title}" class = "form-control" id = "title" aria-describedby = "titleHelp" required>
+                                        <input type = "text" :class = "{hasError: errors.title}" class = "form-control" id = "title" aria-describedby = "titleHelp">
                                         <div id = "titleHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.title">{{ e }}</p>
 
                                     </div>
-                                    <div class = "col-md-4 col-lg-2 mb-3">
+                                    <div class = "col-md-4 col-lg-3 mb-3">
                                         <label for = "category" class = "form-label">دسته</label>
                                         <select class = "form-select" id = "category" aria-describedby = "categoryHelp" aria-label = "category" required>
                                             <option value = ""></option>
@@ -34,9 +34,9 @@
                                         <div id = "categoryHelp" class = "form-text error"></div>
 
                                     </div>
-                                    <div class = "col-md-4 col-lg-2 mb-3">
+                                    <div class = "col-md-4 col-lg-3 mb-3">
                                         <label for = "teacher" class = "form-label">استاد</label>
-                                        <select class = "form-select" id = "teacher" aria-describedby = "teacherHelp" aria-label = "teacher" required>
+                                        <select class = "form-select" id = "teacher" aria-describedby = "teacherHelp" aria-label = "teacher">
                                             <option value = ""></option>
                                             <option v-for = "teacher in teachers" :key = "teacher.id" :value = "teacher.id">
                                                 {{ teacher.name }}
@@ -44,7 +44,33 @@
                                         </select>
                                         <div id = "teacherHelp" class = "form-text error"></div>
                                     </div>
+                                    <div class = "col-md-4 col-lg-3 mb-3">
+                                        <label for = "capacity" class = "form-label">ظرفیت</label>
+                                        <input type = "text" min = "1000" :class = "{hasError: errors.capacity}" class = "form-control text-start" id = "capacity" >
+                                        <div id = "capacityHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.capacity">{{ e }}</p>
+                                    </div>
 
+
+                                    <div class = "col-md-4 col-lg-3 mb-3">
+                                        <label for = "time" class = "form-label">زمان</label>
+                                        <input type = "time" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "time" >
+                                        <div id = "timeHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
+
+                                    </div>
+                                    <div class = "col-md-4 col-lg-3 mb-3">
+                                        <label for = "start" class = "form-label">تاریخ شروع</label>
+                                        <input type = "text" min = "1000" :class = "{hasError: errors.start}" class = "form-control text-start" id = "start" >
+                                        <div id = "startHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.start">{{ e }}</p>
+                                    </div>
+                                    <div class = "col-md-4 col-lg-3 mb-3">
+                                        <label for = "end" class = "form-label">تاریخ پایان</label>
+                                        <input type = "text" min = "1000" :class = "{hasError: errors.end}" class = "form-control text-start" id = "end" >
+                                        <div id = "endHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.end">{{ e }}</p>
+                                    </div>
                                     <div class = "col-md-4 col-lg-2 mb-3">
                                         <label for = "price" class = "form-label">قیمت (ریال)</label>
                                         <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
@@ -60,92 +86,13 @@
 
                                     </div>
 
-                                    <div class = "col-md-4 col-lg-2 mb-3">
-                                        <label for = "price" class = "form-label">زمان</label>
-                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
-                                        <div id = "priceHelp" class = "form-text error"></div>
-                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
-
-                                    </div>
-                                    <div class = "col-md-4 col-lg-2 mb-3">
-                                        <label for = "price" class = "form-label">ظرفیت</label>
-                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
-                                        <div id = "priceHelp" class = "form-text error"></div>
-                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
-                                    </div>
-
-                                    <div class = "col-md-4 col-lg-2 mb-3">
-                                        <label for = "price" class = "form-label">تاریخ شروع</label>
-                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
-                                        <div id = "priceHelp" class = "form-text error"></div>
-                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
-                                    </div>
-                                    <div class = "col-md-4 col-lg-2 mb-3">
-                                        <label for = "price" class = "form-label">تاریخ پایان</label>
-                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" required>
-                                        <div id = "priceHelp" class = "form-text error"></div>
-                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
-                                    </div>
                                     <div class = "col-md-12 mb-3">
                                         <label class = "form-label" for = "text">توضیحات</label>
                                         <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text"></textarea>
                                         <div id = "textHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.text">{{ e }}</p>
                                     </div>
-                                    <div class = "col-md-12 mb-3" id = "features">
-                                        <div>
-                                            <label class = "form-label mb-1 align-middle">مشخصات</label>
-                                            <span @click = "addFeature" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
-                                        </div>
 
-                                        <div v-for = "(item, index) in features" :key = "index" class = "row tagElement">
-                                            <div class = "col-5 col-md-3 mb-3">
-                                                <input type = "text" name = "featureLabel" class = "form-control" @input = "updateFeatures" :value = "item.label" placeholder = "عنوان" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-5 col-md-3 mb-3">
-                                                <input type = "text" name = "featureValue" class = "form-control" @input = "updateFeatures" :value = "item.value" placeholder = "مقدار" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-auto mb-3 pt-2">
-                                                <span @click = "removeFeature(index)"><i class = "bi bi-x-circle-fill m-0 " style = "font-size: 15px"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class = "col-md-12 mb-3" id = "sizes">
-                                        <div>
-                                            <label class = "form-label mb-1 align-middle">سایز و رنگ</label>
-                                            <span @click = "addSize" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
-                                        </div>
-
-                                        <div v-for = "(item, index) in sizes" :key = "index" id = "sizeSection" class = "row sizeElement">
-                                            <div class = "col-6 col-md-2 mb-3">
-                                                <input type = "text" name = "size" class = "form-control" @input = "updateSizes" value = "" placeholder = "سایز" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-6 col-md-4 mb-3">
-                                                <input type = "text" name = "dimensions" class = "form-control" @input = "updateSizes" value = "" placeholder = "ابعاد" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-6 col-md-2 mb-3">
-                                                <input type = "text" name = "color_name" class = "form-control" @input = "updateSizes" value = "" placeholder = "رنگ" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-6 col-md-2 mb-3">
-                                                <input type = "text" name = "color_code" class = "form-control" dir = "ltr" @input = "updateSizes" value = "" placeholder = "(#fffff) کد رنگ" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-10 col-md-1 mb-3">
-                                                <input type = "number" name = "stock" class = "form-control" min = "0" dir = "ltr" @input = "updateSizes" value = "" placeholder = "موجودی" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-1 mb-3 pt-2">
-                                                <span @click = "removeSize(index)"><i class = "bi bi-x-circle-fill m-0 " style = "font-size: 15px"></i></span>
-                                            </div>
-                                        </div>
-
-                                    </div>
                                     <div class = "col-md-12 mb-3">
                                         <button class = "btn btn-primary" @click.prevent = "createInfo" type = "submit">
                                             ثبت
@@ -159,11 +106,6 @@
                 </div>
             </div>
 
-            <div class = "progress_container d-none" dir = "ltr">
-                <div class = "progress" style = "height: 20px;">
-                    <div class = "progress-bar " role = "progressbar" :style = "'width:'+progress+'%'" :aria-valuenow = "progress" aria-valuemin = "0" aria-valuemax = "100"></div>
-                </div>
-            </div>
         </section>
     </transition>
 
@@ -183,7 +125,7 @@
                 errors: [],
                 image_codes: [],
                 image_names: [],
-                imgRequired: true,
+                imgRequired: false,
                 hasCaption: false,
                 aspect: 13 / 10,
                 features: [{"label": "", "value": ""}],
@@ -218,10 +160,6 @@
                 //     })
                 //     .then(() => {
                 await App.methods.checkToken();
-                //
-                // document.querySelector('.progress-bar').classList.remove('bg-danger');
-                // document.querySelector('.progress_container').classList.add('d-none');
-                // this.progress = 0;
 
                 this.errors = [];
                 let emptyFieldsCount = 0;
@@ -249,7 +187,6 @@
                         features = '[' + features.toString() + ']';
                     }
 
-                    document.querySelector('.progress_container').classList.remove('d-none');
                     await axios.post('/api/panel/course', {
                             title: document.getElementById('title').value,
                             course_category_id: document.getElementById('category').value,
@@ -260,16 +197,8 @@
                             price: document.getElementById('price').value,
                             off: document.getElementById('off').value,
                             capacity: document.getElementById('capacity').value,
-                            description: document.getElementById('description').value,
+                            description: document.getElementById('text').value,
 
-                        }, {
-                            onUploadProgress: e => {
-                                if (e.lengthComputable) {
-                                    this.progress = (e.loaded / e.total) * 100;
-                                    console.log(e.loaded, e.total);
-                                    document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
-                                }
-                            }
                         }
                     )
                         .then((response) => {
@@ -279,8 +208,7 @@
                                 // localStorage.removeItem('draft_new_img_codes');
                                 // localStorage.removeItem('draft_new_img_names');
 
-                                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                                document.querySelector('.progress-bar').classList.add('bg-success');
+
                                 setTimeout(() => {
                                     this.$router.push({path: '/panel/courses'});
                                 }, 1000);
@@ -295,7 +223,6 @@
 
                             if (error.status === 422) {
 
-                                document.querySelector('.progress-bar').classList.add('bg-danger');
                                 // setTimeout(()=>{
                                 //     document.querySelector('.progress_container').classList.add('d-none');
                                 // },1000);
@@ -308,14 +235,12 @@
                                 }
                                 console.log(this.errors.toString());
                                 setTimeout(() => {
-                                    document.querySelector('.progress_container').classList.add('d-none');
                                 }, 1000);
                             } else if (error.status === 500) {
                                 if (error.data.message.includes("SQLSTATE")) {
                                     console.error('خطای پایگاه داده');
 
                                     async function showAlertSql() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.data.message);
                                         }, 200);
@@ -324,7 +249,6 @@
                                     showAlertSql();
                                 } else {
                                     async function showAlert500() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.message + ' '
                                                 + error.data.message);
@@ -336,7 +260,6 @@
                             } else {
 
                                 async function showAlert() {
-                                    await document.querySelector('.progress-bar').classList.add('bg-danger');
                                     setTimeout(() => {
                                         alert(error.message);
                                     }, 200);

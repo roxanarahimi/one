@@ -1,7 +1,7 @@
 <template>
     <transition name = "route" mode = "out-in" appear>
         <section>
-            <h3 class = "mb-5">ویرایش محصول</h3>
+            <h3 class = "mb-5">ویرایش دوره</h3>
 
             <div class = "row mt-3">
                 <div class = "col-12 mb-3">
@@ -18,102 +18,79 @@
                                 <div class = "row">
                                     <div class = "col-md-4 col-lg-3 mb-3">
                                         <label for = "title" class = "form-label">عنوان</label>
-                                        <input type = "text" :class = "{hasError: errors.title}" class = "form-control" id = "title" :value = "data.title" aria-describedby = "titleHelp" required>
+                                        <input type = "text" :class = "{hasError: errors.title}" :value = "data.title" class = "form-control" id = "title" aria-describedby = "titleHelp">
                                         <div id = "titleHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.title">{{ e }}</p>
 
                                     </div>
-                                    <div class = "col-md-8 col-lg-4 mb-3">
-                                        <label for = "subTitle" class = "form-label">زیرنویس</label>
-                                        <input type = "text" :class = "{hasError: errors.subTitle}" class = "form-control text-start" :value = "data.subTitle" id = "subTitle" required>
-                                        <div id = "subTitleHelp" class = "form-text error"></div>
-                                        <p class = "form-text error m-0" v-for = "e in errors.subTitle">{{ e }}</p>
-                                    </div>
-                                    <div class = "col-md-4 col-lg-2 mb-3">
+                                    <div class = "col-md-4 col-lg-3 mb-3">
                                         <label for = "category" class = "form-label">دسته</label>
                                         <select class = "form-select" id = "category" aria-describedby = "categoryHelp" aria-label = "category" required>
                                             <option value = ""></option>
-                                            <option :selected = "data.category.id == category.id" v-for = "category in categories" :key = "category.id" :value = "category.id">
+                                            <option v-for = "category in categories" :selected = "data.category.id == category.id" :key = "category.id" :value = "category.id">
                                                 {{ category.title }}
                                             </option>
                                         </select>
                                         <div id = "categoryHelp" class = "form-text error"></div>
+
+                                    </div>
+                                    <div class = "col-md-4 col-lg-3 mb-3">
+                                        <label for = "teacher" class = "form-label">استاد</label>
+                                        <select class = "form-select" id = "teacher" aria-describedby = "teacherHelp" aria-label = "teacher">
+                                            <option value = ""></option>
+                                            <option v-for = "teacher in teachers" :selected = "data.teacher?.id == teacher.id" :key = "teacher.id" :value = "teacher.id">
+                                                {{ teacher.name }}
+                                            </option>
+                                        </select>
+                                        <div id = "teacherHelp" class = "form-text error"></div>
+                                    </div>
+                                    <div class = "col-md-4 col-lg-3 mb-3">
+                                        <label for = "capacity" class = "form-label">ظرفیت</label>
+                                        <input type = "text" min = "1000" :class = "{hasError: errors.capacity}" :value = "data.capacity" class = "form-control text-start" id = "capacity">
+                                        <div id = "capacityHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.capacity">{{ e }}</p>
+                                    </div>
+
+
+                                    <div class = "col-md-4 col-lg-3 mb-3">
+                                        <label for = "time" class = "form-label">زمان</label>
+                                        <input type = "time" min = "1000" :class = "{hasError: errors.price}" :value = "data.price" class = "form-control text-start" id = "time">
+                                        <div id = "timeHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
+
+                                    </div>
+                                    <div class = "col-md-4 col-lg-3 mb-3">
+                                        <label for = "start" class = "form-label">تاریخ شروع</label>
+                                        <input type = "text" min = "1000" :class = "{hasError: errors.start}" :value = "data.start" class = "form-control text-start" id = "start">
+                                        <div id = "startHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.start">{{ e }}</p>
+                                    </div>
+                                    <div class = "col-md-4 col-lg-3 mb-3">
+                                        <label for = "end" class = "form-label">تاریخ پایان</label>
+                                        <input type = "text" min = "1000" :class = "{hasError: errors.end}" :value = "data.end" class = "form-control text-start" id = "end">
+                                        <div id = "endHelp" class = "form-text error"></div>
+                                        <p class = "form-text error m-0" v-for = "e in errors.end">{{ e }}</p>
                                     </div>
                                     <div class = "col-md-4 col-lg-2 mb-3">
                                         <label for = "price" class = "form-label">قیمت (ریال)</label>
-                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" class = "form-control text-start" id = "price" :value = "data.price" required>
+                                        <input type = "number" min = "1000" :class = "{hasError: errors.price}" :value = "data.price" class = "form-control text-start" id = "price" required>
                                         <div id = "priceHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.price">{{ e }}</p>
 
                                     </div>
                                     <div class = "col-md-4 col-lg-1 mb-3">
                                         <label for = "off" class = "form-label">%تخفیف</label>
-                                        <input type = "number" :class = "{hasError: errors.off}" class = "form-control text-start" id = "off" :value = "data.off">
+                                        <input type = "number" :class = "{hasError: errors.off}" :value = "data.off" class = "form-control text-start" id = "off">
                                         <div id = "offHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.off">{{ e }}</p>
 
                                     </div>
+
                                     <div class = "col-md-12 mb-3">
-                                        <label class = "form-label" for = "text">متن</label>
-                                        <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text">{{ data.text}}</textarea>
+                                        <label class = "form-label" for = "text">توضیحات</label>
+                                        <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" :value = "data.description" aria-describedby = "textHelp" class = "form-control text-start" id = "text"></textarea>
                                         <div id = "textHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.text">{{ e }}</p>
-
-                                    </div>
-                                    <div class = "col-md-12 mb-3" id = "features">
-                                        <div>
-                                            <label class = "form-label mb-1 align-middle">مشخصات</label>
-                                            <span @click = "addFeature" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
-                                        </div>
-
-                                        <div v-for = "(item, index) in features" :key = "index" class = "row tagElement">
-                                            <div class = "col-5 col-md-3 mb-3">
-                                                <input type = "text" name = "featureLabel" class = "form-control" @input = "updateFeatures" :value = "item.label" placeholder = "عنوان" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-5 col-md-3 mb-3">
-                                                <input type = "text" name = "featureValue" class = "form-control" @input = "updateFeatures" :value = "item.value" placeholder = "مقدار" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-auto mb-3 pt-2">
-                                                <span @click = "removeFeature(index)"><i class = "bi bi-x-circle-fill m-0 " style = "font-size: 15px"></i></span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class = "col-md-12 mb-3" id = "sizes">
-                                        <div>
-                                            <label class = "form-label mb-1 align-middle">سایز و رنگ</label>
-                                            <span @click = "addSize" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
-                                        </div>
-
-                                        <div v-for = "(item, index) in sizes" :key = "index" id = "sizeSection" class = "row sizeElement">
-                                            <input type = "hidden" name = "id" :value = "item.id || null">
-                                            <div class = "col-6 col-md-2 mb-3">
-                                                <input type = "text" name = "size" class = "form-control" @input = "updateSizes" :value = "item.size" placeholder = "سایز" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-6 col-md-4 mb-3">
-                                                <input type = "text" name = "dimensions" class = "form-control" @input = "updateSizes" :value = "item.dimensions" placeholder = "ابعاد" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-6 col-md-2 mb-3">
-                                                <input type = "text" name = "color_name" class = "form-control" @input = "updateSizes" :value = "item.color_name" placeholder = "رنگ" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-6 col-md-2 mb-3">
-                                                <input type = "text" name = "color_code" class = "form-control" dir = "ltr" @input = "updateSizes" :value = "item.color_code" placeholder = "(#fffff) کد رنگ" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-10 col-md-1 mb-3">
-                                                <input type = "number" name = "stock" class = "form-control" min = "0" dir = "ltr" @input = "updateSizes" :value = "item.stock" placeholder = "موجودی" required>
-                                                <div class = "form-text error"></div>
-                                            </div>
-                                            <div class = "col-1 mb-3 pt-2">
-                                                <span @click = "removeSize(index)"><i class = "bi bi-x-circle-fill m-0 " style = "font-size: 15px"></i></span>
-                                            </div>
-                                        </div>
-
                                     </div>
 
 
@@ -130,51 +107,10 @@
                     </div>
                 </div>
             </div>
-            <div class = "progress_container d-none" dir = "ltr">
-                <div class = "progress" style = "height: 20px;">
-                    <div class = "progress-bar " role = "progressbar" :style = "'width:'+progress+'%'" :aria-valuenow = "progress" aria-valuemin = "0" aria-valuemax = "100"></div>
-                </div>
-            </div>
-            <button class = "d-none" id = "draftModalBtn" data-bs-toggle = "modal" data-bs-target = "#draftModal"></button>
 
-            <div class = "modal fade" id = "draftModal" data-bs-backdrop = "static" tabindex = "-1" aria-labelledby = "draftModalLabel">
-                <div class = "modal-dialog modal-xl">
-                    <div class = "modal-content">
-                        <div class = "modal-header border-0">
-                            <!--                    <h5 class="mupdaodal-title" id="draftModalLabel">Modal title</h5>-->
-                            <!--                    <button type = "button" class = "btn-close" data-bs-dismiss = "modal" @click = "closeModal" aria-label = "Close"></button>-->
-                        </div>
-                        <div class = "modal-body w-100">
-                            <h5 class = "px-3 pb-2">شما تغییرات ذخیره نشده دارید!</h5>
-                            <div class = "draft_container row">
-
-
-                                <div class = "col-md-6">
-                                    <p class = "h6 my-3">نسخه اصلی</p>
-                                    <div id = "main_content"></div>
-                                </div>
-                                <div class = "col-md-6">
-                                    <p class = "h6 my-3">نسخه تغییر یافته</p>
-                                    <div id = "draft_content"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class = "modal-footer border-0">
-                            <button @click = "refactorDraft" type = "button" class = "confirm_Image btn btn-dark" data-bs-dismiss = "modal">
-                                بازیابی تغییرات
-                            </button>
-                            <button @click = "ignoreDraft" type = "button" class = "btn btn-secondary" data-bs-dismiss = "modal">
-                                حذف تغییرات
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
     </transition>
-
-
 </template>
 
 <script>
@@ -205,11 +141,8 @@
         },
 
         mounted() {
-
-
             this.loadCategories();
             this.loadData();
-
 
         },
 
@@ -219,10 +152,7 @@
                 await axios.get('/api/panel/course/' + this.id)
                     .then((response) => {
                         console.log(response.data);
-                        this.data = response.data.product;
-                        if (this.data.sizes && this.data.sizes.length) {
-                            this.sizes = this.data.sizes;
-                        }
+                        this.data = response.data;
                     })
                     .then(() => {
                         this.isDefined = true;
@@ -258,16 +188,8 @@
                 });
 
                 if (emptyFieldsCount === 0) {
-                    let features = [];
-                    for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
-                        features.push('{"label": "' + document.getElementsByName('featureLabel')[i].value + '", "value": "' + document.getElementsByName('featureValue')[i].value + '"}');
-                    }
-                    if (document.getElementsByName('featureLabel').length === 0) {
-                        features = '[]';
-                    } else {
-                        features = '[' + features.toString() + ']';
-                    }
-                    await axios.post('/api/panel/product/' + this.$route.params.id,
+
+                    await axios.post('/api/panel/course/' + this.$route.params.id,
                         {
                             title: document.getElementById('title').value,
                             course_category_id: document.getElementById('category').value,
@@ -278,7 +200,7 @@
                             price: document.getElementById('price').value,
                             off: document.getElementById('off').value,
                             capacity: document.getElementById('capacity').value,
-                            description: document.getElementById('description').value,
+                            description: document.getElementById('text').value,
                         })
                         .then((response) => {
                             if (response.status === 200) {
@@ -336,7 +258,7 @@
             },
             watchTextAreas() {
                 let txt = document.querySelector("#text");
-                txt.setAttribute("style", "height:" + (txt.scrollHeight + 20) + "px;overflow-y:hidden;");
+                txt?.setAttribute("style", "height:" + (txt.scrollHeight + 20) + "px;overflow-y:hidden;");
                 txt.addEventListener("input", changeHeight, false);
 
                 function changeHeight() {
@@ -361,50 +283,6 @@
                         "value": document.getElementsByName('featureValue')[i].value.toString()
                     });
                 }
-
-            },
-
-            addSize() {
-
-                this.sizes.push('{}');
-            },
-            removeSize(index) {
-
-                this.sizes.splice(index, 1)
-            },
-            async updateSizes() {
-                await App.methods.checkToken();
-                await axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                    .then((response) => {
-                        if (response.status === 200) {
-                            localStorage.setItem('expire', response.data.expire);
-                            // console.log(localStorage);
-                        }
-                    })
-                    .then(() => {
-                        // this.sizes = [];
-                        let a = [];
-                        for (let i = 0; i < document.getElementsByName('size').length; i++) {
-                            a.push({
-                                "id": document.getElementsByName('id')[i].value,
-                                "size": document.getElementsByName('size')[i].value.toString(),
-                                "dimensions": document.getElementsByName('dimensions')[i].value.toString(),
-                                "color_name": document.getElementsByName('color_name')[i].value.toString(),
-                                "color_code": document.getElementsByName('color_code')[i].value.toString(),
-                                "stock": document.getElementsByName('stock')[i].value,
-                            });
-                        }
-                        this.sizes = a;
-                        console.log(this.sizes);
-
-                    })
-                    .catch((error) => {
-                        if (error.response.status === 401) {
-                            window.location = '/panel/login'
-                            App.methods.logout();
-                        }
-                    });
-
 
             },
 

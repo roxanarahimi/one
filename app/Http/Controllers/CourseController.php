@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class CourseController extends Controller
 {
@@ -126,14 +128,7 @@ class CourseController extends Controller
     {
         try {
 
-            $sizes = CourseSize::where('Course_id', $course['id'])->where('stock', '>', 0)->get(['color_name', 'color_code']);
-            $sizes = json_decode($sizes);
-//            return $sizes;
-            $colors = [];
-            foreach ($sizes as $item) {
-                array_push($colors, json_encode(['color_name' => $item->color_name, 'color_code' => $item->color_code]));
-            }
-            return response(['Course' => new CourseResource($course), 'colors' => array_unique($colors)], 200);
+            return response(new CourseResource($course), 200);
         } catch (\Exception $exception) {
             return response($exception);
         }
@@ -153,7 +148,7 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all('title'),
+        $validator = Validator::make($request->all(),
             [
                 'title' => 'required|unique:Courses,title',
             ],
@@ -179,17 +174,15 @@ class CourseController extends Controller
                     'stock' => $item['stock'],
                     'sale' => 0,
                 ]);
-
-
-            };
-
+            }
             return response(new CourseResource($data), 201);
         } catch (\Exception $exception) {
             return response($exception);
         }
     }
 
-    public function update(Request $request, Course $course)
+    public
+    function update(Request $request, Course $course)
     {
         $validator = Validator::make($request->all('title'),
             [
@@ -235,7 +228,8 @@ class CourseController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public
+    function destroy(Request $request)
     {
         $data = Course::findOrFail($request['id']);
         try {
@@ -247,7 +241,8 @@ class CourseController extends Controller
         }
     }
 
-    public function activeToggle(Course $course)
+    public
+    function activeToggle(Course $course)
     {
         try {
             $course->update(['active' => !$course['active']]);

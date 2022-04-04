@@ -121,8 +121,7 @@ class ProjectController extends Controller
     }
 
 
-    public
-    function destroy(Request $request)
+    public function destroy(Request $request)
     {
         $data = Project::findOrFail($request['id']);
         try {
@@ -133,8 +132,7 @@ class ProjectController extends Controller
         }
     }
 
-    public
-    function activeToggle(Project $product)
+    public function activeToggle(Project $product)
     {
         try {
             $product->update(['active' => !$product['active']]);

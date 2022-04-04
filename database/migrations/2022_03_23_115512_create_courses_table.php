@@ -21,7 +21,7 @@ class CreateCoursesTable extends Migration
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
             $table->time('time')->nullable();
-            $table->float('price');
+            $table->float('price')->nullable();
             $table->integer('off')->default(0);
             $table->integer('capacity')->nullable();
             $table->longText('description')->nullable();

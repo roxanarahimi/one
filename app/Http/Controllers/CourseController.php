@@ -162,27 +162,15 @@ class CourseController extends Controller
         }
         try {
 //            return $request['sizes'];
-            $data = Course::create($request->except('sizes'));
+            $data = Course::create($request->except('image'));
 
-            foreach ($request['sizes'] as $item) {
-                CourseSize::create([
-                    'Course_id' => $data['id'],
-                    'size' => $item['size'],
-                    'dimensions' => $item['dimensions'],
-                    'color_name' => $item['color_name'],
-                    'color_code' => $item['color_code'],
-                    'stock' => $item['stock'],
-                    'sale' => 0,
-                ]);
-            }
             return response(new CourseResource($data), 201);
         } catch (\Exception $exception) {
             return response($exception);
         }
     }
 
-    public
-    function update(Request $request, Course $course)
+    public function update(Request $request, Course $course)
     {
         $validator = Validator::make($request->all('title'),
             [

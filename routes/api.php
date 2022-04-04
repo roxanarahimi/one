@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SlideController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserAddressController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -153,13 +154,20 @@ Route::prefix('panel')->group(function () {
 
 //    Route::resource('course', CourseController::class);
 
-
     Route::get('/category/course', [CourseCategoryController::class, 'index']);
     Route::get('/category/course/{courseCategory}', [CourseCategoryController::class, 'show']);
     Route::post('/category/course', [CourseCategoryController::class, 'store']);
     Route::post('/category/course/{courseCategory}', [CourseCategoryController::class, 'update']);
     Route::post('/delete/category/course', [CourseCategoryController::class, 'destroy']);
     Route::get('/active/category/course/{courseCategory}', [CourseCategoryController::class, 'activeToggle']);
+
+    Route::get('/teacher', [TeacherController::class, 'index']);
+    Route::get('/teacher/{teacher}', [TeacherController::class, 'show']);
+    Route::post('/teacher', [TeacherController::class, 'store']);
+    Route::post('/teacher/{teacher}', [TeacherController::class, 'update']);
+    Route::post('/delete/teacher', [TeacherController::class, 'destroy']);
+    Route::get('/active/teacher/{teacher}', [TeacherController::class, 'activeToggle']);
+    Route::get('/latest/teacher', [TeacherController::class, 'latest']);
 
 
     Route::get('/resume', [ResumeController::class, 'index']);

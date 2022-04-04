@@ -1,27 +1,25 @@
 <template>
     <transition name = "route" mode = "out-in" appear>
         <section>
-            <h3 class = "mb-5">محصولات
-                <router-link to = "/panel/new/product" class = "text-dark">
-                    <span title = "ثبت محصول جدید" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
+            <h3 class = "mb-5">دوره ها
+                <router-link to = "/panel/new/teacher" class = "text-dark">
+                    <span title = "ثبت دوره جدید" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
                 </router-link>
             </h3>
 
             <div class = "row mt-3">
                 <div class = "col-12 mb-3">
                     <div v-if = "allData.length" class = "card">
-                        <div class = "card-body table-responsive">
+                        <div class = "card-body">
                             <table class = "table">
                                 <thead>
                                 <tr>
                                     <th scope = "col"></th>
-                                    <th class = "d-none d-md-table-cell" style = "width: 100px" scope = "col">تصویر</th>
-                                     <th scope = "col">عنوان</th>
-                                    <th scope = "col" class = "d-none d-xl-table-cell text_cell">دسته</th>
-                                    <th scope = "col">قیمت</th>
-                                    <th scope = "col">%تخفیف</th>
-                                    <th class = "">موجودی</th>
-                                    <th class = "d-none d-xl-table-cell" scope = "col">متن</th>
+<!--                                    <th class = "d-none d-md-table-cell" style = "width: 100px" scope = "col">تصویر</th>-->
+                                    <th scope = "col">عنوان</th>
+                                    <th scope = "col">نام</th>
+                                    <th scope = "col">دوره های فعلی</th>
+                                    <th scope = "col">تولد</th>
                                     <th class = "d-none d-md-table-cell" scope = "col">تاریخ ثبت</th>
                                     <th scope = "col" class = "active_cell">وضعیت</th>
                                     <th scope = "col"></th>
@@ -31,22 +29,24 @@
 
                                 <tr :id = "'row_'+data.id" v-for = "(data, index) in allData" :key = "data.id" :data-index = "index">
                                     <td scope = "row">{{ index + 1 }}</td>
-                                    <td class = "d-none d-md-table-cell" style = "width: 100px">
-                                        <img v-if = "data.image" :src = "data.image" width = "80" alt = "">
-                                        <!--       tumb-->
-                                    </td>
+<!--                                    <td class = "d-none d-md-table-cell" style = "width: 100px">-->
+<!--                                        <img v-if = "data.image" :src = "data.image" width = "80" alt = "">-->
+<!--                                        &lt;!&ndash;       tumb&ndash;&gt;-->
+<!--                                    </td>-->
                                     <td>
-                                        <router-link :to = "'/panel/product/'+data.id">{{ data.title }}</router-link>
+                                        <router-link :to = "'/panel/teacher/'+data.id">{{ data.title }}</router-link>
                                     </td>
 
-                                    <td class = "d-none d-xl-table-cell text_cell" :title = "!data.category.active? 'دسته غیر فعال است': ''" :class = "{'text-decoration-line-through text-muted ': !data.category.active}">
+                                    <td :title = "!data.category.active? 'دسته غیر فعال است': ''" :class = "{'text-decoration-line-through text-muted ': !data.category.active}">
                                         {{ data.category.title }}
                                     </td>
                                     <td>{{ data.price }}</td>
                                     <td>{{ data.off }}</td>
+                                    <td>{{ data.capacity }}</td>
+                                    <td>{{ data.description }}</td>
 
-                                    <td class = "">{{ data.stock }}</td>
-                                    <td class = "d-none d-xl-table-cell text_cell">{{ data.text }}</td>
+                                    <td class = "d-none d-xl-table-cell">{{ data.start }}</td>
+                                    <td class = "d-none d-xl-table-cell text_cell">{{ data.end }}</td>
                                     <td class = "d-none d-md-table-cell date_cell">{{ data.created_at }}</td>
                                     <td class = "active_cell">
                                         <span @click = "pActiveToggle(data.id)" v-if = "data.active" class = "badge bg-success text-light"><i class = "bi bi-eye-fill"></i></span>
@@ -56,10 +56,10 @@
                                         <span role = "button" data-bs-toggle = "dropdown" aria-expanded = "false"><i class = "bi bi-three-dots-vertical"></i></span>
                                         <ul class = "dropdown-menu" aria-labelledby = "navbarScrollingDropdown">
                                             <li>
-                                                <router-link :to = "'/panel/product/'+data.id" class = "dropdown-item" style = "text-align: right !important">
+                                                <router-link :to = "'/panel/teacher/'+data.id" class = "dropdown-item" style = "text-align: right !important">
                                                     مشاهده
                                                 </router-link>
-                                                <router-link :to = "'/panel/edit/product/'+data.id" class = "dropdown-item" style = "text-align: right !important">
+                                                <router-link :to = "'/panel/edit/teacher/'+data.id" class = "dropdown-item" style = "text-align: right !important">
                                                     ویرایش
                                                 </router-link>
                                                 <a class = "dropdown-item" @click = "showDeleteModal(data.id)" style = "text-align: right !important"
@@ -88,17 +88,20 @@
                 </div>
                 <div class = "modal-body">
                     آیا محصول مورد نظر حذف شود؟
+
                 </div>
                 <div class = "modal-footer border-0">
                     <input type = "hidden" id = "deleteId">
                     <button type = "button" class = "btn btn-dark" data-bs-dismiss = "modal" @click = "deleteInfo">بله
                     </button>
                     <button type = "button" class = "btn btn-secondary" data-bs-dismiss = "modal">نه !</button>
+
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 <script>
     import App from '../App';
 
@@ -106,26 +109,30 @@
         data: function () {
             return {
                 allData: [],
+
             }
         },
+
         mounted() {
-            this.loadProducts();
+            this.loadAllData();
         },
         methods: {
-            async loadProducts() {
+            async loadAllData() {
                 await App.methods.checkToken();
-                await axios.get('/api/panel/product').then((response) => {
+                await axios.get('/api/panel/teacher').then((response) => {
                     this.allData = response.data;
                 }).catch();
             },
             showDeleteModal(id) {
                 App.methods.checkToken();
                 document.getElementById('deleteId').value = id;
+
             },
             deleteInfo() {
                 App.methods.checkToken();
+
                 let id = document.getElementById('deleteId').value;
-                axios.post('/api/panel/delete/product/', {
+                axios.post('/api/panel/delete/teacher/', {
                     id: id,
                 })
                     .then((response) => {
@@ -134,19 +141,23 @@
                     .catch((error) => {
                         console.error(error);
                     });
-                this.loadProducts();
+
+
+                this.loadAllData();
             },
             pActiveToggle(id) {
                 App.methods.checkToken();
-                axios.get('/api/panel/active/product/' + id)
+
+                axios.get('/api/panel/active/teacher/' + id)
                     .then((response) => {
                         console.log(response.data)
                     })
                     .catch((error) => {
                         console.error(error);
                     });
-                this.loadProducts();
+                this.loadAllData();
             }
+
         }
     }
 </script>
@@ -161,6 +172,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 30ch;
+
     }
 
     .active_cell {

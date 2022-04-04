@@ -9,7 +9,7 @@
 
     <div v-if = "this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'" id = "page" class = "d-flex">
 
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" class="bg-dark">
             <div id = "sidebar" class = "bg-dark text-light pt-2">
                 <!--            <h4 class=" my-3 text-center ">پنل مدیریت</h4>-->
                 <ul class = "nav nav-pills flex-column mb-auto mt-5">

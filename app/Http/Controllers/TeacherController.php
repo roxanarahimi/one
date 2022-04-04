@@ -32,23 +32,23 @@ class TeacherController extends Controller
 //        }
 //    }
 
-    public function indexSite(Request $request)
-    {
-        // dd($request->all());
-        try {
-            $data = Teacher::where('active', 1);
-            if ($request['search'] != '') {
-                $data = $data->where('title', 'Like', '%' . $request['search'] . '%');
-            }
-            $data = $data->get();
-
-            return response($data, 200);
-//            return response(new TeacherResource($data), 200);
-        } catch (\Exception $exception) {
-            return response($exception);
-
-        }
-    }
+//    public function indexSite(Request $request)
+//    {
+//        // dd($request->all());
+//        try {
+//            $data = Teacher::where('active', 1);
+//            if ($request['search'] != '') {
+//                $data = $data->where('title', 'Like', '%' . $request['search'] . '%');
+//            }
+//            $data = $data->get();
+//
+//            return response($data, 200);
+////            return response(new TeacherResource($data), 200);
+//        } catch (\Exception $exception) {
+//            return response($exception);
+//
+//        }
+//    }
 
     public function latestSite()
     {

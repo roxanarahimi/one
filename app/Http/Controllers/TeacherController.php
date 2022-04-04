@@ -20,17 +20,17 @@ class TeacherController extends Controller
         }
     }
 
-    public function latest()
-    {
-
-        try {
-            $data = Teacher::all()->sortByDesc('id')->take(3);
-            return response(TeacherResource::collection($data), 200);
-        } catch (\Exception $exception) {
-            return response($exception);
-
-        }
-    }
+//    public function latest()
+//    {
+//
+//        try {
+//            $data = Teacher::all()->sortByDesc('id')->take(3);
+//            return response(TeacherResource::collection($data), 200);
+//        } catch (\Exception $exception) {
+//            return response($exception);
+//
+//        }
+//    }
 
     public function indexSite(Request $request)
     {

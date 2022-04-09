@@ -288,26 +288,7 @@
 
     }
 
-    .draft_container {
-        height: 300px;
-        overflow-y: scroll;
-    }
 
-    #main_content, #draft_content {
-        border: 1px solid lightgray;
-        border-radius: 3px;
-        padding: 2rem;
-
-
-    }
-
-    #main_content img, #draft_content img {
-        max-width: 70% !important;
-    }
-
-    .modal-xl {
-        max-width: 80%;
-    }
 
     /*@media (min-width: 1200px) {*/
     /*    .modal-xl {*/

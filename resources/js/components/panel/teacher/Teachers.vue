@@ -161,13 +161,13 @@
         text-align: right !important;
     }
 
-    .text_cell {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 30ch;
+    /*.text_cell {*/
+    /*    white-space: nowrap;*/
+    /*    overflow: hidden;*/
+    /*    text-overflow: ellipsis;*/
+    /*    max-width: 30ch;*/
 
-    }
+    /*}*/
 
     .active_cell {
         width: 60px;

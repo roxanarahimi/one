@@ -82,12 +82,12 @@
     }
 </script>
 <style>
-    .color-span {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        margin-bottom: -5px;
-    }
+    /*.color-span {*/
+    /*    width: 20px;*/
+    /*    height: 20px;*/
+    /*    border-radius: 50%;*/
+    /*    margin-bottom: -5px;*/
+    /*}*/
 
     #content p {
         text-align: justify !important;
@@ -105,11 +105,11 @@
         text-align: center !important;
     }
 
-    .index_image .label {
-        display: block;
-        font-size: 20px;
-        margin: -50px 20px 50px 20px;
-    }
+    /*.index_image .label {*/
+    /*    display: block;*/
+    /*    font-size: 20px;*/
+    /*    margin: -50px 20px 50px 20px;*/
+    /*}*/
 
     #content figure img {
         max-width: 100%;

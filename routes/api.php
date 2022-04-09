@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\ArticleCategoryController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ClientAddressController;
-use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FinanceController;

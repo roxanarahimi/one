@@ -55,7 +55,7 @@ class ProjectController extends Controller
     public function latestSite()
     {
         try {
-            $data = Product::where('active', 1)->take(4)->latest()->get();
+            $data = Project::where('active', 1)->take(4)->latest()->get();
             return response($data, 200);
         } catch (\Exception $exception) {
             return response($exception);

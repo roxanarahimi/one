@@ -74,11 +74,11 @@
         text-align: center !important;
     }
 
-    .index_image .label {
-        display: block;
-        font-size: 20px;
-        margin: -50px 20px 50px 20px;
-    }
+    /*.index_image .label {*/
+    /*    display: block;*/
+    /*    font-size: 20px;*/
+    /*    margin: -50px 20px 50px 20px;*/
+    /*}*/
 
     #content figure img {
         max-width: 100%;

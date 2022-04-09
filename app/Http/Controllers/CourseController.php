@@ -132,17 +132,6 @@ class CourseController extends Controller
         }
     }
 
-    public function getSizes($id, $color)
-    {
-        try {
-
-            $data = CourseSize::where('Course_id', $id)->where('color_name', $color)->where('stock', '>', 0)->get();
-            return response($data, 200);
-
-        } catch (\Exception $exception) {
-            return response($exception);
-        }
-    }
 
     public function store(Request $request)
     {
@@ -183,31 +172,7 @@ class CourseController extends Controller
             return response()->json($validator->messages(), 422);
         }
         try {
-            $course->update($request->except('sizes'));
-
-            foreach ($request['sizes'] as $item) {
-                if ($item['id']) {
-                    CourseSize::find($item['id'])->update([
-                        'size' => $item['size'],
-                        'dimensions' => $item['dimensions'],
-                        'color_name' => $item['color_name'],
-                        'color_code' => $item['color_code'],
-                        'stock' => $item['stock'],
-                        'sale' => 0
-                    ]);
-                } else {
-                    CourseSize::create([
-                        'Course_id' => $course['id'],
-                        'size' => $item['size'],
-                        'dimensions' => $item['dimensions'],
-                        'color_name' => $item['color_name'],
-                        'color_code' => $item['color_code'],
-                        'stock' => $item['stock'],
-                        'sale' => 0
-                    ]);
-                }
-            }
-
+            $course->update($request->all());
             return response(new CourseResource($course), 200);
         } catch (\Exception $exception) {
             return response($exception);

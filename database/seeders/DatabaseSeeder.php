@@ -14,8 +14,40 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-            \App\Models\ArticleCategory::factory()
-            ->has(\App\Models\Article::factory()->count(3))
-            ->create();
+//            \App\Models\ArticleCategory::factory()
+//            ->has(\App\Models\Article::factory()->count(3))
+//            ->create();
+        $this->seed([
+            //all
+            AdminSeeder::class,
+            ArticleSeeder::class,
+            ArticleCategorySeeder::class,
+            SlideSeeder::class,
+            UserSeeder::class,
+
+            //shop
+            UserAddressSeeder::class,
+            OrderSeeder::class,
+            OrderItemSeeder::class,
+            ProductSeeder::class,
+            ProductCategorySeeder::class,
+            ProductSizeSeeder::class,
+            FinanceSeeder::class,
+
+            //school
+            CourseSeeder::class,
+            CourseCategorySeeder::class,
+            TeacherSeeder::class,
+            FinanceSeeder::class,
+
+
+            //office
+            ProjectSeeder::class,
+            ProjectCategorySeeder::class,
+            ResumeSeeder::class,
+
+
+            // ...
+        ]);
     }
 }

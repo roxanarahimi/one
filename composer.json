@@ -10,7 +10,7 @@
         "ext-gd": "*",
         "ext-json": "*",
         "ext-soap": "*",
-        "artisaninweb/laravel-soap": "0.3.0.10",
+        "artisaninweb/laravel-soap": "^0.3.0.10",
         "econea/nusoap": "dev-master",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

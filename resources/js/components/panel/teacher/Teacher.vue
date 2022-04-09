@@ -3,20 +3,18 @@
         <section class = "" v-if = "data" style = "text-align: justify">
             <div class = "row index_image">
                 <div class = "col-xl-5 mb-3 h-100 index_image ">
-                    <img class = "img-fluid mb-2" :src = "data.image" alt = "">
-                    <div class = "label">
-                       <span class = "badge bg-danger">
-                           <i class = "bi bi-tags-fill ms-2"></i>
-                           <b v-if = "data.category">  {{ data.category.title}}</b>
-                       </span>
-                    </div>
-
-
+<!--                    <img class = "img-fluid mb-2" :src = "data.image" alt = "">-->
+<!--                    <div class = "label">-->
+<!--                       <span class = "badge bg-danger">-->
+<!--                           <i class = "bi bi-tags-fill ms-2"></i>-->
+<!--                           <b v-if = "data.category">  {{ data.category.title}}</b>-->
+<!--                       </span>-->
+<!--                    </div>-->
                     <div class = "d-inline-block">
-                        <h3 class = "mb-2 fw-bold d-block">{{data.title}}</h3>
+                        <h3 class = "mb-2 fw-bold d-block">{{data.name}}</h3>
                     </div>
-                    <router-link :to = "'/panel/edit/course/'+data.id" class = "text-dark">
-                <span title = "ویرایش محصول" class = "mx-3 p-2 d-inline-block align-middle bg-dark text-light rounded-circle">
+                    <router-link :to = "'/panel/edit/teacher/'+data.id" class = "text-dark">
+                <span title = "ویرایش" class = "mx-3 p-2 d-inline-block align-middle bg-dark text-light rounded-circle">
                     <i class = "bi bi-pencil p-0 edit-pen"></i>
                 </span>
                     </router-link>
@@ -24,7 +22,24 @@
                 <div class = "col-xl-12 mb-3 ">
                     <div class = "card ">
                         <div class = "card-body p-md-5">
-                            <div id = "text" class = "mb-5"></div>
+                            <div id = "text" class = "mb-5">
+                                جنسیت:
+                                {{ data.gender }}
+                                <br>
+                                کد ملی:
+                                {{ data.national_code}}
+                                <br>
+                                تاریخ تولد:
+                                {{ data.birth }}
+                                <br>
+                                <br>
+
+                                <h5>دوره های در حال تدریس</h5>
+                                <br>
+                                <br>
+
+                                <h5>تاریخچه دوره ها</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -51,15 +66,15 @@
             }
         },
         mounted() {
-            this.loadِData();
+            this.loadData();
         },
         methods: {
-            async loadِData() {
+            async loadData() {
                 await App.methods.checkToken();
-                await axios.get('/api/panel/course/' + this.id)
+                await axios.get('/api/panel/teacher/' + this.id)
                     .then((response) => {
                         this.data = response.data;
-                        document.getElementById('text').innerText = this.data.description;
+                        // document.getElementById('text').innerText = this.data.description;
                     })
             },
 

@@ -17,7 +17,7 @@ class Course extends Model
     {
         return $this->belongsTo(CourseCategory::class, 'course_category_id', 'id')->where('active',1);
     }
-    public function Teacher()
+    public function teacher()
     {
         return $this->belongsTo(Teacher::class, 'course_teacher_id', 'id');
     }

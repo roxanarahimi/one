@@ -71,9 +71,9 @@ class SlideController extends Controller
             $data = Slide::create($request->except('image'));
             $data->update(['index' => $last['index'] + 1]);
 
-            $image = $request['image'];
+          //  $image = $request['image'];
             $name = 'slide_' . $data['id'] . '_' . uniqid() . '.jpg';
-            $image_path = (new ImageController)->uploadImage($image, $name, 'images/');
+            $image_path = (new ImageController)->uploadImage($request['image'], $name, 'images/');
             (new ImageController)->resizeImage('images/', $name);
             $data->update(['image' => '/' . $image_path]);
 
@@ -102,9 +102,9 @@ class SlideController extends Controller
         try {
             $slide->update($request->except('image'));
             if ($request['image']) {
-                $image = $request['image'];
+               // $image = $request['image'];
                 $name = 'slide_' . $slide['id'] . '_' . uniqid() . '.jpg';
-                $image_path = (new ImageController)->uploadImage($image, $name, 'images/');
+                $image_path = (new ImageController)->uploadImage($request['image'], $name, 'images/');
                 (new ImageController)->resizeImage('images/', $name);
                 $slide->update(['image' => '/' . $image_path]);
             }

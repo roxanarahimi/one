@@ -1,9 +1,9 @@
 <template>
     <transition name = "route" mode = "out-in" appear>
         <section>
-            <h3 class = "mb-5">دوره ها
+            <h3 class = "mb-5">آموزگاران
                 <router-link to = "/panel/new/teacher" class = "text-dark">
-                    <span title = "ثبت دوره جدید" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
+                    <span title = "ثبت آموزگار جدید" class = "px-3 d-inline-block align-middle"><i class = "bi bi-plus-circle-fill p-0 mt-2 m-0" style = "font-size: 15px"></i></span>
                 </router-link>
             </h3>
 
@@ -16,8 +16,8 @@
                                 <tr>
                                     <th scope = "col"></th>
 <!--                                    <th class = "d-none d-md-table-cell" style = "width: 100px" scope = "col">تصویر</th>-->
-                                    <th scope = "col">عنوان</th>
                                     <th scope = "col">نام</th>
+                                    <th scope = "col">جنسیت</th>
                                     <th scope = "col">دوره های فعلی</th>
                                     <th scope = "col">تولد</th>
                                     <th class = "d-none d-md-table-cell" scope = "col">تاریخ ثبت</th>
@@ -28,25 +28,19 @@
                                 <tbody>
 
                                 <tr :id = "'row_'+data.id" v-for = "(data, index) in allData" :key = "data.id" :data-index = "index">
-                                    <td scope = "row">{{ index + 1 }}</td>
+                                    <td>{{ index + 1 }}</td>
 <!--                                    <td class = "d-none d-md-table-cell" style = "width: 100px">-->
 <!--                                        <img v-if = "data.image" :src = "data.image" width = "80" alt = "">-->
 <!--                                        &lt;!&ndash;       tumb&ndash;&gt;-->
 <!--                                    </td>-->
                                     <td>
-                                        <router-link :to = "'/panel/teacher/'+data.id">{{ data.title }}</router-link>
+                                        <router-link :to = "'/panel/teacher/'+data.id">{{ data.name }}</router-link>
                                     </td>
+                                    <td>{{ data.gender }}</td>
+                                    <!--        <td>{{ data.cources.count }}</td>-->
+                                    <td> x </td>
+                                    <td>{{ data.birth }}</td>
 
-                                    <td :title = "!data.category.active? 'دسته غیر فعال است': ''" :class = "{'text-decoration-line-through text-muted ': !data.category.active}">
-                                        {{ data.category.title }}
-                                    </td>
-                                    <td>{{ data.price }}</td>
-                                    <td>{{ data.off }}</td>
-                                    <td>{{ data.capacity }}</td>
-                                    <td>{{ data.description }}</td>
-
-                                    <td class = "d-none d-xl-table-cell">{{ data.start }}</td>
-                                    <td class = "d-none d-xl-table-cell text_cell">{{ data.end }}</td>
                                     <td class = "d-none d-md-table-cell date_cell">{{ data.created_at }}</td>
                                     <td class = "active_cell">
                                         <span @click = "pActiveToggle(data.id)" v-if = "data.active" class = "badge bg-success text-light"><i class = "bi bi-eye-fill"></i></span>
@@ -73,7 +67,7 @@
                             </table>
                         </div>
                     </div>
-                    <div v-else><p class = "fw-bold">هیچ محصولی موجود نیست</p></div>
+                    <div v-else><p class = "fw-bold">هیچ آموزگاری موجود نیست</p></div>
                 </div>
             </div>
         </section>

@@ -247,7 +247,7 @@ Route::get('/login/otp/{user}', [UserController::class, 'loginOtp']);
 Route::get('/otp1', [UserController::class, 'otp1']);
 Route::get('/otp2', [UserController::class, 'otp2']);
 
-Route::get('/course', [CourseController::class, 'index']);
+Route::get('/course', [CourseController::class, 'indexSite']);
 Route::get('/course/{course}', [CourseController::class, 'show']);
 Route::post('/course', [CourseController::class, 'store']);
 Route::post('/course/{course}', [CourseController::class, 'update']);

@@ -11,6 +11,7 @@
                                 <div class = "row">
                                     <div class = "col-12 mb-3">
                                         <label class = "form-label">تصویر شاخص</label><br/>
+                                        <image-cropper name = "" caption = "" :hasCaption = "hasCaption" :isRequired = "imgRequired" :aspect = "aspect"/>
                                         <div id = "imageHelp" class = "form-text error"></div>
                                     </div>
                                 </div>
@@ -180,6 +181,7 @@
                     document.querySelector('.progress_container').classList.remove('d-none');
                     await axios.post('/api/panel/article/' + this.$route.params.id,
                         {
+                            image: document.getElementById('Image__code').value,
                             title: document.getElementById('title').value,
                             article_category_id: document.getElementById('category').value,
                             text: document.getElementById('text').value,

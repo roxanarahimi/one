@@ -2,7 +2,7 @@
     <transition name = "route" mode = "out-in" appear>
         <section class = "" v-if = "data">
             <div class = "index_image">
-                <!--                <img class = "w-50 mb-2" :src = "data.image_url" alt = "">-->
+             <img class = "w-50 mb-2" :src = "data.image" alt = "">
                 <div class = "label">
                    <span class = "badge bg-danger">
                        <i class = "bi bi-tags-fill ms-2"></i>

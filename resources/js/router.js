@@ -44,6 +44,11 @@ import PanelSlideEdit from "./components/panel/slide/SlideEdit.vue";
 import PanelResumes from "./components/panel/employ/Resumes.vue";
 import PanelResume from "./components/panel/employ/Resume.vue";
 
+import PanelTeachers from "./components/panel/teacher/Teachers.vue";
+import PanelTeacherCreate from "./components/panel/teacher/TeacherCreate.vue";
+import PanelTeacherEdit from "./components/panel/teacher/TeacherEdit.vue";
+import PanelTeacher from "./components/panel/teacher/Teacher.vue";
+
 // import PanelSlide from "./components/article/Slide.vue";
 
 // import PanelResumes from "./components/panel/employ/Resumes.vue";
@@ -389,7 +394,28 @@ const routes = [
         name: "PanelResume",
         component: PanelResume,
     },
-
+    {
+        path: "/panel/teachers",
+        name: "PanelTeachers",
+        component: PanelTeachers,
+    },
+    {
+        path: "/panel/new/teacher",
+        name: "PanelTeacherCreate",
+        component: PanelTeacherCreate,
+        params: true
+    },
+    {
+        path: "/panel/edit/teacher/:id",
+        name: "PanelTeacherEdit",
+        component: PanelTeacherEdit,
+        params: true
+    },
+    {
+        path: "/panel/teacher/:id",
+        name: "PanelTeacher",
+        component: PanelTeacher,
+    },
     {
         path: "/:catchAll(.*)",
         name: "PanelError404",

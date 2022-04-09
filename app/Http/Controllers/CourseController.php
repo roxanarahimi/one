@@ -37,57 +37,55 @@ class CourseController extends Controller
         // dd($request->all());
         try {
             $data = Course::whereHas('activeCategory')->with('category')->where('active', 1);
-            if ($request['stock'] == 'true') {
-                $data = $data->where('stock', '>', 0);
-            }
+//            if ($request['stock'] == 'true') {
+//                $data = $data->where('stock', '>', 0);
+//            }
             if ($request['cat_ids'] != '') {
                 $ids = explode(',', $request['cat_ids']);
-                $data = $data->whereIn('Course_category_id', $ids);
-
+                $data = $data->whereIn('course_category_id', $ids);
             }
-            if ($request['off'] == 'true') {
-                $data = $data->where('off', '>', 0)->where('stock', '>', 0);
-
+            if ($request['off'] === 'true') {
+                $data = $data->where('off', '>', 0);
+//                    ->where('stock', '>', 0);
             }
             if ($request['search'] != '') {
                 $data = $data->where('title', 'Like', '%' . $request['search'] . '%');
-
             }
-            if ($request['sort'] != '') {
-                switch ($request['sort']) {
-
-                    case ('sale'):
-                    {
-                        $data = $data->orderByDesc('sale');
-                        break;
-                    }
-                    case ('score'):
-                    {
-                        $data = $data->orderByDesc('score');
-                        break;
-                    }
-                    case ('cheap'):
-                    {
-                        $data = $data->orderBy('price');
-                        break;
-                    }
-                    case ('expensive'):
-                    {
-                        $data = $data->orderByDesc('price');
-                        break;
-                    }
-                    case ('view'):
-                    {
-                        $data = $data->orderByDesc('view');
-                        break;
-                    }
-                    default:
-                    {
-                        $data = $data->latest();
-                        break;
-                    }
-                }
-            }
+//            if ($request['sort'] != '') {
+//                switch ($request['sort']) {
+//
+//                    case ('sale'):
+//                    {
+//                        $data = $data->orderByDesc('sale');
+//                        break;
+//                    }
+//                    case ('score'):
+//                    {
+//                        $data = $data->orderByDesc('score');
+//                        break;
+//                    }
+//                    case ('cheap'):
+//                    {
+//                        $data = $data->orderBy('price');
+//                        break;
+//                    }
+//                    case ('expensive'):
+//                    {
+//                        $data = $data->orderByDesc('price');
+//                        break;
+//                    }
+//                    case ('view'):
+//                    {
+//                        $data = $data->orderByDesc('view');
+//                        break;
+//                    }
+//                    default:
+//                    {
+//                        $data = $data->latest();
+//                        break;
+//                    }
+//                }
+//            }
 
             $data = $data->get();
 

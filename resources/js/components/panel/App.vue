@@ -1,11 +1,11 @@
 <template>
-    <suspense>
-        <template #default>
-            <h2>in app</h2>
-            <test />
-        </template>
-        <template #fallback> <loader /></template>
-    </suspense>
+<!--    <suspense>-->
+<!--        <template #default>-->
+<!--            <h2>in app</h2>-->
+<!--            <test />-->
+<!--        </template>-->
+<!--        <template #fallback> <loader /></template>-->
+<!--    </suspense>-->
 
     <div v-if = "this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'" id = "page" class = "d-flex">
 
@@ -13,7 +13,7 @@
             <div id = "sidebar" class = "bg-dark text-light pt-2">
                 <!--            <h4 class=" my-3 text-center ">پنل مدیریت</h4>-->
                 <ul class = "nav nav-pills flex-column mb-auto mt-5">
-                    <li class = "nav-item" id = "q12llkk">
+                    <li class = "nav-item" id = "">
                         <router-link to = "/panel" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel' }">
                             <i class = "bi bi-house-fill me-2"></i>
                             <span class = "sidebar_title">خانه</span>
@@ -61,6 +61,17 @@
                         <router-link to = "/panel/projects" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/projects'}">
                             <i class = "bi bi-journals me-2"></i>
                             <span class = "sidebar_title">پروژه ها</span>
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to = "/panel/teachers" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/teachers'}">
+                           <i class="me-2">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-video3" viewBox="0 0 16 16">
+                                   <path d="M14 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm-6 5.7c0 .8.8.8.8.8h6.4s.8 0 .8-.8-.8-3.2-4-3.2-4 2.4-4 3.2Z"/>
+                                   <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h5.243c.122-.326.295-.668.526-1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v7.81c.353.23.656.496.91.783.059-.187.09-.386.09-.593V4a2 2 0 0 0-2-2H2Z"/>
+                               </svg>
+                           </i>
+                            <span class = "sidebar_title">آموزگاران</span>
                         </router-link>
                     </li>
                     <li>

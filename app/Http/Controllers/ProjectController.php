@@ -88,7 +88,14 @@ class ProjectController extends Controller
         }
         try {
 //            return $request['sizes'];
-            $data = Project::create($request->all());
+            $data = Project::create($request->except('image'));
+
+//            if ($request['image']){
+                $name = 'project_' . $data['id'] . '_' . uniqid() . '.jpg';
+                $image_path = (new ImageController)->uploadImage($request['image'], $name, 'images/');
+                (new ImageController)->resizeImage('images/', $name);
+                $data->update(['image' => '/' . $image_path]);
+//            }
 
             return response(new ProjectResource($data), 201);
         } catch (\Exception $exception) {
@@ -112,7 +119,15 @@ class ProjectController extends Controller
         }
         try {
 
-            $project->update($request->all());
+            $project->update($request->except('image'));
+
+            if ($request['image']){
+                $name = 'project_' . $project['id'] . '_' . uniqid() . '.jpg';
+                $image_path = (new ImageController)->uploadImage($request['image'], $name, 'images/');
+                (new ImageController)->resizeImage('images/', $name);
+                $project->update(['image' => '/' . $image_path]);
+            }
+
             return response(new ProjectResource($project), 200);
         } catch (\Exception $exception) {
         }

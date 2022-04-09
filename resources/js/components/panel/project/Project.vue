@@ -2,8 +2,7 @@
     <transition name = "route" mode = "out-in" appear>
         <section class = "" v-if = "data">
             <div class = "index_image">
-                <!--                <img class = "w-50 mb-2" :src = "data.image_url" alt = "">-->
-
+             <img class = "w-50 mb-2" :src = "data.image" alt = "">
             </div>
 
                 <h3 class = "mb-2 fw-bold d-inline-block ">{{data.title}}</h3>

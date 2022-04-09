@@ -36,12 +36,12 @@
                                     </div>
                                     <div class = "col-md-3 mb-3">
                                         <label for = "gender" class = "form-label">جنسیت</label>
-                                        <select class = "form-select" id = "gender" aria-describedby = "genderHelp" aria-label = "category" required = "">
+                                        <select class = "form-select" id = "gender" aria-describedby = "genderHelp" aria-label = "gender" required = "">
                                             <option value = ""></option>
                                             <option :selected = "data.gender === 'خانم'" value = "female">خانم</option>
                                             <option :selected = "data.gender === 'آقا'" value = "male">آقا</option>
                                         </select>
-                                        <div id = "categoryHelp" class = "form-text error"></div>
+                                        <div id = "genderHelp" class = "form-text error"></div>
                                     </div>
                                     <div class = "col-lg-4 mb-3">
                                         <label for = "current_password" class = "form-label">کلمه عبور فعلی</label>

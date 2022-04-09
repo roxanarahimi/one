@@ -13,11 +13,14 @@ class CreateTeachersTable extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('teacher', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('national_code')->unique();
             $table->string('gender');
             $table->dateTime('birth');
+            $table->boolean('active')->default(0);
+
 
             $table->timestamps();
         });
@@ -30,6 +33,6 @@ class CreateTeachersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teachers');
+        Schema::dropIfExists('teacher');
     }
 }

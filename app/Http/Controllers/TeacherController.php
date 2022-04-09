@@ -20,35 +20,35 @@ class TeacherController extends Controller
         }
     }
 
-//    public function latest()
-//    {
-//
-//        try {
-//            $data = Teacher::all()->sortByDesc('id')->take(3);
-//            return response(TeacherResource::collection($data), 200);
-//        } catch (\Exception $exception) {
-//            return response($exception);
-//
-//        }
-//    }
+    public function latest()
+    {
 
-//    public function indexSite(Request $request)
-//    {
-//        // dd($request->all());
-//        try {
-//            $data = Teacher::where('active', 1);
-//            if ($request['search'] != '') {
-//                $data = $data->where('title', 'Like', '%' . $request['search'] . '%');
-//            }
-//            $data = $data->get();
-//
-//            return response($data, 200);
-////            return response(new TeacherResource($data), 200);
-//        } catch (\Exception $exception) {
-//            return response($exception);
-//
-//        }
-//    }
+        try {
+            $data = Teacher::all()->sortByDesc('id')->take(3);
+            return response(TeacherResource::collection($data), 200);
+        } catch (\Exception $exception) {
+            return response($exception);
+
+        }
+    }
+
+    public function indexSite(Request $request)
+    {
+        // dd($request->all());
+        try {
+            $data = Teacher::where('active', 1);
+            if ($request['search'] != '') {
+                $data = $data->where('title', 'Like', '%' . $request['search'] . '%');
+            }
+            $data = $data->get();
+
+            return response($data, 200);
+//            return response(new TeacherResource($data), 200);
+        } catch (\Exception $exception) {
+            return response($exception);
+
+        }
+    }
 
     public function latestSite()
     {
@@ -64,21 +64,23 @@ class TeacherController extends Controller
     public function show(Teacher $teacher)
     {
         try {
-            return response(new TeacherResourse($teacher), 200);
+            return response(new TeacherResource($teacher), 200);
         } catch (\Exception $exception) {
             return response($exception);
         }
     }
 
-    public function store(Request $teacher)
+    public function store(Request $request)
     {
-        $validator = Validator::make($request->all('title'),
+        $validator = Validator::make($request->all(),
             [
-                'title' => 'required|unique:products,title',
+                'name' => 'required',
+                'national_code' => 'required|unique:teachers,national_code',
             ],
             [
-                'title.required' => 'لطفا عنوان را وارد کنید',
-                'title.unique' => 'این عنوان قبلا ثبت شده است',
+                'name.required' => 'لطفا نام را وارد کنید',
+                'national_code.required' => 'لطفا کد ملی را وارد کنید',
+                'national_code.unique' => 'این کد ملی قبلا ثبت شده است',
             ]
         );
         if ($validator->fails()) {
@@ -96,13 +98,15 @@ class TeacherController extends Controller
 
     public function update(Request $request, Teacher $teacher)
     {
-        $validator = Validator::make($request->all('title'),
+        $validator = Validator::make($request->all(),
             [
-                'title' => 'required|unique:teachers,title,' . $teacher['id'],
+                'name' => 'required',
+                'national_code' => 'required|unique:teachers,national_code,' . $teacher['id'],
             ],
             [
-                'title.required' => 'لطفا عنوان را وارد کنید',
-                'title.unique' => 'این عنوان قبلا ثبت شده است',
+                'name.required' => 'لطفا نام را وارد کنید',
+                'national_code.required' => 'لطفا کد ملی را وارد کنید',
+                'national_code.unique' => 'این کد ملی قبلا ثبت شده است',
             ]
         );
         if ($validator->fails()) {
@@ -118,7 +122,7 @@ class TeacherController extends Controller
         return response($exception);
     }
 
-    public function destroy(Request $teacher)
+    public function destroy(Request $request)
     {
         $data = Teacher::findOrFail($request['id']);
         try {

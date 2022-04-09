@@ -11,6 +11,7 @@
                                 <div class = "row">
                                     <div class = "col-12 mb-3">
                                         <label class = "form-label">تصویر</label><br/>
+                                        <image-cropper name = "" caption = "" :hasCaption = "hasCaption" :isRequired = "imgRequired" :aspect = "aspect"/>
                                         <div id = "imageHelp" class = "form-text error"></div>
                                     </div>
                                 </div>
@@ -138,7 +139,7 @@
 
                     await axios.post('/api/panel/project/' + this.$route.params.id,
                         {
-                            // image: document.getElementById('image').value,
+                            image: document.getElementById('Image__code').value,
                             title: document.getElementById('title').value,
                             sub_title: document.getElementById('sub_title').value,
                             text: document.getElementById('text').value,

@@ -14,9 +14,12 @@ class ProjectResource extends JsonResource
      */
     public function toArray($request)
     {
+        $thumb = $this->image ? str_replace('.jpg','_thumb.jpg',$this->image) : '';
+
         return [
             "id" => (string)$this->id,
             "image" => $this->image,
+            "thumb" => $thumb,
             "title" => $this->title,
             "sub_title" => $this->sub_title,
             "text" => $this->text,

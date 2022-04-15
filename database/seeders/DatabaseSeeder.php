@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         $this->seed([
             //all
             AdminSeeder::class,
+            UserSeeder::class,
             ArticleSeeder::class,
             ArticleCategorySeeder::class,
             SlideSeeder::class,
-            UserSeeder::class,
 
             //shop
             UserAddressSeeder::class,

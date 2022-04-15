@@ -131,7 +131,6 @@
                 isDefined: false,
                 enableClick: true,
                 features: [],
-                progress: 0,
                 sizes: [{"size": "", "dimensions": "", "color_name": "", "color_code": "", "stock": ""}],
             }
         },
@@ -205,22 +204,16 @@
                             }
                         })
                         .catch((error) => {
-                            document.querySelector('.progress-bar').classList.add('bg-danger');
                             if (error.response.status === 422) {
                                 let errorList = Array(error.response.data);
                                 for (var i = 0; i < errorList.length; i++) {
                                     this.errors = errorList[i];
                                 }
-                                setTimeout(() => {
-                                    document.querySelector('.progress_container').classList.add('d-none');
-                                }, 1000);
-
                             } else if (error.response.status === 500) {
                                 if (error.response.data.message.includes("SQLSTATE")) {
                                     console.error('خطای پایگاه داده');
 
                                     async function showAlertSql() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.response.data.message);
                                         }, 200);

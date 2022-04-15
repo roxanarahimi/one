@@ -128,12 +128,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class = "progress_container d-none" dir = "ltr">
-                <div class = "progress" style = "height: 20px;">
-                    <div class = "progress-bar " role = "progressbar" :style = "'width:'+progress+'%'" :aria-valuenow = "progress" aria-valuemin = "0" aria-valuemax = "100"></div>
-                </div>
-            </div>
         </section>
     </transition>
 
@@ -157,7 +151,6 @@
                 hasCaption: false,
                 aspect: 13 / 10,
                 features: [{"label": "", "value": ""}],
-                progress: 0,
                 sizes: [{"size": "", "dimensions": "", "color_name": "", "color_code": "", "stock": ""}],
 
             }
@@ -188,11 +181,6 @@
                 //     })
                 //     .then(() => {
                 await App.methods.checkToken();
-
-                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                document.querySelector('.progress_container').classList.add('d-none');
-                this.progress = 0;
-
                 this.errors = [];
                 let emptyFieldsCount = 0;
                 let req = document.querySelectorAll('[required]');
@@ -219,7 +207,6 @@
                         features = '[' + features.toString() + ']';
                     }
 
-                    document.querySelector('.progress_container').classList.remove('d-none');
                     await axios.post('/api/panel/product', {
                             // image: document.getElementById('Image_index_code').value,
                             title: document.getElementById('title').value,
@@ -234,25 +221,10 @@
                             // stock: document.getElementById('stock').value,
                             // image_codes: this.image_codes,
                             // image_names: this.image_names,
-                        }, {
-                            onUploadProgress: e => {
-                                if (e.lengthComputable) {
-                                    this.progress = (e.loaded / e.total) * 100;
-                                    console.log(e.loaded, e.total);
-                                    document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
-                                }
-                            }
-                        }
-                    )
+                        })
                         .then((response) => {
                             console.log(response.data)
                             if (response.status === 201 || response.status === 200) {
-                                // localStorage.removeItem('draft_new');
-                                // localStorage.removeItem('draft_new_img_codes');
-                                // localStorage.removeItem('draft_new_img_names');
-
-                                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                                document.querySelector('.progress-bar').classList.add('bg-success');
                                 setTimeout(() => {
                                     this.$router.push({path: '/panel/products'});
                                 }, 1000);
@@ -266,12 +238,6 @@
                             // console.log(error.response.data);
 
                             if (error.status === 422) {
-
-                                document.querySelector('.progress-bar').classList.add('bg-danger');
-                                // setTimeout(()=>{
-                                //     document.querySelector('.progress_container').classList.add('d-none');
-                                // },1000);
-
                                 let errorList = Array(error.response.data);
                                 // console.log(error.response.data);
                                 for (var i = 0; i < errorList.length; i++) {
@@ -279,15 +245,11 @@
                                     this.errors = errorList[i];
                                 }
                                 console.log(this.errors.toString());
-                                setTimeout(() => {
-                                    document.querySelector('.progress_container').classList.add('d-none');
-                                }, 1000);
                             } else if (error.status === 500) {
                                 if (error.data.message.includes("SQLSTATE")) {
                                     console.error('خطای پایگاه داده');
 
                                     async function showAlertSql() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.data.message);
                                         }, 200);
@@ -296,7 +258,6 @@
                                     showAlertSql();
                                 } else {
                                     async function showAlert500() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.message + ' '
                                                 + error.data.message);
@@ -308,7 +269,6 @@
                             } else {
 
                                 async function showAlert() {
-                                    await document.querySelector('.progress-bar').classList.add('bg-danger');
                                     setTimeout(() => {
                                         alert(error.message);
                                     }, 200);

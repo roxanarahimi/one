@@ -82,8 +82,6 @@
                 isDefined: false,
                 enableClick: true,
                 features: [],
-                progress: 0,
-                sizes: [{"size": "", "dimensions": "", "color_name": "", "color_code": "", "stock": ""}],
             }
         },
 

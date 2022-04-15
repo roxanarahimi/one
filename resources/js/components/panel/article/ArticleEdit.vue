@@ -27,7 +27,6 @@
                                         <label for = "category" class = "form-label">دسته</label>
                                         <select class = "form-select" id = "category" aria-describedby = "categoryHelp" aria-label = "category" required>
                                             <option value = ""></option>
-                                            <option value = ""></option>
                                             <option :selected = "data.category.id == category.id" v-for = "category in categories" :key = "category.id" :value = "category.id">
                                                 {{ category.title }}
                                             </option>
@@ -74,11 +73,6 @@
                     </div>
                 </div>
             </div>
-            <div class = "progress_container d-none" dir = "ltr">
-                <div class = "progress" style = "height: 20px;">
-                    <div class = "progress-bar " role = "progressbar" :style = "'width:'+progress+'%'" :aria-valuenow = "progress" aria-valuemin = "0" aria-valuemax = "100"></div>
-                </div>
-            </div>
         </section>
 
     </transition>
@@ -106,7 +100,6 @@
                 isDefined: false,
                 enableClick: true,
                 tags: [],
-                progress: 0,
             }
         },
 
@@ -149,10 +142,6 @@
             },
             async updateInfo() {
                 await App.methods.checkToken();
-                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                document.querySelector('.progress_container').classList.add('d-none');
-                this.progress = 0;
-
                 this.errors = [];
                 let emptyFieldsCount = 0;
                 let req = document.querySelectorAll('[required]');
@@ -178,7 +167,6 @@
                         tags = '[' + tags.toString() + ']';
                     }
 
-                    document.querySelector('.progress_container').classList.remove('d-none');
                     await axios.post('/api/panel/article/' + this.$route.params.id,
                         {
                             image: document.getElementById('Image__code').value,
@@ -186,21 +174,10 @@
                             article_category_id: document.getElementById('category').value,
                             text: document.getElementById('text').value,
                             tags: tags,
-                        },
-                        {
-                            onUploadProgress: e => {
-
-                                if (e.lengthComputable) {
-                                    this.progress = (e.loaded / e.total) * 100;
-                                    console.log(e.loaded, e.total);
-                                }
-                            }
                         })
                         .then((response) => {
                             if (response.status === 200) {
-                                document.querySelector('.progress-bar').classList.remove('bg-danger');
-                                document.querySelector('.progress-bar').classList.add('bg-success');
-                                setTimeout(() => {
+                              setTimeout(() => {
                                     this.$router.push({path: '/panel/article/' + this.id});
                                 }, 1000);
                             }

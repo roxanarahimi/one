@@ -80,47 +80,7 @@
                     </div>
                 </div>
             </div>
-            <div class = "progress_container d-none" dir = "ltr">
-                <div class = "progress" style = "height: 20px;">
-                    <div class = "progress-bar " role = "progressbar" :style = "'width:'+progress+'%'" :aria-valuenow = "progress" aria-valuemin = "0" aria-valuemax = "100"></div>
-                </div>
-            </div>
-            <button class = "d-none" id = "draftModalBtn" data-bs-toggle = "modal" data-bs-target = "#draftModal"></button>
-
-            <div class = "modal fade" id = "draftModal" data-bs-backdrop = "static" tabindex = "-1" aria-labelledby = "draftModalLabel">
-                <div class = "modal-dialog modal-xl">
-                    <div class = "modal-content">
-                        <div class = "modal-header border-0">
-                            <!--                    <h5 class="mupdaodal-title" id="draftModalLabel">Modal title</h5>-->
-                            <!--                    <button type = "button" class = "btn-close" data-bs-dismiss = "modal" @click = "closeModal" aria-label = "Close"></button>-->
-                        </div>
-                        <div class = "modal-body w-100">
-                            <h5 class = "px-3 pb-2">شما تغییرات ذخیره نشده دارید!</h5>
-                            <div class = "draft_container row">
-
-
-                                <div class = "col-md-6">
-                                    <p class = "h6 my-3">نسخه اصلی</p>
-                                    <div id = "main_content"></div>
-                                </div>
-                                <div class = "col-md-6">
-                                    <p class = "h6 my-3">نسخه تغییر یافته</p>
-                                    <div id = "draft_content"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class = "modal-footer border-0">
-                            <button @click = "refactorDraft" type = "button" class = "confirm_Image btn btn-dark" data-bs-dismiss = "modal">
-                                بازیابی تغییرات
-                            </button>
-                            <button @click = "ignoreDraft" type = "button" class = "btn btn-secondary" data-bs-dismiss = "modal">
-                                حذف تغییرات
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+             </section>
 
     </transition>
 

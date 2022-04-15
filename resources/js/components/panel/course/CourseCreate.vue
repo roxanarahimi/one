@@ -129,7 +129,6 @@
                 hasCaption: false,
                 aspect: 13 / 10,
                 features: [{"label": "", "value": ""}],
-                progress: 0,
                 sizes: [{"size": "", "dimensions": "", "color_name": "", "color_code": "", "stock": ""}],
 
             }
@@ -221,11 +220,6 @@
                             // console.log(error.response.data);
 
                             if (error.status === 422) {
-
-                                // setTimeout(()=>{
-                                //     document.querySelector('.progress_container').classList.add('d-none');
-                                // },1000);
-
                                 let errorList = Array(error.response.data);
                                 // console.log(error.response.data);
                                 for (var i = 0; i < errorList.length; i++) {

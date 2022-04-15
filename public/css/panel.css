@@ -1,3 +1,15 @@
+body, html {
+    font-family: 'IranSans'; /*direction: rtl !important;*/
+}
+
+.en {
+    /*font-family: "Montserrat SemiBold" !important;*/
+    direction: ltr;
+    text-align: left;
+}
+/*body{*/
+/*    background-color: whitesmoke;*/
+/*}*/
 #page {
     height: 100vh;
     overflow-y: hidden;
@@ -165,3 +177,24 @@ form label {
 .modal-xl {
     max-width: 80%;
 }
+/*#editor{*/
+/*    width: 100%;*/
+/*    border: 1px solid darkgray;*/
+/*    border-radius: 5px;*/
+/*    vertical-align: top;*/
+/*    padding: 20px 20px 20px 20px;*/
+/*}*/
+
+
+ *[contentEditable="true"]{
+     min-height: 200px;
+ }
+
+ *[contentEditable="true"]:focus,
+ *[contentEditable="true"]:hover {
+    outline: 0 !important;
+     direction: rtl !important;
+     text-align: right !important;
+
+}
+

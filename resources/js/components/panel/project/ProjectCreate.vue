@@ -50,8 +50,6 @@
                     </div>
                 </div>
             </div>
-
-            <button class = "d-none" id = "draftModalBtn" data-bs-toggle = "modal" data-bs-target = "#draftModal"></button>
         </section>
     </transition>
 

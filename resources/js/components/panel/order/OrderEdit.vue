@@ -154,9 +154,6 @@
                 aspect: 13 / 10,
                 isDefined: false,
                 enableClick: true,
-                features: [],
-                progress: 0,
-                sizes: [{"size": "", "dimensions": "", "color_name": "", "color_code": "", "stock": ""}],
 
             }
         },
@@ -235,8 +232,6 @@
                     } else {
                         features = '[' + features.toString() + ']';
                     }
-                    document.querySelector('.progress_container').classList.remove('d-none');
-
                     axios.post('/api/panel/product/' + this.$route.params.id,
                         {
                             // image: document.getElementById('Image_index_code').value,
@@ -254,37 +249,16 @@
                             // image_codes: this.image_codes,
                             // image_names: this.image_names,
 
-                        },
-                        {
-                            onUploadProgress: e => {
-
-                                if (e.lengthComputable) {
-                                    this.progress = (e.loaded / e.total) * 100;
-                                    console.log(e.loaded, e.total);
-                                    document.querySelector('.progress-bar').innerHTML = parseInt(this.progress) + '%';
-                                }
-                            }
                         })
                         .then((response) => {
                             // console.log(response.data);
                             if (response.status === 200) {
-                                // localStorage.removeItem('draft_' + this.blog.id);
-                                // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-                                // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
-
-                                // document.querySelector('.progress-bar')?.classList?.remove('bg-danger');
-                                // document.querySelector('.progress-bar')?.classList.add('bg-success');
                                 setTimeout(() => {
                                     this.$router.push({path: '/panel/product/' + this.id});
                                 }, 1000);
                             }
                         })
                         .catch((error) => {
-                            document.querySelector('.progress-bar').classList.add('bg-danger');
-                            // setTimeout(() => {
-                            //     document.querySelector('.progress_container').classList.add('d-none');
-                            // }, 1000);
-
                             // console.log(error);
                             // console.log(error.message);
                             // console.log(error.response);
@@ -296,16 +270,13 @@
                                     // console.log('i', errorList[i]);
                                     this.errors = errorList[i];
                                 }
-                                setTimeout(() => {
-                                    document.querySelector('.progress_container').classList.add('d-none');
-                                }, 1000);
+
 
                             } else if (error.response.status === 500) {
                                 if (error.response.data.message.includes("SQLSTATE")) {
                                     console.error('خطای پایگاه داده');
 
                                     async function showAlertSql() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.response.data.message);
                                         }, 200);
@@ -314,7 +285,6 @@
                                     showAlertSql();
                                 } else {
                                     async function showAlert500() {
-                                        await document.querySelector('.progress-bar').classList.add('bg-danger');
                                         setTimeout(() => {
                                             alert(error.message + ' '
                                                 + error.response.data.message);
@@ -326,7 +296,6 @@
 
                             } else {
                                 async function showAlert() {
-                                    await document.querySelector('.progress-bar').classList.add('bg-danger');
                                     setTimeout(() => {
                                         alert(error.message);
                                     }, 200);

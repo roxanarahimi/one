@@ -156,7 +156,6 @@
         },
         mounted() {
             this.loadCategories();
-            //   this.loadDraft();
         },
         methods: {
             loadCategories() {

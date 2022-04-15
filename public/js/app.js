@@ -23003,7 +23003,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    this.loadCategories(); //   this.loadDraft();
+    this.loadCategories();
   },
   methods: {
     loadCategories: function loadCategories() {
@@ -23297,16 +23297,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       hasCaption: false,
       aspect: 13 / 10,
       isDefined: false,
-      enableClick: true,
-      features: [],
-      progress: 0,
-      sizes: [{
-        "size": "",
-        "dimensions": "",
-        "color_name": "",
-        "color_code": "",
-        "stock": ""
-      }]
+      enableClick: true
     };
   },
   mounted: function mounted() {
@@ -23387,7 +23378,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           features = '[' + features.toString() + ']';
         }
 
-        document.querySelector('.progress_container').classList.remove('d-none');
         axios.post('/api/panel/product/' + this.$route.params.id, {
           // image: document.getElementById('Image_index_code').value,
           title: document.getElementById('title').value,
@@ -23401,22 +23391,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           // image_codes: this.image_codes,
           // image_names: this.image_names,
 
-        }, {
-          onUploadProgress: function onUploadProgress(e) {
-            if (e.lengthComputable) {
-              _this3.progress = e.loaded / e.total * 100;
-              console.log(e.loaded, e.total);
-              document.querySelector('.progress-bar').innerHTML = parseInt(_this3.progress) + '%';
-            }
-          }
         }).then(function (response) {
           // console.log(response.data);
           if (response.status === 200) {
-            // localStorage.removeItem('draft_' + this.blog.id);
-            // localStorage.removeItem('draft_' + this.blog.id + '_img_codes');
-            // localStorage.removeItem('draft_' + this.blog.id + '_img_names');
-            // document.querySelector('.progress-bar')?.classList?.remove('bg-danger');
-            // document.querySelector('.progress-bar')?.classList.add('bg-success');
             setTimeout(function () {
               _this3.$router.push({
                 path: '/panel/product/' + _this3.id
@@ -23424,15 +23401,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }, 1000);
           }
         })["catch"](function (error) {
-          document.querySelector('.progress-bar').classList.add('bg-danger'); // setTimeout(() => {
-          //     document.querySelector('.progress_container').classList.add('d-none');
-          // }, 1000);
           // console.log(error);
           // console.log(error.message);
           // console.log(error.response);
           // console.log(error.response.data);
           // console.log(error.response.data.exception_code);
-
           if (error.response.status === 422) {
             var errorList = Array(error.response.data);
 
@@ -23440,10 +23413,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               // console.log('i', errorList[i]);
               _this3.errors = errorList[i];
             }
-
-            setTimeout(function () {
-              document.querySelector('.progress_container').classList.add('d-none');
-            }, 1000);
           } else if (error.response.status === 500) {
             if (error.response.data.message.includes("SQLSTATE")) {
               var showAlertSql = /*#__PURE__*/function () {
@@ -23452,15 +23421,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     while (1) {
                       switch (_context.prev = _context.next) {
                         case 0:
-                          _context.next = 2;
-                          return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                        case 2:
                           setTimeout(function () {
                             alert(error.response.data.message);
                           }, 200);
 
-                        case 3:
+                        case 1:
                         case "end":
                           return _context.stop();
                       }
@@ -23482,15 +23447,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     while (1) {
                       switch (_context2.prev = _context2.next) {
                         case 0:
-                          _context2.next = 2;
-                          return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                        case 2:
                           setTimeout(function () {
                             alert(error.message + ' ' + error.response.data.message);
                           }, 200);
 
-                        case 3:
+                        case 1:
                         case "end":
                           return _context2.stop();
                       }
@@ -23512,15 +23473,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   while (1) {
                     switch (_context3.prev = _context3.next) {
                       case 0:
-                        _context3.next = 2;
-                        return document.querySelector('.progress-bar').classList.add('bg-danger');
-
-                      case 2:
                         setTimeout(function () {
                           alert(error.message);
                         }, 200);
 
-                      case 3:
+                      case 1:
                       case "end":
                         return _context3.stop();
                     }
@@ -36522,7 +36479,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $options.addFeature && $options.addFeature.apply($options, arguments);
         }),
         "class": "px-3 d-inline-block align-middle"
-      }, _hoisted_46)]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.features, function (item, index) {
+      }, _hoisted_46)]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.features, function (item, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           key: index,
           "class": "row tagElement"
@@ -36564,7 +36521,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $options.addSize && $options.addSize.apply($options, arguments);
         }),
         "class": "px-3 d-inline-block align-middle"
-      }, _hoisted_60)]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.sizes, function (item, index) {
+      }, _hoisted_60)]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.sizes, function (item, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           key: index,
           id: "sizeSection",
@@ -39257,15 +39214,6 @@ var _hoisted_25 = {
 
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ثبت ");
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "d-none",
-  id: "draftModalBtn",
-  "data-bs-toggle": "modal",
-  "data-bs-target": "#draftModal"
-}, null, -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_image_cropper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("image-cropper");
 
@@ -39338,7 +39286,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $options.createInfo && $options.createInfo.apply($options, arguments);
         }, ["prevent"])),
         type: "submit"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <button class = \"btn btn-primary\" type = \"submit\">"), _hoisted_26])])])])])])])]), _hoisted_27])];
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <button class = \"btn btn-primary\" type = \"submit\">"), _hoisted_26])])])])])])])])])];
     }),
     _: 1
     /* STABLE */

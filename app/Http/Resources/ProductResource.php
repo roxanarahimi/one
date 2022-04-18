@@ -15,9 +15,14 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
 //        $dots = strlen($this->text)>20 ? '...' : '';
+        $images = array();
+        if ($this->images){
+            $images = explode(',',$this->images);
+        }
         return [
             "id" => (string)$this->id,
             "image" => $this->image,
+            "images" => $images,
             "title" => $this->title,
             "subTitle" => $this->subTitle,
             "stock" => $this->stock,

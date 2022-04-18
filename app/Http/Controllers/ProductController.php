@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 //use Redis;
 //use Illuminate\Support\Facades\Redis;
 
@@ -175,11 +176,11 @@ class ProductController extends Controller
         }
         try {
 //            return $request['sizes'];
-            $data = Product::create($request->except('sizes'));
+            $product = Product::create($request->except('sizes', 'images'));
 
             foreach ($request['sizes'] as $item) {
                 ProductSize::create([
-                    'product_id' => $data['id'],
+                    'product_id' => $product['id'],
                     'size' => $item['size'],
                     'dimensions' => $item['dimensions'],
                     'color_name' => $item['color_name'],
@@ -188,10 +189,23 @@ class ProductController extends Controller
                     'sale' => 0,
                 ]);
 
+                $images = '';
+                for ($i = 0; $i < count($request['images']); $i++) {
+                    if ($request['images'][$i][1]) {
+                        $name = 'product_' . $product['id'] . '_' . uniqid() . '.jpg';
+                        $image_path = (new ImageController)->uploadImage($request['images'][$i][1], $name, 'images/');
+                        (new ImageController)->resizeImage('images/', $name);
+                        $images = $images . '/' . $image_path . ',';
+                    }else if ($request['images'][$i][0]){
+                        $images  = $images. $request['images'][$i][0]. ',';
+                    }
+                }
+
+                $product->update(['images' => substr($images , 0, -1)]);
 
             };
 
-            return response(new ProductResource($data), 201);
+            return response(new ProductResource($product), 201);
         } catch (\Exception $exception) {
             return response($exception);
         }
@@ -212,30 +226,43 @@ class ProductController extends Controller
             return response()->json($validator->messages(), 422);
         }
         try {
-            $product->update($request->except('sizes'));
+            $product->update($request->except('sizes', 'images'));
 
-                foreach ($request['sizes'] as $item) {
-                    if ($item['id']) {
-                        ProductSize::find($item['id'])->update([
-                            'size' => $item['size'],
-                            'dimensions' => $item['dimensions'],
-                            'color_name' => $item['color_name'],
-                            'color_code' => $item['color_code'],
-                            'stock' => $item['stock'],
-                            'sale' => 0
-                        ]);
-                    } else {
-                        ProductSize::create([
-                            'product_id' => $product['id'],
-                            'size' => $item['size'],
-                            'dimensions' => $item['dimensions'],
-                            'color_name' => $item['color_name'],
-                            'color_code' => $item['color_code'],
-                            'stock' => $item['stock'],
-                            'sale' => 0
-                        ]);
-                    }
+            foreach ($request['sizes'] as $item) {
+                if ($item['id']) {
+                    ProductSize::find($item['id'])->update([
+                        'size' => $item['size'],
+                        'dimensions' => $item['dimensions'],
+                        'color_name' => $item['color_name'],
+                        'color_code' => $item['color_code'],
+                        'stock' => $item['stock'],
+                        'sale' => 0
+                    ]);
+                } else {
+                    ProductSize::create([
+                        'product_id' => $product['id'],
+                        'size' => $item['size'],
+                        'dimensions' => $item['dimensions'],
+                        'color_name' => $item['color_name'],
+                        'color_code' => $item['color_code'],
+                        'stock' => $item['stock'],
+                        'sale' => 0
+                    ]);
                 }
+            }
+            $images = '';
+            for ($i = 0; $i < count($request['images']); $i++) {
+                if ($request['images'][$i][1]) {
+                    $name = 'product_' . $product['id'] . '_' . uniqid() . '.jpg';
+                    $image_path = (new ImageController)->uploadImage($request['images'][$i][1], $name, 'images/');
+                    (new ImageController)->resizeImage('images/', $name);
+                    $images = $images . '/' . $image_path . ',';
+                }else if ($request['images'][$i][0]){
+                    $images  = $images. $request['images'][$i][0]. ',';
+                }
+            }
+
+            $product->update(['images' => substr($images , 0, -1)]);
 
             return response(new ProductResource($product), 200);
         } catch (\Exception $exception) {

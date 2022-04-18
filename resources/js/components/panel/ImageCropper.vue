@@ -1,6 +1,6 @@
 <template>
     <div  class = "image-cropper row" :id = "'image-cropper row'+name" style = "min-height: 200px">
-        <div v-if = "src" class = "p-1 text-center m-2" style = "max-width: 265px;min-height:180px">
+        <div v-if = "src" class = "p-1 text-center m-2" style = "max-width: 265px;min-height:100px">
             <img :id = "'former_image_'+ name" :src = "src" style = "width: 100%; height:auto">
             <!--            <p v-if = "hasCaption" class = "align-bottom"> {{ caption }} </p>-->
         </div>
@@ -11,23 +11,23 @@
             </div>
         </div>
 
-        <div v-if = "!hasCaption" v-show = "selectedFile" class = "d-inline-block image-preview_wrapper  p-1 text-center m-2" style = "max-width: 265px;min-height: 180px">
+        <div v-if = "!hasCaption && selectedFile"  class = "d-inline-block image-preview_wrapper p-1 text-center m-2" style = "max-width: 265px;min-height: 180px">
             <img :id = "'preview_'+ name" class = "image-preview" style = "width: 100%; height:auto" alt = "">
         </div>
-        <figure v-else class = "content_image image-preview_wrapper p-1 text-center m-2" style = "max-width: 265px;height:180px">
-            <img v-show = "selectedFile" :id = "'preview_'+ name" class = "image-preview img-fluid" alt = "">
-            <figcaption v-show = "selectedFile" class = "align-bottom">
-                <input :id = "'Image_'+name+'_caption'" type = "text" class = "form-control mt-2" placeholder = "کپشن را وارد کنید (اختیاری)">
-            </figcaption>
-        </figure>
+<!--        <figure v-else class = "content_image image-preview_wrapper p-1 text-center m-2" style = "max-width: 265px;height:180px">-->
+<!--            <img v-show = "selectedFile" :id = "'preview_'+ name" class = "image-preview img-fluid" alt = "">-->
+<!--            <figcaption v-show = "selectedFile" class = "align-bottom">-->
+<!--                <input :id = "'Image_'+name+'_caption'" type = "text" class = "form-control mt-2" placeholder = "کپشن را وارد کنید (اختیاری)">-->
+<!--            </figcaption>-->
+<!--        </figure>-->
         <div>
             <span @click = "imageInput.click()" class = "btn btn-primary btn-sm m-1 mb-3" data-bs-toggle = "tooltip" data-bs-placement = "bottom" title = "انتخاب عکس"><i class = "bi bi-upload px-2 fw-bold"></i></span>
             <span :id = "'btn_clear_image_'+name" v-show = "selectedFile" @click = "clearFile" class = "btn btn-primary btn-sm m-1 mb-3"><i class = "bi bi-eraser px-2 fw-bold" data-bs-toggle = "tooltip" data-bs-placement = "bottom" title = "پاک کن"></i></span>
         </div>
-        <div v-show = "selectedFile" v-if = "hasCaption">
-            <input type = "text" :id = "'Image_'+name+'_alt'" class = "form-control mb-2" style = "width: 260px" placeholder = " alt (اختیاری) ">
-            <input type = "text" :id = "'Image_'+name+'_max_width'" class = "form-control mb-2" style = "width: 260px" placeholder = "حد اکثر عرض مجاز (اختیاری)">
-        </div>
+<!--        <div v-show = "selectedFile" v-if = "hasCaption">-->
+<!--            <input type = "text" :id = "'Image_'+name+'_alt'" class = "form-control mb-2" style = "width: 260px" placeholder = " alt (اختیاری) ">-->
+<!--            <input type = "text" :id = "'Image_'+name+'_max_width'" class = "form-control mb-2" style = "width: 260px" placeholder = "حد اکثر عرض مجاز (اختیاری)">-->
+<!--        </div>-->
 
         <input :id = "'image'+ name" ref = "imageInput" accept = ".jpg, .jpeg, .png" @change = "fileChanged" type = "file" :name = "'content_image_file'+name" class = "form-control d-none">
 
@@ -68,7 +68,7 @@
                     //     emit('imageCropped', blob);
                     // }, 'image/jpeg');
                     destination.value = cropper.getCroppedCanvas({fillColor: '#fff'})?.toDataURL('image/jpeg');
-                    document.getElementById("preview_" + _props.name).setAttribute('src', destination.value);
+                    document.getElementById("preview_" + _props.name)?.setAttribute('src', destination.value);
                     document.getElementById('Image_' + _props.name + '_code').setAttribute('value', destination.value);
                     // document.getElementById('Image_'+ _props.name +'_code').innerText = destination.value;
                 }

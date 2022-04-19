@@ -37720,14 +37720,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8
         /* PROPS */
         , _hoisted_19), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_image_cropper, {
-          name: "index",
+          name: index,
           caption: "",
           hasCaption: _ctx.hasCaption,
           isRequired: _ctx.imgRequired,
           aspect: _ctx.aspect
         }, null, 8
         /* PROPS */
-        , ["hasCaption", "isRequired", "aspect"]), _hoisted_20])]);
+        , ["name", "hasCaption", "isRequired", "aspect"]), _hoisted_20])]);
       }), 128
       /* KEYED_FRAGMENT */
       ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {

@@ -430,7 +430,7 @@ export default {
 
         },
         addImage(){
-            this.images.push('');
+            this.images.push(['','']);
 
         }
 

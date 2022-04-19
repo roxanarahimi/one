@@ -194,7 +194,7 @@ export default {
             aspect: 13 / 10,
             features: [{"label": "", "value": ""}],
             sizes: [{"size": "", "dimensions": "", "color_name": "", "color_code": "", "stock": ""}],
-            images: [''],
+            images: [['','']],
 
         }
     },
@@ -422,7 +422,7 @@ export default {
 
         },
         addImage(){
-            this.images.push('');
+            this.images.push(['','']);
 
         }
 

@@ -24090,7 +24090,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         "color_code": "",
         "stock": ""
       }],
-      images: ['']
+      images: [['', '']]
     };
   },
   mounted: function mounted() {
@@ -24414,7 +24414,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.images.splice(index, 1);
     },
     addImage: function addImage() {
-      this.images.push('');
+      this.images.push(['', '']);
     }
   }
 });
@@ -24789,7 +24789,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.images.splice(index, 1);
     },
     addImage: function addImage() {
-      this.images.push('');
+      this.images.push(['', '']);
     }
   }
 });

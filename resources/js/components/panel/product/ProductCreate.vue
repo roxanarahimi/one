@@ -27,7 +27,7 @@
                                         </div>
                                         <div class="col-10">
                                             <input type="text" class="d-none" :value="item" :id="'prev_image_'+index">
-                                            <image-cropper name="index" caption="" :hasCaption="hasCaption"
+                                            <image-cropper :name="index" caption="" :hasCaption="hasCaption"
                                                            :isRequired="imgRequired" :aspect="aspect"/>
                                             <div id="imageHelp" class="form-text error"></div>
                                         </div>

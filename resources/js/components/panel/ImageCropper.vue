@@ -167,7 +167,7 @@
                 imageSrc, async () => {
                     if (imageSrc.value) {
                       await cropper.replace(imageSrc.value);
-                      await setTimeout( function () {
+                       setTimeout(await function () {
                           handleImageCropped();
                       },200);
 

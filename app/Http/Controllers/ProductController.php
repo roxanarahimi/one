@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Mockery\Exception;
 
 //use Redis;
 //use Illuminate\Support\Facades\Redis;
@@ -160,6 +161,26 @@ class ProductController extends Controller
         }
     }
 
+    public function saveImages($requestImages, $productId)
+    {
+        try {
+            $images = '';
+            for ($i = 0; $i < count($requestImages); $i++) {
+                if ($requestImages[$i][1]) {
+                    $name = 'product_' . $productId . '_' . uniqid() . '.jpg';
+                    $image_path = (new ImageController)->uploadImage($requestImages[$i][1], $name, 'images/');
+                    (new ImageController)->resizeImage('images/', $name);
+                    $images = $images . '/' . $image_path . ',';
+                } else if ($requestImages[$i][0]) {
+                    $images = $images . $requestImages[$i][0] . ',';
+                }
+            }
+            return $images;
+        }catch (Exception $exception){
+            return $exception;
+        }
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all('title'),
@@ -189,19 +210,8 @@ class ProductController extends Controller
                     'sale' => 0,
                 ]);
 
-                $images = '';
-                for ($i = 0; $i < count($request['images']); $i++) {
-                    if ($request['images'][$i][1]) {
-                        $name = 'product_' . $product['id'] . '_' . uniqid() . '.jpg';
-                        $image_path = (new ImageController)->uploadImage($request['images'][$i][1], $name, 'images/');
-                        (new ImageController)->resizeImage('images/', $name);
-                        $images = $images . '/' . $image_path . ',';
-                    }else if ($request['images'][$i][0]){
-                        $images  = $images. $request['images'][$i][0]. ',';
-                    }
-                }
-
-                $product->update(['images' => substr($images , 0, -1)]);
+                $images = $this->saveImages($request['images'], $product['id']);
+                $product->update(['images' => substr($images, 0, -1)]);
 
             };
 
@@ -250,19 +260,9 @@ class ProductController extends Controller
                     ]);
                 }
             }
-            $images = '';
-            for ($i = 0; $i < count($request['images']); $i++) {
-                if ($request['images'][$i][1]) {
-                    $name = 'product_' . $product['id'] . '_' . uniqid() . '.jpg';
-                    $image_path = (new ImageController)->uploadImage($request['images'][$i][1], $name, 'images/');
-                    (new ImageController)->resizeImage('images/', $name);
-                    $images = $images . '/' . $image_path . ',';
-                }else if ($request['images'][$i][0]){
-                    $images  = $images. $request['images'][$i][0]. ',';
-                }
-            }
 
-            $product->update(['images' => substr($images , 0, -1)]);
+            $images = $this->saveImages($request['images'], $product['id']);
+            $product->update(['images' => substr($images, 0, -1)]);
 
             return response(new ProductResource($product), 200);
         } catch (\Exception $exception) {

@@ -198,12 +198,12 @@ export default {
             image_names: [],
             imgRequired: false,
             hasCaption: false,
-            aspect: 16 / 12,
+            aspect: 13 / 10,
             isDefined: false,
             enableClick: true,
             features: [],
             sizes: [{"size": "", "dimensions": "", "color_name": "", "color_code": "", "stock": ""}],
-            images: []
+            images: [],
 
         }
     },
@@ -280,7 +280,7 @@ export default {
                 }
 
             }
-            console.log(images);
+
             if (emptyFieldsCount === 0) {
                 let features = [];
                 for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {

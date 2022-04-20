@@ -177,7 +177,7 @@
         components: {Loader},
         data: function () {
             return {
-                flag: 0,
+                flag: 1,
                 showPanel: false,
                 token: '',
                 admin: '',
@@ -196,7 +196,6 @@
                     item.classList.remove('d-none');
                 });
             }
-
         },
         mounted() {
             this.sideBarToggle();

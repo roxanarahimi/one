@@ -21,7 +21,7 @@
                                 <tr v-for = "(item, index) in cart.items" :key = "item.id" :data-index = "index">
                                     <th scope = "row">{{ index + 1 }}</th>
                                     <td style = "vertical-align: bottom  !important; width: 40px;filter: grayscale(100%);"  class = "text-end px-0">
-                                        <img :url = "item.product.image"/>
+                                        <img :url = "item.product.images[0]"/>
                                     </td>
                                     <td style = "vertical-align: middle;">
                                         <small class = "m-0 d-block">{{ item.product.title }}</small>

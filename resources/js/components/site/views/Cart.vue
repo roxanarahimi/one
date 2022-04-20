@@ -25,7 +25,7 @@
                                     <td style = "vertical-align: bottom  !important; width: 80px;"
                                         class = "text-end"
                                     >
-                                        <img class = "img-fluid" height = "80" :url = "item.product.image"/>
+                                        <img class = "img-fluid" height = "80" :url = "item.product.images[0]"/>
                                     </td>
                                     <td style = "vertical-align: middle;">
                                         <small class = "m-0 d-block">{{ item.product.title }}</small>

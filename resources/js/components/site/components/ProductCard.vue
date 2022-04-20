@@ -3,7 +3,7 @@
 
         <div class = "card border-0 pb-3">
             <img class="sold mx-auto" src = "/images/sold.png" v-if="product.stock == 0" alt = "soldout">
-            <img class="img-fluid" :src="product.image" :class="{'img-gray': product.stock == 0}" />
+            <img class="img-fluid" :src="product.images[0]" :class="{'img-gray': product.stock == 0}" />
 
             <div class = "card-body">
                 <p class = "card-title fw-bold text-dark">{{ product.title }}</p>

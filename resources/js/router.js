@@ -75,7 +75,7 @@ import PanelCourseEdit from "./components/panel/course/CourseEdit.vue";
 import PanelCourse from "./components/panel/course/Course.vue";
 import PanelCourseCategories from "./components/panel/course/CourseCategories.vue";
 
-// import test from "./components/panel/test";
+import Testi from "./components/panel/testi";
 
 
 const routes = [
@@ -86,11 +86,7 @@ const routes = [
         component: Home,
     },
 
-    {
-        path: "/about",
-        name: "about",
-        component: About,
-    },
+
     {
         path: "/contact",
         name: "contact",
@@ -166,6 +162,11 @@ const routes = [
 
 
     //panel
+    {
+        path: "/panel/testi",
+        name: "Testi",
+        component: Testi,
+    },
     {
         path: "/panel",
         name: "PanelHome",

@@ -26,12 +26,12 @@ class ImageController extends Controller
         $image_name = $path . $name;
             //main
             $image = imagecreatefromjpeg($image_name);
-            $imgResized = imagescale($image, 1000, 563);
-            imagejpeg($imgResized, $image_name);
+//            $imgResized = imagescale($image, 1000, 563);
+//            imagejpeg($imgResized, $image_name);
             //thumb
-            $imgResized = imagescale($image, 400, 225);
+//            $imgResized = imagescale($image, 400, 225);
             $image_name = str_replace('.jpg', '_thumb.jpg', $image_name);
-            imagejpeg($imgResized, $image_name);
+//            imagejpeg($imgResized, $image_name);
     }
 
 }

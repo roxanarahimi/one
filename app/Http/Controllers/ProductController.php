@@ -99,7 +99,7 @@ class ProductController extends Controller
 
             $data = $data->get();
 
-            return response($data, 200);
+            return response(ProductResource::collection($data), 200);
 //            return response(new ProductResource($data), 200);
         } catch (\Exception $exception) {
             return response($exception);
@@ -113,7 +113,7 @@ class ProductController extends Controller
 //
             $data = Product::whereHas('activeCategory')->with('category')->where('active', 1)->where('stock', '>', 0)->latest()->get();
 
-            return response($data, 200);
+            return response(ProductResource::collection($data), 200);
 //            return response(new ProductResource($data), 200);
         } catch (\Exception $exception) {
             return response($exception);
@@ -125,7 +125,7 @@ class ProductController extends Controller
     {
         try {
             $data = Product::whereHas('activeCategory')->with('category')->where('active', 1)->take(4)->latest()->get();
-            return response($data, 200);
+            return response(ProductResource::collection($data), 200);
         } catch (\Exception $exception) {
             return response($exception);
 
@@ -286,6 +286,16 @@ class ProductController extends Controller
     {
         try {
             $product->update(['active' => !$product['active']]);
+            return response(new ProductResource($product), 200);
+        } catch (\Exception $exception) {
+            return response($exception);
+        }
+    }
+    public function updateOrder(Request $request, Product $product )
+    {
+        try {
+
+            $product->update(['images' => substr($request['images'], 0, -1)]);
             return response(new ProductResource($product), 200);
         } catch (\Exception $exception) {
             return response($exception);

@@ -3,12 +3,7 @@
         <base-toast v-show = "showToast" title = "<i class='bi bi-check'></i> انجام شد" text = "به سبد خرید اضافه شد :)" type = "success"/>
         <div class = "row col-12 p-1 p-md-5 col-sm-8 col-md-8 col-lg-10 mx-auto" v-if = "product">
             <div class = "col-12 col-lg-7 col-xl-5  mb-3 mb-xl-0 pics">
-                <img class = "img-fluid col-12 px-0 pb-1 pe-1" :src = "product.image"/>
-
-                <img class = "img-fluid col-3 p-0 pe-1" :src = "product.image"/>
-                <img class = "img-fluid col-3 p-0 pe-1" :src = "product.image"/>
-                <img class = "img-fluid col-3 p-0 pe-1" :src = "product.image"/>
-                <img class = "img-fluid col-3 p-0 pe-1" :src = "product.image"/>
+                <images :images="product.images" class="col-xl-5 mb-3 h-100 index_image "/>
             </div>
             <div class = "col-12 col-lg-5 col-xl-4 offset-xl-3  buy" style = "display :grid">
 
@@ -103,21 +98,10 @@
     import BaseToast from "../components/BaseToast.vue";
     import BaseImage from "../components/BaseImage.vue";
     import App from "./Site";
+    import Images from "../../Images";
 
     export default {
-        components: {BaseToast, BaseImage},
-        // setup() {
-        //     const showToast = ref(false);
-        //
-        //     const triggerToast = () => {
-        //         // document.body.scrollTop = document.documentElement.scrollTop = 0;
-        //
-        //         showToast.value = true;
-        //         setTimeout(() => (showToast.value = false), 3000);
-        //     };
-        //
-        //     return {showToast, triggerToast};
-        // },
+        components: {Images, BaseToast, BaseImage},
         name: "Product",
 
         // props: ["id"],

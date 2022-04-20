@@ -88,7 +88,7 @@
                 <router-link :to = "'/panel/product/'+ data.id" v-for = "data in allData" class = "col-md-8 col-xl-4 mb-3 blog">
                     <div class = "card ">
                         <div class = "blog-img rounded-top ">
-                            <img v-if = "data.image" :src = "data.image" class = "card-img-top" alt = "">
+                            <img v-if = "data.images" :src = "data.images[0]" class = "card-img-top" alt = "">
                         </div>
                         <!--                        d-flex align-self-end-->
                         <div class = "card-body ">
@@ -186,5 +186,8 @@
     @keyframes spin {
         from {transform:rotate(0deg);}
         to {transform:rotate(360deg);}
+    }
+    .pointer{
+        cursor: pointer;
     }
 </style>

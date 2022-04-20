@@ -19,8 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('subTitle')->nullable();
             $table->longText('text')->nullable();
-            $table->string('image')->nullable();
-//            $table->longText('images')->nullable();
+            $table->longText('images')->nullable();
             $table->integer('stock')->default(0);
             $table->longText('features')->nullable();
             $table->boolean('active')->default(0);

@@ -2,7 +2,7 @@
     <div class = "m-0 p-0" id = "outerr">
         <div class = "text-right" v-show = "showNav" id = "nav">
             <router-link class = "" to = "/"> خانه </router-link>
-            <router-link class = "" to = "/products"> محصولات  </router-link>
+            <router-link class = "btn-ox" id = "products" to = "/products"> محصولات  </router-link>
             <router-link class = "btn-ox" id = "profile" to = "/profile"> پروفایل </router-link>
             <router-link class = "btn-ox " id = "login" to = "/login"> ورود</router-link>
             <router-link class = "btn-ox " id = "register" to = "/register"> ثبت نام </router-link>
@@ -110,7 +110,7 @@
 
             checkUser() {
                 this.updateUserInfo();
-                if (localStorage.length === 0) {
+                if (!localStorage.user) {
                     document.getElementById('profile').classList.add('d-none');
                     document.getElementById('logout').classList.add('d-none');
                     document.getElementById('cart').classList.add('d-none');

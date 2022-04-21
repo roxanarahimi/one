@@ -25,14 +25,14 @@
                         </div>
                     </div>
                 </div>
-                <p style="font-size: 14px">برای عوض کردن ترتیب تصاویر، در لیست سمت راست drag & drop کنید</p>
+                <p style="font-size: 14px">برای عوض کردن ترتیب تصاویر، در لیست تصاویر drag & drop کنید</p>
 
                 <div class="col-sm-3 col-lg-2 mb-5">
                     <div class="card h-100">
                         <div class="card-body">
                             <draggable ghost-class="moving-card" :animation="500" v-model="data.images"
                                        @start="drag=true" @end="drag=false"
-                                       @drop="updateOrder" item-key="item" id="" class="row px-4">
+                                       @drop="updateOrder" item-key="item" id="" class="row px-4 justify-content-center">
                                 <template #item="{element}">
                                     <div class="text-center d-block mb-2" style="width: 140px">
                                         <div class="border rounded p-1 cursor-pointer">

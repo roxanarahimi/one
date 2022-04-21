@@ -28212,9 +28212,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var top = document.documentElement.scrollTop;
 
       if (document.querySelector('.products_side > .card') && top > 100) {
-        document.querySelector('.products_side > .card').setAttribute('style', 'top:10px');
+        var _document$querySelect;
+
+        (_document$querySelect = document.querySelector('.products_side > .card')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.setAttribute('style', 'top:10px');
       } else {
-        document.querySelector('.products_side > .card').removeAttribute('style');
+        var _document$querySelect2;
+
+        (_document$querySelect2 = document.querySelector('.products_side > .card')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.removeAttribute('style');
       }
     }); //this.load();
 
@@ -28249,7 +28253,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 case 0:
                   _context.next = 2;
                   return setTimeout(function () {
-                    document.getElementById('loader').classList.add('d-none');
+                    var _document$getElementB;
+
+                    (_document$getElementB = document.getElementById('loader')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.classList.add('d-none');
                   }, 500);
 
                 case 2:
@@ -28257,10 +28263,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return setTimeout(function () {
                     _this.products = data;
 
-                    if (_this.products.length === 0) {
-                      document.getElementById('msg').innerText = 'محصولی پیدا نشد';
-                    } else {
-                      document.getElementById('msg').innerText = 'درحال بار گذاری...';
+                    if (document.getElementById('msg')) {
+                      if (_this.products.length === 0) {
+                        document.getElementById('msg').innerText = 'محصولی پیدا نشد';
+                      } else {
+                        document.getElementById('msg').innerText = 'درحال بار گذاری...';
+                      }
                     }
                   }, 600);
 
@@ -28449,7 +28457,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     checkUser: function checkUser() {
       this.updateUserInfo();
 
-      if (localStorage.length === 0) {
+      if (!localStorage.user) {
         document.getElementById('profile').classList.add('d-none');
         document.getElementById('logout').classList.add('d-none');
         document.getElementById('cart').classList.add('d-none');
@@ -29695,7 +29703,7 @@ var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
 
 var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-    "class": "bi bi-person-badge-fill me-2"
+    "class": "bi bi-people-fill me-2"
   }, null, -1
   /* HOISTED */
   );
@@ -37115,7 +37123,7 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   style: {
     "font-size": "14px"
   }
-}, "برای عوض کردن ترتیب تصاویر، در لیست سمت راست drag & drop کنید", -1
+}, "برای عوض کردن ترتیب تصاویر، در لیست تصاویر drag & drop کنید", -1
 /* HOISTED */
 );
 
@@ -37259,7 +37267,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onDrop: $options.updateOrder,
         "item-key": "item",
         id: "",
-        "class": "row px-4"
+        "class": "row px-4 justify-content-center"
       }, {
         item: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
           var element = _ref.element;
@@ -44795,7 +44803,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* STABLE */
 
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "",
+    "class": "btn-ox",
+    id: "products",
     to: "/products"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

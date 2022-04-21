@@ -94,7 +94,7 @@
                     </li>
                     <li>
                         <router-link to = "/panel/users" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/users'}">
-                            <i class = "bi bi-person-badge-fill me-2"></i>
+                            <i class = "bi bi-people-fill me-2"></i>
                             <span class = "sidebar_title">کاربران</span>
                         </router-link>
                     </li>

@@ -121,9 +121,9 @@
             document.addEventListener('scroll', () => {
                 let top = document.documentElement.scrollTop;
                 if (document.querySelector('.products_side > .card') && top > 100) {
-                    document.querySelector('.products_side > .card').setAttribute('style', 'top:10px');
+                    document.querySelector('.products_side > .card')?.setAttribute('style', 'top:10px');
                 } else {
-                    document.querySelector('.products_side > .card').removeAttribute('style');
+                    document.querySelector('.products_side > .card')?.removeAttribute('style');
                 }
             });
             //this.load();
@@ -158,15 +158,18 @@
                     .then(async (data) => {
 
                         await setTimeout(() => {
-                            document.getElementById('loader').classList.add('d-none');
+                            document.getElementById('loader')?.classList.add('d-none');
                         }, 500);
                         await setTimeout(() => {
                             this.products = data;
-                            if (this.products.length === 0) {
-                                document.getElementById('msg').innerText = 'محصولی پیدا نشد';
-                            } else {
-                                document.getElementById('msg').innerText = 'درحال بار گذاری...';
+                            if(document.getElementById('msg')){
+                                if (this.products.length === 0) {
+                                    document.getElementById('msg').innerText = 'محصولی پیدا نشد';
+                                } else {
+                                    document.getElementById('msg').innerText = 'درحال بار گذاری...';
+                                }
                             }
+
                         }, 600);
 
                     })

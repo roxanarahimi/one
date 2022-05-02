@@ -43,7 +43,34 @@ body {
     cursor: pointer !important;
 
 }
+/*********/
+::-ms-scrollbar {
+    width: 14px;
+    cursor: pointer !important;
+}
 
+/* Track */
+::-ms-scrollbar-track {
+    /*box-shadow: inset 0 0 5px grey;*/
+    /*border-radius: 10px;*/
+    cursor: pointer !important;
+
+}
+
+/* Handle */
+::-ms-scrollbar-thumb {
+    background: dimgray;
+    border-radius: 17px;
+    cursor: pointer !important;
+
+}
+
+/* Handle on hover */
+::-ms-scrollbar-thumb:hover {
+    background: darkgray;
+    cursor: pointer !important;
+
+}
 
 a {
     text-decoration: none !important;

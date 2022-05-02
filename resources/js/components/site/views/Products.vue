@@ -77,7 +77,8 @@
                         </div>
                     </div>
                     <div class = "col-12" v-else>
-                        <p id = "msg" class = "my-4">درحال بار گذاری... </p>
+<!--                        <p id = "msg" class = "my-4">درحال بار گذاری... </p>-->
+                        <p id = "msg" class = "my-4"></p>
                     </div>
                     <div class = "col-12" id = "loader">
                       <loader/>

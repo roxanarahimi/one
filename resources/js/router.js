@@ -169,19 +169,24 @@ const routes = [
     },
     {
         path: "/panel",
-        name: "PanelHome",
-        component: PanelHome,
+        // name: "PanelHome",
+        component: () => import(/* webpackChunkName: "home" */ '../js/components/panel/Home'),
+
+// component: PanelHome,
     },
 
     {
         path: "/panel/products",
         name: "PanelProducts",
-        component: PanelProducts,
+        component: () => import(/* webpackChunkName: "products" */ '../js/components/panel/product/Products'),
+
+        // component: PanelProducts,
     },
     {
         path: "/panel/new/product",
         name: "PanelProductCreate",
-        component: PanelProductCreate,
+        component: () => import(/* webpackChunkName: "PanelProductCreate" */ '../js/components/panel/product/ProductCreate'),
+        // component: PanelProductCreate,
         params: true
     },
     {
@@ -204,7 +209,9 @@ const routes = [
     {
         path: "/panel/orders",
         name: "PanelOrders",
-        component: PanelOrders,
+        component: () => import(/* webpackChunkName: "PanelOrders" */ '../js/components/panel/order/Orders'),
+
+        // component: PanelOrders,
     },
     {
         path: "/panel/new/order",
@@ -227,7 +234,9 @@ const routes = [
     {
         path: "/panel/articles",
         name: "PanelArticles",
-        component: PanelArticles,
+        component: () => import(/* webpackChunkName: "PanelArticles" */ '../js/components/panel/article/Articles'),
+
+        // component: PanelArticles,
     },
     {
         path: "/panel/new/article",
@@ -255,7 +264,9 @@ const routes = [
     {
         path: "/panel/projects",
         name: "PanelProjects",
-        component: PanelProjects,
+        component: () => import(/* webpackChunkName: "PanelProjects" */ '../js/components/panel/project/Projects'),
+
+        // component: PanelProjects,
     },
     {
         path: "/panel/new/project",
@@ -278,7 +289,9 @@ const routes = [
     {
         path: "/panel/courses",
         name: "PanelCourses",
-        component: PanelCourses,
+        component: () => import(/* webpackChunkName: "PanelCourses" */ '../js/components/panel/course/Courses'),
+
+        // component: PanelCourses,
     },
     {
         path: "/panel/new/course",
@@ -306,7 +319,9 @@ const routes = [
     {
         path: "/panel/slides",
         name: "PanelSlides",
-        component: PanelSlides,
+        component: () => import(/* webpackChunkName: "PanelSlides" */ '../js/components/panel/slide/Slides'),
+
+        // component: PanelSlides,
     },
     {
         path: "/panel/new/slide",
@@ -324,7 +339,9 @@ const routes = [
     {
         path: "/panel/user/:id",
         name: "PanelUser",
-        component: PanelUser,
+        component: () => import(/* webpackChunkName: "PanelUsers" */ '../js/components/panel/user/Users'),
+
+        // component: PanelUser,
     },
     {
         path: "/panel/users",
@@ -356,7 +373,9 @@ const routes = [
     {
         path: "/panel/admins",
         name: "PanelAdmins",
-        component: PanelAdmins,
+        component: () => import(/* webpackChunkName: "PanelAdmins" */ '../js/components/panel/admin/Admins'),
+
+        // component: PanelAdmins,
     },
     {
         path: "/panel/admins",
@@ -382,13 +401,17 @@ const routes = [
     {
         path: "/panel/finance",
         name: "PanelFinance",
-        component: PanelFinance,
+        component: () => import(/* webpackChunkName: "PanelFinances" */ '../js/components/panel/finance/Finance'),
+
+        // component: PanelFinance,
     },
 
     {
         path: "/panel/resumes",
         name: "PanelResumes",
-        component: PanelResumes,
+        component: () => import(/* webpackChunkName: "PanelResumes" */ '../js/components/panel/employ/Resumes'),
+
+        // component: PanelResumes,
     },
     {
         path: "/panel/resume/:id",
@@ -398,7 +421,9 @@ const routes = [
     {
         path: "/panel/teachers",
         name: "PanelTeachers",
-        component: PanelTeachers,
+        component: () => import(/* webpackChunkName: "PanelTeachers" */ '../js/components/panel/teacher/Teachers'),
+
+        // component: PanelTeachers,
     },
     {
         path: "/panel/new/teacher",

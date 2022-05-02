@@ -2,8 +2,7 @@
     <p class="h4 mb-5">جدیدترین محصولات</p>
 
     <div class="row mt-3" v-if="allData.length">
-        <router-link v-else :to="'/panel/product/'+ data.id" v-for="data in allData"
-                     class="col-md-8 col-xl-4 mb-3 blog">
+        <router-link :to="'/panel/product/'+ data.id" v-for="data in allData" :key="data.id" class="col-md-8 col-xl-4 mb-3 blog">
             <div class="card ">
                 <div class="blog-img rounded-top ">
                     <transition  name="zoom" mode="in-out" appear>

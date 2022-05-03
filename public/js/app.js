@@ -29919,8 +29919,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
 
-  var _component_loader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("loader");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    <suspense>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("        <template #default>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <h2>in app</h2>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <test />"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("        </template>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("        <template #fallback> <loader /></template>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    </suspense>"), this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <h4 class=\" my-3 text-center \">پنل مدیریت</h4>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/panel",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["nav-link text-white", {
@@ -30119,12 +30117,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     href: "#"
   }, "خروج")])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            <transition name=\"route\" mode=\"out-in\" appear>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                              <router-view/>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            </transition>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            style=\"min-height: 346px !important\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("        <RouterView v-slot=\"{ Component }\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <template v-if=\"Component\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <Transition mode=\"out-in\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <KeepAlive>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        <Suspense>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            &lt;!&ndash; main content &ndash;&gt;"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            <component :is=\"Component\"></component>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            &lt;!&ndash; loading state &ndash;&gt;"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            <template #fallback>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                Loading..."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            </template>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        </Suspense>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    </KeepAlive>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                </Transition>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            </template>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("        </RouterView>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_45, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Suspense, null, {
-    de: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [];
-    }),
-    fallback: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loader)];
-    }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)];
     }),
@@ -34975,12 +34967,13 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
   "class": "btn btn-light py-1 px-5"
-}, "خانه", -1
+}, "بازگشت", -1
 /* HOISTED */
 );
 
+var _hoisted_6 = [_hoisted_5];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+  var _this = this;
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
     name: "route",
@@ -34988,17 +34981,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     appear: ""
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
         "class": "",
-        to: "/panel"
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_5];
-        }),
-        _: 1
-        /* STABLE */
-
-      })])])];
+        onClick: _cache[0] || (_cache[0] = function ($event) {
+          return _this.$router.go(-1);
+        })
+      }, _hoisted_6)])])])];
     }),
     _: 1
     /* STABLE */

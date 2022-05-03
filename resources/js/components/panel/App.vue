@@ -181,11 +181,6 @@
         <section class = "page_content container-fluid p-4 p-md-5 bg-light vh-100">
             <Suspense>
                 <router-view/>
-                <template #de >
-                </template>
-                <template #fallback >
-                    <loader />
-                </template>
 
             </Suspense>
         </section>

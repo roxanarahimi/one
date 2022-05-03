@@ -7,6 +7,13 @@
 <!--        <template #fallback> <loader /></template>-->
 <!--    </suspense>-->
 
+    <div v-if="this.$route.fullPath.includes('panel')">
+
+    </div>
+    <div v-else>
+
+    </div>
+
     <div v-if = "this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'" id = "page" class = "d-flex">
 
         <div id="sidebar-wrapper" class="bg-dark">

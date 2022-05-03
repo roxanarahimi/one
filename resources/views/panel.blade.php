@@ -23,6 +23,7 @@
     </style>
 </head>
 <body class="bg-light">
+
 <div id="app">
     <panel/>
 </div>

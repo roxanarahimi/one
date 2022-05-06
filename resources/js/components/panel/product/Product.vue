@@ -100,9 +100,9 @@
                     </div>
                 </div>
             </div>
+            <div v-else><p class="fw-bold">این محصول موجود نیست</p></div>
 
         </section>
-        <div v-else><p class="fw-bold">این محصول موجود نیست</p></div>
 
     </transition>
 

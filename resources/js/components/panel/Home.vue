@@ -3,15 +3,15 @@
     <transition name="route" mode="out-in" appear>
         <section>
             <div>
-<!--                <Suspense>-->
-<!--                    <template #default>-->
-                        <latest-products />
-<!--                    </template>-->
-<!--                    <template #fallback>-->
-<!--                        <loader/>-->
-<!--                    </template>-->
-<!--                </Suspense>-->
-                <!--                <p id="msg"></p>-->
+                <Suspense>
+                    <template #default>
+                        <latest-products/>
+                    </template>
+                    <template #fallback>
+                        <loader/>
+                    </template>
+                </Suspense>
+                <!--                                <p id="msg"></p>-->
             </div>
         </section>
     </transition>
@@ -28,34 +28,33 @@ export default {
     components: {Loader, LatestProducts, App},
     data() {
         return {
-            allData: [],
+            // allData: [],
         }
     },
     mounted() {
         document.querySelector('#admin_label').innerHTML = JSON.parse(localStorage.getItem('admin')).name;
-        this.loadData();
-
-
+        // this.loadData();
     },
     methods: {
         async loadData() {
             await App.methods.checkToken();
-            await axios.get('/api/panel/latest/product')
-                .then(async (response) => {
-                    // setTimeout(async ()=>{
-                    if (response.data.length !== 0) {
-                        // await document.getElementById('loader').remove();
-                        this.allData = await response.data;
-                        // document.getElementById('loader').classList.add('d-none');
-                    } else {
-                        // await document.getElementById('loader').remove();
-
-                         // document.getElementById('msg').innerText =await 'محصولی پیدا نشد';
-                    }
-                    // },3000)
-
-                })
-                .catch();
+            console.log('checked');
+            // await axios.get('/api/panel/latest/product')
+            //     .then(async (response) => {
+            //         // setTimeout(async ()=>{
+            //         if (response.data.length !== 0) {
+            //             // await document.getElementById('loader').remove();
+            //             this.allData = await response.data;
+            //             // document.getElementById('loader').classList.add('d-none');
+            //         } else {
+            //             // await document.getElementById('loader').remove();
+            //
+            //             // document.getElementById('msg').innerText =await 'محصولی پیدا نشد';
+            //         }
+            //         // },3000)
+            //
+            //     })
+            //     .catch();
         }
 
 

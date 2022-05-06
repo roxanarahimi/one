@@ -1,7 +1,7 @@
 <template>
     <p class="h4 mb-5">جدیدترین محصولات</p>
 
-    <div class="row mt-3" v-if="allData.length">
+    <div class="row mt-3" v-if="allData">
         <router-link :to="'/panel/product/'+ data.id" v-for="data in allData" :key="data.id" class="col-md-8 col-xl-4 mb-3 blog">
             <div class="card ">
                 <div class="blog-img rounded-top ">
@@ -9,7 +9,7 @@
                         <img v-if="data.images" :src="data.images[0]"  class="card-img-top" alt="">
                     </transition>
                 </div>
-                <!--                        d-flex align-self-end-->
+                <!--                 d-flex align-self-end-->
                 <div class="card-body ">
                     <h5 class="card-title mt-4 mb-2 "> {{ data.title }} </h5>
                     <p class="card-text mb-4 d-inline-block align-bottom"><i class="bi bi-tag-fill"></i>

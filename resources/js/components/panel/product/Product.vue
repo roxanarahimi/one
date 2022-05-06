@@ -1,8 +1,7 @@
 <template>
     <transition name="route" mode="out-in" appear>
-        <section class="" v-if="data" style="text-align: justify">
-            <div class="row ">
-
+        <section class="" style="text-align: justify">
+            <div class="row "  v-if="data.id">
                 <div class="col-12 ">
                     <div class="row ">
                         <div class="col-12 mb-3">
@@ -26,7 +25,6 @@
                     </div>
                 </div>
                 <p style="font-size: 14px">برای عوض کردن ترتیب تصاویر، در لیست تصاویر drag & drop کنید</p>
-
                 <div class="col-sm-3 col-lg-2 mb-5">
                     <div class="card h-100">
                         <div class="card-body">
@@ -35,7 +33,7 @@
                                        @drop="updateOrder" item-key="item" id="" class="row px-4 justify-content-center">
                                 <template #item="{element}">
                                     <div class="text-center d-block mb-2" style="width: 140px">
-                                        <div class="border rounded p-1 cursor-pointer">
+                                        <div class="border rounded p-1 " style="cursor: pointer">
                                             <img class="img-fluid" :src="element">
                                         </div>
                                         <input type="hidden" name="order" :value="element">
@@ -45,7 +43,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-sm-8 col-lg-4 mb-5">
                     <div class="card h-100">
                         <div class="card-body justify-content-center">
@@ -95,8 +92,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="col-12 mb-3">
                     <div class="card h-100">
                         <div class="card-body p-md-5">

@@ -3,14 +3,14 @@
     <transition name="route" mode="out-in" appear>
         <section>
             <div>
-                <Suspense>
-                    <template #default>
+<!--                <Suspense>-->
+<!--                    <template #default>-->
                         <latest-products />
-                    </template>
-                    <template #fallback>
-                        <loader/>
-                    </template>
-                </Suspense>
+<!--                    </template>-->
+<!--                    <template #fallback>-->
+<!--                        <loader/>-->
+<!--                    </template>-->
+<!--                </Suspense>-->
                 <!--                <p id="msg"></p>-->
             </div>
         </section>

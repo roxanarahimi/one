@@ -2,59 +2,147 @@
     <!--<h3>داشبورد</h3>-->
     <transition name="route" mode="out-in" appear>
         <section>
-            <div>
-<!--                <Suspense>-->
-<!--                    <template #default>-->
-                        <latest-products/>
-<!--                    </template>-->
-<!--                    <template #fallback>-->
-<!--                        <loader/>-->
-<!--                    </template>-->
-<!--                </Suspense>-->
-                <!--                                <p id="msg"></p>-->
+            <div class="row d-none">
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-primary text-light">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 ">
+                                    <div class="rounded bg-light text-primary text-center p-3"
+                                         style="width: 50px; height: 50px">
+                                        <i style="font-size: 20px" class="bi bi-eye-fill "></i>
+                                    </div>
+                                    <!--                                    <small class=" d-block">بازدید سایت</small>-->
+                                </div>
+                                <div class="col-6 ">
+                                    <h1 class="mt-2 text-start">23659</h1>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-primary text-light">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 ">
+                                    <div class="rounded bg-light text-primary text-center p-3"
+                                         style="width: 50px; height: 50px">
+                                        <i style="font-size: 20px" class="bi bi-eye-fill "></i>
+                                    </div>
+                                    <!--                                    <small class=" d-block">بازدید سایت</small>-->
+                                </div>
+                                <div class="col-6 ">
+                                    <h1 class="mt-2 text-start">23659</h1>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-primary text-light">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 ">
+                                    <div class="rounded bg-light text-primary text-center p-3"
+                                         style="width: 50px; height: 50px">
+                                        <i style="font-size: 20px" class="bi bi-eye-fill "></i>
+                                    </div>
+                                    <!--                                    <small class=" d-block">بازدید سایت</small>-->
+                                </div>
+                                <div class="col-6 ">
+                                    <h1 class="mt-2 text-start">23659</h1>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-primary text-light">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 ">
+                                    <div class="rounded bg-light text-primary text-center p-3"
+                                         style="width: 50px; height: 50px">
+                                        <i style="font-size: 20px" class="bi bi-eye-fill "></i>
+                                    </div>
+                                    <!--                                    <small class=" d-block">بازدید سایت</small>-->
+                                </div>
+                                <div class="col-6 ">
+                                    <h1 class="mt-2 text-start">23659</h1>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
+
+            <div v-if="allData.length > 0">
+                <!--                                <p>در حال بارگذاری...</p>-->
+
+                <p class="h4 mb-5">جدیدترین محصولات</p>
+                <div class="row mt-3">
+                    <router-link :to="'/panel/product/'+ data.id" v-for="data in allData"
+                                 class="col-md-8 col-xl-4 mb-3 blog">
+                        <div class="card ">
+                            <div class="blog-img rounded-top ">
+                                <img v-if="data.images" :src="data.images[0]" class="card-img-top" alt="">
+                            </div>
+                            <!--                        d-flex align-self-end-->
+                            <div class="card-body ">
+                                <h5 class="card-title mt-4 mb-2 "> {{ data.title }} </h5>
+                                <p class="card-text mb-4 d-inline-block align-bottom"><i class="bi bi-tag-fill"></i>
+                                    {{ data.category.title }} </p>
+                                <p class="card-text mb-4 d-inline-block float-start align-bottom"> {{ data.added }} </p>
+                            </div>
+                        </div>
+                    </router-link>
+                </div>
+
+            </div>
+            <loader v-else />
+
+
         </section>
     </transition>
-
-
 </template>
 <script>
 import App from './App';
 import Loader from "../site/components/Loader";
-import LatestProducts from "./LatestProducts";
-
 
 export default {
-    components: {Loader, LatestProducts, App},
-    data() {
+    components: {Loader},
+    data: function () {
         return {
-            // allData: [],
+            allData: [],
+
         }
     },
     mounted() {
         document.querySelector('#admin_label').innerHTML = JSON.parse(localStorage.getItem('admin')).name;
-        // this.loadData();
+        this.loadBlogs();
+
+        console.log(localStorage)
+
+
     },
     methods: {
-        async loadData() {
+        async loadBlogs() {
             await App.methods.checkToken();
-            console.log('checked');
-            // await axios.get('/api/panel/latest/product')
-            //     .then(async (response) => {
-            //         // setTimeout(async ()=>{
-            //         if (response.data.length !== 0) {
-            //             // await document.getElementById('loader').remove();
-            //             this.allData = await response.data;
-            //             // document.getElementById('loader').classList.add('d-none');
-            //         } else {
-            //             // await document.getElementById('loader').remove();
-            //
-            //             // document.getElementById('msg').innerText =await 'محصولی پیدا نشد';
-            //         }
-            //         // },3000)
-            //
-            //     })
-            //     .catch();
+            await axios.get('/api/panel/latest/product')
+                .then((response) => {
+                    this.allData = response.data;
+                })
+                .then(() => {
+                    console.log(this.allData);
+                })
+                .catch();
         }
 
 

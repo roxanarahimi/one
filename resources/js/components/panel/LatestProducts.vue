@@ -1,20 +1,20 @@
 <template>
     <p class="h4 mb-5">جدیدترین محصولات</p>
 
-    <div class="row mt-3" v-if="allData">
-        <router-link :to="'/panel/product/'+ data.id" v-for="data in allData" :key="data.id" class="col-md-8 col-xl-4 mb-3 blog">
+    <div class="row mt-3" v-if="allData !== null">
+        <router-link v-for="dataP in allData" :key="dataP.id" :to="'/panel/product/'+ dataP.id"  class="col-md-8 col-xl-4 mb-3 blog">
             <div class="card ">
                 <div class="blog-img rounded-top ">
                     <transition  name="zoom" mode="in-out" appear>
-                        <img v-if="data.images" :src="data.images[0]"  class="card-img-top" alt="">
+                        <img v-if="dataP.images" :src="dataP.images[0]"  class="card-img-top" alt="">
                     </transition>
                 </div>
-                <!--                 d-flex align-self-end-->
+                <!--                        d-flex align-self-end-->
                 <div class="card-body ">
-                    <h5 class="card-title mt-4 mb-2 "> {{ data.title }} </h5>
+                    <h5 class="card-title mt-4 mb-2 "> {{ dataP.title }} </h5>
                     <p class="card-text mb-4 d-inline-block align-bottom"><i class="bi bi-tag-fill"></i>
-                        {{ data.category.title }} </p>
-                    <p class="card-text mb-4 d-inline-block float-start align-bottom"> {{ data.added }} </p>
+                        {{ dataP.category.title }} </p>
+                    <p class="card-text mb-4 d-inline-block float-start align-bottom"> {{ dataP.added }} </p>
                 </div>
             </div>
         </router-link>

@@ -1,7 +1,7 @@
 <template>
     <transition name="route" mode="out-in" appear>
         <section class="" style="text-align: justify">
-            <div class="row "  v-if="data.id">
+            <div class="row "  v-if="data">
                 <div class="col-12 ">
                     <div class="row ">
                         <div class="col-12 mb-3">

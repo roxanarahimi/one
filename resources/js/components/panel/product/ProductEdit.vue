@@ -21,7 +21,8 @@
                                     <div class="row" v-for="(item, index) in images" :key="index">
                                         <!--                                    <div class="row">-->
                                         <div class="col-auto pt-3">
-                                            <span  @click="removeImage(index)"><i class="bi bi-x-circle-fill m-0 " style="font-size: 15px"></i></span>
+                                            <span @click="removeImage(index)"><i class="bi bi-x-circle-fill m-0 "
+                                                                                 style="font-size: 15px"></i></span>
                                         </div>
                                         <div class="col-10">
                                             <input type="text" class="d-none" :value="item" :id="'prev_image_'+index">
@@ -162,9 +163,8 @@
 
 
                                     <div class="col-md-12 mb-3">
-                                        <button class="btn btn-primary" @click.prevent="updateInfo" type="submit">
-                                            <!--                                        <button class = "btn btn-primary" type = "submit">-->
-                                            ویرایش
+                                        <button id="submit" class="btn btn-primary d-flex justify-content-between" @click.prevent="updateInfo" type="submit">
+                                             ویرایش <loader-sm class="loader-sm d-none" />
                                         </button>
                                     </div>
                                 </div>
@@ -177,17 +177,16 @@
         </section>
 
     </transition>
-
-
 </template>
 
 <script>
 import ImageCropper from '../ImageCropper';
 import App from '../App';
+import LoaderSm from '../../site/components/Loader-sm'
 // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
 export default {
-    components: {ImageCropper},
+    components: {ImageCropper, App, LoaderSm},
     data() {
         return {
             id: this.$route.params.id,
@@ -271,17 +270,20 @@ export default {
                 }
             });
             let images = [];
-            for (let i= 0; i < this.images.length; i++){
-                if(document.getElementById('prev_image_'+i).value || document.getElementById('Image_'+i+'_code').value) {
+            for (let i = 0; i < this.images.length; i++) {
+                if (document.getElementById('prev_image_' + i).value || document.getElementById('Image_' + i + '_code').value) {
                     images.push([
-                        document.getElementById('prev_image_'+i).value,
-                        document.getElementById('Image_'+i+'_code').value,
+                        document.getElementById('prev_image_' + i).value,
+                        document.getElementById('Image_' + i + '_code').value,
                     ]);
                 }
 
             }
 
             if (emptyFieldsCount === 0) {
+                document.querySelector('#submit').setAttribute('disabled', 'disabled');
+                document.querySelector('.loader-sm').classList.remove('d-none');
+
                 let features = [];
                 for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
                     features.push('{"label": "' + document.getElementsByName('featureLabel')[i].value + '", "value": "' + document.getElementsByName('featureValue')[i].value + '"}');
@@ -305,7 +307,7 @@ export default {
                         price: document.getElementById('price').value,
                     })
                     .then((response) => {
-                        console.log('res',response);
+                        console.log('res', response);
                         if (response.status === 200) {
                             setTimeout(() => {
                                 this.$router.push({path: '/panel/product/' + this.id});
@@ -313,6 +315,9 @@ export default {
                         }
                     })
                     .catch((error) => {
+                        document.querySelector('#submit').removeAttribute('disabled');
+                        document.querySelector('.loader-sm').classList.add('d-none');
+
                         if (error.response.status === 422) {
                             let errorList = Array(error.response.data);
                             for (var i = 0; i < errorList.length; i++) {
@@ -425,12 +430,12 @@ export default {
 
 
         },
-        removeImage(index){
+        removeImage(index) {
             this.images.splice(index, 1);
 
         },
-        addImage(){
-            this.images.push(['','']);
+        addImage() {
+            this.images.push(['', '']);
 
         }
 

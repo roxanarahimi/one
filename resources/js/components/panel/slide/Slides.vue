@@ -85,7 +85,7 @@
 
     export default {
         components: {
-            Draggable
+            Draggable, App
         },
         data: function () {
             return {

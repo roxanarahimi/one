@@ -1,81 +1,78 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
 //site
-import Home from "./components/site/views/Home.vue";
-import About from "./components/site/views/About.vue";
+import Home from "./components/site/views/Home";
+import About from "./components/site/views/About";
 
-import Profile from "./components/site/views/client/Profile.vue";
-import Orders from "./components/site/views/client/OrderHistory.vue";
-import Order from "./components/site/views/client/Order.vue";
-import Login from "./components/site/views/client/Login.vue";
-import LoginOtp from "./components/site/views/client/LoginOtp.vue";
+import Profile from "./components/site/views/client/Profile";
+import Orders from "./components/site/views/client/OrderHistory";
+import Order from "./components/site/views/client/Order";
+import Login from "./components/site/views/client/Login";
+import LoginOtp from "./components/site/views/client/LoginOtp";
 
-import Contact from "./components/site/views/Contact.vue";
-import Product from "./components/site/views/Product.vue";
-import Products from "./components/site/views/Products.vue";
-import Cart from './components/site/views/Cart.vue';
-import ConfirmOrder from './components/site/views/ConfirmOrder.vue';
+import Contact from "./components/site/views/Contact";
+import Product from "./components/site/views/Product";
+import Products from "./components/site/views/Products";
+import Cart from './components/site/views/Cart';
+import ConfirmOrder from './components/site/views/ConfirmOrder';
 
 import Register from "./components/site/views/client/Register";
-import ResetPassword from "./components/site/views/client/ResetPassword.vue";
-import Email from "./components/site/views/client/Email.vue";
-// import error404 from "./components/site/views/error/Error404.vue";
+import ResetPassword from "./components/site/views/client/ResetPassword";
+import Email from "./components/site/views/client/Email";
+// import error404 from "./components/site/views/error/Error404";
 
 //panel
-import PanelLogin from "./components/panel/admin/Login.vue";
-import PanelHome from "./components/panel/Home.vue";
-import PanelProducts from "./components/panel/product/Products.vue";
-import PanelProductCreate from "./components/panel/product/ProductCreate.vue";
-import PanelProductEdit from "./components/panel/product/ProductEdit.vue";
-import PanelProduct from "./components/panel/product/Product.vue";
-import PanelProductCategories from "./components/panel/product/ProductCategories.vue";
-import PanelArticles from "./components/panel/article/Articles.vue";
-import PanelArticleCreate from "./components/panel/article/ArticleCreate.vue";
-import PanelArticleEdit from "./components/panel/article/ArticleEdit.vue";
-import PanelArticle from "./components/panel/article/Article.vue";
-import PanelArticleCategories from "./components/panel/article/ArticleCategories.vue";
-import PanelUsers from "./components/panel/user/Users.vue";
-import PanelUserEdit from "./components/panel/user/UserEdit.vue";
-import PanelUser from "./components/panel/user/User.vue";
-import PanelSlides from "./components/panel/slide/Slides.vue";
-import PanelSlideCreate from "./components/panel/slide/SlideCreate.vue";
-import PanelSlideEdit from "./components/panel/slide/SlideEdit.vue";
+import PanelLogin from "./components/panel/admin/Login";
+import PanelHome from "./components/panel/Home";
+import PanelProducts from "./components/panel/product/Products";
+import PanelProductCreate from "./components/panel/product/ProductCreate";
+import PanelProductEdit from "./components/panel/product/ProductEdit";
+import PanelProduct from "./components/panel/product/Product";
+import PanelProductCategories from "./components/panel/product/ProductCategories";
+import PanelArticles from "./components/panel/article/Articles";
+import PanelArticleCreate from "./components/panel/article/ArticleCreate";
+import PanelArticleEdit from "./components/panel/article/ArticleEdit";
+import PanelArticle from "./components/panel/article/Article";
+import PanelArticleCategories from "./components/panel/article/ArticleCategories";
+import PanelUsers from "./components/panel/user/Users";
+import PanelUserEdit from "./components/panel/user/UserEdit";
+import PanelUser from "./components/panel/user/User";
+import PanelSlides from "./components/panel/slide/Slides";
+import PanelSlideCreate from "./components/panel/slide/SlideCreate";
+import PanelSlideEdit from "./components/panel/slide/SlideEdit";
+import PanelIcon from "./components/panel/icon/Icon";
 
-import PanelResumes from "./components/panel/employ/Resumes.vue";
-import PanelResume from "./components/panel/employ/Resume.vue";
+import PanelResumes from "./components/panel/employ/Resumes";
+import PanelResume from "./components/panel/employ/Resume";
 
-import PanelTeachers from "./components/panel/teacher/Teachers.vue";
-import PanelTeacherCreate from "./components/panel/teacher/TeacherCreate.vue";
-import PanelTeacherEdit from "./components/panel/teacher/TeacherEdit.vue";
-import PanelTeacher from "./components/panel/teacher/Teacher.vue";
+import PanelTeachers from "./components/panel/teacher/Teachers";
+import PanelTeacherCreate from "./components/panel/teacher/TeacherCreate";
+import PanelTeacherEdit from "./components/panel/teacher/TeacherEdit";
+import PanelTeacher from "./components/panel/teacher/Teacher";
 
-// import PanelSlide from "./components/article/Slide.vue";
+// import PanelSlide from "./components/article/Slide";
+// import PanelResumes from "./components/panel/employ/Resumes";
+// import PanelResume from "./components/panel/employ/Resume";
+import PanelProjects from "./components/panel/project/Projects";
+import PanelProjectCreate from "./components/panel/project/ProjectCreate";
+import PanelProjectEdit from "./components/panel/project/ProjectEdit";
+import PanelProject from "./components/panel/project/Project";
 
-// import PanelResumes from "./components/panel/employ/Resumes.vue";
-// import PanelResume from "./components/panel/employ/Resume.vue";
+import PanelOrders from "./components/panel/order/Orders";
+import PanelOrderCreate from "./components/panel/order/OrderCreate";
+import PanelOrderEdit from "./components/panel/order/OrderEdit";
+import PanelOrder from "./components/panel/order/Order";
 
-import PanelProjects from "./components/panel/project/Projects.vue";
-import PanelProjectCreate from "./components/panel/project/ProjectCreate.vue";
-import PanelProjectEdit from "./components/panel/project/ProjectEdit.vue";
-import PanelProject from "./components/panel/project/Project.vue";
+import PanelProfile from "./components/panel/admin/Profile";
+import PanelAdmins from "./components/panel/admin/Admins";
+import PanelFinance from "./components/panel/finance/Finance";
+import PanelError404 from "./components/panel/error/Error404";
 
-import PanelOrders from "./components/panel/order/Orders.vue";
-import PanelOrderCreate from "./components/panel/order/OrderCreate.vue";
-import PanelOrderEdit from "./components/panel/order/OrderEdit.vue";
-import PanelOrder from "./components/panel/order/Order.vue";
-
-import PanelProfile from "./components/panel/admin/Profile.vue";
-import PanelAdmins from "./components/panel/admin/Admins.vue";
-import PanelFinance from "./components/panel/finance/Finance.vue";
-import PanelError404 from "./components/panel/error/Error404.vue";
-
-import PanelCourses from "./components/panel/course/Courses.vue";
-import PanelCourseCreate from "./components/panel/course/CourseCreate.vue";
-import PanelCourseEdit from "./components/panel/course/CourseEdit.vue";
-import PanelCourse from "./components/panel/course/Course.vue";
-import PanelCourseCategories from "./components/panel/course/CourseCategories.vue";
-
-import Testi from "./components/panel/testi";
+import PanelCourses from "./components/panel/course/Courses";
+import PanelCourseCreate from "./components/panel/course/CourseCreate";
+import PanelCourseEdit from "./components/panel/course/CourseEdit";
+import PanelCourse from "./components/panel/course/Course";
+import PanelCourseCategories from "./components/panel/course/CourseCategories";
 
 
 const routes = [
@@ -162,23 +159,23 @@ const routes = [
 
 
     //panel
-    {
-        path: "/panel/testi",
-        name: "Testi",
-        component: Testi,
-    },
+
     {
         path: "/panel",
         // name: "PanelHome",
         component: () => import(/* webpackChunkName: "home" */ '../js/components/panel/Home'),
 
-// component: PanelHome,
     },
-
+    {
+        path: "/panel/test",
+        component: () => import(/* webpackChunkName: "test" */ '../js/components/panel/product/ProductsT'),
+        params: true
+    },
     {
         path: "/panel/products",
-        name: "PanelProducts",
         component: () => import(/* webpackChunkName: "products" */ '../js/components/panel/product/Products'),
+        params: true,
+        props: true,
 
         // component: PanelProducts,
     },
@@ -320,6 +317,13 @@ const routes = [
         path: "/panel/slides",
         name: "PanelSlides",
         component: () => import(/* webpackChunkName: "PanelSlides" */ '../js/components/panel/slide/Slides'),
+
+        // component: PanelSlides,
+    },
+    {
+        path: "/panel/icon",
+        name: "PanelIcon",
+        component: () => import(/* webpackChunkName: "PanelIcon" */ '../js/components/panel/icon/Icon'),
 
         // component: PanelSlides,
     },

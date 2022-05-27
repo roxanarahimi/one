@@ -24,14 +24,37 @@ class ImageController extends Controller
     function resizeImage($path, $name)
     {
         $image_name = $path . $name;
-            //main
-            $image = imagecreatefromjpeg($image_name);
+        //main
+        $image = imagecreatefromjpeg($image_name);
 //            $imgResized = imagescale($image, 1000, 563);
 //            imagejpeg($imgResized, $image_name);
-            //thumb
+        //thumb
 //            $imgResized = imagescale($image, 400, 225);
-            $image_name = str_replace('.jpg', '_thumb.jpg', $image_name);
+        $image_name = str_replace('.jpg', '_thumb.jpg', $image_name);
 //            imagejpeg($imgResized, $image_name);
+    }
+
+    function makeIconPack(Request $request)
+    {
+        $path = '';
+        $name = 'icon.png';
+        $this->uploadImage($request['image'], $name, $path);
+
+        $image_name = $path . $name;
+        //main
+        $image = imagecreatefrompng($image_name);
+        $imgResized = imagescale($image, 100, 100);
+        imagepng($imgResized, $image_name);
+
+        // icon pack
+        $imgResized64 = imagescale($image, 64, 64);
+        $image_name = str_replace('.png', '64x64.png', $image_name);
+        imagejpeg($imgResized64, $image_name);
+
+        $imgResized32 = imagescale($image, 32, 32);
+        $image_name = str_replace('.png', '32x32.png', $image_name);
+        imagejpeg($imgResized32, $image_name);
+        //TODO
     }
 
 }

@@ -1,5 +1,6 @@
 body, html {
     font-family: 'IranSans'; /*direction: rtl !important;*/
+    /*font-family: 'Vazir'; !*direction: rtl !important;*!*/
 }
 
 .en {
@@ -53,10 +54,9 @@ tr:last-child td {
     border: none !important;
 }
 
-tr td:first-child, tr td:last-child {
-    width: 35px;
-    /*background-color: #2d3748;*/
-}
+/*tr td:first-child, tr td:last-child {*/
+/*    width: 35px !important;*/
+/*}*/
 
 /*tr:last-child td, tr:last-child th{*/
 /*    border: none !important;*/

@@ -48,6 +48,7 @@ class ProductResource extends JsonResource
             "created_at" => date('Y-m-d', strtotime($this->created_at)),
             "updated_at" => date('Y-m-d', strtotime($this->updated_at)),
 
+
         ];
     }
 }

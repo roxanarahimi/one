@@ -84,7 +84,7 @@
                             if (error.status === 422) {
                                 let errorList = Array(error.response.data);
                                 console.log(error.response.data);
-                                for (var i = 0; i < errorList.length; i++) {
+                                for (let i = 0; i < errorList.length; i++) {
                                     console.log('i', errorList[i]);
                                     this.errors = errorList[i];
                                 }

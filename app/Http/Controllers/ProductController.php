@@ -20,8 +20,23 @@ class ProductController extends Controller
 //        Redis::set('name','rox');
 //        return Redis::get('name');
         try {
-            $data = Product::all()->sortByDesc('id');
-            return response(ProductResource::collection($data), 200);
+//            $data = Product::all()->sortByDesc('id');
+//            return response(ProductResource::collection($data), 200);
+            $perPage = 2;
+            $data = Product::paginate($perPage);
+//            return $data;
+            $pages_count = ceil($data->total()/$perPage);
+            $labels = [];
+            for ($i=1; $i <= $pages_count; $i++){
+                (array_push($labels,$i));
+            }
+            return response([
+                "data"=>ProductResource::collection($data),
+                "pages"=>$data->total()/$perPage,
+                "total"=> $data->total(),
+                "labels"=> $labels
+
+            ], 200);
         } catch (\Exception $exception) {
             return response($exception);
 
@@ -32,7 +47,7 @@ class ProductController extends Controller
     {
 
         try {
-            $data = Product::all()->sortByDesc('id')->take(3);
+            $data = Product::all()->sortByDesc('id')->take(4);
             return response(ProductResource::collection($data), 200);
         } catch (\Exception $exception) {
             return response($exception);
@@ -167,7 +182,7 @@ class ProductController extends Controller
             $images = '';
             for ($i = 0; $i < count($requestImages); $i++) {
                 if ($requestImages[$i][1]) {
-                    $name = 'product_' . $productId . '_' . uniqid() . '.jpg';
+                    $name = 'product_' . $productId . '_' . uniqid() . '.jpgjpg';
                     $image_path = (new ImageController)->uploadImage($requestImages[$i][1], $name, 'images/');
                     (new ImageController)->resizeImage('images/', $name);
                     $images = $images . '/' . $image_path . ',';
@@ -270,12 +285,12 @@ class ProductController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Product $product)
     {
-        $data = Product::findOrFail($request['id']);
+
         try {
-            $data->sizes->each->delete();
-            $data->delete();
+            $product->sizes->each->delete();
+            $product->delete();
             return response('product deleted', 200);
         } catch (\Exception $exception) {
             return response($exception);

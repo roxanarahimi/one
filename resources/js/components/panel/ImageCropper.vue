@@ -55,7 +55,7 @@ export default {
     name: 'ImageCropper',
     events: ['imageCropped'],
     // props: {name: String, isRequired: Boolean, hasCaption: Boolean, src: String, caption: String, aspect: Number},
-    props: ['name', 'isRequired', 'hasCaption', 'aspect', 'src'],
+    props: ['name', 'isRequired', 'hasCaption', 'aspect', 'src','isPng'],
     setup(_props, {emit}) {
 
         const imageInput = ref(null);
@@ -75,7 +75,10 @@ export default {
                 //     // console.log('blob', blob);
                 //     emit('imageCropped', blob);
                 // }, 'image/jpeg');
-                destination.value = cropper.getCroppedCanvas({fillColor: '#fff'})?.toDataURL('image/jpeg');
+                _props.isPng === true ?
+                (destination.value = cropper.getCroppedCanvas({fillColor: 'transparent'})?.toDataURL('image/png'))
+                :
+                (destination.value = cropper.getCroppedCanvas({fillColor: '#fff'})?.toDataURL('image/jpeg'))
                 document.getElementById("preview_" + _props.name)?.setAttribute('src', destination.value);
                 document.getElementById('Image_' + _props.name + '_code').setAttribute('value', destination.value);
                 // document.getElementById('Image_'+ _props.name +'_code').innerText = destination.value;

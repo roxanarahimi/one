@@ -21,7 +21,7 @@ class AuthController extends Controller
 //        $http = new \GuzzleHttp\user;
 //
 //        try {
-//            $response = $http->post('http://127.0.0.1:8000/oauth/token', [
+//            $response = $http->post;('http://127.0.0.1:8000/oauth/token', [
 //                'form_params' => [
 //                    'grant_type' => 'password',
 //                    'client_id' => 2,

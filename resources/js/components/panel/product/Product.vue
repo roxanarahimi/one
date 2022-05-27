@@ -177,7 +177,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .color-span {
     width: 20px;
     height: 20px;

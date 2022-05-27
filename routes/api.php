@@ -131,6 +131,16 @@ Route::controller(App\Http\Controllers\SlideController::class)->group(function (
         Route::get('/active/slide/{slide}', 'activeToggle');
     });
 });
+
+Route::controller(App\Http\Controllers\ImageController::class)->group(function () {
+
+    Route::prefix('panel')->group(function () {
+//        Route::get('/icon', 'index');
+//        Route::get('/icon/{icon}', 'show');
+//        Route::post('/icon', 'store');
+        Route::post('/icon', 'makeIconPack');
+    });
+});
 //shop
 Route::controller(App\Http\Controllers\ProductController::class)->group(function () {
 
@@ -145,7 +155,7 @@ Route::controller(App\Http\Controllers\ProductController::class)->group(function
         Route::get('/product/{product}', 'show');
         Route::post('/product', 'store');
         Route::post('/product/{product}', 'update');
-        Route::post('/delete/product', 'destroy');
+        Route::get('/delete/product/{product}', 'destroy');
 
         Route::get('/active/product/{product}', 'activeToggle');
         Route::get('/latest/product', 'latest');

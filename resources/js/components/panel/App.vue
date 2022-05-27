@@ -14,38 +14,37 @@
 
     </div>
 
-    <div v-if = "this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'" id = "page" class = "d-flex">
+    <div  id = "page" class = "d-flex bg-dark" v-if = "this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'">
 
-        <div id="sidebar-wrapper" class="bg-dark">
-            <div id = "sidebar" class = "bg-dark text-light pt-2">
+        <div id="sidebar-wrapper" class=" bg-dark" >
+            <div id = "sidebar" class = "bg-dark text-light">
                 <!--            <h4 class=" my-3 text-center ">پنل مدیریت</h4>-->
-                <ul class = "nav nav-pills flex-column mb-auto mt-5">
+                <ul class = "nav nav-pills flex-column mb-auto ">
                     <li class = "nav-item" id = "">
                         <router-link to = "/panel" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel' }">
-                            <i class = "bi bi-house-fill me-2"></i>
-                            <span class = "sidebar_title">خانه</span>
+<!--                            <i class = "bi bi-house-fill me-2"></i>-->
+<!--                            <span class = "sidebar_title">خانه</span> -->
+                            <i class = "bi bi-speedometer2 me-2"></i>
+                            <span class = "sidebar_title">داشبورد</span>
                         </router-link>
                     </li>
-                    <li>
-                        <router-link to = "/panel/slides" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/slides'}">
-                            <i class = "bi bi-image-fill me-2"></i>
-                            <span class = "sidebar_title">اسلاید ها</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to = "/panel/orders" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/orders'}">
-                            <svg xmlns = "http://www.w3.org/2000/svg" width = "23" height = "23" fill = "currentColor" class = "bi bi-box2-heart-fill me-2" viewBox = "0 0 16 16">
-                                <path d = "M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4h-8.5ZM8.5 4h6l.5.667V5H1v-.333L1.5 4h6V1h1v3ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
-                            </svg>
-                            <span class = "sidebar_title">سفارش ها</span>
-                        </router-link>
-                    </li>
+
+
+
                     <li>
                         <router-link to = "/panel/products" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/products'}">
                             <i class = "bi bi-grid-fill me-2"></i>
                             <span class = "sidebar_title">محصولات</span>
                         </router-link>
                     </li>
+                    <li>
+                    <router-link to = "/panel/orders" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/orders'}">
+                        <svg xmlns = "http://www.w3.org/2000/svg" width = "23" height = "23" fill = "currentColor" class = "bi bi-box2-heart-fill me-2" viewBox = "0 0 16 16">
+                            <path d = "M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4h-8.5ZM8.5 4h6l.5.667V5H1v-.333L1.5 4h6V1h1v3ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                        </svg>
+                        <span class = "sidebar_title">سفارش ها</span>
+                    </router-link>
+                </li>
                     <li>
                         <router-link to = "/panel/categories/product" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/categories/product'}">
                             <i class = "bi bi-tags-fill me-2"></i>
@@ -66,10 +65,23 @@
                     </li>
                     <li>
                         <router-link to = "/panel/projects" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/projects'}">
-                            <i class = "bi bi-journals me-2"></i>
+<!--                            <i class = "bi bi-journals me-2"></i>-->
+                            <i class = "bi bi-stack me-2"></i>
                             <span class = "sidebar_title">پروژه ها</span>
                         </router-link>
                     </li>
+                    <li>
+                        <router-link to = "/panel/slides" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/slides'}">
+                            <i class = "bi bi-collection-fill me-2"></i>
+                            <span class = "sidebar_title">اسلاید ها</span>
+                        </router-link>
+                    </li>
+<!--                    <li>-->
+<!--                        <router-link to = "/panel/icon" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/icon'}">-->
+<!--                            <i class = "bi bi-heptagon-fill me-2"></i>-->
+<!--                            <span class = "sidebar_title">لوگو/ آیکون</span>-->
+<!--                        </router-link>-->
+<!--                    </li>-->
 <!--                    <li>-->
 <!--                        <router-link to = "/panel/teachers" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/teachers'}">-->
 <!--                           <i class="me-2">-->
@@ -229,6 +241,7 @@
                     item.classList.remove('d-none');
                 });
             }
+            // this.checkToken();
         },
         mounted() {
             this.sideBarToggle();
@@ -240,7 +253,7 @@
             document.querySelectorAll('form').forEach((item) => {
                 item.setAttribute('autocomplete', 'off');
             });
-            this.persianDate();
+            // this.persianDate();
         },
         methods: {
             handleResize() {
@@ -331,6 +344,7 @@
                             this.logout();
                         }
                     });
+                console.log('done')
             },
             persianDate(){//date
                 const date = new Date();
@@ -352,10 +366,11 @@
     overflow-y: scroll;
     overflow-x: hidden;
     direction: ltr;
+    margin-top: 3.5rem ;
 }
 #sidebar{
     direction: rtl;
-    min-height: 100vh;
+    min-height: calc(100vh - 3.5rem);
 }
 .zoom-enter-from,
 .zoom-leave-to {
@@ -381,4 +396,23 @@
     transition: all 1s ease;
 }
 
+tr:first-child td, tr:last-child td, tr:first-child th, tr:last-child th {
+    width: 35px !important;
+}
+.date_cell {
+    direction: ltr !important;
+    text-align: right !important;
+}
+
+.text_cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 30ch;
+}
+
+.active_cell {
+    width: 60px;
+    text-align: center;
+}
 </style>

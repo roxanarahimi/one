@@ -23,7 +23,7 @@ class ProductController extends Controller
 //            $data = Product::all()->sortByDesc('id');
 //            return response(ProductResource::collection($data), 200);
             $perPage = 2;
-            $data = Product::paginate($perPage);
+            $data = Product::latest()->paginate($perPage);
 //            return $data;
             $pages_count = ceil($data->total()/$perPage);
             $labels = [];

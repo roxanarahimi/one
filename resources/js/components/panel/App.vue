@@ -22,9 +22,9 @@
                 <ul class = "nav nav-pills flex-column mb-auto ">
                     <li class = "nav-item" id = "">
                         <router-link to = "/panel" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel' }">
-<!--                            <i class = "bi bi-house-fill me-2"></i>-->
+<!--                            <i title="خانه"  class = "bi bi-house-fill me-2"></i>-->
 <!--                            <span class = "sidebar_title">خانه</span> -->
-                            <i class = "bi bi-speedometer2 me-2"></i>
+                            <i title="داشبورد"  class = "bi bi-speedometer2 me-2"></i>
                             <span class = "sidebar_title">داشبورد</span>
                         </router-link>
                     </li>
@@ -33,47 +33,47 @@
 
                     <li>
                         <router-link to = "/panel/products" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/products'}">
-                            <i class = "bi bi-grid-fill me-2"></i>
+                            <i title="محصولات"  class = "bi bi-grid-fill me-2"></i>
                             <span class = "sidebar_title">محصولات</span>
                         </router-link>
                     </li>
                     <li>
-                    <router-link to = "/panel/orders" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/orders'}">
-                        <svg xmlns = "http://www.w3.org/2000/svg" width = "23" height = "23" fill = "currentColor" class = "bi bi-box2-heart-fill me-2" viewBox = "0 0 16 16">
+                    <router-link  to = "/panel/orders" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/orders'}">
+                        <i title="سفارش ها"><svg   xmlns = "http://www.w3.org/2000/svg" width = "23" height = "23" fill = "currentColor" class = "bi bi-box2-heart-fill me-2" viewBox = "0 0 16 16">
                             <path d = "M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4h-8.5ZM8.5 4h6l.5.667V5H1v-.333L1.5 4h6V1h1v3ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
-                        </svg>
+                        </svg></i>
                         <span class = "sidebar_title">سفارش ها</span>
                     </router-link>
                 </li>
                     <li>
                         <router-link to = "/panel/categories/product" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/categories/product'}">
-                            <i class = "bi bi-tags-fill me-2"></i>
+                            <i title="دسته محصولات"  class = "bi bi-tags-fill me-2"></i>
                             <span class = "sidebar_title">دسته محصولات</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to = "/panel/articles" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/articles'}">
-                            <i class = "bi bi-chat-left-text-fill me-2"></i>
+                            <i title="مطالب"  class = "bi bi-chat-left-text-fill me-2"></i>
                             <span class = "sidebar_title">مطالب</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to = "/panel/categories/article" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/categories/article'}">
-                            <i class = "bi bi-tags-fill me-2"></i>
+                            <i title="دسته مطالب"  class = "bi bi-tags-fill me-2"></i>
                             <span class = "sidebar_title">دسته مطالب</span>
                         </router-link>
                     </li>
-                    <li>
-                        <router-link to = "/panel/projects" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/projects'}">
-<!--                            <i class = "bi bi-journals me-2"></i>-->
-                            <i class = "bi bi-stack me-2"></i>
-                            <span class = "sidebar_title">پروژه ها</span>
-                        </router-link>
-                    </li>
+<!--                    <li>-->
+<!--                        <router-link to = "/panel/projects" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/projects'}">-->
+<!--&lt;!&ndash;                            <i class = "bi bi-journals me-2"></i>&ndash;&gt;-->
+<!--                            <i title="پروژه ها"  class = "bi bi-stack me-2"></i>-->
+<!--                            <span class = "sidebar_title">پروژه ها</span>-->
+<!--                        </router-link>-->
+<!--                    </li>-->
                     <li>
                         <router-link to = "/panel/slides" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/slides'}">
-                            <i class = "bi bi-collection-fill me-2"></i>
-                            <span class = "sidebar_title">اسلاید ها</span>
+                            <i title="اسلاید ها" class = "bi bi-collection-fill me-2"></i>
+                            <span class = "sidebar_title"></span>
                         </router-link>
                     </li>
 <!--                    <li>-->
@@ -83,61 +83,61 @@
 <!--                        </router-link>-->
 <!--                    </li>-->
 <!--                    <li>-->
-<!--                        <router-link to = "/panel/teachers" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/teachers'}">-->
+<!--                        <router-link    to = "/panel/teachers" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/teachers'}">-->
 <!--                           <i class="me-2">-->
-<!--                               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-video3" viewBox="0 0 16 16">-->
+<!--                            <i title="آموزگاران">   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-video3" viewBox="0 0 16 16">-->
 <!--                                   <path d="M14 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm-6 5.7c0 .8.8.8.8.8h6.4s.8 0 .8-.8-.8-3.2-4-3.2-4 2.4-4 3.2Z"/>-->
 <!--                                   <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h5.243c.122-.326.295-.668.526-1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v7.81c.353.23.656.496.91.783.059-.187.09-.386.09-.593V4a2 2 0 0 0-2-2H2Z"/>-->
-<!--                               </svg>-->
+<!--                               </svg></i>>-->
 <!--                           </i>-->
 <!--                            <span class = "sidebar_title">آموزگاران</span>-->
 <!--                        </router-link>-->
 <!--                    </li>-->
 <!--                    <li>-->
 <!--                        <router-link to = "/panel/courses" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/courses'}">-->
-<!--                            <i class="bi bi-easel-fill me-2"></i>-->
+<!--                            <i title="دوره ها"  class="bi bi-easel-fill me-2"></i>-->
 <!--                            <span class = "sidebar_title">دوره ها</span>-->
 <!--                        </router-link>-->
 <!--                    </li>-->
 <!--                    <li>-->
 <!--                    <router-link to = "/panel/categories/course" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/categories/course'}">-->
-<!--                        <i class = "bi bi-tags-fill me-2"></i>-->
+<!--                        <i title="دسته دوره ها"  class = "bi bi-tags-fill me-2"></i>-->
 <!--                        <span class = "sidebar_title">دسته دوره ها</span>-->
 <!--                    </router-link>-->
 <!--                </li>-->
                     <li>
                         <router-link to = "/panel/resumes" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/resumes'}">
-                            <i class = "bi bi-person-lines-fill me-2"></i>
+                            <i title="رزومه ها"  class = "bi bi-person-lines-fill me-2"></i>
                             <span class = "sidebar_title">رزومه ها</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to = "/panel/users" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/users'}">
-                            <i class = "bi bi-people-fill me-2"></i>
+                            <i title="کاربران"  class = "bi bi-people-fill me-2"></i>
                             <span class = "sidebar_title">کاربران</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link to = "/panel/finance" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/finance'}">
-                            <i class = "bi bi-currency-exchange me-2"></i>
+                            <i title="مالی"  class = "bi bi-currency-exchange me-2"></i>
                             <span class = "sidebar_title">مالی</span>
                         </router-link>
                     </li>
 <!--                    <li>-->
 <!--                        <router-link to = "/panel/reports" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/reports'}">-->
-<!--                            <i class = "bi bi-bar-chart-line-fill me-2"></i>-->
+<!--                            <i title="گزارش ها"  class = "bi bi-bar-chart-line-fill me-2"></i>-->
 <!--                            <span class = "sidebar_title">گزارش ها</span>-->
 <!--                        </router-link>-->
 <!--                    </li>-->
                     <li>
                         <router-link to = "/panel/admins" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/admins'}">
-                            <i class = "bi bi-person-circle me-2"></i>
+                            <i title="مدیران"  class = "bi bi-person-circle me-2"></i>
                             <span class = "sidebar_title">مدیران</span>
                         </router-link>
                     </li>
 <!--                    <li>-->
 <!--                        <router-link to = "/panel/settings" class = "nav-link text-white" :class = "{active: $route.fullPath ==='/panel/settings'}">-->
-<!--                            <i class = "bi bi-gear-fill me-2"></i>-->
+<!--                            <i title="تنضیمات"   class = "bi bi-gear-fill me-2"></i>-->
 <!--                            <span class = "sidebar_title">تنضیمات</span>-->
 <!--                        </router-link>-->
 <!--                    </li>-->

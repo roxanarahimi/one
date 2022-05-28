@@ -1,7 +1,8 @@
 <template>
     <p class="h4 mb-5">جدیدترین محصولات</p>
     <div class="row p-0 m-0 justify-content-between mt-3" v-if="allData !== null">
-        <router-link  class="col-12 col-md-6 col-lg-3 col-xl-3 justify-content-center  pb-2 mb-3  a" v-for="dataP in allData" :key="dataP.id" :to="'/panel/product/'+ dataP.id">
+        <router-link  class="col-12 col-md-6 col-lg-3 col-xl-3 justify-content-center  pb-2 mb-3  a"
+                      v-for="dataP in allData" :key="dataP.id" :to="'/panel/product/'+ dataP.id">
             <div class="card h-100">
                 <div class="img rounded-top ">
                     <transition  name="zoom" mode="in-out" appear>
@@ -29,7 +30,7 @@ export default {
     name: "ProductsLatest",
     async setup() {
         const allData = ref(null)
-        await axios.get('http://127.0.0.1:8000/api/panel/latest/product')
+        await axios.get('/api/panel/latest/product')
             .then((response) => {
                 // setTimeout(()=>{
                 allData.value = response.data;

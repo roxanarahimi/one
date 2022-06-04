@@ -14,7 +14,28 @@ class ResumeController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $perPage = 4;
+            $data = Resume::latest()->paginate($perPage);
+            $pages_count = ceil($data->total()/$perPage);
+            $labels = [];
+            for ($i=1; $i <= $pages_count; $i++){
+                (array_push($labels,$i));
+            }
+            return response([
+//                "data"=>ResumeResource::collection($data),
+                "data"=>$data,
+                "pages"=>$pages_count,
+                "total"=> $data->total(),
+                "labels"=> $labels,
+                "title"=> 'رزومه ها',
+                "tooltip_new"=> '',
+
+            ], 200);
+        } catch (\Exception $exception) {
+            return response($exception);
+
+        }
     }
 
     /**

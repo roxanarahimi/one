@@ -180,7 +180,7 @@
 </template>
 
 <script>
-import ImageCropper from '../ImageCropper';
+import ImageCropper from '../../components/ImageCropper';
 import App from '../App';
 import LoaderSm from '../../site/components/Loader-sm'
 // import {toArray} from "../../../public/cropperjs/src/js/utilities";

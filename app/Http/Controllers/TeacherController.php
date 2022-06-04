@@ -12,8 +12,22 @@ class TeacherController extends Controller
     public function index()
     {
         try {
-            $data = Teacher::all()->sortByDesc('id');
-            return response(TeacherResource::collection($data), 200);
+           $perPage = 4;
+            $data = Teacher::latest()->paginate($perPage);
+            $pages_count = ceil($data->total()/$perPage);
+            $labels = [];
+            for ($i=1; $i <= $pages_count; $i++){
+                (array_push($labels,$i));
+            }
+            return response([
+                "data"=>TeacherResource::collection($data),
+                "pages"=>$pages_count,
+                "total"=> $data->total(),
+                "labels"=> $labels,
+                "title"=> 'آموزگاران',
+                "tooltip_new"=> 'ثبت آموزگار جدید',
+
+            ], 200);
         } catch (\Exception $exception) {
             return response($exception);
 

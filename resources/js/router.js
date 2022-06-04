@@ -23,52 +23,33 @@ import Email from "./components/site/views/client/Email";
 
 //panel
 import PanelLogin from "./components/panel/admin/Login";
-import PanelHome from "./components/panel/Home";
-import PanelProducts from "./components/panel/product/Products";
-import PanelProductCreate from "./components/panel/product/ProductCreate";
 import PanelProductEdit from "./components/panel/product/ProductEdit";
 import PanelProduct from "./components/panel/product/Product";
 import PanelProductCategories from "./components/panel/product/ProductCategories";
-import PanelArticles from "./components/panel/article/Articles";
 import PanelArticleCreate from "./components/panel/article/ArticleCreate";
 import PanelArticleEdit from "./components/panel/article/ArticleEdit";
 import PanelArticle from "./components/panel/article/Article";
 import PanelArticleCategories from "./components/panel/article/ArticleCategories";
-import PanelUsers from "./components/panel/user/Users";
 import PanelUserEdit from "./components/panel/user/UserEdit";
-import PanelUser from "./components/panel/user/User";
-import PanelSlides from "./components/panel/slide/Slides";
 import PanelSlideCreate from "./components/panel/slide/SlideCreate";
 import PanelSlideEdit from "./components/panel/slide/SlideEdit";
-import PanelIcon from "./components/panel/icon/Icon";
-
-import PanelResumes from "./components/panel/employ/Resumes";
 import PanelResume from "./components/panel/employ/Resume";
 
-import PanelTeachers from "./components/panel/teacher/Teachers";
 import PanelTeacherCreate from "./components/panel/teacher/TeacherCreate";
 import PanelTeacherEdit from "./components/panel/teacher/TeacherEdit";
 import PanelTeacher from "./components/panel/teacher/Teacher";
 
-// import PanelSlide from "./components/article/Slide";
-// import PanelResumes from "./components/panel/employ/Resumes";
-// import PanelResume from "./components/panel/employ/Resume";
-import PanelProjects from "./components/panel/project/Projects";
 import PanelProjectCreate from "./components/panel/project/ProjectCreate";
 import PanelProjectEdit from "./components/panel/project/ProjectEdit";
 import PanelProject from "./components/panel/project/Project";
 
-import PanelOrders from "./components/panel/order/Orders";
 import PanelOrderCreate from "./components/panel/order/OrderCreate";
 import PanelOrderEdit from "./components/panel/order/OrderEdit";
 import PanelOrder from "./components/panel/order/Order";
 
 import PanelProfile from "./components/panel/admin/Profile";
-import PanelAdmins from "./components/panel/admin/Admins";
-import PanelFinance from "./components/panel/finance/Finance";
 import PanelError404 from "./components/panel/error/Error404";
 
-import PanelCourses from "./components/panel/course/Courses";
 import PanelCourseCreate from "./components/panel/course/CourseCreate";
 import PanelCourseEdit from "./components/panel/course/CourseEdit";
 import PanelCourse from "./components/panel/course/Course";
@@ -161,23 +142,22 @@ const routes = [
     //panel
 
     {
+        // {
+        //     path: "/panel/test",
+        //     component: () => import(/* webpackChunkName: "test" */ '../js/components/panel/product/ProductsT'),
+        //     params: true
+        // },
         path: "/panel",
         // name: "PanelHome",
         component: () => import(/* webpackChunkName: "home" */ '../js/components/panel/Home'),
 
     },
     {
-        path: "/panel/test",
-        component: () => import(/* webpackChunkName: "test" */ '../js/components/panel/product/ProductsT'),
-        params: true
-    },
-    {
         path: "/panel/products",
-        component: () => import(/* webpackChunkName: "products" */ '../js/components/panel/product/Products'),
+        component: () => import(/* webpackChunkName: "productAllData" */  './components/panel/allData'),
+        name: "productAllData",
         params: true,
         props: true,
-
-        // component: PanelProducts,
     },
     {
         path: "/panel/new/product",
@@ -204,9 +184,12 @@ const routes = [
     },
 
     {
+
         path: "/panel/orders",
-        name: "PanelOrders",
-        component: () => import(/* webpackChunkName: "PanelOrders" */ '../js/components/panel/order/Orders'),
+        component: () => import(/* webpackChunkName: "orderAllData" */  './components/panel/allData'),
+        name: 'orderAllData',
+        params: true,
+        props: true,
 
         // component: PanelOrders,
     },
@@ -230,10 +213,11 @@ const routes = [
 
     {
         path: "/panel/articles",
-        name: "PanelArticles",
-        component: () => import(/* webpackChunkName: "PanelArticles" */ '../js/components/panel/article/Articles'),
+        component: () => import(/* webpackChunkName: "AllData" */ './components/panel/allData'),
+        name: 'articleAllData',
+        params: true,
+        props: true
 
-        // component: PanelArticles,
     },
     {
         path: "/panel/new/article",
@@ -260,10 +244,10 @@ const routes = [
 
     {
         path: "/panel/projects",
-        name: "PanelProjects",
-        component: () => import(/* webpackChunkName: "PanelProjects" */ '../js/components/panel/project/Projects'),
-
-        // component: PanelProjects,
+        component: () => import(/* webpackChunkName: "projectAllData" */  './components/panel/allData'),
+        name: "projectAllData",
+        params: true,
+        props: true
     },
     {
         path: "/panel/new/project",
@@ -285,10 +269,11 @@ const routes = [
 
     {
         path: "/panel/courses",
-        name: "PanelCourses",
-        component: () => import(/* webpackChunkName: "PanelCourses" */ '../js/components/panel/course/Courses'),
+        component: () => import(/* webpackChunkName: "courseAllData" */ './components/panel/allData'),
+        name: "courseAllData",
+        params: true,
+        props: true
 
-        // component: PanelCourses,
     },
     {
         path: "/panel/new/course",
@@ -343,14 +328,17 @@ const routes = [
     {
         path: "/panel/user/:id",
         name: "PanelUser",
-        component: () => import(/* webpackChunkName: "PanelUsers" */ '../js/components/panel/user/Users'),
+        component: () => import(/* webpackChunkName: "PanelUser" */ '../js/components/panel/user/User'),
 
         // component: PanelUser,
     },
     {
         path: "/panel/users",
-        name: "PanelUsers",
-        component: PanelUsers,
+        component: () => import(/* webpackChunkName: "userAllData" */  './components/panel/allData'),
+        name: 'userAllData',
+        params: true,
+        props: true,
+
     },
     {
         path: "/panel/edit/user/:id",
@@ -368,54 +356,31 @@ const routes = [
         name: "PanelProfile",
         component: PanelProfile,
     },
-    {
-        path: "/panel/users",
-        name: "PanelUsers",
-        component: PanelUsers,
-    },
+
 
     {
         path: "/panel/admins",
-        name: "PanelAdmins",
-        component: () => import(/* webpackChunkName: "PanelAdmins" */ '../js/components/panel/admin/Admins'),
+        component: () => import(/* webpackChunkName: "adminAllData" */  './components/panel/allData'),
+        name: "adminAllData",
+        params: true,
+        props: true
 
-        // component: PanelAdmins,
-    },
-    {
-        path: "/panel/admins",
-        name: "PanelAdmins",
-        component: PanelAdmins,
-    },
-    {
-        path: "/panel/admins",
-        name: "PanelAdmins",
-        component: PanelAdmins,
-    },
-    {
-        path: "/panel/admins",
-        name: "PanelAdmins",
-        component: PanelAdmins,
-    },
-    {
-        path: "/panel/admins",
-        name: "PanelAdmins",
-        component: PanelAdmins,
     },
 
     {
         path: "/panel/finance",
-        name: "PanelFinance",
-        component: () => import(/* webpackChunkName: "PanelFinances" */ '../js/components/panel/finance/Finance'),
-
-        // component: PanelFinance,
+        component: () => import(/* webpackChunkName: "financeAllData" */  './components/panel/allData'),
+        name: "financeAllData",
+        params: true,
+        props: true
     },
 
     {
         path: "/panel/resumes",
-        name: "PanelResumes",
-        component: () => import(/* webpackChunkName: "PanelResumes" */ '../js/components/panel/employ/Resumes'),
-
-        // component: PanelResumes,
+        component: () => import(/* webpackChunkName: "resumeAllData" */ './components/panel/allData'),
+        name: "resumeAllData",
+        params: true,
+        props: true,
     },
     {
         path: "/panel/resume/:id",
@@ -424,10 +389,10 @@ const routes = [
     },
     {
         path: "/panel/teachers",
-        name: "PanelTeachers",
-        component: () => import(/* webpackChunkName: "PanelTeachers" */ '../js/components/panel/teacher/Teachers'),
-
-        // component: PanelTeachers,
+        component: () => import(/* webpackChunkName: "teacherAllData" */ './components/panel/allData'),
+        name: "teacherAllData",
+        params: true,
+        props: true
     },
     {
         path: "/panel/new/teacher",

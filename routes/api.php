@@ -45,12 +45,12 @@ Route::controller(App\Http\Controllers\AuthController::class)->group(function ()
 Route::controller(App\Http\Controllers\UserController::class)->group(function () {
 
     Route::post('/update/user', 'updateProfile');
-    Route::get('/users', 'indexUsers');
+    Route::get('/user', 'indexUsers');
     Route::get('/admins', 'indexAdmins');
     Route::get('/user/{user}', 'show');
     Route::post('/user', 'store');
     Route::post('/user/{user}', 'update');
-    Route::post('/delete/user', 'destroy');
+    Route::get('/delete/user/{user}', 'destroy');
 
 
     Route::get('/get/otp/{mobile}', 'getOtpNoRedis');//getOtp
@@ -64,18 +64,18 @@ Route::controller(App\Http\Controllers\UserController::class)->group(function ()
     Route::prefix('panel')->group(function () {
 
         Route::post('/update/user', 'updateProfile');
-        Route::get('/users', 'indexUsers');
+        Route::get('/user', 'indexUsers');
         Route::get('/user/{user}', 'show');
         Route::post('/user', 'store');
         Route::post('/user/{user}', 'update');
         Route::post('/delete/user', 'destroy');
 
         Route::post('/update/admin', 'updateProfile');
-        Route::get('/admins', 'indexAdmins');
+        Route::get('/admin', 'indexAdmins');
         Route::get('/admin/{admin}', 'show');
         Route::post('/admin', 'store');
         Route::post('/admin/{admin}', 'update');
-        Route::post('/delete/admin', 'destroy');
+        Route::get('/delete/admin/{admin}', 'destroy');
     });
 });
 Route::controller(App\Http\Controllers\UserAddressController::class)->group(function () {
@@ -227,7 +227,7 @@ Route::controller(App\Http\Controllers\ProjectController::class)->group(function
         Route::get('/project/{project}', 'show');
         Route::post('/project', 'store');
         Route::post('/project/{project}', 'update');
-        Route::post('/delete/project', 'destroy');
+        Route::get('/delete/project/{project}', 'destroy');
     });
 });
 Route::controller(App\Http\Controllers\ResumeController::class)->group(function () {
@@ -277,7 +277,7 @@ Route::controller(App\Http\Controllers\TeacherController::class)->group(function
         Route::get('/teacher/{teacher}', 'show');
         Route::post('/teacher', 'store');
         Route::post('/teacher/{teacher}', 'update');
-        Route::post('/delete/teacher', 'destroy');
+        Route::get('/delete/teacher/{teacher}', 'destroy');
         Route::get('/active/teacher/{teacher}', 'activeToggle');
         Route::get('/latest/teacher', 'latest');
     });

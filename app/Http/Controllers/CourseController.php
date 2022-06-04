@@ -13,8 +13,22 @@ class CourseController extends Controller
     public function index()
     {
         try {
-            $data = Course::all()->sortByDesc('id');
-            return response(CourseResource::collection($data), 200);
+            $perPage = 4;
+            $data = Course::latest()->paginate($perPage);
+            $pages_count = ceil($data->total()/$perPage);
+            $labels = [];
+            for ($i=1; $i <= $pages_count; $i++){
+                (array_push($labels,$i));
+            }
+            return response([
+                "data"=>CourseResource::collection($data),
+                "pages"=>$pages_count,
+                "total"=> $data->total(),
+                "labels"=> $labels,
+                "title"=> 'دوره ها',
+                "tooltip_new"=> 'ثبت دوره جدید',
+
+            ], 200);
         } catch (\Exception $exception) {
             return response($exception);
         }

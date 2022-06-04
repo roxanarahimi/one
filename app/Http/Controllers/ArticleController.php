@@ -12,8 +12,22 @@ class ArticleController extends Controller
     public function index()
     {
         try {
-            $data = Article::all()->sortByDesc('id');
-            return response(ArticleResource::collection($data), 200);
+            $perPage = 4;
+            $data = Article::latest()->paginate($perPage);
+            $pages_count = ceil($data->total()/$perPage);
+            $labels = [];
+            for ($i=1; $i <= $pages_count; $i++){
+                (array_push($labels,$i));
+            }
+            return response([
+                "data"=>ArticleResource::collection($data),
+                "pages"=>$pages_count,
+                "total"=> $data->total(),
+                "labels"=> $labels,
+                "title"=> 'مطالب',
+                "tooltip_new"=> 'ثبت مطلب جدید',
+
+            ], 200);
         } catch (\Exception $exception) {
             return response($exception->getMessage(), (integer)$exception->getCode());
 

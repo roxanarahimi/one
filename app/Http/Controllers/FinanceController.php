@@ -12,11 +12,25 @@ class FinanceController extends Controller
     public function index()
     {
         try {
-            $data = Finance::all()->sortByDesc('id');
-            return response(FinanceResource::collection($data), 200);
+                $perPage = 4;
+                $data = Finance::latest()->paginate($perPage);
+                $pages_count = ceil($data->total()/$perPage);
+                $labels = [];
+                for ($i=1; $i <= $pages_count; $i++){
+                    (array_push($labels,$i));
+                }
+                return response([
+                    "data"=>FinanceResource::collection($data),
+                    "pages"=>$pages_count,
+                    "total"=> $data->total(),
+                    "labels"=> $labels,
+                    "title"=> 'تراکنش ها',
+                    "tooltip_new"=> '',
+
+                ], 200);
+
         } catch (\Exception $exception) {
             return response($exception);
-
         }
     }
 

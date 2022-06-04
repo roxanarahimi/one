@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import ImageCropper from '../ImageCropper';
+import ImageCropper from '../../components/ImageCropper';
 import App from '../App';
 
 export default {

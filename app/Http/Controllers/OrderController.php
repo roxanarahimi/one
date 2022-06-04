@@ -20,8 +20,26 @@ class OrderController extends Controller
     public function index()
     {
         try {
-            $data = Order::all()->where('status', '!=', 'cart')->sortByDesc('id');
-            return response(OrderResource::collection($data), 200);
+
+//            $data = Order::all()->where('status', '!=', 'cart')->sortByDesc('id');
+//            return response(OrderResource::collection($data), 200);
+            $perPage = 1;
+            $data = Order::latest()->where('status', '!=', 'cart')->paginate($perPage);
+            $pages_count = ceil($data->total()/$perPage);
+            $labels = [];
+            for ($i=1; $i <= $pages_count; $i++){
+                (array_push($labels,$i));
+            }
+            return response([
+                "data"=>OrderResource::collection($data),
+                "pages"=>$pages_count,
+                "total"=> $data->total(),
+                "labels"=> $labels,
+                "title"=> 'سفارش ها',
+                "tooltip_new"=> '',
+
+            ], 200);
+
         } catch (\Exception $exception) {
             return response($exception);
         }

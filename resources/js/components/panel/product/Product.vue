@@ -111,7 +111,7 @@
 <script>
 import App from '../App';
 import Draggable from "vuedraggable";
-import Images from "../../Images";
+import Images from "../../components/Images";
 
 export default {
     components: {App, Draggable, Images},

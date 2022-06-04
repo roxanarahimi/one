@@ -1,12 +1,7 @@
 <template>
     <transition name="route" mode="out-in" appear>
         <section>
-            <h3 class="mb-5">{{ title }}
-                <router-link :to="'/panel/new/'+ model" class="text-dark">
-                    <span :title="tooltip_new" class="px-3 d-inline-block align-middle"><i
-                        class="bi bi-plus-circle-fill p-0 mt-2 m-0" style="font-size: 15px"></i></span>
-                </router-link>
-            </h3>
+
 
             <div class="row mt-3">
 <!--                <suspense>-->
@@ -41,8 +36,8 @@
 </template>
 <script>
 import App from './App';
-import {ref, onMounted} from 'vue';
-import Loader from "./Loader";
+import {ref, onMounted, onUpdated} from 'vue';
+import Loader from "../components/Loader";
 
 export default {
     components: {Loader, App},
@@ -89,6 +84,9 @@ export default {
         // };
         // // await loadData();
 
+        onUpdated(()=>{
+            document.querySelector('#msg').innerHTML = '';
+        })
         onMounted(() => {
             // loadData();
         });

@@ -20,11 +20,8 @@ class ProductController extends Controller
 //        Redis::set('name','rox');
 //        return Redis::get('name');
         try {
-//            $data = Product::all()->sortByDesc('id');
-//            return response(ProductResource::collection($data), 200);
-            $perPage = 2;
+            $perPage = 4;
             $data = Product::latest()->paginate($perPage);
-//            return $data;
             $pages_count = ceil($data->total()/$perPage);
             $labels = [];
             for ($i=1; $i <= $pages_count; $i++){
@@ -32,9 +29,11 @@ class ProductController extends Controller
             }
             return response([
                 "data"=>ProductResource::collection($data),
-                "pages"=>$data->total()/$perPage,
+                "pages"=>$pages_count,
                 "total"=> $data->total(),
-                "labels"=> $labels
+                "labels"=> $labels,
+                "title"=> 'محصولات',
+                "tooltip_new"=> 'ثبت محصول جدید',
 
             ], 200);
         } catch (\Exception $exception) {

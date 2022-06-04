@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/{any}', function () {
 //    return view('site');
 //})->where('any', '.*');
-
+//
 Route::get('{any}', function () {
-    return view('main');
+    return view('panel'); //main
 })->where('any', '.*');
 

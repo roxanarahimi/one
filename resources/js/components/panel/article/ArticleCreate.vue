@@ -93,9 +93,9 @@
 </template>
 
 <script>
-import ImageCropper from '../ImageCropper';
+import ImageCropper from '../../components/ImageCropper';
 import App from '../App';
-import Editor from "../Editor";
+import Editor from "../../components/Editor";
 
 export default {
     components: {Editor, ImageCropper},

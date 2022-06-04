@@ -14,8 +14,23 @@ class ProjectController extends Controller
     public function index()
     {
         try {
-            $data = Project::all()->sortByDesc('id');
-            return response(ProjectResource::collection($data), 200);
+
+            $perPage = 4;
+            $data = Project::latest()->paginate($perPage);
+            $pages_count = ceil($data->total()/$perPage);
+            $labels = [];
+            for ($i=1; $i <= $pages_count; $i++){
+                (array_push($labels,$i));
+            }
+            return response([
+                "data"=>ProjectResource::collection($data),
+                "pages"=>$pages_count,
+                "total"=> $data->total(),
+                "labels"=> $labels,
+                "title"=> 'پروژه ها',
+                "tooltip_new"=> 'ثبت پروژه جدید',
+
+            ], 200);
         } catch (\Exception $exception) {
             return response($exception);
 

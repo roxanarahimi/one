@@ -25,9 +25,9 @@
 </template>
 <script>
 import App from './App';
-import Loader from './Loader';
+import Loader from '../components/Loader';
 import {onMounted, ref} from "vue";
-import LatestProducts from "./product/LatestProducts";
+import LatestProducts from "./dashboard/LatestProducts";
 import DayReportCards from "./dashboard/DayReportCards";
 
 export default {

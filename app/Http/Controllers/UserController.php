@@ -20,7 +20,23 @@ class UserController extends Controller
     {
         try {
             $users = UserResource::collection(User::orderBy('id', 'desc')->where('scope', 'user')->get());
-            return response($users, 200);
+
+            $perPage = 1;
+            $data = User::latest()->where('scope', 'user')->paginate($perPage);
+            $pages_count = ceil($data->total() / $perPage);
+            $labels = [];
+            for ($i = 1; $i <= $pages_count; $i++) {
+                (array_push($labels, $i));
+            }
+            return response([
+                "data" => UserResource::collection($data),
+                "pages" => $pages_count,
+                "total" => $data->total(),
+                "labels" => $labels,
+                "title" => 'کاربر ها',
+                "tooltip_new" => '',
+
+            ], 200);
         } catch (\Exception $exception) {
             return $exception;
         }
@@ -30,8 +46,22 @@ class UserController extends Controller
     public function indexAdmins()
     {
         try {
-            $admins = UserResource::collection(User::orderBy('id', 'desc')->where('scope', 'admin')->get());
-            return response($admins, 200);
+            $perPage = 4;
+            $data = User::latest()->where('scope', 'admin')->paginate($perPage);
+            $pages_count = ceil($data->total() / $perPage);
+            $labels = [];
+            for ($i = 1; $i <= $pages_count; $i++) {
+                (array_push($labels, $i));
+            }
+            return response([
+                "data" => UserResource::collection($data),
+                "pages" => $pages_count,
+                "total" => $data->total(),
+                "labels" => $labels,
+                "title" => 'مدیر ها',
+                "tooltip_new" => '',
+
+            ], 200);
         } catch (\Exception $exception) {
             return $exception;
         }
@@ -121,16 +151,14 @@ class UserController extends Controller
 
     }
 
-    public function destroy(Request $request)
+    public function destroy(User $user)
     {
-        if ($request['id'] != 1) {
-            try {
-                User::findOrFail($request['id'])->delete();
-                return response('client deleted', 200);
-            } catch (\Exception $exception) {
-                return response($exception);
-
-            }
+        try {
+            $user->sizes->each->delete();
+            $user->delete();
+            return response('deleted', 200);
+        } catch (\Exception $exception) {
+            return response($exception);
         }
 
     }
@@ -203,12 +231,10 @@ class UserController extends Controller
     }
 
 
-
     public function getOtpNoRedis($mobile)
     {
         $user = User::where('mobile', $mobile)->first();
-        if ($user && $user['scope'] !== 'user')
-        {
+        if ($user && $user['scope'] !== 'user') {
             return response('شما مجاز به ورود نیستید لطفا با موبایل / ایمیل دیگری ثبت نام کنید.', 400);
         }
 
@@ -224,7 +250,7 @@ class UserController extends Controller
                 $message = "به وبسایت وان آنلاین شاپ خوش آمدید. کد تایید شما: " . $randomString; //Redis::get($mobile);
                 $receptor = "09128222725";    //Receptors numbers
 
-                return response(['otp' => $randomString, 'user'=> new UserResource($user)], 200);
+                return response(['otp' => $randomString, 'user' => new UserResource($user)], 200);
             } catch (\Kavenegar\Exceptions\ApiException $e) {
                 return $e->errorMessage();
             } catch (\Kavenegar\Exceptions\HttpException $e) {
@@ -241,7 +267,7 @@ class UserController extends Controller
         $token = $user->createToken('user')->accessToken;
         $date = new \DateTime();
         $date->add(new \DateInterval('PT2H'));
-        $user->update(['last_activity'=> $date->format('Y-m-d H:i:s')]);
+        $user->update(['last_activity' => $date->format('Y-m-d H:i:s')]);
 
         return response(['user' => new UserResource($user), 'access_token' => $token, 'expire' => date_format($date, 'Y-m-d H:i:s')], 200);
     }

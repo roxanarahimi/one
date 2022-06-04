@@ -98,7 +98,7 @@
     import BaseToast from "../components/BaseToast.vue";
     import BaseImage from "../components/BaseImage.vue";
     import App from "./Site";
-    import Images from "../../Images";
+    import Images from "../../components/Images";
 
     export default {
         components: {Images, BaseToast, BaseImage},

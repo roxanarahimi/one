@@ -16,12 +16,10 @@ use Illuminate\Support\Facades\Redis;
 class UserController extends Controller
 
 {
-    public function indexUsers()
+    public function indexUsers(Request $request)
     {
         try {
-            $users = UserResource::collection(User::orderBy('id', 'desc')->where('scope', 'user')->get());
-
-            $perPage = 1;
+            $perPage = $request['perPage'];
             $data = User::latest()->where('scope', 'user')->paginate($perPage);
             $pages_count = ceil($data->total() / $perPage);
             $labels = [];

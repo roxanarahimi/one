@@ -12,10 +12,10 @@ class ResumeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $perPage = 4;
+            $perPage = $request['perPage'];
             $data = Resume::latest()->paginate($perPage);
             $pages_count = ceil($data->total()/$perPage);
             $labels = [];

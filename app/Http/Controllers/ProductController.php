@@ -15,12 +15,10 @@ use Mockery\Exception;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-//        Redis::set('name','rox');
-//        return Redis::get('name');
         try {
-            $perPage = 4;
+            $perPage = $request['perPage'];
             $data = Product::latest()->paginate($perPage);
             $pages_count = ceil($data->total()/$perPage);
             $labels = [];

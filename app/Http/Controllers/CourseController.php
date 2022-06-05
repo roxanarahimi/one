@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $perPage = 4;
+            $perPage = $request['perPage'];
             $data = Course::latest()->paginate($perPage);
             $pages_count = ceil($data->total()/$perPage);
             $labels = [];

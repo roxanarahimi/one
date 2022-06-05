@@ -28166,7 +28166,7 @@ var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "sidebar_title"
-  }, null, -1
+  }, "اسلاید ها", -1
   /* HOISTED */
   );
 });

@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $perPage = 4;
+            $perPage = $request['perPage'];
             $data = Article::latest()->paginate($perPage);
             $pages_count = ceil($data->total()/$perPage);
             $labels = [];

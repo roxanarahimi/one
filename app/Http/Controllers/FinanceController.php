@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 class FinanceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-                $perPage = 4;
+            $perPage = $request['perPage'];
                 $data = Finance::latest()->paginate($perPage);
                 $pages_count = ceil($data->total()/$perPage);
                 $labels = [];

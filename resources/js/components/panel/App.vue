@@ -84,7 +84,7 @@
                         <router-link to="/panel/slides" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/slides'}">
                             <i title="اسلاید ها" class="bi bi-collection-fill me-2"></i>
-                            <span class="sidebar_title"></span>
+                            <span class="sidebar_title">اسلاید ها</span>
                         </router-link>
                     </li>
                     <li>

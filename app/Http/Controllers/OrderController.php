@@ -17,13 +17,13 @@ use Zarinpal\Drivers\SoapDriver;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
 
 //            $data = Order::all()->where('status', '!=', 'cart')->sortByDesc('id');
 //            return response(OrderResource::collection($data), 200);
-            $perPage = 1;
+            $perPage = $request['perPage'];
             $data = Order::latest()->where('status', '!=', 'cart')->paginate($perPage);
             $pages_count = ceil($data->total()/$perPage);
             $labels = [];

@@ -162,9 +162,12 @@
                                     </div>
 
                                     <div class="col-md-12 mb-3">
-                                        <button id="submit" class="btn btn-primary d-flex justify-content-between" @click.prevent="updateInfo" type="submit">
-                                             ویرایش <loader-sm class="loader-sm d-none" />
-                                        </button>
+                                        <BtnSubmit  @click.prevent="updateInfo">
+                                            ویرایش
+                                        </BtnSubmit>
+<!--                                        <button id="submit" class="btn btn-primary d-flex justify-content-between" @click.prevent="updateInfo" type="submit">-->
+<!--                                             ویرایش <loader-sm class="loader-sm d-none" />-->
+<!--                                        </button>-->
                                     </div>
                                 </div>
 
@@ -181,11 +184,11 @@
 <script>
 import ImageCropper from '../../components/ImageCropper';
 import App from '../App';
-import LoaderSm from '../../site/components/Loader-sm'
-// import {toArray} from "../../../public/cropperjs/src/js/utilities";
+import BtnSubmit from "../../components/BtnSubmit";
+
 
 export default {
-    components: {ImageCropper, App, LoaderSm},
+    components: {ImageCropper, App, BtnSubmit},
     data() {
         return {
             id: this.$route.params.id,
@@ -280,9 +283,6 @@ export default {
             }
 
             if (emptyFieldsCount === 0) {
-                document.querySelector('#submit').setAttribute('disabled', 'disabled');
-                document.querySelector('.loader-sm').classList.remove('d-none');
-
                 let features = [];
                 for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
                     features.push('{"label": "' + document.getElementsByName('featureLabel')[i].value + '", "value": "' + document.getElementsByName('featureValue')[i].value + '"}');

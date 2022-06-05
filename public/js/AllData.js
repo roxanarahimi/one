@@ -397,6 +397,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     var loadData = /*#__PURE__*/function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(p) {
+        var _document$querySelect;
+
         var perPage;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
@@ -409,7 +411,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 document.querySelector('#loader').classList.remove('d-none');
-                perPage = document.querySelector('#perPage').value;
+                perPage = ((_document$querySelect = document.querySelector('#perPage')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.value) || 5;
                 axios.get('/api/panel/' + model.value + '?page=' + page.value + '&perPage=' + perPage).then(function (response) {
                   allData.value = response.data.data;
                   pages.value = response.data.pages;
@@ -420,9 +422,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   document.querySelector('#loader').classList.add('d-none');
 
                   if (pages.value > 1) {
-                    var _document$querySelect;
+                    var _document$querySelect2;
 
-                    (_document$querySelect = document.querySelector('.paginate')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.classList.remove('d-none');
+                    (_document$querySelect2 = document.querySelector('.paginate')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.classList.remove('d-none');
                   }
 
                   if (allData.value.length == 0) {
@@ -432,9 +434,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 })["catch"]();
                 setTimeout(function () {
-                  var _document$querySelect2;
+                  var _document$querySelect3;
 
-                  (_document$querySelect2 = document.querySelector('#loader')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.classList.add('d-none');
+                  (_document$querySelect3 = document.querySelector('#loader')) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.classList.add('d-none');
                 }, 4000);
 
               case 5:
@@ -451,12 +453,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onUpdated)(function () {
-      var _document$querySelect3;
+      var _document$querySelect4;
 
       model.value = (0,vue_router__WEBPACK_IMPORTED_MODULE_14__.useRoute)().name.replace('AllData', '');
       allData.value = [];
       loadData();
-      (_document$querySelect3 = document.querySelector('.paginate')) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.classList.add('d-none'); // alert(model.value)
+      (_document$querySelect4 = document.querySelector('.paginate')) === null || _document$querySelect4 === void 0 ? void 0 : _document$querySelect4.classList.add('d-none'); // alert(model.value)
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
       loadData();
@@ -1499,6 +1501,7 @@ var _hoisted_7 = {
   "class": "d-flex justify-content-between"
 };
 var _hoisted_8 = {
+  key: 0,
   "class": "w-50 d-flex justify-content-start"
 };
 
@@ -1537,7 +1540,7 @@ var _hoisted_15 = {
   "class": "text-black-50 mt-2"
 };
 var _hoisted_16 = {
-  key: 0,
+  key: 1,
   "class": "w-50 d-flex justify-content-end"
 };
 var _hoisted_17 = {
@@ -1579,7 +1582,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, "بعدی", 2
   /* CLASS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("        <p class=\"text-black-50 mt-2\">{{ 'page ' + currentPage+'of' + pages}}</p>")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("        <p class=\"text-black-50 mt-2\">{{ 'page ' + currentPage+'of' + pages}}</p>")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$props.total != undefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     onChange: _cache[2] || (_cache[2] = function () {
       return $props.load && $props.load.apply($props, arguments);
     }),
@@ -1592,7 +1595,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* HYDRATE_EVENTS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)('مورد از ' + $props.total), 1
   /* TEXT */
-  )]), $props.pages > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)('صفحه ' + $setup.currentPage + ' از ' + $props.pages), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.pages > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)('صفحه ' + $setup.currentPage + ' از ' + $props.pages), 1
   /* TEXT */
   )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }

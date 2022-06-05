@@ -14,8 +14,6 @@
                                         <span @click="addImage" class="px-2 d-inline-block align-middle"><i
                                             class="bi bi-plus-circle-fill p-0 mt-2 m-0"
                                             style="font-size: 15px"></i></span>
-
-
                                     </div>
                                 </div>
                                 <div class="imgSection">
@@ -159,9 +157,12 @@
 
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <button class="btn btn-primary" @click.prevent="createInfo" type="submit">
+                                        <BtnSubmit  @click.prevent="createInfo">
                                             ثبت
-                                        </button>
+                                        </BtnSubmit>
+<!--                                        <button class="btn btn-primary" @click.prevent="createInfo" type="submit">-->
+<!--                                            ثبت-->
+<!--                                        </button>-->
                                     </div>
                                 </div>
 
@@ -178,9 +179,11 @@
 <script>
 import ImageCropper from '../../components/ImageCropper';
 import App from '../App';
+import BtnSubmit from "../../components/BtnSubmit";
+
 
 export default {
-    components: {ImageCropper},
+    components: {ImageCropper, BtnSubmit, App},
     data: function () {
         return {
             id: '',

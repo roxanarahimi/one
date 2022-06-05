@@ -16,7 +16,7 @@
 
        </div>
        <div class="d-flex justify-content-between">
-           <div  class="w-50 d-flex justify-content-start">
+           <div v-if="total != undefined" class="w-50 d-flex justify-content-start">
                <span class="float-lg-start text-black-50 mt-2">{{ 'نمایش ' }}</span>
                <select @change="load" id="perPage" style="width: 60px" class="form-select-sm mt-1 mx-2">
                    <option value="5">5</option>

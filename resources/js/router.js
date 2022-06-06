@@ -58,80 +58,80 @@ import PanelCourseCategories from "./components/panel/course/CourseCategories";
 
 const routes = [
     //site
-    {
-        path: "/",
-        name: "home",
-        component: Home,
-    },
-
-
-    {
-        path: "/contact",
-        name: "contact",
-        component: Contact,
-    },
-    {
-        path: "/login",
-        name: "login",
-        component: Login,
-    },
-    {
-        path: "/otp/login",
-        name: "loginOtp",
-        component: LoginOtp,
-    },
-    {
-        path: "/products",
-        name: "products",
-        component: Products,
-        props: true,
-    },
-    {
-        path: "/product/:id",
-        name: "product",
-        component: Product,
-        props: true,
-    },
-    {
-        path: "/cart",
-        name: "cart",
-        component: Cart,
-    },
-    {
-        path: "/confirmOrder",
-        name: "confirmOrder",
-        component: ConfirmOrder,
-    },
-    {
-        path: "/profile",
-        name: "profile",
-        component: Profile,
-    },
-    {
-        path: "/orders",
-        name: "orders",
-        component: Orders,
-    },
-    {
-        path: "/order/:id",
-        name: "order",
-        component: Order,
-    },
-    {
-        path: "/register",
-        name: "Register",
-        component: Register,
-    },
-    {
-        path: "/reset/password",
-        name: "ResetPassword",
-        component: ResetPassword,
-    },
-    {
-        path: "/reset/password/email",
-        name: "Email",
-        component: Email,
-    },
+    // {
+    //     path: "/",
+    //     name: "home",
+    //     component: Home,
+    // },
+    //
+    //
+    // {
+    //     path: "/contact",
+    //     name: "contact",
+    //     component: Contact,
+    // },
+    // {
+    //     path: "/login",
+    //     name: "login",
+    //     component: Login,
+    // },
+    // {
+    //     path: "/otp/login",
+    //     name: "loginOtp",
+    //     component: LoginOtp,
+    // },
+    // {
+    //     path: "/products",
+    //     name: "products",
+    //     component: Products,
+    //     props: true,
+    // },
+    // {
+    //     path: "/product/:id",
+    //     name: "product",
+    //     component: Product,
+    //     props: true,
+    // },
+    // {
+    //     path: "/cart",
+    //     name: "cart",
+    //     component: Cart,
+    // },
+    // {
+    //     path: "/confirmOrder",
+    //     name: "confirmOrder",
+    //     component: ConfirmOrder,
+    // },
+    // {
+    //     path: "/profile",
+    //     name: "profile",
+    //     component: Profile,
+    // },
+    // {
+    //     path: "/orders",
+    //     name: "orders",
+    //     component: Orders,
+    // },
+    // {
+    //     path: "/order/:id",
+    //     name: "order",
+    //     component: Order,
+    // },
+    // {
+    //     path: "/register",
+    //     name: "Register",
+    //     component: Register,
+    // },
+    // {
+    //     path: "/reset/password",
+    //     name: "ResetPassword",
+    //     component: ResetPassword,
+    // },
+    // {
+    //     path: "/reset/password/email",
+    //     name: "Email",
+    //     component: Email,
+    // },
     // {
     //     path: "/:catchAll(.*)",
     //     name: "error404",

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import LoaderSm from '../site/components/Loader-sm'
+import LoaderSm from '../components/Loader-sm'
 
 export default {
     components: {LoaderSm},

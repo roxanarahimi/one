@@ -24,8 +24,12 @@
                         </div>
                     </div>
                 </div>
-                <p style="font-size: 14px">برای عوض کردن ترتیب تصاویر، در لیست تصاویر drag & drop کنید</p>
-                <div class="col-sm-3 col-lg-2 mb-5">
+               <div class="row">
+                   <p class="col-sm-4 col-md-3 col-xxl-2 mb-5" style="font-size: 14px">برای عوض کردن ترتیب تصاویر،
+                       در این لیست
+                       drag & drop کنید</p>
+               </div>
+                <div class="col-sm-4 col-md-3 col-xxl-2 mb-5">
                     <div class="card h-100">
                         <div class="card-body">
                             <draggable ghost-class="moving-card" :animation="500" v-model="data.images"
@@ -43,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-8 col-lg-4 mb-5">
+                <div class="col-sm-8 col-md-9 col-xxl-4 mb-5">
                     <div class="card h-100">
                         <div class="card-body justify-content-center">
                             <!--                                        <div class="row">-->
@@ -57,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mb-5 ">
+                <div class="col-xxl-6 mb-5 ">
                     <div class="card h-100">
                         <div class="card-body p-md-5 ">
                             <div class="row">

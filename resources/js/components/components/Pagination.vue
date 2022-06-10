@@ -1,5 +1,5 @@
 <template>
-   <div class="mb-3 px-3">
+   <div class="my-3 px-3">
        <div v-if="pages>1" class="paginate text-center">
            <nav class="d-flex justify-content-center ">
             <span class="paginate-btn" @click="prevPage()"

@@ -9,11 +9,22 @@ use Illuminate\Support\Facades\Validator;
 
 class CourseCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data = CourseCategory::all()->sortByDesc('id');
-            return response(CourseCategoryResource::collection($data), 200);
+            $perPage = $request['perPage'];
+            $data = CourseCategory::latest()->paginate($perPage);
+            $pages_count = ceil($data->total()/$perPage);
+            $labels = [];
+            for ($i=1; $i <= $pages_count; $i++){
+                (array_push($labels,$i));
+            }
+            return response([
+                "data"=>CourseCategoryResource::collection($data),
+                "pages"=>$pages_count,
+                "total"=> $data->total(),
+                "labels"=> $labels,
+            ], 200);
         } catch (\Exception $exception) {
             return response($exception);
 

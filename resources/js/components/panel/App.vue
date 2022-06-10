@@ -15,7 +15,7 @@
     </div>
 
     <div id="page" class="d-flex bg-dark"
-         v-if="this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'">
+         v-if="this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.fullPath !== '/' && this.$route.name !== 'Error404'">
 
         <div id="sidebar-wrapper" class=" bg-dark">
             <div id="sidebar" class="bg-dark text-light">
@@ -44,19 +44,26 @@
                         </router-link>
                     </li>
                     <li>
+                        <router-link to="/panel/categories" class="nav-link text-white"
+                                     :class="{active: $route.fullPath ==='/panel/categories'}">
+                            <i title="دسته ها" class="bi bi-tags-fill me-2"></i>
+                            <span class="sidebar_title">دسته ها</span>
+                        </router-link>
+                    </li>
+                    <li>
                         <router-link to="/panel/products" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/products'}">
                             <i title="محصولات" class="bi bi-grid-fill me-2"></i>
                             <span class="sidebar_title">محصولات</span>
                         </router-link>
                     </li>
-                    <li>
-                        <router-link to="/panel/categories/product" class="nav-link text-white"
-                                     :class="{active: $route.fullPath ==='/panel/categories/product'}">
-                            <i title="دسته محصولات" class="bi bi-tags-fill me-2"></i>
-                            <span class="sidebar_title">دسته محصولات</span>
-                        </router-link>
-                    </li>
+<!--                    <li>-->
+<!--                        <router-link to="/panel/categories/product" class="nav-link text-white"-->
+<!--                                     :class="{active: $route.fullPath ==='/panel/categories/product'}">-->
+<!--                            <i title="دسته محصولات" class="bi bi-tags-fill me-2"></i>-->
+<!--                            <span class="sidebar_title">دسته محصولات</span>-->
+<!--                        </router-link>-->
+<!--                    </li>-->
 
                     <li>
                         <router-link to="/panel/articles" class="nav-link text-white"
@@ -65,13 +72,13 @@
                             <span class="sidebar_title">مطالب</span>
                         </router-link>
                     </li>
-                    <li>
-                        <router-link to="/panel/categories/article" class="nav-link text-white"
-                                     :class="{active: $route.fullPath ==='/panel/categories/article'}">
-                            <i title="دسته مطالب" class="bi bi-tags-fill me-2"></i>
-                            <span class="sidebar_title">دسته مطالب</span>
-                        </router-link>
-                    </li>
+<!--                    <li>-->
+<!--                        <router-link to="/panel/categories/article" class="nav-link text-white"-->
+<!--                                     :class="{active: $route.fullPath ==='/panel/categories/article'}">-->
+<!--                            <i title="دسته مطالب" class="bi bi-tags-fill me-2"></i>-->
+<!--                            <span class="sidebar_title">دسته مطالب</span>-->
+<!--                        </router-link>-->
+<!--                    </li>-->
                     <li>
                         <router-link to="/panel/projects" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/projects'}">
@@ -118,13 +125,13 @@
                             <span class="sidebar_title">دوره ها</span>
                         </router-link>
                     </li>
-                    <li>
-                        <router-link to="/panel/categories/course" class="nav-link text-white"
-                                     :class="{active: $route.fullPath ==='/panel/categories/course'}">
-                            <i title="دسته دوره ها" class="bi bi-tags-fill me-2"></i>
-                            <span class="sidebar_title">دسته دوره ها</span>
-                        </router-link>
-                    </li>
+<!--                    <li>-->
+<!--                        <router-link to="/panel/categories/course" class="nav-link text-white"-->
+<!--                                     :class="{active: $route.fullPath ==='/panel/categories/course'}">-->
+<!--                            <i title="دسته دوره ها" class="bi bi-tags-fill me-2"></i>-->
+<!--                            <span class="sidebar_title">دسته دوره ها</span>-->
+<!--                        </router-link>-->
+<!--                    </li>-->
                     <li>
                         <router-link to="/panel/resumes" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/resumes'}">

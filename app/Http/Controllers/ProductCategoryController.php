@@ -9,11 +9,22 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data = ProductCategory::all()->sortByDesc('id');
-            return response(ProductCategoryResource::collection($data), 200);
+            $perPage = $request['perPage'];
+            $data = ProductCategory::latest()->paginate($perPage);
+            $pages_count = ceil($data->total()/$perPage);
+            $labels = [];
+            for ($i=1; $i <= $pages_count; $i++){
+                (array_push($labels,$i));
+            }
+            return response([
+                "data"=>ProductCategoryResource::collection($data),
+                "pages"=>$pages_count,
+                "total"=> $data->total(),
+                "labels"=> $labels,
+            ], 200);
         } catch (\Exception $exception) {
             return response($exception);
 

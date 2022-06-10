@@ -11,7 +11,6 @@
         </h3>
 
         <loader/>
-        <pagination :page="page" :pages="pages" :total="total" :labels="labels" :load="loadData"/>
         <div class="col-12 mb-3" v-if="allData && allData.length">
             <Suspense>
                 <component :is="model+'sTable'" :allData="allData" :page="page" :model="model" :loadData="loadData"/>
@@ -20,6 +19,7 @@
                 </template>
             </Suspense>
         </div>
+        <pagination :page="page" :pages="pages" :total="total" :labels="labels" :load="loadData"/>
 
     </all-data-container>
     <!--    </transition>-->

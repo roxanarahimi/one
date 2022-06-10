@@ -1,144 +1,35 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
-//site
-import Home from "./components/site/views/Home";
-import About from "./components/site/views/About";
+import Login from "./components/panel/admin/Login";
 
-import Profile from "./components/site/views/client/Profile";
-import Orders from "./components/site/views/client/OrderHistory";
-import Order from "./components/site/views/client/Order";
-import Login from "./components/site/views/client/Login";
-import LoginOtp from "./components/site/views/client/LoginOtp";
+import ProductCategories from "./components/panel/product/ProductCategories";
+import ArticleCreate from "./components/panel/article/ArticleCreate";
+import ArticleEdit from "./components/panel/article/ArticleEdit";
+import Article from "./components/panel/article/Article";
+import ArticleCategories from "./components/panel/article/ArticleCategories";
+import UserEdit from "./components/panel/user/UserEdit";
+import SlideCreate from "./components/panel/slide/SlideCreate";
+import SlideEdit from "./components/panel/slide/SlideEdit";
+import Resume from "./components/panel/employ/Resume";
 
-import Contact from "./components/site/views/Contact";
-import Product from "./components/site/views/Product";
-import Products from "./components/site/views/Products";
-import Cart from './components/site/views/Cart';
-import ConfirmOrder from './components/site/views/ConfirmOrder';
+import TeacherCreate from "./components/panel/teacher/TeacherCreate";
+import TeacherEdit from "./components/panel/teacher/TeacherEdit";
+import Teacher from "./components/panel/teacher/Teacher";
 
-import Register from "./components/site/views/client/Register";
-import ResetPassword from "./components/site/views/client/ResetPassword";
-import Email from "./components/site/views/client/Email";
-// import error404 from "./components/site/views/error/Error404";
+import ProjectCreate from "./components/panel/project/ProjectCreate";
+import ProjectEdit from "./components/panel/project/ProjectEdit";
+import Project from "./components/panel/project/Project";
 
-//panel
-import PanelLogin from "./components/panel/admin/Login";
-import PanelProductEdit from "./components/panel/product/ProductEdit";
-import PanelProduct from "./components/panel/product/Product";
-import PanelProductCategories from "./components/panel/product/ProductCategories";
-import PanelArticleCreate from "./components/panel/article/ArticleCreate";
-import PanelArticleEdit from "./components/panel/article/ArticleEdit";
-import PanelArticle from "./components/panel/article/Article";
-import PanelArticleCategories from "./components/panel/article/ArticleCategories";
-import PanelUserEdit from "./components/panel/user/UserEdit";
-import PanelSlideCreate from "./components/panel/slide/SlideCreate";
-import PanelSlideEdit from "./components/panel/slide/SlideEdit";
-import PanelResume from "./components/panel/employ/Resume";
+import Profile from "./components/panel/admin/Profile";
+import Error404 from "./components/panel/error/Error404";
 
-import PanelTeacherCreate from "./components/panel/teacher/TeacherCreate";
-import PanelTeacherEdit from "./components/panel/teacher/TeacherEdit";
-import PanelTeacher from "./components/panel/teacher/Teacher";
-
-import PanelProjectCreate from "./components/panel/project/ProjectCreate";
-import PanelProjectEdit from "./components/panel/project/ProjectEdit";
-import PanelProject from "./components/panel/project/Project";
-
-import PanelOrderCreate from "./components/panel/order/OrderCreate";
-import PanelOrderEdit from "./components/panel/order/OrderEdit";
-import PanelOrder from "./components/panel/order/Order";
-
-import PanelProfile from "./components/panel/admin/Profile";
-import PanelError404 from "./components/panel/error/Error404";
-
-import PanelCourseCreate from "./components/panel/course/CourseCreate";
-import PanelCourseEdit from "./components/panel/course/CourseEdit";
-import PanelCourse from "./components/panel/course/Course";
-import PanelCourseCategories from "./components/panel/course/CourseCategories";
+import CourseCreate from "./components/panel/course/CourseCreate";
+import CourseEdit from "./components/panel/course/CourseEdit";
+import Course from "./components/panel/course/Course";
+import CourseCategories from "./components/panel/course/CourseCategories";
 
 
 const routes = [
-    //site
-    // {
-    //     path: "/",
-    //     name: "home",
-    //     component: Home,
-    // },
-    //
-    //
-    // {
-    //     path: "/contact",
-    //     name: "contact",
-    //     component: Contact,
-    // },
-    // {
-    //     path: "/login",
-    //     name: "login",
-    //     component: Login,
-    // },
-    // {
-    //     path: "/otp/login",
-    //     name: "loginOtp",
-    //     component: LoginOtp,
-    // },
-    // {
-    //     path: "/products",
-    //     name: "products",
-    //     component: Products,
-    //     props: true,
-    // },
-    // {
-    //     path: "/product/:id",
-    //     name: "product",
-    //     component: Product,
-    //     props: true,
-    // },
-    // {
-    //     path: "/cart",
-    //     name: "cart",
-    //     component: Cart,
-    // },
-    // {
-    //     path: "/confirmOrder",
-    //     name: "confirmOrder",
-    //     component: ConfirmOrder,
-    // },
-    // {
-    //     path: "/profile",
-    //     name: "profile",
-    //     component: Profile,
-    // },
-    // {
-    //     path: "/orders",
-    //     name: "orders",
-    //     component: Orders,
-    // },
-    // {
-    //     path: "/order/:id",
-    //     name: "order",
-    //     component: Order,
-    // },
-    // {
-    //     path: "/register",
-    //     name: "Register",
-    //     component: Register,
-    // },
-    // {
-    //     path: "/reset/password",
-    //     name: "ResetPassword",
-    //     component: ResetPassword,
-    // },
-    // {
-    //     path: "/reset/password/email",
-    //     name: "Email",
-    //     component: Email,
-    // },
-    // {
-    //     path: "/:catchAll(.*)",
-    //     name: "error404",
-    //     component: error404,
-    // },
-
-
     //panel
 
     {
@@ -148,8 +39,17 @@ const routes = [
         //     params: true
         // },
         path: "/panel",
-        // name: "PanelHome",
+        // name: "Home",
         component: () => import(/* webpackChunkName: "home" */ '../js/components/panel/Home'),
+
+    },
+    {
+        path: "/panel/categories",
+        //     component: () => import(/* webpackChunkName: "test" */ '../js/components/panel/product/Categories'),
+        // name: "Categories",
+        component: () => import(/* webpackChunkName: "Categories" */ '../js/components/panel/Categories'),
+        props: true,
+        params: true
 
     },
     {
@@ -161,26 +61,28 @@ const routes = [
     },
     {
         path: "/panel/new/product",
-        name: "PanelProductCreate",
-        component: () => import(/* webpackChunkName: "PanelProductCreate" */ '../js/components/panel/product/ProductCreate'),
-        // component: PanelProductCreate,
+        name: "ProductCreate",
+        component: () => import(/* webpackChunkName: "ProductCreate" */ '../js/components/panel/product/ProductCreate'),
+        // component: ProductCreate,
         params: true
     },
     {
         path: "/panel/edit/product/:id",
-        name: "PanelProductEdit",
-        component: PanelProductEdit,
+        name: "ProductEdit",
+        component: () => import(/* webpackChunkName: "ProductEdit" */ '../js/components/panel/product/ProductEdit'),
         params: true
     },
     {
         path: "/panel/product/:id",
-        name: "PanelProduct",
-        component: PanelProduct,
+        name: "Product",
+        component: () => import(/* webpackChunkName: "Product" */ '../js/components/panel/product/Product'),
+        params: true
+
     },
     {
         path: "/panel/categories/product",
-        name: "PanelProductCategories",
-        component: PanelProductCategories,
+        name: "ProductCategories",
+        component: ProductCategories,
     },
 
     {
@@ -191,24 +93,26 @@ const routes = [
         params: true,
         props: true,
 
-        // component: PanelOrders,
+        // component: Orders,
     },
     {
         path: "/panel/new/order",
-        name: "PanelOrderCreate",
-        component: PanelOrderCreate,
+        name: "OrderCreate",
+        component: () => import(/* webpackChunkName: "OrderCreate" */ '../js/components/panel/order/OrderCreate'),
         params: true
     },
     {
         path: "/panel/edit/order/:id",
-        name: "PanelOrderEdit",
-        component: PanelOrderEdit,
+        name: "OrderEdit",
+        component: () => import(/* webpackChunkName: "OrderEdit" */ '../js/components/panel/order/OrderEdit'),
         params: true
     },
     {
         path: "/panel/order/:id",
-        name: "PanelOrder",
-        component: PanelOrder,
+        name: "Order",
+        component: () => import(/* webpackChunkName: "Order" */ '../js/components/panel/order/Order'),
+        params: true
+
     },
 
     {
@@ -221,25 +125,25 @@ const routes = [
     },
     {
         path: "/panel/new/article",
-        name: "PanelArticleCreate",
-        component: PanelArticleCreate,
+        name: "ArticleCreate",
+        component: ArticleCreate,
         params: true
     },
     {
         path: "/panel/edit/article/:id",
-        name: "PanelArticleEdit",
-        component: PanelArticleEdit,
+        name: "ArticleEdit",
+        component: ArticleEdit,
         params: true
     },
     {
         path: "/panel/article/:id",
-        name: "PanelArticle",
-        component: PanelArticle,
+        name: "Article",
+        component: Article,
     },
     {
         path: "/panel/categories/article",
-        name: "PanelArticleCategories",
-        component: PanelArticleCategories,
+        name: "ArticleCategories",
+        component: ArticleCategories,
     },
 
     {
@@ -251,20 +155,20 @@ const routes = [
     },
     {
         path: "/panel/new/project",
-        name: "PanelProjectCreate",
-        component: PanelProjectCreate,
+        name: "ProjectCreate",
+        component: ProjectCreate,
         params: true
     },
     {
         path: "/panel/edit/project/:id",
-        name: "PanelProjectEdit",
-        component: PanelProjectEdit,
+        name: "ProjectEdit",
+        component: ProjectEdit,
         params: true
     },
     {
         path: "/panel/project/:id",
-        name: "PanelProject",
-        component: PanelProject,
+        name: "Project",
+        component: Project,
     },
 
     {
@@ -277,60 +181,60 @@ const routes = [
     },
     {
         path: "/panel/new/course",
-        name: "PanelCourseCreate",
-        component: PanelCourseCreate,
+        name: "CourseCreate",
+        component: CourseCreate,
         params: true
     },
     {
         path: "/panel/edit/course/:id",
-        name: "PanelCourseEdit",
-        component: PanelCourseEdit,
+        name: "CourseEdit",
+        component: CourseEdit,
         params: true
     },
     {
         path: "/panel/course/:id",
-        name: "PanelCourse",
-        component: PanelCourse,
+        name: "Course",
+        component: Course,
     },
     {
         path: "/panel/categories/course",
-        name: "PanelCourseCategories",
-        component: PanelCourseCategories,
+        name: "CourseCategories",
+        component: CourseCategories,
     },
 
     {
         path: "/panel/slides",
-        name: "PanelSlides",
-        component: () => import(/* webpackChunkName: "PanelSlides" */ '../js/components/panel/slide/Slides'),
+        name: "Slides",
+        component: () => import(/* webpackChunkName: "Slides" */ '../js/components/panel/slide/Slides'),
 
-        // component: PanelSlides,
+        // component: Slides,
     },
     {
         path: "/panel/icon",
-        name: "PanelIcon",
-        component: () => import(/* webpackChunkName: "PanelIcon" */ '../js/components/panel/icon/Icon'),
+        name: "Icon",
+        component: () => import(/* webpackChunkName: "Icon" */ '../js/components/panel/icon/Icon'),
 
-        // component: PanelSlides,
+        // component: Slides,
     },
     {
         path: "/panel/new/slide",
-        name: "PanelSlideCreate",
-        component: PanelSlideCreate,
+        name: "SlideCreate",
+        component: SlideCreate,
         params: true
     },
     {
         path: "/panel/edit/slide/:id",
-        name: "PanelSlideEdit",
-        component: PanelSlideEdit,
+        name: "SlideEdit",
+        component: SlideEdit,
         params: true
     },
 
     {
         path: "/panel/user/:id",
-        name: "PanelUser",
-        component: () => import(/* webpackChunkName: "PanelUser" */ '../js/components/panel/user/User'),
+        name: "User",
+        component: () => import(/* webpackChunkName: "User" */ '../js/components/panel/user/User'),
 
-        // component: PanelUser,
+        // component: User,
     },
     {
         path: "/panel/users",
@@ -342,19 +246,23 @@ const routes = [
     },
     {
         path: "/panel/edit/user/:id",
-        name: "PanelUserEdit",
-        component: PanelUserEdit,
+        name: "UserEdit",
+        component: UserEdit,
         params: true
     },
     {
+        path: "/",
+        component: Login,
+    },
+    {
         path: "/panel/login",
-        name: "PanelLogin",
-        component: PanelLogin,
+        name: "Login",
+        component: Login,
     },
     {
         path: "/panel/profile",
-        name: "PanelProfile",
-        component: PanelProfile,
+        name: "Profile",
+        component: Profile,
     },
 
 
@@ -384,8 +292,8 @@ const routes = [
     },
     {
         path: "/panel/resume/:id",
-        name: "PanelResume",
-        component: PanelResume,
+        name: "Resume",
+        component: Resume,
     },
     {
         path: "/panel/teachers",
@@ -396,25 +304,25 @@ const routes = [
     },
     {
         path: "/panel/new/teacher",
-        name: "PanelTeacherCreate",
-        component: PanelTeacherCreate,
+        name: "TeacherCreate",
+        component: TeacherCreate,
         params: true
     },
     {
         path: "/panel/edit/teacher/:id",
-        name: "PanelTeacherEdit",
-        component: PanelTeacherEdit,
+        name: "TeacherEdit",
+        component: TeacherEdit,
         params: true
     },
     {
         path: "/panel/teacher/:id",
-        name: "PanelTeacher",
-        component: PanelTeacher,
+        name: "Teacher",
+        component: Teacher,
     },
     {
         path: "/:catchAll(.*)",
-        name: "PanelError404",
-        component: PanelError404,
+        name: "Error404",
+        component: Error404,
     }
 ];
 

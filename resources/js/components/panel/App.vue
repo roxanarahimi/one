@@ -15,7 +15,7 @@
     </div>
 
     <div id="page" class="d-flex bg-dark"
-         v-if="this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'">
+         v-if="this.$route.fullPath !== '/' && this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'">
 
         <div id="sidebar-wrapper" class=" bg-dark">
             <div id="sidebar" class="bg-dark text-light">
@@ -244,7 +244,6 @@
 
 <script>
 import Loader from "../site/components/Loader";
-import {ref} from "vue";
 
 export default {
     components: {Loader},
@@ -411,52 +410,52 @@ export default {
     min-height: calc(100vh - 3.5rem);
 }
 
-.zoom-enter-from,
-.zoom-leave-to {
-    opacity: 0;
-    transform: scale(0, 0);
-}
+/*.zoom-enter-from,*/
+/*.zoom-leave-to {*/
+/*    opacity: 0;*/
+/*    transform: scale(0, 0);*/
+/*}*/
 
-.zoom-enter-to,
-.zoom-leave-from {
-    opacity: 1;
-    transform: scale(1, 1);
-}
+/*.zoom-enter-to,*/
+/*.zoom-leave-from {*/
+/*    opacity: 1;*/
+/*    transform: scale(1, 1);*/
+/*}*/
 
-.zoom-enter-active {
-    transition: all 1s ease;
-    animation-delay: 0.2s;
-}
+/*.zoom-enter-active {*/
+/*    transition: all 1s ease;*/
+/*    animation-delay: 0.2s;*/
+/*}*/
 
-.zoom-leave-active {
-    transition: all 0.5s ease;
-    transform: scale(0, 0) !important;
-    position: absolute;
-    right: calc(50% - 155px);
-}
+/*.zoom-leave-active {*/
+/*    transition: all 0.5s ease;*/
+/*    transform: scale(0, 0) !important;*/
+/*    position: absolute;*/
+/*    right: calc(50% - 155px);*/
+/*}*/
 
-.zoom-move {
-    transition: all 1s ease;
-}
+/*.zoom-move {*/
+/*    transition: all 1s ease;*/
+/*}*/
 
 tr:first-child td, tr:last-child td, tr:first-child th, tr:last-child th {
     width: 35px !important;
 }
 
-.date_cell {
-    direction: ltr !important;
-    text-align: right !important;
-}
+/*.date_cell {*/
+/*    direction: ltr !important;*/
+/*    text-align: right !important;*/
+/*}*/
 
-.text_cell {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 30ch;
-}
+/*.text_cell {*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    max-width: 30ch;*/
+/*}*/
 
-.active_cell {
-    width: 60px;
-    text-align: center;
-}
+/*.active_cell {*/
+/*    width: 60px;*/
+/*    text-align: center;*/
+/*}*/
 </style>

@@ -252,6 +252,7 @@ const routes = [
     },
     {
         path: "/",
+        name: 'Login0',
         component: Login,
     },
     {

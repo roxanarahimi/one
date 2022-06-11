@@ -15,7 +15,7 @@
     </div>
 
     <div id="page" class="d-flex bg-dark"
-         v-if="this.$route.fullPath !== '/' && this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'">
+         v-if="this.$route.name !== 'Login0' && this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'">
 
         <div id="sidebar-wrapper" class=" bg-dark">
             <div id="sidebar" class="bg-dark text-light">

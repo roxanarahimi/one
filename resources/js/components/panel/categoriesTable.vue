@@ -83,18 +83,14 @@ import App from './App';
 import {onMounted, ref} from "vue";
 
 export default {
-    props: ['model', 'allData'],
+    props: ['model', 'allData', 'page', 'pages', 'load'],
     name: "categoriesTable",
     setup(props) {
         const i = ref(0);
         const errors = ref(0);
 
-        const loadData = async () => {
-            // await App.methods.checkToken();
-            await axios.get('/api/panel/category/' + props.model).then((response) => {
-                props.allData.value = response.data;
-                console.log('loaded')
-            }).catch();
+        const loadData = async (p) => {
+          props.load(p);
         }
         const createInfo = async () => {
             this.errors = [];
@@ -136,6 +132,22 @@ export default {
 
 
                 })
+        };
+        const showDeleteModal = (id) => {
+            document.getElementById('deleteId').value = id;
+        };
+        const deleteInfo = async () => {
+            // await App.methods.checkToken();
+            await axios.post('/api/panel/delete/category/' + props.model, {
+                id: document.getElementById('deleteId').value,
+            })
+                .then((response) => {
+                    console.log(response.data)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            await loadData();
         };
         const updateInfo = async (id) => {
             // await App.methods.checkToken();
@@ -208,7 +220,8 @@ export default {
 
         return {
             i,  errors,
-            loadData, createInfo, updateInfo, showUpdateForm, hideUpdateForm, activeToggle
+            loadData, createInfo, updateInfo, showUpdateForm, hideUpdateForm, activeToggle,
+            showDeleteModal, deleteInfo,
         }
 
     },

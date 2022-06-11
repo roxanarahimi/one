@@ -17,7 +17,7 @@
 <!--                <template #default>-->
                 <div class="col-xl-8 mb-3">
                     <loader style="margin-top: -72px" />
-                    <categories-table class="mb-3" :model="model" :allData="allData" />
+                    <categories-table class="mb-3" :model="model" :allData="allData" :page="page" :pages="pages" :load="loadData"/>
                     <pagination  :page="page" :pages="pages" :total="total" :labels="labels" :load="loadData"/>
 
                 </div>
@@ -173,15 +173,27 @@
                     .catch((error) => {
                         console.log(error);
                     });
-                await loadData();
+                await loadData(page.value);
             };
 
+            const activeToggle = async (id) => {
+                // await App.methods.checkToken();
+                await axios.get('/api/panel/active/category/' + model.value + '/' + id)
+                    .then((response) => {
+                        console.log(response.data)
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+                await loadData(page.value);
+
+            };
             onMounted(()=>{
                 loadData();
             })
             return{
                 model, errors, allData, page,pages, total, labels,
-                loadData, createInfo, showDeleteModal, deleteInfo
+                loadData, createInfo, activeToggle
             }
         },
 

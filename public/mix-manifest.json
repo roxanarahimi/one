@@ -4,6 +4,8 @@
     "/js/Categories.js": "/js/Categories.js",
     "/js/AllData.js": "/js/AllData.js",
     "/js/ProductCreate.js": "/js/ProductCreate.js",
+    "/js/ProductEdit.js": "/js/ProductEdit.js",
+    "/js/Product.js": "/js/Product.js",
     "/js/OrderCreate.js": "/js/OrderCreate.js",
     "/js/OrderEdit.js": "/js/OrderEdit.js",
     "/js/Order.js": "/js/Order.js",

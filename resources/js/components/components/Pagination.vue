@@ -5,9 +5,9 @@
             <span class="paginate-btn" @click="prevPage()"
                   :class="{'text-muted': (currentPage <= 1 ),  'fw-bold pointer': currentPage > 1}">قبلی</span>
                <br class="d-md-none">
-               <span :class="{'text-primary': item == currentPage}" :id="'page_'+item "
+               <span  :class="{'text-primary': item == currentPage}" :id="'page_'+item "
                      v-for="item in labels" :key="item" @click="goToPage(item)"
-                     class="paginate-btn pointer fs-6 fw-bold page_number mx-3">{{ item }}</span>
+                     class="paginate-btn pointer fs-6 fw-bold page_number mx-3 ">{{ item }}</span>
                <br class="d-md-none">
                <span class="paginate-btn" @click="nextPage()"
                      :class="{'text-muted': currentPage >= pages, 'fw-bold pointer': currentPage < pages}">بعدی</span>
@@ -75,5 +75,7 @@ export default {
 </script>
 
 <style scoped>
-
+.pointer{
+    cursor: pointer !important;
+}
 </style>

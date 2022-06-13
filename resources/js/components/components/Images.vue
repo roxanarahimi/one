@@ -115,10 +115,12 @@ export default {
 img {
     cursor: pointer;
 }
-
+body{
+    height: 2000px;
+}
 #frame-wrapper {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.75);
     text-align: center;
     vertical-align: middle;

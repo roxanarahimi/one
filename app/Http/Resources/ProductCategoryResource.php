@@ -19,6 +19,7 @@ class ProductCategoryResource extends JsonResource
             "title" => $this->title,
             "active" => (boolean)$this->active,
             "products" => ProductResource::collection($this->products),
+            "subsets" => ProductResource::collection($this->products),
             "created_at" => date('Y-m-d', strtotime($this->created_at)),
             "updated_at" => date('Y-m-d', strtotime($this->updated_at)),
         ];

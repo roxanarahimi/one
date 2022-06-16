@@ -152,7 +152,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 4;
                 return axios.get('/api/panel/product/' + _this.id).then(function (response) {
                   _this.data = response.data.product;
-                  document.getElementById('text').innerText = _this.data.text;
+
+                  if (document.querySelector('#text')) {
+                    document.querySelector('#text').innerText = _this.data.text;
+                  }
 
                   if (_this.data.features) {
                     _this.features = [];

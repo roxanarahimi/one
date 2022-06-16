@@ -7,7 +7,7 @@
                 <select id="model" @change="loadData" v-model="model" class="form-select" style="width: 200px">
                     <option value="product">محصولات</option>
                     <option value="article">مطالب</option>
-                    <option value="course">دوره ها</option>
+<!--                    <option value="course">دوره ها</option>-->
                 </select>
             </div>
             <!--            <div class="row flex-row-reverse ">-->
@@ -107,7 +107,8 @@ export default {
             // await App.methods.checkToken();
             let perPage = document.querySelector('#perPage')?.value || 5;
             document.querySelector('#loader').classList.remove('d-none');
-            await axios.get('/api/panel/category/' + model.value + '?page=' + page.value + '&perPage=' + perPage).then((response) => {
+            await axios.get('/api/panel/category/' + model.value + '?page=' + page.value + '&perPage=' + perPage)
+                .then((response) => {
                 allData.value = response.data.data;
                 pages.value = response.data.pages;
                 total.value = response.data.total;

@@ -134,9 +134,9 @@
                     .catch();
             },
             loadCategories() {
-                axios.get('/api/panel/category/article')
+                 axios.get('/api/panel/category/article?page=1&perPage=100000')
                     .then((response) => {
-                        this.categories = response.data;
+                        this.categories = response.data.data;
                     })
                     .catch();
             },

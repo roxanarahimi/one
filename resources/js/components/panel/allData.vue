@@ -90,7 +90,7 @@ export default {
                     if (pages.value > 1) {
                         document.querySelector('.paginate')?.classList.remove('d-none');
                     }
-                    if (allData.value.length == 0) {
+                    if (allData.value) {
                         document.querySelector('#loader').classList.add('d-none');
                         // setTimeout(() => {
                         //     document.querySelector('#msg').innerHTML = '<p class="fw-bold">موردی پیدا نشد</p>';

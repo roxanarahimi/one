@@ -2,11 +2,9 @@ import {createRouter, createWebHistory} from 'vue-router'
 
 import Login from "./components/panel/admin/Login";
 
-import ProductCategories from "./components/panel/product/ProductCategories";
 import ArticleCreate from "./components/panel/article/ArticleCreate";
 import ArticleEdit from "./components/panel/article/ArticleEdit";
 import Article from "./components/panel/article/Article";
-import ArticleCategories from "./components/panel/article/ArticleCategories";
 import UserEdit from "./components/panel/user/UserEdit";
 import SlideCreate from "./components/panel/slide/SlideCreate";
 import SlideEdit from "./components/panel/slide/SlideEdit";
@@ -26,7 +24,6 @@ import Error404 from "./components/panel/error/Error404";
 import CourseCreate from "./components/panel/course/CourseCreate";
 import CourseEdit from "./components/panel/course/CourseEdit";
 import Course from "./components/panel/course/Course";
-import CourseCategories from "./components/panel/course/CourseCategories";
 
 
 const routes = [
@@ -50,7 +47,6 @@ const routes = [
         component: () => import(/* webpackChunkName: "Categories" */ '../js/components/panel/Categories'),
         props: true,
         params: true
-
     },
     {
         path: "/panel/products",
@@ -78,11 +74,6 @@ const routes = [
         component: () => import(/* webpackChunkName: "Product" */ '../js/components/panel/product/Product'),
         params: true
 
-    },
-    {
-        path: "/panel/categories/product",
-        name: "ProductCategories",
-        component: ProductCategories,
     },
 
     {
@@ -140,11 +131,6 @@ const routes = [
         name: "Article",
         component: Article,
     },
-    {
-        path: "/panel/categories/article",
-        name: "ArticleCategories",
-        component: ArticleCategories,
-    },
 
     {
         path: "/panel/projects",
@@ -195,11 +181,6 @@ const routes = [
         path: "/panel/course/:id",
         name: "Course",
         component: Course,
-    },
-    {
-        path: "/panel/categories/course",
-        name: "CourseCategories",
-        component: CourseCategories,
     },
 
     {

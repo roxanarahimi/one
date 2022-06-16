@@ -146,8 +146,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 _context.next = 4;
-                return axios.get('/api/panel/category/product').then(function (response) {
-                  _this.categories = response.data;
+                return axios.get('/api/panel/category/product?page=1&perPage=100000').then(function (response) {
+                  _this.categories = response.data.data;
                 })["catch"]();
 
               case 4:
@@ -366,31 +366,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.features.splice(index, 1);
     },
     updateFeatures: function updateFeatures() {
-      var _this3 = this;
-
       //    App.methods.checkToken();
-      axios.post('/api/panel/check/user/token', {
-        id: JSON.parse(localStorage.getItem('user')).id
-      }).then(function (response) {
-        if (response.status === 200) {
-          localStorage.setItem('expire', response.data.expire);
-          console.log(localStorage);
-        }
-      }).then(function () {
-        _this3.features = [];
+      // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
+      //     .then((response) => {
+      //         if (response.status === 200) {
+      //             localStorage.setItem('expire', response.data.expire);
+      //             console.log(localStorage);
+      //         }
+      //     })
+      //     .then(() => {
+      this.features = [];
 
-        for (var i = 0; i < document.getElementsByName('featureLabel').length; i++) {
-          _this3.features.push({
-            "label": document.getElementsByName('featureLabel')[i].value.toString(),
-            "value": document.getElementsByName('featureValue')[i].value.toString()
-          });
-        }
-      })["catch"](function (error) {
-        if (error.response.status === 401) {
-          window.location = '/panel/login';
-          _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.logout();
-        }
-      });
+      for (var i = 0; i < document.getElementsByName('featureLabel').length; i++) {
+        this.features.push({
+          "label": document.getElementsByName('featureLabel')[i].value.toString(),
+          "value": document.getElementsByName('featureValue')[i].value.toString()
+        });
+      } // })
+      // .catch((error) => {
+      //     if (error.response.status === 401) {
+      //         window.location = '/panel/login'
+      //         App.methods.logout();
+      //     }
+      // });
+
     },
     addSize: function addSize() {
       this.sizes.push('{}');
@@ -399,7 +398,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.sizes.splice(index, 1);
     },
     updateSizes: function updateSizes() {
-      var _this4 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
         var a, i;
@@ -436,7 +435,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 break;
 
               case 10:
-                _this4.sizes = a;
+                _this3.sizes = a;
 
               case 11:
               case "end":

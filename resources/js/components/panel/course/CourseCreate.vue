@@ -139,8 +139,9 @@
         methods: {
             async loadCategories() {
                 await App.methods.checkToken();
-                await axios.get('/api/panel/category/course').then((response) => {
-                    this.categories = response.data;
+                await axios.get('/api/panel/category/course?page=1&perPage=100000')
+                    .then((response) => {
+                    this.categories = response.data.data;
                 }).catch();
             },
 

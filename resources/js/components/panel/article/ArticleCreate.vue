@@ -125,8 +125,9 @@ export default {
     methods: {
         loadCategories() {
             App.methods.checkToken();
-            axios.get('/api/panel/category/article').then((response) => {
-                this.categories = response.data;
+             axios.get('/api/panel/category/article?page=1&perPage=100000')
+                .then((response) => {
+                this.categories = response.data.data;
             }).catch();
         },
 

@@ -8,7 +8,7 @@
                 <tr>
                     <th scope="col"></th>
                     <th scope="col">عنوان</th>
-                    <!--                            <th scope="col">زیر مجموعه</th>-->
+                    <th scope="col">زیر مجموعه</th>
                     <th scope="col">تاریخ ثبت</th>
                     <th scope="col" class="active_cell">وضعیت</th>
                     <th scope="col"></th>
@@ -18,7 +18,7 @@
                 <tr :id="'row_'+data.id" v-for="(data, index) in allData" :key="data.id" :data-index="index">
                     <td class="">{{ index + 1 }}</td>
                     <td class="">{{ data.title }}</td>
-                    <!--                            <td class="">{{ data.subsets.length }}</td>-->
+                    <td class="">{{ data.subsets.length }}</td>
                     <td class="">{{ data.created_at }}</td>
                     <td class="active_cell tdx">
                                 <span @click="activeToggle(data.id)" v-if="data.active"
@@ -169,7 +169,7 @@ export default {
         };
 
         return {
-              loadData, updateInfo, showUpdateForm, hideUpdateForm, activeToggle,
+            loadData, updateInfo, showUpdateForm, hideUpdateForm, activeToggle,
             showDeleteModal, deleteInfo,
         }
 

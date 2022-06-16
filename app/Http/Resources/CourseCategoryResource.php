@@ -19,6 +19,7 @@ class CourseCategoryResource extends JsonResource
             "title" => $this->title,
             "active" => (boolean)$this->active,
             "courses" => CourseResource::collection($this->courses),
+            "subsets" => CourseResource::collection($this->courses),
             "created_at" => date('Y-m-d', strtotime($this->created_at)),
             "updated_at" => date('Y-m-d', strtotime($this->updated_at))];
     }

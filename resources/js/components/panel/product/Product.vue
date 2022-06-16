@@ -137,7 +137,9 @@ export default {
             await axios.get('/api/panel/product/' + this.id)
                 .then((response) => {
                     this.data = response.data.product;
-                    document.getElementById('text').innerText = this.data.text;
+                    if (document.querySelector('#text')) {
+                        document.querySelector('#text').innerText = this.data.text;
+                    }
                     if (this.data.features) {
                         this.features = [];
                         for (let i = 0; i < JSON.parse(this.data.features).length; i++) {

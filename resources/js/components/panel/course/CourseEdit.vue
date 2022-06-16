@@ -3,6 +3,7 @@
         <section>
             <h3 class = "mb-5">ویرایش دوره</h3>
             <div class = "row mt-3">
+
                 <div class = "col-12 mb-3">
                     <div class = "card" v-if = "isDefined">
                         <div class = "card-body">
@@ -159,9 +160,9 @@
 
             },
             loadCategories() {
-                axios.get('/api/panel/category/course')
+                 axios.get('/api/panel/category/course?page=1&perPage=100000')
                     .then((response) => {
-                        this.categories = response.data;
+                        this.categories = response.data.data;
                     })
                     .catch();
             },

@@ -13,4 +13,8 @@ class CourseCategory extends Model
     {
         return $this->hasMany(Course::class,  'course_category_id', 'id')->orderByDesc('id');
     }
+    public function subsets()
+    {
+        return $this->hasMany(Course::class,  'course_category_id', 'id')->orderByDesc('id');
+    }
 }

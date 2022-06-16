@@ -7,20 +7,27 @@
     <!--        <template #fallback> <loader /></template>-->
     <!--    </suspense>-->
 
-    <div v-if="this.$route.fullPath.includes('panel')">
-
-    </div>
-    <div v-else>
-
-    </div>
-
     <div id="page" class="d-flex bg-dark"
          v-if="this.$route.name !== 'Login0' && this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'">
 
         <div id="sidebar-wrapper" class=" bg-dark">
             <div id="sidebar" class="bg-dark text-light">
                 <!--            <h4 class=" my-3 text-center ">پنل مدیریت</h4>-->
-                <ul class="nav nav-pills flex-column mb-auto ">
+                <ul class="nav nav-pills flex-column mb-auto " style="padding-top: 1px">
+                    <li class="mt-2 pt-2">
+                        <span class="nav-link text-white ">
+                            <i class="bi bi-moon-fill " title="حالت شب"></i>
+                            <span class="sidebar_title">حالت شب</span>
+                        </span>
+                    </li>
+                    <li class="mt-2 pt-2">
+                        <span class="nav-link text-white">
+                            <i class="bi bi-sun-fill" title="حالت روز"></i>
+                            <span class="sidebar_title">حالت روز</span>
+                        </span>
+                    </li>
+
+
                     <li class="nav-item" id="">
                         <router-link to="/panel" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel' }">
@@ -57,13 +64,13 @@
                             <span class="sidebar_title">محصولات</span>
                         </router-link>
                     </li>
-<!--                    <li>-->
-<!--                        <router-link to="/panel/categories/product" class="nav-link text-white"-->
-<!--                                     :class="{active: $route.fullPath ==='/panel/categories/product'}">-->
-<!--                            <i title="دسته محصولات" class="bi bi-tags-fill me-2"></i>-->
-<!--                            <span class="sidebar_title">دسته محصولات</span>-->
-<!--                        </router-link>-->
-<!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <router-link to="/panel/categories/product" class="nav-link text-white"-->
+                    <!--                                     :class="{active: $route.fullPath ==='/panel/categories/product'}">-->
+                    <!--                            <i title="دسته محصولات" class="bi bi-tags-fill me-2"></i>-->
+                    <!--                            <span class="sidebar_title">دسته محصولات</span>-->
+                    <!--                        </router-link>-->
+                    <!--                    </li>-->
 
                     <li>
                         <router-link to="/panel/articles" class="nav-link text-white"
@@ -72,13 +79,13 @@
                             <span class="sidebar_title">مطالب</span>
                         </router-link>
                     </li>
-<!--                    <li>-->
-<!--                        <router-link to="/panel/categories/article" class="nav-link text-white"-->
-<!--                                     :class="{active: $route.fullPath ==='/panel/categories/article'}">-->
-<!--                            <i title="دسته مطالب" class="bi bi-tags-fill me-2"></i>-->
-<!--                            <span class="sidebar_title">دسته مطالب</span>-->
-<!--                        </router-link>-->
-<!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <router-link to="/panel/categories/article" class="nav-link text-white"-->
+                    <!--                                     :class="{active: $route.fullPath ==='/panel/categories/article'}">-->
+                    <!--                            <i title="دسته مطالب" class="bi bi-tags-fill me-2"></i>-->
+                    <!--                            <span class="sidebar_title">دسته مطالب</span>-->
+                    <!--                        </router-link>-->
+                    <!--                    </li>-->
                     <li>
                         <router-link to="/panel/projects" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/projects'}">
@@ -94,45 +101,45 @@
                             <span class="sidebar_title">اسلاید ها</span>
                         </router-link>
                     </li>
-<!--                    <li>-->
-<!--                        <router-link to="/panel/icon" class="nav-link text-white"-->
-<!--                                     :class="{active: $route.fullPath ==='/panel/icon'}">-->
-<!--                            <i class="bi bi-heptagon-fill me-2"></i>-->
-<!--                            <span class="sidebar_title">لوگو/ آیکون</span>-->
-<!--                        </router-link>-->
-<!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <router-link to="/panel/icon" class="nav-link text-white"-->
+                    <!--                                     :class="{active: $route.fullPath ==='/panel/icon'}">-->
+                    <!--                            <i class="bi bi-heptagon-fill me-2"></i>-->
+                    <!--                            <span class="sidebar_title">لوگو/ آیکون</span>-->
+                    <!--                        </router-link>-->
+                    <!--                    </li>-->
 
-<!--                    <li>-->
-<!--                        <router-link to="/panel/teachers" class="nav-link text-white"-->
-<!--                                     :class="{active: $route.fullPath ==='/panel/teachers'}">-->
-<!--                            <i class="me-2">-->
-<!--                                <i title="آموزگاران">-->
-<!--                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"-->
-<!--                                         class="bi bi-person-video3" viewBox="0 0 16 16">-->
-<!--                                        <path-->
-<!--                                            d="M14 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm-6 5.7c0 .8.8.8.8.8h6.4s.8 0 .8-.8-.8-3.2-4-3.2-4 2.4-4 3.2Z"/>-->
-<!--                                        <path-->
-<!--                                            d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h5.243c.122-.326.295-.668.526-1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v7.81c.353.23.656.496.91.783.059-.187.09-.386.09-.593V4a2 2 0 0 0-2-2H2Z"/>-->
-<!--                                    </svg>-->
-<!--                                </i>-->
-<!--                            </i>-->
-<!--                            <span class="sidebar_title">آموزگاران</span>-->
-<!--                        </router-link>-->
-<!--                    </li>-->
-                    <li>
-                        <router-link to="/panel/courses" class="nav-link text-white"
-                                     :class="{active: $route.fullPath ==='/panel/courses'}">
-                            <i title="دوره ها" class="bi bi-easel-fill me-2"></i>
-                            <span class="sidebar_title">دوره ها</span>
-                        </router-link>
-                    </li>
-<!--                    <li>-->
-<!--                        <router-link to="/panel/categories/course" class="nav-link text-white"-->
-<!--                                     :class="{active: $route.fullPath ==='/panel/categories/course'}">-->
-<!--                            <i title="دسته دوره ها" class="bi bi-tags-fill me-2"></i>-->
-<!--                            <span class="sidebar_title">دسته دوره ها</span>-->
-<!--                        </router-link>-->
-<!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <router-link to="/panel/teachers" class="nav-link text-white"-->
+                    <!--                                     :class="{active: $route.fullPath ==='/panel/teachers'}">-->
+                    <!--                            <i class="me-2">-->
+                    <!--                                <i title="آموزگاران">-->
+                    <!--                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"-->
+                    <!--                                         class="bi bi-person-video3" viewBox="0 0 16 16">-->
+                    <!--                                        <path-->
+                    <!--                                            d="M14 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm-6 5.7c0 .8.8.8.8.8h6.4s.8 0 .8-.8-.8-3.2-4-3.2-4 2.4-4 3.2Z"/>-->
+                    <!--                                        <path-->
+                    <!--                                            d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h5.243c.122-.326.295-.668.526-1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v7.81c.353.23.656.496.91.783.059-.187.09-.386.09-.593V4a2 2 0 0 0-2-2H2Z"/>-->
+                    <!--                                    </svg>-->
+                    <!--                                </i>-->
+                    <!--                            </i>-->
+                    <!--                            <span class="sidebar_title">آموزگاران</span>-->
+                    <!--                        </router-link>-->
+                    <!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <router-link to="/panel/courses" class="nav-link text-white"-->
+                    <!--                                     :class="{active: $route.fullPath ==='/panel/courses'}">-->
+                    <!--                            <i title="دوره ها" class="bi bi-easel-fill me-2"></i>-->
+                    <!--                            <span class="sidebar_title">دوره ها</span>-->
+                    <!--                        </router-link>-->
+                    <!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <router-link to="/panel/categories/course" class="nav-link text-white"-->
+                    <!--                                     :class="{active: $route.fullPath ==='/panel/categories/course'}">-->
+                    <!--                            <i title="دسته دوره ها" class="bi bi-tags-fill me-2"></i>-->
+                    <!--                            <span class="sidebar_title">دسته دوره ها</span>-->
+                    <!--                        </router-link>-->
+                    <!--                    </li>-->
                     <li>
                         <router-link to="/panel/resumes" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/resumes'}">
@@ -154,13 +161,15 @@
                             <span class="sidebar_title">مالی</span>
                         </router-link>
                     </li>
-<!--                    <li>-->
-<!--                        <router-link to="/panel/reports" class="nav-link text-white"-->
-<!--                                     :class="{active: $route.fullPath ==='/panel/reports'}">-->
-<!--                            <i title="گزارش ها" class="bi bi-bar-chart-line-fill me-2"></i>-->
-<!--                            <span class="sidebar_title">گزارش ها</span>-->
-<!--                        </router-link>-->
-<!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <router-link to="/panel/reports" class="nav-link text-white"-->
+                    <!--                                     :class="{active: $route.fullPath ==='/panel/reports'}">-->
+                    <!--                            <i title="گزارش ها" class="bi bi-bar-chart-line-fill me-2"></i>-->
+                    <!--                            <span class="sidebar_title">گزارش ها</span>-->
+                    <!--                        </router-link>-->
+                    <!--                    </li>-->
+
+
                     <li>
                         <router-link to="/panel/admins" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/admins'}">
@@ -168,13 +177,7 @@
                             <span class="sidebar_title">مدیران</span>
                         </router-link>
                     </li>
-<!--                    <li>-->
-<!--                        <router-link to="/panel/settings" class="nav-link text-white"-->
-<!--                                     :class="{active: $route.fullPath ==='/panel/settings'}">-->
-<!--                            <i title="تنضیمات" class="bi bi-gear-fill me-2"></i>-->
-<!--                            <span class="sidebar_title">تنضیمات</span>-->
-<!--                        </router-link>-->
-<!--                    </li>-->
+
                 </ul>
             </div>
         </div>
@@ -183,15 +186,15 @@
                 <div class="container-fluid">
                     <span id="sidebar_toggle_btn" class="fw-bold py-1 pe-2 mt-2" @click="sideBarToggle"
                           style="font-size: 20px; line-height: 10px; cursor: pointer">
-                        <i class="bi bi-list "></i>
+                        <i class="bi bi-list " style="font-size:25px"></i>
                     </span>
-                    <nav class=" pe-3 bp-1 ms-auto">
-                        <ul class="navbar-nav  ">
+                    <nav class=" pe-4 bp-1 ms-auto">
+                        <ul class="navbar-nav ">
                             <li class="nav-item dropdown ">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <span id="admin_label"> {{ admin }}</span>
-                                    <i class="bi bi-person-circle mx-2 my-0"></i>
+                                    <i class="bi bi-person-circle mx-2 my-0" style="font-size: 20px"></i>
                                 </a>
                                 <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
                                     <li>
@@ -236,14 +239,13 @@
         <section class="page_content container-fluid p-4 p-md-5 bg-light vh-100">
             <Suspense>
                 <router-view/>
-
             </Suspense>
         </section>
     </div>
 </template>
 
 <script>
-import Loader from "../site/components/Loader";
+import Loader from "../components/Loader";
 
 export default {
     components: {Loader},
@@ -397,17 +399,35 @@ export default {
 </script>
 
 <style scoped>
+.sidebar_title {
+    padding: 0 5px 20px 0;
+}
+
+.nav-link {
+    border-radius: 0 !important;
+}
+
 #sidebar-wrapper {
     /*height: 100vh;*/
     overflow-y: scroll;
     overflow-x: hidden;
     direction: ltr;
-    margin-top: 3.5rem;
+    /*margin-top: 3.5rem;*/
+
 }
 
 #sidebar {
     direction: rtl;
-    min-height: calc(100vh - 3.5rem);
+    min-height: calc(100vh);
+}
+
+tr:first-child td, tr:last-child td, tr:first-child th, tr:last-child th {
+    width: 35px !important;
+}
+
+body {
+    background-color: #2c3034 !important;
+    color: white !important;
 }
 
 /*.zoom-enter-from,*/
@@ -438,9 +458,6 @@ export default {
 /*    transition: all 1s ease;*/
 /*}*/
 
-tr:first-child td, tr:last-child td, tr:first-child th, tr:last-child th {
-    width: 35px !important;
-}
 
 /*.date_cell {*/
 /*    direction: ltr !important;*/

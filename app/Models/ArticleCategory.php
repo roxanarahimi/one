@@ -13,4 +13,8 @@ class ArticleCategory extends Model
     {
         return $this->hasMany(Article::class,  'article_category_id', 'id')->orderByDesc('id');
     }
+ public function subsets()
+    {
+        return $this->hasMany(Article::class,  'article_category_id', 'id')->orderByDesc('id');
+    }
 }

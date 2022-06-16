@@ -207,8 +207,9 @@ export default {
     methods: {
         async loadCategories() {
             await App.methods.checkToken();
-            await axios.get('/api/panel/category/product').then((response) => {
-                this.categories = response.data;
+            await axios.get('/api/panel/category/product?page=1&perPage=100000')
+                .then((response) => {
+                this.categories = response.data.data;
             }).catch();
         },
 
@@ -368,14 +369,14 @@ export default {
         },
         updateFeatures() {
             //    App.methods.checkToken();
-            axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
-                .then((response) => {
-                    if (response.status === 200) {
-                        localStorage.setItem('expire', response.data.expire);
-                        console.log(localStorage);
-                    }
-                })
-                .then(() => {
+            // axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
+            //     .then((response) => {
+            //         if (response.status === 200) {
+            //             localStorage.setItem('expire', response.data.expire);
+            //             console.log(localStorage);
+            //         }
+            //     })
+            //     .then(() => {
                     this.features = [];
                     for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
                         this.features.push({
@@ -383,13 +384,13 @@ export default {
                             "value": document.getElementsByName('featureValue')[i].value.toString()
                         });
                     }
-                })
-                .catch((error) => {
-                    if (error.response.status === 401) {
-                        window.location = '/panel/login'
-                        App.methods.logout();
-                    }
-                });
+                // })
+                // .catch((error) => {
+                //     if (error.response.status === 401) {
+                //         window.location = '/panel/login'
+                //         App.methods.logout();
+                //     }
+                // });
 
 
         },

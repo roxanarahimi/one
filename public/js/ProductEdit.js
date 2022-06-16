@@ -180,8 +180,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     loadCategories: function loadCategories() {
       var _this2 = this;
 
-      axios.get('/api/panel/category/product').then(function (response) {
-        _this2.categories = response.data;
+      axios.get('/api/panel/category/product?page=1&perPage=100000').then(function (response) {
+        _this2.categories = response.data.data;
       })["catch"]();
     },
     updateInfo: function updateInfo() {

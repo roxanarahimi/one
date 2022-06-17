@@ -14,8 +14,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.js"></script>
 
-    <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/themes.css') }}">
 
     {{--    LOCAL:--}}
 
@@ -43,6 +44,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
+<script src="{{ asset('js/themes.js') }}"></script>
 
 {{--<script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>--}}
 

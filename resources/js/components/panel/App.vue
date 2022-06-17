@@ -15,17 +15,17 @@
                 <!--            <h4 class=" my-3 text-center ">پنل مدیریت</h4>-->
                 <ul class="nav nav-pills flex-column mb-auto " style="padding-top: 1px">
                     <li class="mt-2 pt-2">
-                        <span class="nav-link text-white ">
-                            <i class="bi bi-moon-fill " title="حالت شب"></i>
-                            <span class="sidebar_title">حالت شب</span>
+                        <span class="theme nav-link text-white ">
+                                <i class="bi bi-moon-fill" title="حالت شب"></i>
+                                <span class="sidebar_title">حالت شب</span>
                         </span>
                     </li>
-                    <li class="mt-2 pt-2">
-                        <span class="nav-link text-white">
-                            <i class="bi bi-sun-fill" title="حالت روز"></i>
-                            <span class="sidebar_title">حالت روز</span>
-                        </span>
-                    </li>
+<!--                    <li class="mt-2 pt-2">-->
+<!--                        <span class="theme nav-link text-white">-->
+<!--                            <i class="bi bi-sun-fill" title="حالت روز"></i>-->
+<!--                            <span class="sidebar_title">حالت روز</span>-->
+<!--                        </span>-->
+<!--                    </li>-->
 
 
                     <li class="nav-item" id="">
@@ -40,13 +40,7 @@
                     <li>
                         <router-link to="/panel/orders" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/orders'}">
-                            <i title="سفارش ها">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
-                                     class="bi bi-box2-heart-fill me-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4h-8.5ZM8.5 4h6l.5.667V5H1v-.333L1.5 4h6V1h1v3ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
-                                </svg>
-                            </i>
+                            <i title="سفارش ها" class="bi bi-box2-heart-fill me-2"></i>
                             <span class="sidebar_title">سفارش ها</span>
                         </router-link>
                     </li>

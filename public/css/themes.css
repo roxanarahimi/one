@@ -5,7 +5,7 @@
     --bg1-light: white;
     --bg2-light: whitesmoke;
     /*--shadow-light: whitesmoke;*/
-    --nav-bg-light: #70002f;
+    --nav-bg-light: #1a4367;
     --nav-txt-light: #ffffff;
     --form-element-bg-light: #fafafa;
 
@@ -112,7 +112,8 @@ h1, h2, h3, h4, h5, h6, p,
     color: var(--nav-txt) !important;
 }
 
-#sidebar, #sidebar .text-dark, .nav-pills > li > a :not(.router-link-active)> .bi, .theme > .bi {
+#sidebar, #sidebar .text-dark, .nav-pills > li > a :not(.router-link-active)> .bi
+ {
     background-color: var(--nav-bg) !important;
     color: var(--nav-txt) !important;
 }

@@ -170,8 +170,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       _this.images.push([_i, _this.data.images[_i]]);
                     }
                   }
-
-                  console.log('imagessss', _this.images);
                 });
 
               case 4:
@@ -315,7 +313,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.open(0);
     }),
-    "class": "img-fluid mb-2 col-12 p-0 pe-1",
+    width: "100%",
+    "class": "mb-2 col-12 p-0 pe-1",
     src: $props.images[0]
   }, null, 8
   /* PROPS */
@@ -324,7 +323,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.open(1);
     }),
-    "class": "img-fluid col-3 p-0 pe-1",
+    width: "100%",
+    "class": "col-3 p-0 pe-1",
     src: $props.images[1]
   }, null, 8
   /* PROPS */
@@ -333,7 +333,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.open(2);
     }),
-    "class": "img-fluid col-3 p-0 pe-1",
+    width: "100%",
+    "class": "col-3 p-0 pe-1",
     src: $props.images[2]
   }, null, 8
   /* PROPS */
@@ -342,7 +343,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.open(3);
     }),
-    "class": "img-fluid col-3 p-0 pe-1",
+    width: "100%",
+    "class": "col-3 p-0 pe-1",
     src: $props.images[3]
   }, null, 8
   /* PROPS */
@@ -351,7 +353,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[4] || (_cache[4] = function ($event) {
       return $options.open(4);
     }),
-    "class": "img-fluid col-3 p-0 pe-1",
+    width: "100%",
+    "class": "col-3 p-0 pe-1",
     src: $props.images[4]
   }, null, 8
   /* PROPS */
@@ -711,7 +714,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nimg[data-v-84e2f714] {\n    cursor: pointer;\n}\nbody[data-v-84e2f714]{\n    height: 2000px;\n}\n#frame-wrapper[data-v-84e2f714] {\n    width: 100%;\n    height: 100vh;\n    background-color: rgba(0, 0, 0, 0.75);\n    text-align: center;\n    vertical-align: middle;\n    position: fixed;\n    top: 0;\n    right: 0;\n    z-index: 100;\n    padding-top: 100px;\n}\n#frame[data-v-84e2f714] {\n    font-size: 30px !important;\n    vertical-align: middle !important;\n    width: 60%;\n    min-height: 300px;\n    margin: 0 auto;\n    padding: 40px;\n\n    /*background-color: rgba(0, 0, 0, 0.5);*/\n}\n#frame .span[data-v-84e2f714] {\n    margin-top: 20%;\n}\n#maximized-img[data-v-84e2f714] {\n    width: 70%;\n    transition: 1s ease;\n}\n#images-close[data-v-84e2f714] {\n    position: relative;\n    top: -4px;\n    right: 20%;\n    z-index: 100;\n}\n#images-close i[data-v-84e2f714] {\n    color: black !important;\n    /*background-color: white !important;*/\n    padding: 0;\n    margin: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nimg[data-v-84e2f714] {\n    cursor: pointer;\n}\nbody[data-v-84e2f714] {\n    height: 2000px;\n}\n#frame-wrapper[data-v-84e2f714] {\n    width: 100%;\n    height: 100vh;\n    background-color: rgba(0, 0, 0, 0.75);\n    text-align: center;\n    justify-content: center !important;\n    vertical-align: middle;\n    position: fixed;\n    top: 0;\n    right: 0;\n    z-index: 100;\n    padding-top: 100px;\n}\n#frame[data-v-84e2f714] {\n    font-size: 30px !important;\n    vertical-align: middle !important;\n    width: 100%;\n    /*min-height: 300px;*/\n    margin: 0 auto;\n    padding: 40px;\n\n    /*background-color: rgba(0, 0, 0, 0.5);*/\n}\n#frame .span[data-v-84e2f714] {\n    margin-top: 20%;\n}\n#maximized-img[data-v-84e2f714] {\n    width: 70%;\n    transition: 1s ease;\n}\n#images-close[data-v-84e2f714] {\n    position: absolute;\n    top: 133px;\n    right: 20.5%;\n    z-index: 100;\n}\n#images-close i[data-v-84e2f714] {\n    color: black !important;\n    /*background-color: white !important;*/\n    padding: 0;\n    margin: 0;\n}\n@media (min-width: 720px) {\n#frame[data-v-84e2f714] {\n        width: 70%;\n}\n#images-close[data-v-84e2f714] {\n        right: 27%;\n}\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

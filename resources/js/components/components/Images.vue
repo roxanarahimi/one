@@ -1,19 +1,20 @@
 <template>
     <div class="w-100">
         <div class="col-12 row m-0">
-            <img @click="open(0)" v-if="images && images[0]" class="img-fluid mb-2 col-12 p-0 pe-1" :src="images[0]">
-            <img @click="open(1)" v-if="images && images[1]" class="img-fluid col-3 p-0 pe-1" :src="images[1]"/>
-            <img @click="open(2)" v-if="images && images[2]" class="img-fluid col-3 p-0 pe-1" :src="images[2]"/>
-            <img @click="open(3)" v-if="images && images[3]" class="img-fluid col-3 p-0 pe-1" :src="images[3]"/>
-            <img @click="open(4)" v-if="images && images[4]" class="img-fluid col-3 p-0 pe-1" :src="images[4]"/>
-            <div id="frame-wrapper" class="d-none">
+            <img @click="open(0)" v-if="images && images[0]" width="100%" class="mb-2 col-12 p-0 pe-1" :src="images[0]">
+            <img @click="open(1)" v-if="images && images[1]" width="100%" class="col-3 p-0 pe-1" :src="images[1]"/>
+            <img @click="open(2)" v-if="images && images[2]" width="100%" class="col-3 p-0 pe-1" :src="images[2]"/>
+            <img @click="open(3)" v-if="images && images[3]" width="100%" class="col-3 p-0 pe-1" :src="images[3]"/>
+            <img @click="open(4)" v-if="images && images[4]" width="100%" class="col-3 p-0 pe-1" :src="images[4]"/>
+            <div id="frame-wrapper" class="d-none ">
                 <div id="frame" class="d-flex justify-content-between">
                     <span id="images-close" @click="close" class="text-light"><i class="bi bi-x-square-fill"></i></span>
 
                     <span id="images-prev-btn" @click="prevImage" class="text-light span"><i
                         class="bi bi-caret-right-square-fill"></i></span>
                     <img id="maximized-img" class="rounded" :src="images[i]">
-                    <span id="images-next-btn"  @click="nextImage" class="text-light span"><i class="bi bi-caret-left-square-fill"></i></span>
+                    <span id="images-next-btn" @click="nextImage" class="text-light span"><i
+                        class="bi bi-caret-left-square-fill"></i></span>
                 </div>
             </div>
         </div>
@@ -29,14 +30,14 @@ export default {
     data() {
         return {
             i: 0,
-            navigate: (event)=>{
+            navigate: (event) => {
 
             },
         }
     },
     mounted() {
 
-        function Y(event){
+        function Y(event) {
             if (event.keyCode === 37) {
                 document.querySelector('#images-prev-btn').click();
             } else if (event.keyCode === 39) {
@@ -45,20 +46,20 @@ export default {
             console.log('rr');
         }
 
-        document.addEventListener('keydown',Y);
-        document.querySelector('#images-close').addEventListener('click',function (){
-            document.removeEventListener('keydown',Y);
+        document.addEventListener('keydown', Y);
+        document.querySelector('#images-close').addEventListener('click', function () {
+            document.removeEventListener('keydown', Y);
         });
 
 
-                // this.start();
+        // this.start();
 
     },
     methods:
         {
             start() {
 
-                document.addEventListener('keydown',function (e){
+                document.addEventListener('keydown', function (e) {
                     if (e.keyCode === 37) {
                         document.querySelector('#images-prev-btn').click();
                     } else if (e.keyCode === 39) {
@@ -115,14 +116,17 @@ export default {
 img {
     cursor: pointer;
 }
-body{
+
+body {
     height: 2000px;
 }
+
 #frame-wrapper {
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.75);
     text-align: center;
+    justify-content: center !important;
     vertical-align: middle;
     position: fixed;
     top: 0;
@@ -134,8 +138,8 @@ body{
 #frame {
     font-size: 30px !important;
     vertical-align: middle !important;
-    width: 60%;
-    min-height: 300px;
+    width: 100%;
+    /*min-height: 300px;*/
     margin: 0 auto;
     padding: 40px;
 
@@ -152,9 +156,9 @@ body{
 }
 
 #images-close {
-    position: relative;
-    top: -4px;
-    right: 20%;
+    position: absolute;
+    top: 133px;
+    right: 20.5%;
     z-index: 100;
 
 }
@@ -165,4 +169,15 @@ body{
     padding: 0;
     margin: 0;
 }
+
+@media (min-width: 720px) {
+    #frame {
+        width: 70%;
+    }
+
+    #images-close {
+        right: 27%;
+    }
+}
+
 </style>

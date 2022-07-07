@@ -17,7 +17,7 @@
                             <template #item = "{element}">
                                 <div :data-id = "element.id" class = "element-cards card  mb-2 me-2 col-md-8 px-0" style = "cursor: pointer">
                                     <div class = "card-body p-2">
-                                        <img v-if = "element.thumb" class = "rounded d-inline-block my-1" width = "80" :src = "element.thumb">
+                                        <img v-if = "element.image" class = "rounded d-inline-block my-1" width = "80" :src = "element.image">
                                         <div v-else class = "rounded d-inline-block my-1" style = "width: 80px; height: 20px;"></div>
                                         <div class = "d-inline-block " style = "vertical-align: bottom">
                                             <small class = "d-block fw-lighter ms-2 mb-0" style = "vertical-align: bottom; font-size:13px">

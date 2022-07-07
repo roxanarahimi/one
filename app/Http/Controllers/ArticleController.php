@@ -75,7 +75,7 @@ class ArticleController extends Controller
 //            if ($request['image']) {
                 $name = 'article_' . $data['id'] . '_' . uniqid() . '.jpg';
                 $image_path = (new ImageController)->uploadImage($request['image'], $name, 'images/');
-                (new ImageController)->resizeImage('images/', $name);
+//                (new ImageController)->resizeImage('images/', $name);
                 $data->update(['image' => '/' . $image_path]);
 //            }
             return response(new ArticleResource($data), 201);
@@ -106,7 +106,7 @@ class ArticleController extends Controller
             if ($request['image']) {
                 $name = 'article_' . $article['id'] . '_' . uniqid() . '.jpg';
                 $image_path = (new ImageController)->uploadImage($request['image'], $name, 'images/');
-                (new ImageController)->resizeImage('images/', $name);
+//                (new ImageController)->resizeImage('images/', $name);
                 $article->update(['image' => '/' . $image_path]);
             }
 

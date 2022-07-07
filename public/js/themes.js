@@ -23,7 +23,6 @@ themeBtn.addEventListener('click', () => {
     let theme = getCurrentTheme();
     theme === 'dark' ? theme = 'light' : theme = 'dark';
     localStorage.setItem('theme', theme);
-    console.log('theme', theme);
     loadTheme(theme);
 })
 window.addEventListener('DOMContentLoaded', () => {

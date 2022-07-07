@@ -18,6 +18,7 @@
 //});
 
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 //all
 Route::controller(App\Http\Controllers\AuthController::class)->group(function () {
@@ -284,5 +285,8 @@ Route::controller(App\Http\Controllers\TeacherController::class)->group(function
 });
 
 
+//other API'S
 
+//food api
+Route::get('/foods', [ApiController::class,'foods']);
 

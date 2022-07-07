@@ -74,7 +74,7 @@ class SlideController extends Controller
           //  $image = $request['image'];
             $name = 'slide_' . $data['id'] . '_' . uniqid() . '.jpg';
             $image_path = (new ImageController)->uploadImage($request['image'], $name, 'images/');
-            (new ImageController)->resizeImage('images/', $name);
+//            (new ImageController)->resizeImage('images/', $name);
             $data->update(['image' => '/' . $image_path]);
 
             return response(new SlideResource($data), 201);
@@ -105,7 +105,7 @@ class SlideController extends Controller
                // $image = $request['image'];
                 $name = 'slide_' . $slide['id'] . '_' . uniqid() . '.jpg';
                 $image_path = (new ImageController)->uploadImage($request['image'], $name, 'images/');
-                (new ImageController)->resizeImage('images/', $name);
+//                (new ImageController)->resizeImage('images/', $name);
                 $slide->update(['image' => '/' . $image_path]);
             }
             return response(new SlideResource($slide), 200);

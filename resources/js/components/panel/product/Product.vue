@@ -151,7 +151,6 @@ export default {
                             this.images.push([i, this.data.images[i]]);
                         }
                     }
-                    console.log('imagessss', this.images);
                 });
 
         },

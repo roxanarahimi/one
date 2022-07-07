@@ -179,9 +179,9 @@ class ProductController extends Controller
             $images = '';
             for ($i = 0; $i < count($requestImages); $i++) {
                 if ($requestImages[$i][1]) {
-                    $name = 'product_' . $productId . '_' . uniqid() . '.jpgjpg';
+                    $name = 'product_' . $productId . '_' . uniqid() . '.jpg';
                     $image_path = (new ImageController)->uploadImage($requestImages[$i][1], $name, 'images/');
-                    (new ImageController)->resizeImage('images/', $name);
+//                    (new ImageController)->resizeImage('images/', $name);
                     $images = $images . '/' . $image_path . ',';
                 } else if ($requestImages[$i][0]) {
                     $images = $images . $requestImages[$i][0] . ',';

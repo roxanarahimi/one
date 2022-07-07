@@ -32,8 +32,8 @@ export default {
                 document.querySelector('#submit').setAttribute('disabled', 'disabled');
                 document.querySelector('.loader-sm').classList.remove('d-none');
                 setTimeout(()=>{
-                    document.querySelector('#submit').removeAttribute('disabled');
-                    document.querySelector('.loader-sm').classList.add('d-none');
+                    document.querySelector('#submit')?.removeAttribute('disabled');
+                    document.querySelector('.loader-sm')?.classList.add('d-none');
                 },3000)
             }else {
                 document.querySelector('#submit').classList.remove('btn-primary');

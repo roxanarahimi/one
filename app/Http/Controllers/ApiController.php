@@ -18,4 +18,13 @@ class ApiController extends Controller
             return response($exception);
         }
     }
+    public function food(Food $food)
+    {
+        try {
+//
+            return response($food, 200);
+        } catch (\Exception $exception) {
+            return response($exception);
+        }
+    }
 }

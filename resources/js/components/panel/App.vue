@@ -12,7 +12,7 @@
 
         <div id="sidebar-wrapper" class=" bg-dark">
             <div id="sidebar" class="bg-dark text-light">
-                <!--            <h4 class=" my-3 text-center ">پنل مدیریت</h4>-->
+                <!--            <h4 class=" my-3 text-center">پنل مدیریت</h4>-->
                 <ul class="nav nav-pills flex-column mb-auto " style="padding-top: 1px">
                     <li class="mt-2 pt-2">
                         <span class="theme nav-link text-white ">

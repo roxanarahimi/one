@@ -138,7 +138,7 @@
 
         mounted() {
             this.loadCategories();
-            this.loadData();p
+            this.loadData();
         },
 
         methods: {

@@ -151,7 +151,7 @@ class CourseController extends Controller
     {
         $validator = Validator::make($request->all(),
             [
-                'title' => 'required|unique:Courses,title',
+                'title' => 'required|unique:courses,title',
             ],
             [
                 'title.required' => 'لطفا عنوان را وارد کنید',
@@ -175,7 +175,7 @@ class CourseController extends Controller
     {
         $validator = Validator::make($request->all('title'),
             [
-                'title' => 'required|unique:Courses,title,' . $course['id'],
+                'title' => 'required|unique:courses,title,' . $course['id'],
             ],
             [
                 'title.required' => 'لطفا عنوان را وارد کنید',
@@ -193,8 +193,7 @@ class CourseController extends Controller
         }
     }
 
-    public
-    function destroy(Request $request)
+    public function destroy(Request $request)
     {
         $data = Course::findOrFail($request['id']);
         try {

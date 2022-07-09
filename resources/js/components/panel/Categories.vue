@@ -7,7 +7,7 @@
                 <select id="model" @change="loadData" v-model="model" class="form-select" style="width: 200px">
                     <option value="product">محصولات</option>
                     <option value="article">مطالب</option>
-<!--                    <option value="course">دوره ها</option>-->
+                    <option value="course">دوره ها</option>
                 </select>
             </div>
             <!--            <div class="row flex-row-reverse ">-->
@@ -84,7 +84,7 @@ import CategoriesTable from "./categoriesTable";
 import {onMounted, ref} from "vue";
 import Loader from "../components/Loader";
 import BtnSubmit from "../components/BtnSubmit";
-import categoriesTable from "./categoriesTable";
+// import categoriesTable from "./categoriesTable";
 import Pagination from "../components/Pagination";
 
 
@@ -137,13 +137,9 @@ export default {
                         document.getElementById('title').classList.add('hasError');
 
                         let errorList = Array(error.response.data);
-                        // console.log(error.response.data);
                         for (var i = 0; i < errorList.length; i++) {
-                            //  console.log('i',errorList[i]);
                             this.errors = errorList[i];
                         }
-                        console.log(this.errors.toString());
-
 
                         // for (var i = 0; i < errorList.length; i++) {
                         //     for (var j = 0; j < Array(errorList[i]).length; j++) {
@@ -195,8 +191,6 @@ export default {
 
 </script>
 <style>
-.edit {
-    background: #d7d7d7 !important;
-}
+
 </style>
 a

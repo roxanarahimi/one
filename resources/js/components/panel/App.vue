@@ -20,12 +20,12 @@
                                 <span class="sidebar_title">حالت شب</span>
                         </span>
                     </li>
-<!--                    <li class="mt-2 pt-2">-->
-<!--                        <span class="theme nav-link text-white">-->
-<!--                            <i class="bi bi-sun-fill" title="حالت روز"></i>-->
-<!--                            <span class="sidebar_title">حالت روز</span>-->
-<!--                        </span>-->
-<!--                    </li>-->
+                    <!--                    <li class="mt-2 pt-2">-->
+                    <!--                        <span class="theme nav-link text-white">-->
+                    <!--                            <i class="bi bi-sun-fill" title="حالت روز"></i>-->
+                    <!--                            <span class="sidebar_title">حالت روز</span>-->
+                    <!--                        </span>-->
+                    <!--                    </li>-->
 
 
                     <li class="nav-item" id="">
@@ -84,7 +84,7 @@
                         <router-link to="/panel/projects" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/projects'}">
                             <!--                            <i class = "bi bi-journals me-2"></i>-->
-                            <i title="پروژه ها" class="bi bi-stack me-2"></i>
+                            <i title="پروژه ها" class="bi bi-briefcase-fill me-2"></i>
                             <span class="sidebar_title">پروژه ها</span>
                         </router-link>
                     </li>
@@ -95,45 +95,28 @@
                             <span class="sidebar_title">اسلاید ها</span>
                         </router-link>
                     </li>
-                    <!--                    <li>-->
-                    <!--                        <router-link to="/panel/icon" class="nav-link text-white"-->
-                    <!--                                     :class="{active: $route.fullPath ==='/panel/icon'}">-->
-                    <!--                            <i class="bi bi-heptagon-fill me-2"></i>-->
-                    <!--                            <span class="sidebar_title">لوگو/ آیکون</span>-->
-                    <!--                        </router-link>-->
-                    <!--                    </li>-->
+<!--                    <li>-->
+<!--                        <router-link to="/panel/icon" class="nav-link text-white"-->
+<!--                                     :class="{active: $route.fullPath ==='/panel/icon'}">-->
+<!--                            <i class="bi bi-heptagon-fill me-2"></i>-->
+<!--                            <span class="sidebar_title">لوگو/ آیکون</span>-->
+<!--                        </router-link>-->
+<!--                    </li>-->
 
-                    <!--                    <li>-->
-                    <!--                        <router-link to="/panel/teachers" class="nav-link text-white"-->
-                    <!--                                     :class="{active: $route.fullPath ==='/panel/teachers'}">-->
-                    <!--                            <i class="me-2">-->
-                    <!--                                <i title="آموزگاران">-->
-                    <!--                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"-->
-                    <!--                                         class="bi bi-person-video3" viewBox="0 0 16 16">-->
-                    <!--                                        <path-->
-                    <!--                                            d="M14 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm-6 5.7c0 .8.8.8.8.8h6.4s.8 0 .8-.8-.8-3.2-4-3.2-4 2.4-4 3.2Z"/>-->
-                    <!--                                        <path-->
-                    <!--                                            d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h5.243c.122-.326.295-.668.526-1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v7.81c.353.23.656.496.91.783.059-.187.09-.386.09-.593V4a2 2 0 0 0-2-2H2Z"/>-->
-                    <!--                                    </svg>-->
-                    <!--                                </i>-->
-                    <!--                            </i>-->
-                    <!--                            <span class="sidebar_title">آموزگاران</span>-->
-                    <!--                        </router-link>-->
-                    <!--                    </li>-->
-                    <!--                    <li>-->
-                    <!--                        <router-link to="/panel/courses" class="nav-link text-white"-->
-                    <!--                                     :class="{active: $route.fullPath ==='/panel/courses'}">-->
-                    <!--                            <i title="دوره ها" class="bi bi-easel-fill me-2"></i>-->
-                    <!--                            <span class="sidebar_title">دوره ها</span>-->
-                    <!--                        </router-link>-->
-                    <!--                    </li>-->
-                    <!--                    <li>-->
-                    <!--                        <router-link to="/panel/categories/course" class="nav-link text-white"-->
-                    <!--                                     :class="{active: $route.fullPath ==='/panel/categories/course'}">-->
-                    <!--                            <i title="دسته دوره ها" class="bi bi-tags-fill me-2"></i>-->
-                    <!--                            <span class="sidebar_title">دسته دوره ها</span>-->
-                    <!--                        </router-link>-->
-                    <!--                    </li>-->
+                    <li>
+                        <router-link to="/panel/teachers" class="nav-link text-white"
+                                     :class="{active: $route.fullPath ==='/panel/teachers'}">
+                            <i title="آموزگاران" class="bi bi-person-video3 me-2"></i>
+                            <span class="sidebar_title">آموزگاران</span>
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/panel/courses" class="nav-link text-white"
+                                     :class="{active: $route.fullPath ==='/panel/courses'}">
+                            <i title="دوره ها" class="bi bi-easel-fill me-2"></i>
+                            <span class="sidebar_title">دوره ها</span>
+                        </router-link>
+                    </li>
                     <li>
                         <router-link to="/panel/resumes" class="nav-link text-white"
                                      :class="{active: $route.fullPath ==='/panel/resumes'}">

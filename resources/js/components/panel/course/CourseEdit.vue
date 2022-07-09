@@ -135,12 +135,10 @@
                 sizes: [{"size": "", "dimensions": "", "color_name": "", "color_code": "", "stock": ""}],
             }
         },
-
         mounted() {
             this.loadCategories();
             this.loadData();
         },
-
         methods: {
             async loadData() {
                 await App.methods.checkToken();

@@ -3,7 +3,6 @@
         <section>
             <h3 class = "mb-5">ویرایش دوره</h3>
             <div class = "row mt-3">
-
                 <div class = "col-12 mb-3">
                     <div class = "card" v-if = "isDefined">
                         <div class = "card-body">
@@ -21,7 +20,6 @@
                                         <input type = "text" :class = "{hasError: errors.title}" :value = "data.title" class = "form-control" id = "title" aria-describedby = "titleHelp">
                                         <div id = "titleHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.title">{{ e }}</p>
-
                                     </div>
                                     <div class = "col-md-4 col-lg-3 mb-3">
                                         <label for = "category" class = "form-label">دسته</label>
@@ -32,7 +30,6 @@
                                             </option>
                                         </select>
                                         <div id = "categoryHelp" class = "form-text error"></div>
-
                                     </div>
                                     <div class = "col-md-4 col-lg-3 mb-3">
                                         <label for = "teacher" class = "form-label">استاد</label>
@@ -114,7 +111,6 @@
 <script>
     import ImageCropper from '../../components/ImageCropper';
     import App from '../App';
-    // import {toArray} from "../../../public/cropperjs/src/js/utilities";
 
     export default {
         components: {ImageCropper},

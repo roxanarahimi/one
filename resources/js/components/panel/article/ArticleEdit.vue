@@ -5,7 +5,7 @@
 
             <div class = "row mt-3">
                 <div class = "col-12 mb-3">
-                    <div class = "card" v-if = "isDefined">
+                    <div class = "card" v-if = "isDefined" @click = "e => enableClick && makeImageArrays()">
                         <div class = "card-body">
                             <form id = "editForm">
                                 <div class = "row">
@@ -34,8 +34,10 @@
                                         <div id = "categoryHelp" class = "form-text error"></div>
                                     </div>
                                     <div class = "col-md-12 mb-3">
-                                        <label class = "form-label" for = "text">متن</label>
-                                        <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text">{{ data.text}}</textarea>
+                                        <label class = "form-label" >متن</label>
+<!--                                        <textarea @input = "watchTextAreas" :class = "{hasError: errors.text}" aria-describedby = "textHelp" class = "form-control text-start" id = "text">{{ data.text}}</textarea>-->
+                                        <editor mode = "edit" :content = "data.text" :blog_id = "data.id"/>
+
                                         <div id = "textHelp" class = "form-text error"></div>
                                         <p class = "form-text error m-0" v-for = "e in errors.text">{{ e }}</p>
 
@@ -83,9 +85,10 @@
 <script>
     import ImageCropper from '../../components/ImageCropper';
     import App from '../App';
+    import Editor from "../../components/Editor";
 
     export default {
-        components: {ImageCropper},
+        components: {Editor, ImageCropper},
         data() {
             return {
                 id: this.$route.params.id,
@@ -111,6 +114,29 @@
         },
 
         methods: {
+            makeImageArrays() {
+                document.getElementById('confirm_Image').addEventListener('click', () => {
+                    if (document.getElementById('Image_inner_code').value !== '') {
+                        this.image_codes.push(document.getElementById('Image_inner_code').value);
+                        this.image_names.push(document.getElementById('Image_inner_name').value);
+
+                        Editor.methods.updatePreview();
+                        localStorage.setItem('draft_new_img_codes', JSON.stringify(this.image_codes));
+                        localStorage.setItem('draft_new_img_names', JSON.stringify(this.image_names));
+                        console.log(localStorage);
+                        // console.log('11',JSON.stringify(this.image_codes));
+                        // console.log('22',JSON.parse(JSON.stringify(this.image_codes)));
+
+                    }
+                    //   console.log(this.image_codes, this.image_names);
+                    document.getElementById('btn_clear_image_inner').click();
+                    document.getElementById('Image_inner_caption').value = '';
+                });
+                //    console.log('made');
+                this.enableClick = false;
+
+            },
+
             async loadArticle() {
                 await App.methods.checkToken();
                 await axios.get('/api/panel/article/' + this.id)
@@ -123,7 +149,6 @@
                                 this.tags.push(JSON.parse(this.data.tags)[i]);
                             }
                         }
-
                     })
                     .then(() => {
                         this.isDefined = true;
@@ -170,15 +195,19 @@
                     await axios.post('/api/panel/article/' + this.$route.params.id,
                         {
                             image: document.getElementById('Image__code').value,
+                            image_codes: this.image_codes,
+                            image_names: this.image_names,
                             title: document.getElementById('title').value,
                             article_category_id: document.getElementById('category').value,
-                            text: document.getElementById('text').value,
+                            // text: document.getElementById('text').value,
+                            text:  document.getElementById('content_text_area').value,
                             tags: tags,
                         })
                         .then((response) => {
+                            console.log(response)
                             if (response.status === 200) {
                               setTimeout(() => {
-                                    this.$router.push({path: '/panel/article/' + this.id});
+                                    // this.$router.push({path: '/panel/article/' + this.id});
                                 }, 1000);
                             }
                         })

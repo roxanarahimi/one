@@ -61,7 +61,7 @@
                await axios.get('/api/panel/article/' + this.id)
                             .then((response) => {
                                 this.data = response.data;
-                                document.getElementById('text').innerText = this.data.text;
+                                document.getElementById('text').innerHTML = this.data.text;
 
                                 if (this.data.tags) {
                                     for (let i = 0; i < JSON.parse(this.data.tags).length; i++) {

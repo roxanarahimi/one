@@ -103,7 +103,7 @@ class CourseController extends Controller
 
             $data = $data->get();
 
-            return response($data, 200);
+            return response(CourseResource::collection($data), 200);
 //            return response(new CourseResource($data), 200);
         } catch (\Exception $exception) {
             return response($exception);
@@ -205,8 +205,7 @@ class CourseController extends Controller
         }
     }
 
-    public
-    function activeToggle(Course $course)
+    public function activeToggle(Course $course)
     {
         try {
             $course->update(['active' => !$course['active']]);

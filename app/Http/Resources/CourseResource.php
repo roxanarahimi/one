@@ -23,6 +23,12 @@ class CourseResource extends JsonResource
                 'title' => $this->category->title,
                 'active' => $this->category->active,
             ],
+            "teacher" => [
+                'id' => $this->teacher->id,
+                'name' => $this->teacher->name,
+                'gender' => $this->teacher->gender,
+                'active' => $this->teacher->active,
+            ],
             "price" => $this->price,
             "off" => $this->off,
             "capacity" => $this->capacity,

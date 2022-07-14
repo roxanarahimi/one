@@ -29,8 +29,10 @@
             <input type = "text" :id = "'Image_'+name+'_max_width'" class = "form-control mb-2" style = "width: 260px" placeholder = "حد اکثر عرض مجاز (اختیاری)">
         </div>
 
+
         <input :id = "'image'+ name" ref = "imageInput" accept = ".jpg, .jpeg, .png" @change = "fileChanged" type = "file" :name = "'content_image_file'+name" class = "form-control d-none">
 
+        <input :id = "'Image_'+name+'_path'" name = "content_image_path" value="" type = "text" class = "form-control image_path d-none">
         <input :id = "'Image_'+name+'_code'" name = "content_image_code" type = "text" class = "form-control image_code_64  d-none">
         <input :id = "'Image_'+name+'_name'" name = "content_image_name" v-if = "selectedFile" :value = "selectedFile.name" type = "text" class = "file_name form-control d-none">
         <input v-if = "isRequired" :id = "'Image_'+name" type = "text" :value = "selectedFile" class = "form-control d-none" required>
@@ -41,9 +43,11 @@
 <script>
     // import Cropper from 'cropperjs';
     import {ref, watchEffect, onMounted, onUnmounted, watch} from 'vue';
+    import Index from "../../../../public/bootstrap-icons-1.8.3/font/index.html";
 
     export default {
         name: 'ImageCropper2',
+        components: {Index},
         events: ['imageCropped'],
         // props: {name: String, isRequired: Boolean, hasCaption: Boolean, src: String, caption: String, aspect: Number},
         props: ['name', 'isRequired', 'hasCaption', 'aspect', 'src'],

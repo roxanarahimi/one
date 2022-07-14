@@ -71,38 +71,14 @@ class ArticleController extends Controller
         }
         try {
             $data = Article::create($request->except('image','image_codes','image_names','text'));
-
-//            if ($request['image']) {
+            if ($request['image']) {
                 $name = 'article_' . $data['id'] . '_' . uniqid() . '.jpg';
                 $image_path = (new ImageController)->uploadImage($request['image'], $name, 'images/');
 //                (new ImageController)->resizeImage('images/', $name);
                 $data->update(['image' => '/' . $image_path]);
-//            }
-            $text = str_replace('/images/articles', '', $request['text']);
-
-            for ($i = 0; $i < count($request['image_codes']); $i++) {
-//               if($file != null){
-                $name = time() . $request['image_names'][$i];
-
-                try {
-                    (new ImageController)->uploadImage($request['image_codes'][$i], $name, "images/articles/");
-                } catch (\Exception $exception) {
-                    return response($exception->getMessage(), $exception->getCode());
-                }
-
-                $file = (new ImageController)->uploadImage($request['image_codes'][$i], $name, "images/articles/");
-//                if (empty($file)){
-//                    return response(['message'=>'file did not upload'],500);
-//                }
-//                (new ImageController)->resizeImage('images/articles/', $name, false);
-
-
-                $text = str_replace($request['image_codes'][$i], '/' . $file, $text);
-
-//               }
             }
-            $text = str_replace('src="', 'src="/images/articles', $text);
-            $text = str_replace('src="/images/articles/images/articles', 'src="/images/articles', $text);
+
+            $text = $request['text'];
             $text = str_replace('<span>', '', $text);
             $text = str_replace('</span>', '', $text);
             $data->update(['text' => $text]);
@@ -130,7 +106,7 @@ class ArticleController extends Controller
             return response()->json($validator->messages(), 422);
         }
         try {
-            $article->update($request->except('image','image_codes','image_names','text'));
+            $article->update($request->except('image','text'));
 
             if ($request['image']) {
                 $name = 'article_' . $article['id'] . '_' . uniqid() . '.jpg';
@@ -138,38 +114,10 @@ class ArticleController extends Controller
 //                (new ImageController)->resizeImage('images/', $name);
                 $article->update(['image' => '/' . $image_path]);
             }
-
-            $text = str_replace('/images/articles', '', $request['text']);
-
-            for ($i = 0; $i < count($request['image_codes']); $i++) {
-                $name = time() . $request['image_names'][$i];
-                try {
-                    $file = (new ImageController)->uploadImage($request['image_codes'][$i], $name, "images/articles/");
-                } catch (\Exception $exception) {
-                    return response($exception->getMessage(), $exception->getCode());
-                }
-
-//                $file = (new ImageController)->uploadImage($request['image_codes'][$i], $name, "images/articles/");
-//                if (empty($file)){
-//                    return response(['message'=>'file did not upload'],500);
-//                }
-//                (new ImageController)->resizeImage('images/articles/', $name, false);
-
-
-                $text = str_replace($request['image_codes'][$i], '/' . $file, $text);
-
-//               }
-            }
-
-
-            $text = str_replace('src="/images/articles', 'src="', $text);
-            $text = str_replace('src="', 'src="/images/articles', $text);
+            $text = $request['text'];
             $text = str_replace('<span>', '', $text);
             $text = str_replace('</span>', '', $text);
-
             $article->update(['text' => $text]);
-//            return $article;
-
 
             return response(new ArticleResource($article), 200);
         } catch (\Exception $exception) {

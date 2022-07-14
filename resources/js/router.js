@@ -108,7 +108,7 @@ const routes = [
 
     {
         path: "/panel/articles",
-        component: () => import(/* webpackChunkName: "AllData" */ './components/panel/allData'),
+        component: () => import(/* webpackChunkName: "ArticleAllData" */ './components/panel/allData'),
         name: 'articleAllData',
         params: true,
         props: true

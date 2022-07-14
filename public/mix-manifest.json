@@ -12,5 +12,6 @@
     "/js/Slides.js": "/js/Slides.js",
     "/js/Icon.js": "/js/Icon.js",
     "/js/User.js": "/js/User.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/userAllData.js": "/js/userAllData.js"
 }

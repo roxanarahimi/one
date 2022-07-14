@@ -8,7 +8,7 @@
                     <th class = "d-none d-md-table-cell" style = "width: 100px" scope = "col">تصویر</th>
                     <th scope = "col">عنوان</th>
                     <th scope = "col">دسته</th>
-                    <th class = "d-none d-xl-table-cell" scope = "col">متن</th>
+<!--                    <th class = "d-none d-xl-table-cell" scope = "col">متن</th>-->
                     <th class = "d-none d-xl-table-cell" scope = "col">بازدید</th>
                     <th class = "d-none d-xl-table-cell" scope = "col">لایک</th>
                     <th class = "d-none d-xl-table-cell" scope = "col">دیسلایک</th>
@@ -31,7 +31,7 @@
                     <td :title = "!data.category.active? 'دسته غیر فعال است': ''" :class = "{'text-decoration-line-through text-muted ': !data.category.active}">
                         {{ data.category.title }}
                     </td>
-                    <td class = "d-none d-xl-table-cell text_cell">{{ data.text }}</td>
+<!--                    <td class = "d-none d-xl-table-cell text_cell">{{ // data.text }}</td>-->
                     <td class = "d-none d-xl-table-cell text_cell">{{ data.views }}</td>
                     <td class = "d-none d-xl-table-cell text_cell">{{ data.likes }}</td>
                     <td class = "d-none d-xl-table-cell text_cell">{{ data.dislikes }}</td>

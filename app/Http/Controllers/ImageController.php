@@ -24,6 +24,19 @@ class ImageController extends Controller
 
 
     }
+    public function uploadEditorImage(Request $request)
+    {
+
+//        return $request;
+        $image_parts = explode(";base64,", $request['code']);
+        $image_base64 = base64_decode($image_parts[1]);
+        $name = str_replace('.jpg', uniqid().'.jpg',$request['name']);
+        file_put_contents($request['path'] . $name, $image_base64);
+        $file = '/'.$request['path'] . $name;
+//        $this->resizeImage($request['path'],$name);
+        return response($file,200);
+
+    }
 
     function resizeImage($path, $name)
     {

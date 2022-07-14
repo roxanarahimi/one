@@ -7,7 +7,7 @@
                 <div class="col-12 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <form id="editForm" @click = "e => enableClick && makeImageArrays()">
+                            <form id="editForm" @click = "e => enableClick">
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <label class="form-label">تصویر</label><br/>
@@ -40,7 +40,8 @@
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label" >متن</label>
 <!--                                       <div id="editor"></div>-->
-                                        <editor mode = "new"/>
+
+                                        <editor mode = "new" />
 <!--                                        <textarea @input="watchTextAreas" :class="{hasError: errors.text}"-->
 <!--                                                  aria-describedby="textHelp" class="form-control text-start"-->
 <!--                                                  id="editor"></textarea>-->
@@ -105,8 +106,6 @@ export default {
             blog: [],
             categories: [],
             errors: [],
-            image_codes: [],
-            image_names: [],
             imgRequired: true,
             hasCaption: false,
             aspect: 16 / 9,
@@ -117,28 +116,7 @@ export default {
         this.loadCategories();
     },
     methods: {
-        makeImageArrays() {
-            document.getElementById('confirm_Image').addEventListener('click', () => {
-                if (document.getElementById('Image_inner_code').value !== '') {
-                    this.image_codes.push(document.getElementById('Image_inner_code').value);
-                    this.image_names.push(document.getElementById('Image_inner_name').value);
 
-                    Editor.methods.updatePreview();
-                    localStorage.setItem('draft_new_img_codes', JSON.stringify(this.image_codes));
-                    localStorage.setItem('draft_new_img_names', JSON.stringify(this.image_names));
-                    console.log(localStorage);
-                    // console.log('11',JSON.stringify(this.image_codes));
-                    // console.log('22',JSON.parse(JSON.stringify(this.image_codes)));
-
-                }
-                //   console.log(this.image_codes, this.image_names);
-                document.getElementById('btn_clear_image_inner').click();
-                document.getElementById('Image_inner_caption').value = '';
-            });
-            //    console.log('made');
-            this.enableClick = false;
-
-        },
         loadCategories() {
             App.methods.checkToken();
              axios.get('/api/panel/category/article?page=1&perPage=100000')
@@ -146,7 +124,6 @@ export default {
                 this.categories = response.data.data;
             }).catch();
         },
-
         async createInfo() {
             await App.methods.checkToken();
             this.errors = [];
@@ -174,9 +151,6 @@ export default {
                 }
                 await axios.post('/api/panel/article', {
                     image: document.getElementById('Image__code').value,
-                    image_codes: this.image_codes,
-                    image_names: this.image_names,
-
                     title: document.getElementById('title').value,
                     article_category_id: document.getElementById('category').value,
                     text:  document.getElementById('content_text_area').value,
@@ -185,7 +159,6 @@ export default {
                     .then((response) => {
                         console.log(response.data)
                         if (response.status === 201 || response.status === 200) {
-
                             setTimeout(() => {
                                 this.$router.push({path: '/panel/articles'});
                             }, 1000);

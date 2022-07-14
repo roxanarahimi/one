@@ -71,12 +71,12 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body w-100">
-                    <image-cropper-2 name="inner" :hasCaption="hasCaption" :isRequired="isRequired" :aspect="aspect"/>
+                    <image-cropper-2 :name="'inner'" :hasCaption="hasCaption" :isRequired="isRequired" :aspect="aspect"/>
                 </div>
                 <div class="modal-footer border-0">
-                    <button id="confirm_Image" type="button" class="confirm_Image btn btn-dark" data-bs-dismiss="modal">
+                    <a id="confirm_Image" @click.prevent="makeImageArrays"   class="confirm_Image btn btn-dark" data-bs-dismiss="modal">
                         تایید
-                    </button>
+                    </a>
                     <button type="button" class="btn btn-secondary" @click="closeModal" data-bs-dismiss="modal">
                         انصراف
                     </button>
@@ -142,6 +142,7 @@ export default {
 
     components: {ImageCropper2},
     props: ['mode', 'content', 'id'],
+
     data() {
         return {
             optionsFlag: 0,
@@ -151,17 +152,19 @@ export default {
             isFirstInput: true,
             isFirstMove: true,
             draft: [],
-
+            image_codes: [],
+            image_names: [],
         }
     },
     mounted() {
+
 
         document.getElementById('editor').addEventListener("paste", function (e) {
             // cancel paste
             e.preventDefault();
 
             // get text representation of clipboard
-            var text = (e.originalEvent || e).clipboardData.getData('text/plain');
+            let text = (e.originalEvent || e).clipboardData.getData('text/plain');
 
             // insert text manually
             document.execCommand("insertHTML", false, text);
@@ -193,14 +196,14 @@ export default {
         document.getElementById('editor').addEventListener('click', savePosition);
         document.querySelector('#editor_options').classList.add('d-none');
 
-        var sel = document.getSelection();
-        var saved;
+        let sel = document.getSelection();
+        let saved;
         // document.getElementById('editor').onclick = inputChange;
         //
         // function inputChange(e) {
-        var editor = document.getElementById("editor");
-        var add_heading_btn = document.getElementById("add_heading_btn");
-        var confirm_Image = document.getElementById("confirm_Image");
+        let editor = document.getElementById("editor");
+        let add_heading_btn = document.getElementById("add_heading_btn");
+        let confirm_Image = document.getElementById("confirm_Image");
 
 
         // editor.addEventListener('keypress', handleKeyPress);
@@ -227,33 +230,53 @@ export default {
                 }
             }
         });
+        // this.makeImageArrays();
         confirm_Image.addEventListener('click', function () {
             document.removeEventListener('click', ImageCropper2.methods.handleImageCropped); //*
-
             let top = document.querySelector('.page_content').scrollTop;
             restorePosition();
             let html = '';
             // console.log('1',document.getElementById('Image_inner_code'))
             // console.log('2',document.getElementById('Image_inner_code').getAttribute('value'))
             if (document.getElementById('Image_inner_code').getAttribute('value')) {
-                let style = '';
-                if (document.getElementById('Image_inner_max_width').value !== '') {
-                    style = 'style="max-width:' + document.getElementById('Image_inner_max_width').value.toString() + 'px"';
-                }
-                html = '<figure ><img ' + style + ' src="' + document.getElementById('Image_inner_code').getAttribute('value') + '" alt="' + document.getElementById('Image_inner_alt').value + '">' +
-                    '<figcaption>' + document.getElementById('Image_inner_caption').value + '</figcaption>' +
-                    '</figure>';
-                document.execCommand('insertHTML', false, '<br>');
-                document.execCommand('insertHTML', false, html);
-                // document.querySelectorAll('#editor > div').forEach((div) => {
-                //     if (div.firstChild.tagName === 'FIGURE'){
-                //         div.setAttribute('contenteditable', false);
-                //     }
-                //
-                // });
-                document.querySelector('.page_content').scrollTop = top;
+                let path = '';
+                axios.post('/api/panel/upload/editor/image',{
+                    code: document.getElementById('Image_inner_code').value,
+                    name: document.getElementById('Image_inner_name').value,
+                    path: 'images/editor/'
+                })
+                    .then((response)=>{
+                        console.log(response)
+                        path = response.data;
+                        if(path){
+                            document.getElementById('Image_inner_path').value = response.data;
+                            //TODO: //then close modal;
+                        }
+                    })
+                    .then(()=>{
+                        let style = '';
+                        if (document.getElementById('Image_inner_max_width').value !== '') {
+                            style = 'style="max-width:' + document.getElementById('Image_inner_max_width').value.toString() + 'px"';
+                        }
+                        // html = '<figure ><img ' + style + ' src="' + document.getElementById('Image_inner_code').getAttribute('value') + '" alt="' + document.getElementById('Image_inner_alt').value + '">' +
+                        html = '<figure ><img ' + style + ' src="' + document.getElementById('Image_inner_path').value + '" alt="' + document.getElementById('Image_inner_alt').value + '">' +
+                            '<figcaption>' + document.getElementById('Image_inner_caption').value + '</figcaption>' +
+                            '</figure>';
+                        document.execCommand('insertHTML', false, '<br>');
+                        document.execCommand('insertHTML', false, html);
+                        // document.querySelectorAll('#editor > div').forEach((div) => {
+                        //     if (div.firstChild.tagName === 'FIGURE'){
+                        //         div.setAttribute('contenteditable', false);
+                        //     }
+                        //
+                        // });
+                        document.querySelector('.page_content').scrollTop = top;
+                    })
+                    .catch((error)=>{
+                        console.log(error);
+                    });
+
             }
-            html = '';
             let o = toArray(document.querySelector('#editor').children);
             for (let i = 0; i < o.length; i++) {
                 if (o[i].tagName === 'DIV' && o[i].innerHTML === '<br>') {
@@ -298,7 +321,14 @@ export default {
 
                 });
             });
+
+
+            // make images arrays:
+
+
         });
+
+
 
         // }
         function savePosition() {
@@ -313,50 +343,50 @@ export default {
 
         }
 
-        function log() {
-            console.log(editor.childNodes);
-        }
+        // function log() {
+        //     console.log(editor.childNodes);
+        // }
 
-        function change() {
-            var text = editor.childNodes;
+        // function change() {
+        //     var text = editor.childNodes;
+        //
+        //     for (var i = 0; i < text.length; i++) {
+        //
+        //         if (text[i].textContent === "base") {
+        //             var bold = document.createElement("span");
+        //             bold.classList.add("highlight");
+        //             bold.appendChild(document.createTextNode(text[i].textContent));
+        //             editor.replaceChild(bold, text[i]);
+        //         }
+        //     }
+        // }
 
-            for (var i = 0; i < text.length; i++) {
+        // var lastCharSpace = false;
 
-                if (text[i].textContent === "base") {
-                    var bold = document.createElement("span");
-                    bold.classList.add("highlight");
-                    bold.appendChild(document.createTextNode(text[i].textContent));
-                    editor.replaceChild(bold, text[i]);
-                }
-            }
-        }
+        // function handleKeyDown(e) {
+        //     // if (e.which === 32) {
+        //     //     lastCharSpace = true;
+        //     //     e.preventDefault();
+        //     //     var space = new Text('\u00A0');
+        //     //
+        //     //     editor.appendChild(space);
+        //     //     sel.collapse(space, 1);
+        //     //
+        //     // }
+        // }
 
-        var lastCharSpace = false;
-
-        function handleKeyDown(e) {
-            // if (e.which === 32) {
-            //     lastCharSpace = true;
-            //     e.preventDefault();
-            //     var space = new Text('\u00A0');
-            //
-            //     editor.appendChild(space);
-            //     sel.collapse(space, 1);
-            //
-            // }
-        }
-
-        function handleKeyPress(e) {
-            // change();
-            // if (lastCharSpace) {
-            //     e.preventDefault();
-            //     lastCharSpace = false;
-            //     var newNode = new Text(String.fromCharCode(e.keyCode));
-            //
-            //     editor.appendChild(newNode);
-            //
-            //     sel.collapse(newNode, 1);
-            // }
-        }
+        // function handleKeyPress(e) {
+        //     // change();
+        //     // if (lastCharSpace) {
+        //     //     e.preventDefault();
+        //     //     lastCharSpace = false;
+        //     //     var newNode = new Text(String.fromCharCode(e.keyCode));
+        //     //
+        //     //     editor.appendChild(newNode);
+        //     //
+        //     //     sel.collapse(newNode, 1);
+        //     // }
+        // }
 
         document.querySelector('#editor').addEventListener('keydown', function (e) {
 
@@ -553,7 +583,6 @@ export default {
         }
         let children = toArray(document.getElementById('b_content').children);
 
-
         for (let i = 0; i < children.length; i++) {
 
             switch (children[i].tagName) {
@@ -614,6 +643,35 @@ export default {
 
 
     methods: {
+        makeImageArrays() {
+            // document.getElementById('confirm_Image').addEventListener('click', () => {
+            //     if (document.getElementById('Image_inner_code').value !== '') {
+            //         this.image_codes.push(document.getElementById('Image_inner_code').value);
+            //         this.image_names.push(document.getElementById('Image_inner_name').value);
+
+                     // this.updatePreview();
+            //         // Editor.methods.updatePreview();
+            //         // localStorage.setItem('draft_new_img_codes', JSON.stringify(this.image_codes));
+            //         // localStorage.setItem('draft_new_img_names', JSON.stringify(this.image_names));
+            //         // console.log(localStorage);
+            //         // console.log('11',JSON.stringify(this.image_codes));
+            //         // console.log('22',JSON.parse(JSON.stringify(this.image_codes)));
+            //
+            //     }
+            //     //   console.log(this.image_codes, this.image_names);
+            //     document.getElementById('btn_clear_image_inner').click();
+            //     document.getElementById('Image_inner_caption').value = '';
+            // });
+            // //    console.log('made');
+            // this.enableClick = false;
+            // this.$emit('arrays', [this.image_names, this.image_codes])
+            //
+        // .then(()=>{
+                this.updatePreview();
+
+            // })
+        },
+
         listenImgs() {
             let images = document.querySelectorAll('#editor > div > figure > img');
             images.forEach((image) => {
@@ -651,7 +709,7 @@ export default {
             let src = document.querySelector('#img_edit_src').value;
             let newAlt = document.querySelector('#img_edit_alt').value ? 'alt="' + document.querySelector('#img_edit_alt').value + '"' : '';
             let newStyle = parseInt(document.querySelector('#img_edit_max_width').value) > 0 ? 'style="max-width:' + document.querySelector('#img_edit_max_width').value + 'px"' : '';
-            document.getElementById('editingImg').innerHTML = '<img src="' + src + '" ' + newStyle + ' ' + newAlt + '>' +
+            document.getElementById('editingImg').innerHTML = '<img alt="" src="' + src + '" ' + newStyle + ' ' + newAlt + '>' +
                 '<figcaption>' + document.querySelector('#img_edit_caption').value + '</figcaption>';
             document.querySelectorAll('figure').forEach((fig) => {
                 fig.removeAttribute('id');
@@ -795,7 +853,7 @@ export default {
         optionsToggle(hide) {
             let options = document.getElementsByClassName('content_btn');
             let add_btn = document.getElementById('add_content_btn');
-            if (this.optionsFlag == 0) {
+            if (this.optionsFlag === 0) {
                 add_btn.style = "transform: rotate(-45deg)";
                 let right = 100; // for each extra btn, add 40 to this value
                 for (let i = 0; i < options.length; i++) {

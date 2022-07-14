@@ -140,6 +140,9 @@ Route::controller(App\Http\Controllers\ImageController::class)->group(function (
 //        Route::get('/icon/{icon}', 'show');
 //        Route::post('/icon', 'store');
         Route::post('/icon', 'makeIconPack');
+        Route::post('/upload/editor/image', 'uploadEditorImage');
+//        Route::post('/panel/upload/editor/image',[\App\Http\Controllers\ImageController::class, 'uploadEditorImage']);
+
     });
 });
 //shop
@@ -283,6 +286,8 @@ Route::controller(App\Http\Controllers\TeacherController::class)->group(function
         Route::get('/latest/teacher', 'latest');
     });
 });
+
+//Route::post('/panel/upload/editor/image',[\App\Http\Controllers\ImageController::class, 'uploadEditorImage']);
 
 
 //other API'S

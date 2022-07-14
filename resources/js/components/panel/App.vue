@@ -10,7 +10,7 @@
     <div id="page" class="d-flex bg-dark"
          v-if="this.$route.name !== 'Login0' && this.$route.fullPath !== '/panel/login' && this.$route.fullPath !== '/panel/register' && this.$route.fullPath !== '/panel/reset/password' && this.$route.name !== 'Error404'">
 
-        <div id="sidebar-wrapper" class=" bg-dark">
+        <div id="sidebar-wrapper " class=" bg-dark" >
             <div id="sidebar" class="bg-dark text-light">
                 <!--            <h4 class=" my-3 text-center">پنل مدیریت</h4>-->
                 <ul class="nav nav-pills flex-column mb-auto " style="padding-top: 1px">
@@ -159,9 +159,9 @@
             </div>
         </div>
         <main id="main" class="wrapper  bg-light">
-            <nav class="navbar navbar-expand  navbar-dark bg-dark text-light">
+            <nav class="navbar navbar-expand  navbar-dark bg-dark text-light py-4 mx-5 mt-2" style="border-radius: 5px;">
                 <div class="container-fluid">
-                    <span id="sidebar_toggle_btn" class="fw-bold py-1 pe-2 mt-2" @click="sideBarToggle"
+                    <span id="sidebar_toggle_btn" class="fw-bold py-1 pe-2 ps-4 mt-2" @click="sideBarToggle"
                           style="font-size: 20px; line-height: 10px; cursor: pointer">
                         <i class="bi bi-list " style="font-size:25px"></i>
                     </span>

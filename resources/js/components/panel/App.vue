@@ -159,9 +159,9 @@
             </div>
         </div>
         <main id="main" class="wrapper  bg-light">
-            <nav class="navbar navbar-expand  navbar-dark bg-dark text-light py-4 mx-5 mt-2" style="border-radius: 5px;">
+            <nav class="navbar navbar-expand  navbar-dark bg-dark text-light " >
                 <div class="container-fluid">
-                    <span id="sidebar_toggle_btn" class="fw-bold py-1 pe-2 ps-4 mt-2" @click="sideBarToggle"
+                    <span id="sidebar_toggle_btn" class="fw-bold py-1 pe-2 ps-4" @click="sideBarToggle"
                           style="font-size: 20px; line-height: 10px; cursor: pointer">
                         <i class="bi bi-list " style="font-size:25px"></i>
                     </span>

@@ -25558,10 +25558,7 @@ var _hoisted_33 = {
   "class": "wrapper bg-light"
 };
 var _hoisted_34 = {
-  "class": "navbar navbar-expand navbar-dark bg-dark text-light py-4 mx-5 mt-2",
-  style: {
-    "border-radius": "5px"
-  }
+  "class": "navbar navbar-expand navbar-dark bg-dark text-light"
 };
 var _hoisted_35 = {
   "class": "container-fluid"
@@ -25816,7 +25813,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["class"])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     id: "sidebar_toggle_btn",
-    "class": "fw-bold py-1 pe-2 ps-4 mt-2",
+    "class": "fw-bold py-1 pe-2 ps-4",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.sideBarToggle && $options.sideBarToggle.apply($options, arguments);
     }),

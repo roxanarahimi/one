@@ -212,21 +212,8 @@
         }
     }
 </script>
-<style>
-    .date_cell {
-        direction: ltr !important;
-        text-align: right !important;
-    }
+<style scoped>
 
-    .text_cell {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 30ch;
 
-    }
-    .active_cell{
-        width: 60px;
-        text-align: center;
-    }
+
 </style>

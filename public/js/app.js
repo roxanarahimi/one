@@ -30913,7 +30913,17 @@ var routes = [//panel
   path: "/panel/teacher/:id",
   name: "Teacher",
   component: _components_panel_teacher_Teacher__WEBPACK_IMPORTED_MODULE_10__["default"]
-}, {
+}, // {
+//     path: "/sample",
+//     name: "sample",
+//     component: () => import(/* webpackChunkName: "sample" */ './components/panel/report/catSample'),
+// },
+// {
+//     path: "/chart",
+//     name: "chart",
+//     component: () => import(/* webpackChunkName: "chart" */ './components/panel/report/Chart'),
+// },
+{
   path: "/:catchAll(.*)",
   name: "Error404",
   component: _components_panel_error_Error404__WEBPACK_IMPORTED_MODULE_15__["default"]

@@ -301,11 +301,22 @@ const routes = [
         name: "Teacher",
         component: Teacher,
     },
+    // {
+    //     path: "/sample",
+    //     name: "sample",
+    //     component: () => import(/* webpackChunkName: "sample" */ './components/panel/report/catSample'),
+    // },
+    // {
+    //     path: "/chart",
+    //     name: "chart",
+    //     component: () => import(/* webpackChunkName: "chart" */ './components/panel/report/Chart'),
+    // },
     {
         path: "/:catchAll(.*)",
         name: "Error404",
         component: Error404,
-    }
+    } ,
+
 ];
 
 const router = createRouter({

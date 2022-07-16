@@ -220,7 +220,7 @@ export default {
 
     methods: {
         async loadProduct() {
-            await App.methods.checkToken();
+
             await axios.get('/api/panel/product/' + this.id)
                 .then((response) => {
                     console.log(response.data);
@@ -256,7 +256,7 @@ export default {
         },
         async updateInfo() {
 
-            await App.methods.checkToken();
+
             this.errors = [];
             let emptyFieldsCount = 0;
 
@@ -377,7 +377,7 @@ export default {
             this.features.splice(index, 1)
         },
         async updateFeatures() {
-            await App.methods.checkToken();
+
             this.features = [];
             for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
                 this.features.push({
@@ -395,7 +395,7 @@ export default {
             this.sizes.splice(index, 1);
         },
         async updateSizes() {
-            await App.methods.checkToken();
+
             await axios.post('/api/panel/check/user/token', {id: JSON.parse(localStorage.getItem('user')).id})
                 .then((response) => {
                     if (response.status === 200) {

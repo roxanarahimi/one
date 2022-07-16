@@ -141,14 +141,14 @@
         },
         methods: {
             async loadCategories() {
-                await App.methods.checkToken();
+
                 await axios.get('/api/panel/category/product').then((response) => {
                     this.allData = response.data;
                 }).catch();
             },
             async createInfo() {
                 this.errors = [];
-                await App.methods.checkToken();
+
                 await axios.post('/api/panel/category/product',
                     {
                         title: document.getElementById('title').value,
@@ -188,7 +188,7 @@
                     })
             },
             async updateInfo(id) {
-                await App.methods.checkToken();
+
                 await axios.post('/api/panel/category/product/' + id,
                     {
                         title: document.getElementById('title_' + id).value,
@@ -246,7 +246,7 @@
                 document.getElementById('deleteId').value = id;
             },
             async deleteInfo() {
-                await App.methods.checkToken();
+
                 await axios.post('/api/panel/delete/category/product', {
                     id: document.getElementById('deleteId').value,
                 })
@@ -259,7 +259,7 @@
                 await this.loadCategories();
             },
             async ActiveToggle(id) {
-                await App.methods.checkToken();
+
                 await axios.get('/api/panel/active/category/product/' + id)
                     .then((response) => {
                         console.log(response.data)

@@ -67,7 +67,11 @@ class ResumeController extends Controller
      */
     public function show(Resume $resume)
     {
-        //
+        try {
+            return response($resume, 200);
+        } catch (\Exception $exception) {
+            return response($exception);
+        }
     }
 
     /**

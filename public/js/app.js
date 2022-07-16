@@ -20693,10 +20693,11 @@ __webpack_require__.r(__webpack_exports__);
       document.querySelectorAll('.sidebar_title').forEach(function (item) {
         item.classList.remove('d-none');
       });
-    } // this.checkToken();
-
+    }
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.sideBarToggle();
     this.handleResize();
 
@@ -20709,6 +20710,12 @@ __webpack_require__.r(__webpack_exports__);
     document.querySelectorAll('form').forEach(function (item) {
       item.setAttribute('autocomplete', 'off');
     }); // this.persianDate();
+
+    document.querySelectorAll('ul > li > a').forEach(function (element) {
+      element.addEventListener('click', function () {
+        _this.checkToken();
+      });
+    });
   },
   methods: {
     handleResize: function handleResize() {
@@ -20776,7 +20783,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkToken: function checkToken() {
       var _JSON$parse2,
-          _this = this;
+          _this2 = this;
 
       axios.post('/api/panel/check/admin/token', {
         id: (_JSON$parse2 = JSON.parse(localStorage.getItem('admin'))) === null || _JSON$parse2 === void 0 ? void 0 : _JSON$parse2.id
@@ -20785,24 +20792,23 @@ __webpack_require__.r(__webpack_exports__);
           var _JSON$parse3, _JSON$parse4;
 
           if (((_JSON$parse3 = JSON.parse(localStorage.getItem('admin'))) === null || _JSON$parse3 === void 0 ? void 0 : _JSON$parse3.scope) === 'user') {
-            _this.logout();
+            _this2.logout();
           } else if (((_JSON$parse4 = JSON.parse(localStorage.getItem('admin'))) === null || _JSON$parse4 === void 0 ? void 0 : _JSON$parse4.scope) === 'admin') {
             var _JSON$parse5;
 
-            _this.admin = (_JSON$parse5 = JSON.parse(localStorage.getItem('admin'))) === null || _JSON$parse5 === void 0 ? void 0 : _JSON$parse5.name;
+            _this2.admin = (_JSON$parse5 = JSON.parse(localStorage.getItem('admin'))) === null || _JSON$parse5 === void 0 ? void 0 : _JSON$parse5.name;
           }
 
           localStorage.setItem('admin_expire', response.data.expire);
-          console.log('token checked');
+          console.log('token updated');
         }
       })["catch"](function (error) {
         if (error.response.status === 401) {
           window.location = '/panel/login';
 
-          _this.logout();
+          _this2.logout();
         }
       });
-      console.log('done');
     },
     persianDate: function persianDate() {
       //date
@@ -20983,14 +20989,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
                 document.getElementById('updateMsg').classList.add('d-none');
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
-                _context2.next = 7;
+                _context2.next = 5;
                 return req.forEach(function (element) {
                   if (element.value == "") {
                     element.classList.add('hasError');
@@ -21002,14 +21004,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 7:
+              case 5:
                 if (!(emptyFieldsCount == 0)) {
-                  _context2.next = 11;
+                  _context2.next = 9;
                   break;
                 }
 
                 _this2.errors = [];
-                _context2.next = 11;
+                _context2.next = 9;
                 return axios.post('/api/panel/update/user', {
                   id: _this2.id,
                   name: document.querySelector('#name').value,
@@ -21050,7 +21052,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log('errs:', _this2.errors);
                 });
 
-              case 11:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -21105,10 +21107,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/article/' + _this.id).then(function (response) {
                   _this.data = response.data;
                   document.getElementById('text').innerHTML = _this.data.text;
@@ -21120,7 +21118,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -21185,7 +21183,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     loadCategories: function loadCategories() {
       var _this = this;
 
-      _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
       axios.get('/api/panel/category/article?page=1&perPage=100000').then(function (response) {
         _this.categories = response.data.data;
       })["catch"]();
@@ -21199,10 +21196,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this2.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -21218,7 +21211,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context4.next = 12;
+                  _context4.next = 10;
                   break;
                 }
 
@@ -21234,7 +21227,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   tags = '[' + tags.toString() + ']';
                 }
 
-                _context4.next = 12;
+                _context4.next = 10;
                 return axios.post('/api/panel/article', {
                   image: document.getElementById('Image__code').value,
                   title: document.getElementById('title').value,
@@ -21341,7 +21334,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 12:
+              case 10:
               case "end":
                 return _context4.stop();
             }
@@ -21374,31 +21367,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this3.tags = [];
                 i = 0;
 
-              case 4:
+              case 2:
                 if (!(i < document.getElementsByName('tagLabel').length)) {
-                  _context5.next = 10;
+                  _context5.next = 8;
                   break;
                 }
 
-                _context5.next = 7;
+                _context5.next = 5;
                 return _this3.tags.push({
                   "label": document.getElementsByName('tagLabel')[i].value.toString(),
                   "uri": document.getElementsByName('tagUri')[i].value.toString()
                 });
 
-              case 7:
+              case 5:
                 i++;
-                _context5.next = 4;
+                _context5.next = 2;
                 break;
 
-              case 10:
+              case 8:
               case "end":
                 return _context5.stop();
             }
@@ -21492,10 +21481,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/article/' + _this.id).then(function (response) {
                   _this.data = response.data;
 
@@ -21510,7 +21495,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.watchTextAreas();
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -21534,10 +21519,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this3.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -21553,7 +21534,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context5.next = 12;
+                  _context5.next = 10;
                   break;
                 }
 
@@ -21569,7 +21550,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   tags = '[' + tags.toString() + ']';
                 }
 
-                _context5.next = 12;
+                _context5.next = 10;
                 return axios.post('/api/panel/article/' + _this3.$route.params.id, {
                   image: document.getElementById('Image__code').value,
                   title: document.getElementById('title').value,
@@ -21674,7 +21655,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 12:
+              case 10:
               case "end":
                 return _context5.stop();
             }
@@ -21755,16 +21736,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/course/' + _this.id).then(function (response) {
                   _this.data = response.data;
                   document.getElementById('text').innerText = _this.data.description;
                 });
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -22207,10 +22184,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/course/' + _this.id).then(function (response) {
                   console.log(response.data);
                   _this.data = response.data;
@@ -22220,7 +22193,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.watchTextAreas();
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -22244,10 +22217,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this3.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -22263,11 +22232,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context5.next = 9;
+                  _context5.next = 7;
                   break;
                 }
 
-                _context5.next = 9;
+                _context5.next = 7;
                 return axios.post('/api/panel/course/' + _this3.$route.params.id, {
                   title: document.getElementById('title').value,
                   course_category_id: document.getElementById('category').value,
@@ -22375,7 +22344,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 9:
+              case 7:
               case "end":
                 return _context5.stop();
             }
@@ -22408,10 +22377,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                _context6.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this4.features = [];
 
                 for (i = 0; i < document.getElementsByName('featureLabel').length; i++) {
@@ -22421,7 +22386,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-              case 4:
+              case 2:
               case "end":
                 return _context6.stop();
             }
@@ -22477,27 +22442,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/resume/' + _this.id).then(function (response) {
                   _this.data = response.data;
 
                   if (_this.data.skill) {
-                    for (var i = 0; i < JSON.parse(_this.data.skill).length; i++) {
-                      _this.skill.push(JSON.parse(_this.data.skill)[i]);
-                    }
+                    _this.skill = JSON.parse(_this.data.skill);
                   }
 
                   if (_this.data.history) {
-                    for (var _i = 0; _i < JSON.parse(_this.data.history).length; _i++) {
-                      _this.history.push(JSON.parse(_this.data.history)[_i]);
-                    }
+                    _this.history = JSON.parse(_this.data.history);
                   }
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -22737,10 +22694,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/project/' + _this.id).then(function (response) {
                   _this.data = response.data;
                   document.getElementById('text').innerText = _this.data.text;
@@ -22752,7 +22705,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -22814,10 +22767,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -22833,11 +22782,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context4.next = 9;
+                  _context4.next = 7;
                   break;
                 }
 
-                _context4.next = 9;
+                _context4.next = 7;
                 return axios.post('/api/panel/project', {
                   image: document.getElementById('Image__code').value,
                   title: document.getElementById('title').value,
@@ -22944,7 +22893,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 9:
+              case 7:
               case "end":
                 return _context4.stop();
             }
@@ -22977,31 +22926,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this2.tags = [];
                 i = 0;
 
-              case 4:
+              case 2:
                 if (!(i < document.getElementsByName('tagLabel').length)) {
-                  _context5.next = 10;
+                  _context5.next = 8;
                   break;
                 }
 
-                _context5.next = 7;
+                _context5.next = 5;
                 return _this2.tags.push({
                   "label": document.getElementsByName('tagLabel')[i].value.toString(),
                   "uri": document.getElementsByName('tagUri')[i].value.toString()
                 });
 
-              case 7:
+              case 5:
                 i++;
-                _context5.next = 4;
+                _context5.next = 2;
                 break;
 
-              case 10:
+              case 8:
               case "end":
                 return _context5.stop();
             }
@@ -23068,10 +23013,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/project/' + _this.id).then(function (response) {
                   _this.data = response.data;
 
@@ -23086,7 +23027,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.watchTextAreas();
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -23103,10 +23044,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this2.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -23122,7 +23059,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context5.next = 12;
+                  _context5.next = 10;
                   break;
                 }
 
@@ -23138,7 +23075,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   tags = '[' + tags.toString() + ']';
                 }
 
-                _context5.next = 12;
+                _context5.next = 10;
                 return axios.post('/api/panel/project/' + _this2.$route.params.id, {
                   image: document.getElementById('Image__code').value,
                   title: document.getElementById('title').value,
@@ -23240,7 +23177,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 12:
+              case 10:
               case "end":
                 return _context5.stop();
             }
@@ -23543,10 +23480,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/slide/' + _this.id).then(function (response) {
                   _this.data = response.data;
 
@@ -23559,7 +23492,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.isDefined = true;
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -23576,10 +23509,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this2.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -23595,7 +23524,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context5.next = 12;
+                  _context5.next = 10;
                   break;
                 }
 
@@ -23611,7 +23540,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   features = '[' + features.toString() + ']';
                 }
 
-                _context5.next = 12;
+                _context5.next = 10;
                 return axios.post('/api/panel/slide/' + _this2.$route.params.id, {
                   image: document.getElementById('Image__code').value,
                   title: document.getElementById('title').value,
@@ -23717,7 +23646,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 12:
+              case 10:
               case "end":
                 return _context5.stop();
             }
@@ -23772,15 +23701,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/teacher/' + _this.id).then(function (response) {
                   _this.data = response.data; // document.getElementById('text').innerText = this.data.description;
                 });
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -23844,10 +23769,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -23863,11 +23784,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context4.next = 9;
+                  _context4.next = 7;
                   break;
                 }
 
-                _context4.next = 9;
+                _context4.next = 7;
                 return axios.post('/api/panel/teacher', {
                   name: document.getElementById('name').value,
                   national_code: document.getElementById('national_code').value,
@@ -23980,7 +23901,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 9:
+              case 7:
               case "end":
                 return _context4.stop();
             }
@@ -24060,10 +23981,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/teacher/' + _this.id).then(function (response) {
                   console.log(response.data);
                   _this.data = response.data;
@@ -24071,7 +23988,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.isDefined = true;
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -24088,10 +24005,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this2.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -24107,11 +24020,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context5.next = 9;
+                  _context5.next = 7;
                   break;
                 }
 
-                _context5.next = 9;
+                _context5.next = 7;
                 return axios.post('/api/panel/teacher/' + _this2.$route.params.id, {
                   name: document.getElementById('name').value,
                   national_code: document.getElementById('national_code').value,
@@ -24215,7 +24128,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 9:
+              case 7:
               case "end":
                 return _context5.stop();
             }
@@ -28199,122 +28112,110 @@ var _hoisted_7 = {
   "class": "card-body px-5 py-4"
 };
 var _hoisted_8 = {
-  "class": "col-xl-12 h-100 row"
+  "class": "row"
 };
-var _hoisted_9 = ["data-index"];
+var _hoisted_9 = {
+  "class": "col-12 text-center"
+};
 var _hoisted_10 = {
-  "class": "col-6 en"
+  "class": "col-2"
 };
 var _hoisted_11 = {
+  "class": "en"
+};
+var _hoisted_12 = {
   "class": "text-muted"
 };
 
-var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_13 = {
-  "class": "text-muted"
-};
 var _hoisted_14 = {
-  "class": "mb-4"
+  "class": "text-muted"
 };
 
 var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "کد ملی", -1
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, " نام پدر", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, null, -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "تاهل", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "تعداد فرزند", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, null, -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "نظام وظیفه", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "نشانی", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, null, -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "تحصیلات", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "شغل درخواستی", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_26 = {
-  colspan: "2"
+var _hoisted_16 = {
+  "class": ""
+};
+var _hoisted_17 = {
+  "class": "float-start text-muted"
+};
+var _hoisted_18 = {
+  "class": "float-end text-muted"
 };
 
-var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, null, -1
+var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_28 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    "class": "fw-bold"
+var _hoisted_20 = {
+  "class": "float-start text-muted"
+};
+var _hoisted_21 = {
+  "class": "float-start text-muted"
+};
+var _hoisted_22 = {
+  "class": "float-end text-muted"
+};
+
+var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_24 = {
+  "class": "text-muted"
+};
+
+var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
+    "class": "py-4"
   }, "مهارت ها", -1
   /* HOISTED */
   );
 });
 
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" * * * * * ");
+
+var _hoisted_28 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+  /* HOISTED */
+  );
+});
+
 var _hoisted_29 = {
-  "class": "d-flex"
+  "class": "col-10 px-5"
 };
-var _hoisted_30 = {
-  "class": "fw-bold"
-};
-var _hoisted_31 = {
-  "class": ""
-};
+
+var _hoisted_30 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, "درباره من", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "--------------------------------- ------------------------------------------ ------------------------------------ --------------------------------------------------------------------------- ----------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------- --------------------------------------------------------- ------- --------------------------------------------------", -1
+  /* HOISTED */
+  );
+});
 
 var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
@@ -28331,7 +28232,7 @@ var _hoisted_33 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_34 = {
-  "class": "table-responsive"
+  "class": "w-100"
 };
 
 var _hoisted_35 = /*#__PURE__*/_withScopeId(function () {
@@ -28397,36 +28298,24 @@ var _hoisted_47 = {
   "aria-label": "status",
   required: ""
 };
-var _hoisted_48 = ["selected"];
-var _hoisted_49 = ["selected"];
 
-var _hoisted_50 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    id: "statusHelp",
-    "class": "form-text error"
+var _hoisted_48 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+    value: ""
   }, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_51 = {
-  "class": "col-md-4 col-lg-12 mb-3"
-};
-
-var _hoisted_52 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    "for": "description",
-    "class": "form-label"
-  }, "توضیحات", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_53 = ["value"];
+var _hoisted_49 = ["selected"];
+var _hoisted_50 = ["selected"];
+var _hoisted_51 = ["selected"];
+var _hoisted_52 = ["selected"];
+var _hoisted_53 = ["selected"];
 
 var _hoisted_54 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    id: "post_track_idHelp",
+    id: "statusHelp",
     "class": "form-text error"
   }, null, -1
   /* HOISTED */
@@ -28456,47 +28345,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     appear: ""
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_ctx.data.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <p class = \"mb-2 fw-bold d-block\">{{data.name}}</p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_ctx.data ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-        "class": "mb-5 col-6",
-        key: _ctx.data.id,
-        "data-index": _ctx.data.id
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.name), 1
+      return [_ctx.data ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <p class = \"mb-2 fw-bold d-block\">{{data.name}}</p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.name), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.position), 1
       /* TEXT */
-      )], 8
-      /* PROPS */
-      , _hoisted_9)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.mobile), 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.mobile), 1
       /* TEXT */
-      ), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.email), 1
+      ), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.email), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.national_code), 1
+      ), _hoisted_15]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_17, "فرزند " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.father), 1
       /* TEXT */
-      ), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.father), 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_18, " کد ملی " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.national_code), 1
       /* TEXT */
-      ), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            <th>جنسیت</th><td>{{ data.gender }}</td>")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.marriage), 1
+      ), _hoisted_19]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.military), 1
       /* TEXT */
-      ), _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.children), 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.marriage), 1
       /* TEXT */
-      ), _hoisted_20]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.military), 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.children) + " فرزند ", 1
       /* TEXT */
-      ), _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.address), 1
+      ), _hoisted_23]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.address), 1
       /* TEXT */
-      ), _hoisted_23]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.education), 1
-      /* TEXT */
-      ), _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.position), 1
-      /* TEXT */
-      ), _hoisted_27])]), _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.skill, function (item) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-          key: item.title
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.title), 1
+      ), _hoisted_25]), _hoisted_26, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.skill, function (item) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.skill), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.level), 1
-        /* TEXT */
-        )]);
-      }), 128
-      /* KEYED_FRAGMENT */
-      ))]), _hoisted_32, _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.history, function (item) {
+        ), _hoisted_27, _hoisted_28]);
+      }), 256
+      /* UNKEYED_FRAGMENT */
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, "تحصیلات: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.education), 1
+      /* TEXT */
+      ), _hoisted_32, _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.history, function (item) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
           key: item.company
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.company), 1
@@ -28510,23 +28387,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         )]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [_hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-        selected: _ctx.data.statusح === 'cart' ? 'selected' : false,
-        value: "cart"
-      }, " سبد خرید ", 8
+      ))])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [_hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", _hoisted_47, [_hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+        selected: _ctx.data.status === 'در انتظار' ? 'selected' : false,
+        value: "در انتظار"
+      }, "در انتظار", 8
       /* PROPS */
-      , _hoisted_48), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-        selected: _ctx.data.status === 'progress' ? 'selected' : false,
-        value: "progress"
-      }, " درحال پردازش ", 8
+      , _hoisted_49), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+        selected: _ctx.data.status === 'بایگانی' ? 'selected' : false,
+        value: "بایگانی"
+      }, "بایگانی", 8
       /* PROPS */
-      , _hoisted_49)]), _hoisted_50]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-        value: _ctx.data.description,
-        "class": "form-control text-start",
-        id: "description"
-      }, null, 8
+      , _hoisted_50), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+        selected: _ctx.data.status === 'تایید برای مصاحبه' ? 'selected' : false,
+        value: "تایید برای مصاحبه"
+      }, "تایید برای مصاحبه", 8
       /* PROPS */
-      , _hoisted_53), _hoisted_54]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      , _hoisted_51), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+        selected: _ctx.data.status === 'قبول شده' ? 'selected' : false,
+        value: "قبول شده"
+      }, "قبول شده", 8
+      /* PROPS */
+      , _hoisted_52), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+        selected: _ctx.data.status === 'رد شده' ? 'selected' : false,
+        value: "رد شده"
+      }, "رد شده", 8
+      /* PROPS */
+      , _hoisted_53)]), _hoisted_54]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         "class": "btn btn-primary",
         onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.updateInfo && $options.updateInfo.apply($options, arguments);
@@ -30888,9 +30774,25 @@ var routes = [//panel
   params: true,
   props: true
 }, {
+  path: "/panel/new/resume",
+  name: "ResumeCreate",
+  component: function component() {
+    return __webpack_require__.e(/*! import() | OrderCreate */ "OrderCreate").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/panel/employ/ResumeCreate */ "./resources/js/components/panel/employ/ResumeCreate.vue"));
+  },
+  params: true
+}, {
+  path: "/panel/edit/resume/:id",
+  name: "ResumeEdit",
+  component: function component() {
+    return __webpack_require__.e(/*! import() | OrderEdit */ "OrderEdit").then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/panel/employ/ResumeEdit */ "./resources/js/components/panel/employ/ResumeEdit.vue"));
+  },
+  params: true
+}, {
   path: "/panel/resume/:id",
   name: "Resume",
-  component: _components_panel_employ_Resume__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: function component() {
+    return Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../js/components/panel/employ/Resume */ "./resources/js/components/panel/employ/Resume.vue"));
+  }
 }, {
   path: "/panel/teachers",
   component: function component() {
@@ -31298,7 +31200,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-396f70b0] {\n        overflow-x: scroll !important;\n        min-width: 380px !important;\n}\nth[data-v-396f70b0], td[data-v-396f70b0] {\n        padding: 10px;\n}\n#content p[data-v-396f70b0] {\n        text-align: justify !important;\n        line-height: 30px !important;\n        padding-left: 10px;\n}\np[data-v-396f70b0] {\n        display: inline-block;\n        margin-left: 10px;\n        margin-right: 10px;\n}\n.index_image .label[data-v-396f70b0] {\n        display: block;\n        font-size: 20px;\n        margin: -50px 20px 50px 20px;\n}\n#content figure img[data-v-396f70b0] {\n        max-width: 100%;\n}\n\n    /*.index_image span{*/\n    /*    display: inline-block;*/\n    /*    right:20px;*/\n    /*    bottom: 20px;*/\n    /*}*/\n.edit-pen[data-v-396f70b0] {\n        font-size: 12px;\n        margin: 0 6px !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-396f70b0] {\n    overflow-x: scroll !important;\n    min-width: 380px !important;\n}\nth[data-v-396f70b0], td[data-v-396f70b0] {\n    padding: 10px;\n}\n#content p[data-v-396f70b0] {\n    text-align: justify !important;\n    line-height: 30px !important;\n    padding-left: 10px;\n}\np[data-v-396f70b0] {\n    display: inline-block;\n    margin-left: 10px;\n    margin-right: 10px;\n}\n.index_image .label[data-v-396f70b0] {\n    display: block;\n    font-size: 20px;\n    margin: -50px 20px 50px 20px;\n}\n#content figure img[data-v-396f70b0] {\n    max-width: 100%;\n}\n\n/*.index_image span{*/\n/*    display: inline-block;*/\n/*    right:20px;*/\n/*    bottom: 20px;*/\n/*}*/\n.edit-pen[data-v-396f70b0] {\n    font-size: 12px;\n    margin: 0 6px !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

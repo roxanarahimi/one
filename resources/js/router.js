@@ -273,9 +273,22 @@ const routes = [
         props: true,
     },
     {
+        path: "/panel/new/resume",
+        name: "ResumeCreate",
+        component: () => import(/* webpackChunkName: "OrderCreate" */ '../js/components/panel/employ/ResumeCreate'),
+        params: true
+    },
+    {
+        path: "/panel/edit/resume/:id",
+        name: "ResumeEdit",
+        component: () => import(/* webpackChunkName: "OrderEdit" */ '../js/components/panel/employ/ResumeEdit'),
+        params: true
+    },
+
+    {
         path: "/panel/resume/:id",
         name: "Resume",
-        component: Resume,
+        component: () => import(/* webpackChunkName: "Resume" */ '../js/components/panel/employ/Resume'),
     },
     {
         path: "/panel/teachers",

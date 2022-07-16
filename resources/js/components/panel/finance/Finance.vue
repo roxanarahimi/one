@@ -73,14 +73,14 @@
         },
         methods: {
             async loadProducts() {
-                await App.methods.checkToken();
+
                 await axios.get('/api/panel/finance').then((response) => {
                     this.allData = response.data;
                     console.log(this.allData);
                 }).catch();
             },
             async showDeleteModal(id) {
-                await App.methods.checkToken();
+
                 document.getElementById('deleteId').value = id;
             },
             async deleteInfo() {
@@ -96,7 +96,7 @@
                 await this.loadProducts();
             },
             async pActiveToggle(id) {
-                await App.methods.checkToken();
+
                 await axios.get('/api/panel/active/order/' + id)
                     .then((response) => {
                         console.log(response.data)

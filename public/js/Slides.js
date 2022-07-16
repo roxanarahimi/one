@@ -47,15 +47,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/slide').then(function (response) {
                   _this.allData = response.data;
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -74,10 +70,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
                 axios.post('/api/panel/delete/slide/', {
                   id: document.getElementById('deleteId').value
                 }).then(function (response) {
@@ -85,10 +77,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 })["catch"](function (error) {
                   console.error(error);
                 });
-                _context2.next = 5;
+                _context2.next = 3;
                 return _this2.loadAllData();
 
-              case 5:
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -105,21 +97,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
-                _context3.next = 4;
                 return axios.get('/api/panel/active/slide/' + id).then(function (response) {
                   console.log(response.data);
                 })["catch"](function (error) {
                   console.error(error);
                 });
 
-              case 4:
-                _context3.next = 6;
+              case 2:
+                _context3.next = 4;
                 return _this3.loadAllData();
 
-              case 6:
+              case 4:
               case "end":
                 return _context3.stop();
             }
@@ -139,10 +127,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 children = document.querySelector('#slides_wrapper').children;
                 index = 0;
                 _context4.next = 4;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 4:
-                _context4.next = 6;
                 return children.forEach(function (item) {
                   axios.post('/api/panel/slide/' + item.getAttribute('data-id'), {
                     index: index
@@ -153,11 +137,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   index++;
                 });
 
-              case 6:
-                _context4.next = 8;
+              case 4:
+                _context4.next = 6;
                 return _this4.loadAllData();
 
-              case 8:
+              case 6:
               case "end":
                 return _context4.stop();
             }

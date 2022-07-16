@@ -91,7 +91,7 @@
 
         methods: {
             async loadData() {
-                await App.methods.checkToken();
+
                 await axios.get('/api/panel/teacher/' + this.id)
                     .then((response) => {
                         console.log(response.data);
@@ -105,7 +105,7 @@
 
             },
             async updateInfo() {
-                await App.methods.checkToken();
+
                 this.errors = [];
                 let emptyFieldsCount = 0;
                 let req = document.querySelectorAll('[required]');

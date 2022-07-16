@@ -146,10 +146,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/product/' + _this.id).then(function (response) {
                   _this.data = response.data.product;
 
@@ -172,7 +168,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -190,23 +186,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_1__["default"].methods.checkToken();
-
-              case 2:
-                _context2.next = 4;
                 return [];
 
-              case 4:
+              case 2:
                 newOrder = _context2.sent;
-                _context2.next = 7;
+                _context2.next = 5;
                 return document.querySelectorAll('[name = "order"]');
 
-              case 7:
+              case 5:
                 newOrder = _context2.sent;
-                _context2.next = 10;
+                _context2.next = 8;
                 return console.log('nnn', newOrder);
 
-              case 10:
+              case 8:
                 list = '';
 
                 for (i = 0; i < newOrder.length; i++) {
@@ -226,7 +218,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 13:
+              case 11:
               case "end":
                 return _context2.stop();
             }

@@ -99,7 +99,7 @@
         },
         methods: {
             async loadAllData() {
-                await App.methods.checkToken();
+
                 await axios.get('/api/panel/slide').then((response) => {
                     this.allData = response.data;
                 }).catch();
@@ -109,7 +109,7 @@
 
             },
             async deleteInfo() {
-                await App.methods.checkToken();
+
                 axios.post('/api/panel/delete/slide/', {
                     id: document.getElementById('deleteId').value,
                 })
@@ -122,7 +122,7 @@
                 await this.loadAllData();
             },
             async pActiveToggle(id) {
-                await App.methods.checkToken();
+
                 await axios.get('/api/panel/active/slide/' + id)
                     .then((response) => {
                         console.log(response.data)
@@ -135,7 +135,7 @@
             async updateSlidesOrder() {
                 let children = document.querySelector('#slides_wrapper').children;
                 let index = 0;
-                await App.methods.checkToken();
+
                 await children.forEach((item) => {
                     axios.post('/api/panel/slide/' + item.getAttribute('data-id'), {
                         index: index,

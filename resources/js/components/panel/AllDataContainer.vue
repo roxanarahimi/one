@@ -42,9 +42,9 @@ import Loader from "../components/Loader";
 export default {
     components: {Loader, App},
     props: ['model', 'title', 'tooltip_new'],
-    setup() {
+    setup(props) {
         const all = ref([]);
-        const model = ref();
+        // const model = ref();
 
         const showDeleteModal = (id) => {
             // App.methods.checkToken();
@@ -52,7 +52,7 @@ export default {
         };
         const deleteInfo = (model,id) => {
             //App.methods.checkToken();
-            model='product';
+            model= props.model;
              id = document.getElementById('deleteId').value;
              console.log('/api/panel/delete/'+model+'/' + id);
             axios.get('/api/panel/delete/'+model+'/' + id)

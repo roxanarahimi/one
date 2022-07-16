@@ -206,7 +206,7 @@ export default {
     },
     methods: {
         async loadCategories() {
-            await App.methods.checkToken();
+
             await axios.get('/api/panel/category/product?page=1&perPage=100000')
                 .then((response) => {
                 this.categories = response.data.data;
@@ -227,7 +227,7 @@ export default {
             //         }
             //     })
             //     .then(() => {
-            await App.methods.checkToken();
+
             this.errors = [];
             let emptyFieldsCount = 0;
             let req = document.querySelectorAll('[required]');
@@ -404,7 +404,7 @@ export default {
             this.sizes.splice(index, 1)
         },
         async updateSizes() {
-            await App.methods.checkToken();
+
 
 
             // this.sizes = [];

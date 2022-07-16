@@ -93,7 +93,7 @@
 
         methods: {
             async loadData() {
-                await App.methods.checkToken();
+
                 await axios.get('/api/panel/slide/' + this.id)
                     .then((response) => {
                         this.data = response.data;
@@ -109,7 +109,7 @@
                     .catch();
             },
             async updateInfo() {
-                await App.methods.checkToken();
+
                 this.errors = [];
                 let emptyFieldsCount = 0;
                 let req = document.querySelectorAll('[required]');

@@ -221,7 +221,9 @@ _j_t_mcc_vue3_chartjs__WEBPACK_IMPORTED_MODULE_0__["default"].registerGlobalPlug
           borderColor: props.color,
           borderWidth: 4,
           tension: 0.5,
-          backgroundColor: props.color
+          backgroundColor: props.color,
+          pointRadius: 0.05,
+          pointHoverRadius: 5
         }]
       },
       options: {
@@ -340,31 +342,45 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      all: [{
+      week: [{
         labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "امروز"],
         data: [70, 70, 72, 72, 72, 72, 75],
         dataLabel: "محصول",
         color: "white",
-        all: 12365
+        all: 12.365
       }, {
         labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "امروز"],
         data: [70, 25, 110, 90, 5, 50, 70],
         dataLabel: "فروش",
         color: "white",
-        all: 12365
+        all: 12.365
       }, {
         labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "امروز"],
         data: [1200, 1750, 1900, 2000, 2050, 2100, 2145],
         dataLabel: "بازدید",
         color: "white",
-        all: 12365
+        all: 12.365
       }, {
         labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "امروز"],
         data: [345, 458, 847, 987, 990, 1000, 1500],
         dataLabel: "کاربر",
         color: "white",
-        all: 12365
-      }]
+        all: 12.365
+      }],
+      monthIncome: {
+        labels: ["1401-02-01", "1401-02-02", "1401-02-03", "1401-02-04", "1401-02-05", "1401-02-06", "1401-02-07", "1401-02-08", "1401-02-09", "1401-02-10", "1401-02-11", "1401-02-12", "1401-02-13", "1401-02-14", "1401-02-15", "1401-02-16", "1401-02-17", "1401-02-18", "1401-02-19", "1401-02-20", "1401-02-21", "1401-02-22", "1401-02-23", "1401-02-24", "1401-02-25", "1401-02-26", "1401-02-27", "1401-02-28", "1401-02-29", "1401-02-30"],
+        data: [2000000, 21000000, 15000000, 15000000, 15000000, 23000000, 19000000, 13000000, 1800000, 15000000, 16000000, 1700000, 14000000, 2000000, 13000000, 18000000, 20000000, 23000000, 1700000, 22000000, 15000000, 17000000, 16000000, 18000000, 2000000, 13000000, 5000000, 19000000, 1400000, 12000000],
+        dataLabel: "درامد ماه گذشته",
+        color: "white",
+        all: '600.000.000'
+      },
+      monthPureProfit: {
+        labels: ["1401-02-01", "1401-02-02", "1401-02-03", "1401-02-04", "1401-02-05", "1401-02-06", "1401-02-07", "1401-02-08", "1401-02-09", "1401-02-10", "1401-02-11", "1401-02-12", "1401-02-13", "1401-02-14", "1401-02-15", "1401-02-16", "1401-02-17", "1401-02-18", "1401-02-19", "1401-02-20", "1401-02-21", "1401-02-22", "1401-02-23", "1401-02-24", "1401-02-25", "1401-02-26", "1401-02-27", "1401-02-28", "1401-02-29", "1401-02-30"],
+        data: [1000000, 11000000, 5000000, 5000000, 5000000, 3000000, 9000000, 3000000, 800000, 5000000, 6000000, 700000, 4000000, 1000000, 3000000, 8000000, 10000000, 13000000, 700000, 12000000, 5000000, 7000000, 16000000, 18000000, 2000000, 13000000, 5000000, 9000000, 400000, 2000000],
+        dataLabel: "سود خالص ماه گذشته",
+        color: "white",
+        all: '300.000.000'
+      }
     };
   }
 });
@@ -452,7 +468,11 @@ var _hoisted_1 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_vue3_chart_js = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue3-chart-js");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue3_chart_js, (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeProps)((0,vue__WEBPACK_IMPORTED_MODULE_0__.guardReactiveProps)(_objectSpread({}, $setup.lineChart))), null, 16
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue3_chart_js, (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({
+    style: {
+      "max-height": "250px"
+    }
+  }, _objectSpread({}, $setup.lineChart)), null, 16
   /* FULL_PROPS */
   )]);
 }
@@ -550,7 +570,7 @@ var _hoisted_1 = {
   "class": "row justify-content-between mb-3"
 };
 var _hoisted_2 = {
-  "class": "card text-black-50"
+  "class": "card"
 };
 var _hoisted_3 = {
   "class": "card-body rounded"
@@ -570,10 +590,46 @@ var _hoisted_7 = {
 var _hoisted_8 = {
   "class": "float-end"
 };
+var _hoisted_9 = {
+  "class": "col-12 mb-3"
+};
+var _hoisted_10 = {
+  "class": "card"
+};
+var _hoisted_11 = {
+  "class": "card-body rounded"
+};
+var _hoisted_12 = {
+  "class": "col-12"
+};
+var _hoisted_13 = {
+  "class": "float-start"
+};
+var _hoisted_14 = {
+  "class": "float-end"
+};
+var _hoisted_15 = {
+  "class": "col-12 mb-5"
+};
+var _hoisted_16 = {
+  "class": "card"
+};
+var _hoisted_17 = {
+  "class": "card-body rounded"
+};
+var _hoisted_18 = {
+  "class": "col-12"
+};
+var _hoisted_19 = {
+  "class": "float-start"
+};
+var _hoisted_20 = {
+  "class": "float-end"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_chart = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("chart");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.all, function (item, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.week, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: index,
       "class": "col-12 col-md-6 col-lg-6 col-xl-3 col-xxl-3 mb-3"
@@ -591,7 +647,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )])])])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]);
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_chart, {
+    labels: $data.monthIncome.labels,
+    data: $data.monthIncome.data,
+    dalaLabel: $data.monthIncome.dataLabel,
+    color: $data.monthIncome.color
+  }, null, 8
+  /* PROPS */
+  , ["labels", "data", "dalaLabel", "color"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthIncome.dataLabel), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthIncome.all), 1
+  /* TEXT */
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_chart, {
+    labels: $data.monthPureProfit.labels,
+    data: $data.monthPureProfit.data,
+    dalaLabel: $data.monthPureProfit.dataLabel,
+    color: $data.monthPureProfit.color
+  }, null, 8
+  /* PROPS */
+  , ["labels", "data", "dalaLabel", "color"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthPureProfit.dataLabel), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthPureProfit.all), 1
+  /* TEXT */
+  )])])])])]);
 }
 
 /***/ }),

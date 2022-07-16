@@ -97,7 +97,7 @@ export default {
     },
     methods: {
         async createInfo() {
-            await App.methods.checkToken();
+
             this.errors = [];
             let emptyFieldsCount = 0;
             let req = document.querySelectorAll('[required]');

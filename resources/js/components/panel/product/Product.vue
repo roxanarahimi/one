@@ -133,7 +133,7 @@ export default {
     },
     methods: {
         async loadProduct() {
-            await App.methods.checkToken();
+
             await axios.get('/api/panel/product/' + this.id)
                 .then((response) => {
                     this.data = response.data.product;
@@ -155,7 +155,7 @@ export default {
 
         },
         async updateOrder() {
-            await App.methods.checkToken();
+
             let newOrder = await [];
             newOrder = await document.querySelectorAll('[name = "order"]');
             await console.log('nnn', newOrder);

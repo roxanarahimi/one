@@ -39,6 +39,7 @@ import adminsTable from "./admin/adminsTable";
 import coursesTable from "./course/coursesTable";
 import teachersTable from "./teacher/teachersTable";
 import financesTable from "./finance/financesTable";
+import resumesTable from "./employ/resumesTable";
 import {useRoute} from "vue-router";
 
 
@@ -46,7 +47,7 @@ export default {
     components: {
         Loader, AllDataContainer, Pagination,
         productsTable, ordersTable, usersTable, articlesTable, coursesTable,
-        adminsTable, projectsTable, teachersTable, financesTable
+        adminsTable, projectsTable, teachersTable, financesTable, resumesTable
     },
     setup() {
         const model = ref();

@@ -238,6 +238,8 @@ Route::controller(App\Http\Controllers\ResumeController::class)->group(function 
     Route::prefix('panel')->group(function () {
         Route::get('/resume','index');
         Route::get('/resume/{resume}','show');
+        Route::post('/resume','store');
+        Route::post('/resume/{resume}','update');
         Route::get('/delete/resume/{resume}','destroy');
     });
 });

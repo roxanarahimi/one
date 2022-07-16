@@ -256,7 +256,6 @@ export default {
                 item.classList.remove('d-none');
             });
         }
-        // this.checkToken();
     },
     mounted() {
         this.sideBarToggle();
@@ -269,6 +268,11 @@ export default {
             item.setAttribute('autocomplete', 'off');
         });
         // this.persianDate();
+        document.querySelectorAll('ul > li > a').forEach((element)=>{
+            element.addEventListener('click',()=>{
+                this.checkToken();
+            })
+        })
     },
     methods: {
         handleResize() {
@@ -349,7 +353,7 @@ export default {
                         }
 
                         localStorage.setItem('admin_expire', response.data.expire)
-                        console.log('token checked');
+                        console.log('token updated');
 
                     }
                 })
@@ -359,7 +363,6 @@ export default {
                         this.logout();
                     }
                 });
-            console.log('done')
         },
         persianDate() {//date
             const date = new Date();

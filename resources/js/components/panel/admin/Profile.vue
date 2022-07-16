@@ -100,7 +100,6 @@
             },
 
             async submit() {
-                await App.methods.checkToken();
                 document.getElementById('updateMsg').classList.add('d-none');
                 let emptyFieldsCount = 0;
                 let req = document.querySelectorAll('[required]');

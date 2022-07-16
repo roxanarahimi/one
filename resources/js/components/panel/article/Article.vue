@@ -57,7 +57,6 @@
         },
         methods: {
            async loadArticle() {
-               await App.methods.checkToken();
                await axios.get('/api/panel/article/' + this.id)
                             .then((response) => {
                                 this.data = response.data;

@@ -144,10 +144,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
-                _context.next = 4;
                 return axios.get('/api/panel/product/' + _this.id).then(function (response) {
                   console.log(response.data);
                   _this.data = response.data.product;
@@ -171,7 +167,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.watchTextAreas();
                 })["catch"]();
 
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -196,10 +192,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this3.errors = [];
                 emptyFieldsCount = 0;
                 req = document.querySelectorAll('[required]');
@@ -222,7 +214,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 if (!(emptyFieldsCount === 0)) {
-                  _context4.next = 14;
+                  _context4.next = 12;
                   break;
                 }
 
@@ -238,7 +230,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   features = '[' + features.toString() + ']';
                 }
 
-                _context4.next = 14;
+                _context4.next = 12;
                 return axios.post('/api/panel/product/' + _this3.$route.params.id, {
                   // image: document.getElementById('Image_index_code').value,
                   images: images,
@@ -334,7 +326,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 14:
+              case 12:
               case "end":
                 return _context4.stop();
             }
@@ -367,10 +359,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
                 _this4.features = [];
 
                 for (i = 0; i < document.getElementsByName('featureLabel').length; i++) {
@@ -380,7 +368,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-              case 4:
+              case 2:
               case "end":
                 return _context5.stop();
             }
@@ -403,10 +391,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return _App__WEBPACK_IMPORTED_MODULE_2__["default"].methods.checkToken();
-
-              case 2:
-                _context6.next = 4;
                 return axios.post('/api/panel/check/user/token', {
                   id: JSON.parse(localStorage.getItem('user')).id
                 }).then(function (response) {
@@ -437,7 +421,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 4:
+              case 2:
               case "end":
                 return _context6.stop();
             }

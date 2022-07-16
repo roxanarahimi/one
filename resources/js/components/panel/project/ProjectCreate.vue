@@ -77,7 +77,7 @@
         },
         methods: {
             async createInfo() {
-                await App.methods.checkToken();
+
                 this.errors = [];
                 let emptyFieldsCount = 0;
                 let req = document.querySelectorAll('[required]');
@@ -168,7 +168,7 @@
                 this.tags.splice(index, 1)
             },
             async updateTags() {
-                await App.methods.checkToken();
+
                 this.tags = [];
                 for (let i = 0; i < document.getElementsByName('tagLabel').length; i++) {
                     await this.tags.push({

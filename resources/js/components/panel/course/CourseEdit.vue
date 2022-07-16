@@ -137,7 +137,7 @@
         },
         methods: {
             async loadData() {
-                await App.methods.checkToken();
+
                 await axios.get('/api/panel/course/' + this.id)
                     .then((response) => {
                         console.log(response.data);
@@ -161,7 +161,7 @@
                     .catch();
             },
             async updateInfo() {
-                await App.methods.checkToken();
+
                 this.errors = [];
                 let emptyFieldsCount = 0;
                 let req = document.querySelectorAll('[required]');
@@ -258,7 +258,7 @@
                 this.features.splice(index, 1)
             },
             async updateFeatures() {
-                await App.methods.checkToken();
+
                 this.features = [];
                 for (let i = 0; i < document.getElementsByName('featureLabel').length; i++) {
                     this.features.push({

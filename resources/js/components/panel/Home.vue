@@ -11,14 +11,14 @@
                 </template>
             </Suspense>
 
-            <Suspense>
-                <template #default>
-                    <latest-products/>
-                </template>
-                <template #fallback>
-                    <loader class="mt-5"/>
-                </template>
-            </Suspense>
+<!--            <Suspense>-->
+<!--                <template #default>-->
+<!--                    <latest-products/>-->
+<!--                </template>-->
+<!--                <template #fallback>-->
+<!--                    <loader class="mt-5"/>-->
+<!--                </template>-->
+<!--            </Suspense>-->
             <p id="msg"></p>
         </section>
     </transition>

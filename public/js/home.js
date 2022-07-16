@@ -221,7 +221,7 @@ _j_t_mcc_vue3_chartjs__WEBPACK_IMPORTED_MODULE_0__["default"].registerGlobalPlug
           borderColor: props.color,
           borderWidth: 4,
           tension: 0.5,
-          backgroundColor: props.color,
+          backgroundColor: 'rgba(255, 255, 255, 0.49)',
           pointRadius: 0.05,
           pointHoverRadius: 5
         }]
@@ -369,17 +369,31 @@ __webpack_require__.r(__webpack_exports__);
       }],
       monthIncome: {
         labels: ["1401-02-01", "1401-02-02", "1401-02-03", "1401-02-04", "1401-02-05", "1401-02-06", "1401-02-07", "1401-02-08", "1401-02-09", "1401-02-10", "1401-02-11", "1401-02-12", "1401-02-13", "1401-02-14", "1401-02-15", "1401-02-16", "1401-02-17", "1401-02-18", "1401-02-19", "1401-02-20", "1401-02-21", "1401-02-22", "1401-02-23", "1401-02-24", "1401-02-25", "1401-02-26", "1401-02-27", "1401-02-28", "1401-02-29", "1401-02-30"],
-        data: [2000000, 21000000, 15000000, 15000000, 15000000, 23000000, 19000000, 13000000, 1800000, 15000000, 16000000, 1700000, 14000000, 2000000, 13000000, 18000000, 20000000, 23000000, 1700000, 22000000, 15000000, 17000000, 16000000, 18000000, 2000000, 13000000, 5000000, 19000000, 1400000, 12000000],
+        data: [11000000, 13000000, 13000000, 14000000, 14000000, 15000000, 15000000, 15000000, 15000000, 15000000, 13000000, 16000000, 17000000, 18000000, 20000000, 21000000, 23000000, 19000000, 18000000, 20000000, 20000000, 23000000, 21000000, 22000000, 17000000, 16000000, 18000000, 20000000, 19000000, 12000000],
         dataLabel: "درامد ماه گذشته",
         color: "white",
         all: '600.000.000'
       },
       monthPureProfit: {
         labels: ["1401-02-01", "1401-02-02", "1401-02-03", "1401-02-04", "1401-02-05", "1401-02-06", "1401-02-07", "1401-02-08", "1401-02-09", "1401-02-10", "1401-02-11", "1401-02-12", "1401-02-13", "1401-02-14", "1401-02-15", "1401-02-16", "1401-02-17", "1401-02-18", "1401-02-19", "1401-02-20", "1401-02-21", "1401-02-22", "1401-02-23", "1401-02-24", "1401-02-25", "1401-02-26", "1401-02-27", "1401-02-28", "1401-02-29", "1401-02-30"],
-        data: [1000000, 11000000, 5000000, 5000000, 5000000, 3000000, 9000000, 3000000, 800000, 5000000, 6000000, 700000, 4000000, 1000000, 3000000, 8000000, 10000000, 13000000, 700000, 12000000, 5000000, 7000000, 16000000, 18000000, 2000000, 13000000, 5000000, 9000000, 400000, 2000000],
+        data: [9000000, 11000000, 11000000, 12000000, 14000000, 15000000, 10000000, 10000000, 13000000, 14000000, 13000000, 15000000, 16000000, 15000000, 18000000, 11000000, 20000000, 19000000, 16000000, 17000000, 14000000, 22000000, 20000000, 20000000, 13000000, 15000000, 18000000, 13000000, 19000000, 12000000],
         dataLabel: "سود خالص ماه گذشته",
         color: "white",
-        all: '300.000.000'
+        all: '400.000.000'
+      },
+      yearIncome: {
+        labels: ["1400-05", "1400-06", "1400-07", "1400-08", "1400-09", "1400-10", "1400-11", "1400-12", "1401-01", "1401-02", "1401-03", "1401-04"],
+        data: [11000000, 13000000, 13000000, 14000000, 14000000, 15000000, 15000000, 15000000, 15000000, 15000000, 13000000, 16000000],
+        dataLabel: "درامد سال گذشته",
+        color: "white",
+        all: '1.600.000.000'
+      },
+      yearPureProfit: {
+        labels: ["1400-05", "1400-06", "1400-07", "1400-08", "1400-09", "1400-10", "1400-11", "1400-12", "1401-01", "1401-02", "1401-03", "1401-04"],
+        data: [15000000, 16000000, 15000000, 18000000, 11000000, 20000000, 19000000, 16000000, 17000000, 14000000, 22000000, 20000000],
+        dataLabel: "سود خالص سال گذشته",
+        color: "white",
+        all: '900.000.000'
       }
     };
   }
@@ -470,7 +484,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue3_chart_js, (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({
     style: {
-      "max-height": "250px"
+      "max-height": "200px"
     }
   }, _objectSpread({}, $setup.lineChart)), null, 16
   /* FULL_PROPS */
@@ -504,8 +518,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_loader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("loader");
 
-  var _component_latest_products = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("latest-products");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<h3>داشبورد</h3>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
     name: "route",
     mode: "out-in",
@@ -524,19 +536,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      })), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Suspense, null, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_latest_products)];
-        }),
-        fallback: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loader, {
-            "class": "mt-5"
-          })];
-        }),
-        _: 1
-        /* STABLE */
-
-      })), _hoisted_1])];
+      })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <Suspense>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <template #default>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <latest-products/>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                </template>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <template #fallback>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <loader class=\"mt-5\"/>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                </template>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            </Suspense>"), _hoisted_1])];
     }),
     _: 1
     /* STABLE */
@@ -591,7 +591,7 @@ var _hoisted_8 = {
   "class": "float-end"
 };
 var _hoisted_9 = {
-  "class": "col-12 mb-3"
+  "class": "col-12 col-xl-6 mt-2"
 };
 var _hoisted_10 = {
   "class": "card"
@@ -600,30 +600,90 @@ var _hoisted_11 = {
   "class": "card-body rounded"
 };
 var _hoisted_12 = {
-  "class": "col-12"
+  "class": "row justify-content-center"
 };
 var _hoisted_13 = {
-  "class": "float-start"
+  "class": "col-10 col-xxl-11"
 };
 var _hoisted_14 = {
-  "class": "float-end"
-};
-var _hoisted_15 = {
-  "class": "col-12 mb-5"
-};
-var _hoisted_16 = {
-  "class": "card"
-};
-var _hoisted_17 = {
-  "class": "card-body rounded"
-};
-var _hoisted_18 = {
   "class": "col-12"
 };
-var _hoisted_19 = {
+var _hoisted_15 = {
   "class": "float-start"
 };
+var _hoisted_16 = {
+  "class": "float-end"
+};
+var _hoisted_17 = {
+  "class": "col-12 col-xl-6 mt-2"
+};
+var _hoisted_18 = {
+  "class": "card"
+};
+var _hoisted_19 = {
+  "class": "card-body rounded"
+};
 var _hoisted_20 = {
+  "class": "row justify-content-center"
+};
+var _hoisted_21 = {
+  "class": "col-10 col-xxl-11"
+};
+var _hoisted_22 = {
+  "class": "col-12"
+};
+var _hoisted_23 = {
+  "class": "float-start"
+};
+var _hoisted_24 = {
+  "class": "float-end"
+};
+var _hoisted_25 = {
+  "class": "col-12 col-xl-6 mt-4"
+};
+var _hoisted_26 = {
+  "class": "card"
+};
+var _hoisted_27 = {
+  "class": "card-body rounded"
+};
+var _hoisted_28 = {
+  "class": "row justify-content-center"
+};
+var _hoisted_29 = {
+  "class": "col-10 col-xxl-11"
+};
+var _hoisted_30 = {
+  "class": "col-12"
+};
+var _hoisted_31 = {
+  "class": "float-start"
+};
+var _hoisted_32 = {
+  "class": "float-end"
+};
+var _hoisted_33 = {
+  "class": "col-12 col-xl-6 mt-4"
+};
+var _hoisted_34 = {
+  "class": "card"
+};
+var _hoisted_35 = {
+  "class": "card-body rounded"
+};
+var _hoisted_36 = {
+  "class": "row justify-content-center"
+};
+var _hoisted_37 = {
+  "class": "col-10 col-xxl-11"
+};
+var _hoisted_38 = {
+  "class": "col-12"
+};
+var _hoisted_39 = {
+  "class": "float-start"
+};
+var _hoisted_40 = {
   "class": "float-end"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -647,27 +707,49 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )])])])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_chart, {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_chart, {
     labels: $data.monthIncome.labels,
     data: $data.monthIncome.data,
     dalaLabel: $data.monthIncome.dataLabel,
     color: $data.monthIncome.color
   }, null, 8
   /* PROPS */
-  , ["labels", "data", "dalaLabel", "color"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthIncome.dataLabel), 1
+  , ["labels", "data", "dalaLabel", "color"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthIncome.dataLabel), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthIncome.all), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthIncome.all), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_chart, {
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_chart, {
     labels: $data.monthPureProfit.labels,
     data: $data.monthPureProfit.data,
     dalaLabel: $data.monthPureProfit.dataLabel,
     color: $data.monthPureProfit.color
   }, null, 8
   /* PROPS */
-  , ["labels", "data", "dalaLabel", "color"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthPureProfit.dataLabel), 1
+  , ["labels", "data", "dalaLabel", "color"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthPureProfit.dataLabel), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthPureProfit.all), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.monthPureProfit.all), 1
+  /* TEXT */
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_chart, {
+    labels: $data.yearIncome.labels,
+    data: $data.yearIncome.data,
+    dalaLabel: $data.yearIncome.dataLabel,
+    color: $data.yearIncome.color
+  }, null, 8
+  /* PROPS */
+  , ["labels", "data", "dalaLabel", "color"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.yearIncome.dataLabel), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.yearIncome.all), 1
+  /* TEXT */
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_chart, {
+    labels: $data.yearPureProfit.labels,
+    data: $data.yearPureProfit.data,
+    dalaLabel: $data.yearPureProfit.dataLabel,
+    color: $data.yearPureProfit.color
+  }, null, 8
+  /* PROPS */
+  , ["labels", "data", "dalaLabel", "color"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.yearPureProfit.dataLabel), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.yearPureProfit.all), 1
   /* TEXT */
   )])])])])]);
 }

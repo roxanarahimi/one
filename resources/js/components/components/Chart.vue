@@ -1,6 +1,6 @@
 <template>
         <div class="w-100">
-            <vue3-chart-js style="max-height: 250px" v-bind="{ ...lineChart }"/>
+            <vue3-chart-js style="max-height: 200px" v-bind="{ ...lineChart }"/>
         </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
                         borderColor: props.color,
                         borderWidth: 4,
                         tension: 0.5,
-                        backgroundColor: props.color,
+                        backgroundColor: 'rgba(255, 255, 255, 0.49)',
                         pointRadius: 0.05,
                         pointHoverRadius: 5,
                     },
@@ -98,3 +98,4 @@ export default {
     },
 };
 </script>
+

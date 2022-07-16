@@ -16,10 +16,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-3">
+        <div class="col-12 col-xl-6 mt-2">
             <div class="card ">
                 <div class="card-body rounded">
-                    <chart :labels="monthIncome.labels" :data="monthIncome.data" :dalaLabel="monthIncome.dataLabel" :color="monthIncome.color"/>
+                    <div class="row justify-content-center">
+                        <div class="col-10 col-xxl-11">
+                            <chart :labels="monthIncome.labels" :data="monthIncome.data"
+                                   :dalaLabel="monthIncome.dataLabel" :color="monthIncome.color"/>
+
+                        </div>
+                    </div>
                     <div class="col-12">
                         <small class="float-start">{{ monthIncome.dataLabel }}</small>
                         <small class="float-end">{{ monthIncome.all }}</small>
@@ -27,13 +33,53 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-5">
+        <div class="col-12 col-xl-6 mt-2">
             <div class="card ">
                 <div class="card-body rounded">
-                    <chart :labels="monthPureProfit.labels" :data="monthPureProfit.data" :dalaLabel="monthPureProfit.dataLabel" :color="monthPureProfit.color"/>
+                    <div class="row justify-content-center">
+                        <div class="col-10 col-xxl-11">
+                            <chart :labels="monthPureProfit.labels" :data="monthPureProfit.data"
+                                   :dalaLabel="monthPureProfit.dataLabel" :color="monthPureProfit.color"/>
+
+                        </div>
+                    </div>
                     <div class="col-12">
                         <small class="float-start">{{ monthPureProfit.dataLabel }}</small>
                         <small class="float-end">{{ monthPureProfit.all }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-6 mt-4">
+            <div class="card ">
+                <div class="card-body rounded">
+                    <div class="row justify-content-center">
+                        <div class="col-10 col-xxl-11">
+                            <chart :labels="yearIncome.labels" :data="yearIncome.data"
+                                   :dalaLabel="yearIncome.dataLabel" :color="yearIncome.color"/>
+
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <small class="float-start">{{ yearIncome.dataLabel }}</small>
+                        <small class="float-end">{{ yearIncome.all }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-6 mt-4">
+            <div class="card ">
+                <div class="card-body rounded">
+                    <div class="row justify-content-center">
+                        <div class="col-10 col-xxl-11">
+                            <chart :labels="yearPureProfit.labels" :data="yearPureProfit.data"
+                                   :dalaLabel="yearPureProfit.dataLabel" :color="yearPureProfit.color"/>
+
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <small class="float-start">{{ yearPureProfit.dataLabel }}</small>
+                        <small class="float-end">{{ yearPureProfit.all }}</small>
                     </div>
                 </div>
             </div>
@@ -84,9 +130,10 @@ export default {
             monthIncome: {
                 labels: ["1401-02-01", "1401-02-02", "1401-02-03", "1401-02-04", "1401-02-05", "1401-02-06", "1401-02-07", "1401-02-08", "1401-02-09", "1401-02-10", "1401-02-11", "1401-02-12", "1401-02-13", "1401-02-14", "1401-02-15", "1401-02-16", "1401-02-17", "1401-02-18", "1401-02-19", "1401-02-20", "1401-02-21", "1401-02-22", "1401-02-23", "1401-02-24", "1401-02-25", "1401-02-26", "1401-02-27", "1401-02-28", "1401-02-29", "1401-02-30",],
                 data: [
-                    2000000, 21000000, 15000000, 15000000, 15000000, 23000000, 19000000, 13000000, 1800000, 15000000,
-                    16000000, 1700000, 14000000, 2000000, 13000000, 18000000, 20000000, 23000000, 1700000, 22000000,
-                    15000000, 17000000, 16000000, 18000000, 2000000, 13000000, 5000000, 19000000, 1400000, 12000000,
+                    11000000, 13000000, 13000000, 14000000, 14000000, 15000000, 15000000, 15000000,
+                    15000000, 15000000, 13000000, 16000000, 17000000, 18000000, 20000000, 21000000,
+                    23000000, 19000000, 18000000, 20000000, 20000000, 23000000, 21000000, 22000000,
+                    17000000, 16000000, 18000000, 20000000, 19000000, 12000000,
                 ],
                 dataLabel: "درامد ماه گذشته",
                 color: "white",
@@ -95,13 +142,34 @@ export default {
             monthPureProfit: {
                 labels: ["1401-02-01", "1401-02-02", "1401-02-03", "1401-02-04", "1401-02-05", "1401-02-06", "1401-02-07", "1401-02-08", "1401-02-09", "1401-02-10", "1401-02-11", "1401-02-12", "1401-02-13", "1401-02-14", "1401-02-15", "1401-02-16", "1401-02-17", "1401-02-18", "1401-02-19", "1401-02-20", "1401-02-21", "1401-02-22", "1401-02-23", "1401-02-24", "1401-02-25", "1401-02-26", "1401-02-27", "1401-02-28", "1401-02-29", "1401-02-30",],
                 data: [
-                    1000000, 11000000, 5000000, 5000000, 5000000, 3000000, 9000000, 3000000, 800000, 5000000,
-                    6000000, 700000, 4000000, 1000000, 3000000, 8000000, 10000000, 13000000, 700000, 12000000,
-                    5000000, 7000000, 16000000, 18000000, 2000000, 13000000, 5000000, 9000000, 400000, 2000000,
+                    9000000, 11000000, 11000000, 12000000, 14000000, 15000000, 10000000, 10000000,
+                    13000000, 14000000, 13000000, 15000000, 16000000, 15000000, 18000000, 11000000,
+                    20000000, 19000000, 16000000, 17000000, 14000000, 22000000, 20000000, 20000000,
+                    13000000, 15000000, 18000000, 13000000, 19000000, 12000000,
                 ],
                 dataLabel: "سود خالص ماه گذشته",
                 color: "white",
-                all: '300.000.000'
+                all: '400.000.000'
+            },
+
+            yearIncome: {
+                labels: ["1400-05", "1400-06", "1400-07", "1400-08", "1400-09", "1400-10", "1400-11", "1400-12","1401-01", "1401-02", "1401-03", "1401-04", ],
+                data: [
+                    11000000, 13000000, 13000000, 14000000, 14000000, 15000000, 15000000, 15000000, 15000000, 15000000, 13000000, 16000000
+                ],
+                dataLabel: "درامد سال گذشته",
+                color: "white",
+                all: '1.600.000.000'
+
+            },
+            yearPureProfit: {
+                labels: ["1400-05", "1400-06", "1400-07", "1400-08", "1400-09", "1400-10", "1400-11", "1400-12","1401-01", "1401-02", "1401-03", "1401-04", ],
+                data: [
+                    15000000, 16000000, 15000000, 18000000, 11000000,20000000, 19000000, 16000000, 17000000, 14000000, 22000000, 20000000
+                ],
+                dataLabel: "سود خالص سال گذشته",
+                color: "white",
+                all: '900.000.000'
             },
 
         }

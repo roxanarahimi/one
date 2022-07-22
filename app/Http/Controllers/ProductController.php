@@ -103,7 +103,7 @@ class ProductController extends Controller
                     }
                     default:
                     {
-                        $data = $data->latest();
+                        $data = $data->orderByDesc('id');
                         break;
                     }
                 }

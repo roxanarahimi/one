@@ -109,6 +109,9 @@ class ProductController extends Controller
                 }
             }
 
+            if ($request['limit'] != '') {
+                $data = $data->skip(0)->take($request['limit']);
+            }
             $data = $data->get();
 
             return response(ProductResource::collection($data), 200);

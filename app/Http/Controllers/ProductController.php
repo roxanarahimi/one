@@ -59,6 +59,8 @@ class ProductController extends Controller
             $data = Product::whereHas('activeCategory')->with('category')->where('active', 1);
             if ($request['stock'] == 'true') {
                 $data = $data->where('stock', '>', 0);
+            }elseif ($request['stock'== 'limited']){
+                $data = $data->where('stock', '>', 0)->where('stock','<',5);
             }
             if ($request['cat_ids'] != '') {
                 $ids = explode(',', $request['cat_ids']);
@@ -108,7 +110,10 @@ class ProductController extends Controller
                     }
                 }
             }
+            if ($request['sale'] == 'true') {
+                $data = $data->orderByDesc('sale');
 
+            }
             if ($request['limit'] != '') {
                 $data = $data->skip(0)->take($request['limit']);
             }

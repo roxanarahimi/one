@@ -64,7 +64,7 @@
                     })
                         .then((response) => {
                             if (response.status === 200) {
-                                if (response.status === 200 && response.data.user.scope === 'admin') {
+                                if (response.status === 200 && response.data.user?.scope === 'admin') {
                                     // localStorage.removeItem('admin')
                                     // localStorage.removeItem('admin access_token')
                                     localStorage.setItem('admin_access_token', response.data.access_token);
@@ -73,7 +73,7 @@
                                     setTimeout(() => {
                                         window.location= '/panel';
                                     }, 200);
-                                }else if(response.data.user.scope === 'user'){
+                                }else if(response.data.user?.scope === 'user'){
                                     document.getElementById('emailHelp').innerText = 'شما اجازه ورود ندارید';
                                 }
                             }

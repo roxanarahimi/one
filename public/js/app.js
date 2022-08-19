@@ -20703,13 +20703,10 @@ __webpack_require__.r(__webpack_exports__);
 
     if (!localStorage.getItem('admin_access_token')) {
       this.$router.push({
-        name: 'PanelLogin'
+        name: 'Login'
       });
-    }
+    } // this.persianDate();
 
-    document.querySelectorAll('form').forEach(function (item) {
-      item.setAttribute('autocomplete', 'off');
-    }); // this.persianDate();
 
     document.querySelectorAll('ul > li > a').forEach(function (element) {
       element.addEventListener('click', function () {
@@ -20773,7 +20770,7 @@ __webpack_require__.r(__webpack_exports__);
         if (response.status === 200) {
           localStorage.removeItem('admin_access_token');
           localStorage.removeItem('admin');
-          localStorage.removeItem('admin_expire'); // this.$router.push({name: 'PanelLogin'});
+          localStorage.removeItem('admin_expire'); // this.$router.push({name: 'Login'});
 
           window.location = '/panel/login';
         }
@@ -20873,7 +20870,9 @@ __webpack_require__.r(__webpack_exports__);
           password: document.querySelector('#password').value
         }).then(function (response) {
           if (response.status === 200) {
-            if (response.status === 200 && response.data.user.scope === 'admin') {
+            var _response$data$user, _response$data$user2;
+
+            if (response.status === 200 && ((_response$data$user = response.data.user) === null || _response$data$user === void 0 ? void 0 : _response$data$user.scope) === 'admin') {
               // localStorage.removeItem('admin')
               // localStorage.removeItem('admin access_token')
               localStorage.setItem('admin_access_token', response.data.access_token);
@@ -20882,7 +20881,7 @@ __webpack_require__.r(__webpack_exports__);
               setTimeout(function () {
                 window.location = '/panel';
               }, 200);
-            } else if (response.data.user.scope === 'user') {
+            } else if (((_response$data$user2 = response.data.user) === null || _response$data$user2 === void 0 ? void 0 : _response$data$user2.scope) === 'user') {
               document.getElementById('emailHelp').innerText = 'شما اجازه ورود ندارید';
             }
           }

@@ -262,11 +262,8 @@ export default {
         this.handleResize();
 
         if (!localStorage.getItem('admin_access_token')) {
-            this.$router.push({name: 'PanelLogin'});
+            this.$router.push({name: 'Login'});
         }
-        document.querySelectorAll('form').forEach((item) => {
-            item.setAttribute('autocomplete', 'off');
-        });
         // this.persianDate();
         document.querySelectorAll('ul > li > a').forEach((element)=>{
             element.addEventListener('click',()=>{
@@ -329,7 +326,7 @@ export default {
                         localStorage.removeItem('admin_access_token');
                         localStorage.removeItem('admin');
                         localStorage.removeItem('admin_expire');
-                        // this.$router.push({name: 'PanelLogin'});
+                        // this.$router.push({name: 'Login'});
                         window.location = '/panel/login'
                     }
 

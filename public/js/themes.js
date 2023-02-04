@@ -9,17 +9,19 @@ function getCurrentTheme() {
 
 function loadTheme(theme) {
     const root = document.querySelector(':root');
-    if (theme === 'light') {
-        themeBtn.innerHTML = '<i class="bi bi-moon-fill " title="حالت شب"></i>\n' +
-            '                            <span class="sidebar_title d-none">حالت شب</span>';
-    } else {
-        themeBtn.innerHTML = '<i class="bi bi-sun-fill" title="حالت روز"></i>\n' +
-            '                            <span class="sidebar_title d-none">حالت روز</span>';
+    if (themeBtn){
+        if (theme === 'light') {
+            themeBtn.innerHTML = '<i class="bi bi-moon-fill " title="حالت شب"></i>\n' +
+                '                            <span class="sidebar_title d-none">حالت شب</span>';
+        } else {
+            themeBtn.innerHTML = '<i class="bi bi-sun-fill" title="حالت روز"></i>\n' +
+                '                            <span class="sidebar_title d-none">حالت روز</span>';
+        }
     }
     root.setAttribute('color-scheme', theme)
 }
 
-themeBtn.addEventListener('click', () => {
+themeBtn?.addEventListener('click', () => {
     let theme = getCurrentTheme();
     theme === 'dark' ? theme = 'light' : theme = 'dark';
     localStorage.setItem('theme', theme);

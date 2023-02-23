@@ -42,6 +42,9 @@ Route::controller(App\Http\Controllers\AuthController::class)->group(function ()
     Route::post('/check/user/token', 'updateLastActivity');
     Route::get('/user/logout/{user}', 'logout');
     Route::post('/user/logout', 'logout');
+
+    Route::post('/otp/mobile', 'getOtp');
+    Route::post('/mobile/login', 'loginMobile');
 });
 Route::controller(App\Http\Controllers\UserController::class)->group(function () {
 

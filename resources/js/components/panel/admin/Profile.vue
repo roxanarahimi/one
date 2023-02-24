@@ -60,114 +60,115 @@
 </template>
 
 <script>
-    import App from '../App';
+import App from '../App';
 
-    export default {
-        data() {
-            return {
-                errors: [],
-                data: JSON.parse(localStorage.getItem('admin')),
-                name: '',
-                email: '',
-                id: JSON.parse(localStorage.getItem('admin')).id,
-            }
-        },
-        mounted() {
-        },
-        methods: {
-            async getCurrentUser() {
-                await App.methods.checkToken();
-                await axios.create({
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': 'Bearer ' + localStorage.getItem('admin_access_token'),
-                    }
-                }).get('/api/panel/user')
-                    .then((response) => {
-                        this.data = response.data;
-                        this.name = this.data.name;
-                        this.id = this.data.id;
+export default {
+    data() {
+        return {
+            errors: [],
+            data: JSON.parse(localStorage.getItem('admin')),
+            name: '',
+            email: '',
+            id: JSON.parse(localStorage.getItem('admin')).id,
+        }
+    },
+    mounted() {
+    },
+    methods: {
+        async getCurrentUser() {
+            await App.methods.checkToken();
+            await axios.create({
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('admin_access_token'),
+                }
+            }).get('/api/panel/user')
+                .then((response) => {
+                    this.data = response.data;
+                    this.name = this.data.name;
+                    this.id = this.data.id;
 
-                    })
-                    .catch((error) => {
-                        if (error.status === 401) {
-                            window.location = '/login'
-                            App.methods.logout();
-                        }
-                    });
-
-            },
-
-            async submit() {
-                document.getElementById('updateMsg').classList.add('d-none');
-                let emptyFieldsCount = 0;
-                let req = document.querySelectorAll('[required]');
-               await req.forEach((element) => {
-                    if (element.value == "") {
-                        element.classList.add('hasError');
-                        element.nextSibling.innerHTML = "فیلد اجباری";
-                        emptyFieldsCount++;
-                    } else {
-                        element.classList.remove('hasError');
-                        element.nextSibling.innerHTML = "";
+                })
+                .catch((error) => {
+                    if (error.status === 401) {
+                        window.location = '/login'
+                        App.methods.logout();
                     }
                 });
-                if (emptyFieldsCount == 0) {
-                    this.errors = [];
-                    await axios.post('/api/panel/update/user', {
-                        id: this.id,
-                        name: document.querySelector('#name').value,
-                        email: document.querySelector('#email').value,
-                        current_password: document.querySelector('#current_password').value,
-                        new_password: document.querySelector('#new_password').value,
-                        new_password_repeat: document.querySelector('#new_password_repeat').value,
-                    })
-                        .then((response) => {
-                            console.log(response)
-                            if (response.status === 200) {
-                                localStorage.setItem('admin', JSON.stringify(response.data.user));
-                                document.querySelector('#current_password').value = '';
-                                document.querySelector('#new_password').value = '';
-                                document.querySelector('#new_password_repeat').value = '';
-                                document.querySelector('#updateMsg').classList.remove('d-none');
-                                document.querySelector('#admin_label').innerHTML = response.data.user.name;
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            console.log(error.response);
-                            if (error.status === 401) {
-                                window.location = '/panel/login'
-                                App.methods.logout();
 
-                            } else if (error.status === 422) {
-                                let errorList = Array(error.response.data);
-                                console.log(error.response.data);
-                                for (var i = 0; i < errorList.length; i++) {
-                                    console.log('i', errorList[i]);
-                                    this.errors = errorList[i];
-                                }
-                            } else {
-                                console.log(error);
-                            }
-                            console.log('errs:', this.errors);
-                        })
+        },
+
+        async submit() {
+            document.getElementById('updateMsg').classList.add('d-none');
+            let emptyFieldsCount = 0;
+            let req = document.querySelectorAll('[required]');
+            await req.forEach((element) => {
+                if (element.value == "") {
+                    element.classList.add('hasError');
+                    element.nextSibling.innerHTML = "فیلد اجباری";
+                    emptyFieldsCount++;
+                } else {
+                    element.classList.remove('hasError');
+                    element.nextSibling.innerHTML = "";
                 }
+            });
+            if (emptyFieldsCount === 0) {
+                this.errors = [];
+                await axios.post('/api/panel/update/user', {
+                    id: this.id,
+                    name: document.querySelector('#name').value,
+                    email: document.querySelector('#email').value,
+                    current_password: document.querySelector('#current_password').value,
+                    new_password: document.querySelector('#new_password').value,
+                    new_password_repeat: document.querySelector('#new_password_repeat').value,
+                })
+                    .then((response) => {
+                        console.log(response)
+                        if (response.status === 200) {
+                            localStorage.setItem('admin', JSON.stringify(response.data.user));
+                            this.data = response.data.user;
+                            document.querySelector('#current_password').value = '';
+                            document.querySelector('#new_password').value = '';
+                            document.querySelector('#new_password_repeat').value = '';
+                            document.querySelector('#updateMsg').classList.remove('d-none');
+                            document.querySelector('#admin_label').innerHTML = response.data.user.name;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        console.log(error.response);
+                        if (error.status === 401) {
+                            window.location = '/panel/login'
+                            App.methods.logout();
 
+                        } else if (error.status === 422) {
+                            let errorList = Array(error.response.data);
+                            console.log(error.response.data);
+                            for (var i = 0; i < errorList.length; i++) {
+                                console.log('i', errorList[i]);
+                                this.errors = errorList[i];
+                            }
+                        } else {
+                            console.log(error);
+                        }
+                        console.log('errs:', this.errors);
+                    })
             }
+
         }
     }
+}
 </script>
 <style scoped>
-    input {
-        direction: ltr !important;
-        text-align: left !important;
-    }
+input {
+    direction: ltr !important;
+    text-align: left !important;
+}
 
-    #name {
-        direction: rtl !important;
-        text-align: right !important;
-    }
+#name {
+    direction: rtl !important;
+    text-align: right !important;
+}
 
 </style>

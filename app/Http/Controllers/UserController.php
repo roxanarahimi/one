@@ -4,14 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Kavenegar;
-use function PHPUnit\Framework\at;
 use Illuminate\Support\Facades\Redis;
-
+use App\Models\User;
 
 class UserController extends Controller
 
@@ -65,7 +61,6 @@ class UserController extends Controller
         }
 
     }
-
 
     public function store(Request $request)
     {
@@ -163,29 +158,28 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $user = User::findOrFail($request['id']);
-        $validator = Validator::make($request->all('name', 'email', 'password'),
-            [
-                'name' => 'required|max:255',
-                'email' => 'required|email|max:255|unique:users,email,' . $user['id'],
-                'new_password' => 'nullable|min:3',
-//            'password' => 'required|string|min:3|confirmed',
-            ],
-            [
-                'name.required' => 'لطفا نام را وارد کنید',
-                'name.max' => 'نام بیش از حد طولانی است',
-                'email.required' => 'لطفا ایمیل را وارد کنید',
-                'email.unique' => 'این ایمیل قبلا ثبت شده',
-                'new_password.min' => 'لطفا حد اقل 3 کاراکتر وارد کنید',
-            ]
-        );
-        if ($validator->fails()) {
-            return response()->json($validator->messages(), 422);
-        }
+        $user = User::where('id',$request['id'])->first();
+//        return $user;
+//        $validator = Validator::make($request->all('name', 'email', 'password'),
+//            [
+//                'name' => 'required|max:255',
+//                'email' => 'required|email|max:255|unique:users,email,' . $user['id'],
+//                'new_password' => 'nullable|min:3',
+////            'password' => 'required|string|min:3|confirmed',
+//            ],
+//            [
+//                'name.required' => 'لطفا نام را وارد کنید',
+//                'name.max' => 'نام بیش از حد طولانی است',
+//                'email.required' => 'لطفا ایمیل را وارد کنید',
+//                'email.unique' => 'این ایمیل قبلا ثبت شده',
+//                'new_password.min' => 'لطفا حد اقل 3 کاراکتر وارد کنید',
+//            ]
+//        );
+//        if ($validator->fails()) {
+//            return response()->json($validator->messages(), 422);
+//        }
 
         try {
-
-
             if ($request['current_password'] != '' && $request['new_password'] != '' && $request['new_password_repeat'] != '') {
 
                 if (Hash::check($request['current_password'], $user['password'])) {
@@ -196,8 +190,8 @@ class UserController extends Controller
 
                         if (!Hash::check($request['new_password'], $user['password'])) {
                             $user->update([
-//                            'name' => $request['name'],
-//                            'email' => $request['email'],
+                                'name' => $request['name'],
+                                'email' => $request['email'],
                                 'password' => Hash::make($request['new_password'])
                             ]);
                         }
@@ -220,7 +214,7 @@ class UserController extends Controller
                 ]);
             }
 
-            return response(['client' => $user], 200);
+            return response(['user' => $user], 200);
         } catch (\Exception $exception) {
             return response($exception);
 

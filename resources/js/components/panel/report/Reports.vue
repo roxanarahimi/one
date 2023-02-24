@@ -9,7 +9,7 @@
             <div class = "row mt-3">
                 <div class = "col-12 mb-3">
                     <div v-if = "allData.length" class = "card">
-                        <div class = "card-body">
+                        <div class="card-body table-responsive">
                             <table class = "table">
                                 <thead>
                                 <tr>
